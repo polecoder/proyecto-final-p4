@@ -16,6 +16,7 @@ private:
 public:
     Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa);
     ~Publicacion();
+    
 };
 
 #endif

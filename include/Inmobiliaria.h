@@ -3,15 +3,20 @@
 #include "Usuario.h"
 #include <string>
 
+using namespace std;
+
 class Inmobiliaria : public Usuario {
     private:
-        std::string direccion;
-        std::string url;
-        std::string telefono;
-
+        string direccion;
+        string url;
+        string telefono;
     public:
-        Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
+        Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
         ~Inmobiliaria();
+        
+        string getDireccion();
+        string getUrl();
+        string getTelefono();
 };
 
 #endif

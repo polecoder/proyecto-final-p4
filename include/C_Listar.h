@@ -8,7 +8,6 @@
 #include "AdministraPropiedad.h"
 #include "IControladorFechaActual.h"
 #include <map>
-#include <memory>
 #include <string>
 #include <set>
 using namespace std; // Esto evita tener que escribir std::

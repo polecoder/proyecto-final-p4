@@ -1,45 +1,51 @@
 #include "../include/AdministraPropiedad.h"
+#include <map>
 #include <iostream>
 
 using namespace std;
 
-AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble Inmueble ){
+AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble inmueble){
     this->fecha = fecha;
     this->ultimaPublicacion = 0;
     this->inmueble = inmueble;
-    map<int,Publicacion> publis;
-    this->Publis = publis;
+    map<int,Publicacion> publicaciones;
+    this->publicaciones = publicaciones;
 };
+
 AdministraPropiedad :: ~AdministraPropiedad(){
-
+    // TODO: Implementar
 };
 
-Inmueble AdministraPropiedad:: getinmueble() {
-    return *inmueble;
-};  
-int AdministraPropiedad:: getultimaPublicacion(){
-    return ultimaPublicacion;
+Inmueble AdministraPropiedad::getInmueble() {
+    return *this->inmueble;
+};
+  
+int AdministraPropiedad::getUltimaPublicacion(){
+    return this->ultimaPublicacion;
 };  
 
-void AdministraPropiedad:: setultimaPublicacion(int up){
+void AdministraPropiedad::setUltimaPublicacion(int up){
     ultimaPublicacion=up;
 };
-void AdministraPropiedad:: agregarPubli(int codigo, Publicacion publi){
-    Publis.insert({codigo,publi});
+
+// TODO: no usar codigo, usar publi.codigo
+void AdministraPropiedad::agregarPublicacion(int codigo, Publicacion publi) {
+    publicaciones.insert({codigo, publi});
 };
 
-bool AdministraPropiedad::existepubli(DTFecha fecha, TipoPublicacion tipoPublicacion){
+bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion){
     map<int,Publicacion> :: iterator it;
-    it=Publis.begin();
-    while(it!=Publis.end()&&(!(fecha.operator==((*it).second.getFecha()))|| (*it).second.getTipo()!=tipoPublicacion)){
+    it=publicaciones.begin();
+    while(it!=publicaciones.end()&&(!(fecha.operator==((*it).second.getFecha()))|| (*it).second.getTipo()!=tipoPublicacion)){
         it++;
     };
-    return (it!=Publis.end());
+    return (it!=publicaciones.end());
 }
-Publicacion AdministraPropiedad ::encontrarPu(TipoPublicacion tipoPublicacion){
+
+Publicacion AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tipoPublicacion) {
     map<int,Publicacion> :: iterator it;
     it=Publis.begin();
-    while(it!=Publis.end()&&(!(*it).second.getactiva()||(*it).second.getTipo()!=tipoPublicacion)){
+    while(it!=publicaciones.end()&&(!(*it).second.getactiva()||(*it).second.getTipo()!=tipoPublicacion)) {
         it++;
     };
     return (*it).second;

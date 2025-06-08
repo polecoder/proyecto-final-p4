@@ -1,0 +1,31 @@
+#include "../include/Publicacion.h"
+#include <iostream>
+using namespace std;
+
+
+Publicacion :: Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa){
+    this->codigo = codigo;
+    this->fecha = fecha;
+    this->tipo = tipo;
+    this->texto = texto;
+    this->precio = precio;
+    this->activa = activa;
+};
+Publicacion :: ~Publicacion(){
+    delete fecha; // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
+};
+DTFecha* Publicacion :: getFecha() const{
+    return fecha;
+};
+TipoPublicacion Publicacion :: getTipo() const{
+    return tipo;
+};
+bool Publicacion :: getactiva() const{
+    return activa;
+};
+int Publicacion :: getcodigo(){
+    return codigo;
+};
+void Publicacion :: setactiva(bool activa){
+    this->activa = activa;
+};

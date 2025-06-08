@@ -12,23 +12,20 @@ class AdministraPropiedad {
         DTFecha* fecha;
         int ultimaPublicacion;
         Inmueble* inmueble;
-        map<int,Publicacion> Publis;
+        map<int,Publicacion> publicaciones;
 
     public:
-        AdministraPropiedad(DTFecha* fecha, Inmueble Inmueble);// se inicializa con ultimapublicacion 0 y con un map vacio
-        ~AdministraPropiedad(); //no se si borramos las publicaciones o no
+        AdministraPropiedad(DTFecha* fecha, Inmueble inmueble); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
+        ~AdministraPropiedad(); // TODO: no se si borramos las publicaciones o no
 
-        Inmueble getinmueble();  
-        int getultimaPublicacion();  
+        Inmueble getInmueble();  
+        int getUltimaPublicacion();  
 
-        void setultimaPublicacion(int up);
-        void agregarPubli(int codigo, Publicacion publi);
+        void setUltimaPublicacion(int up);
+        void agregarPublicacion(int codigo, Publicacion publicacion);
 
-        bool existepubli(DTFecha fecha, TipoPublicacion tipoPublicacion);
-        Publicacion encontrarPu(TipoPublicacion tipoPublicacion);
-       
-        
-
+        bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
+        Publicacion encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
 };
 
 #endif

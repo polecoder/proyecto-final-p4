@@ -3,13 +3,16 @@
 #include "Usuario.h"
 #include <string>
 
-class Propietario : public Usuario {
-    private:
-        std::string cuentaBancaria;
-        std::string telefono;
+using namespace std;
 
-    public:
-        Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
+class Propietario : public Usuario
+{
+private:
+    string cuentaBancaria;
+    string telefono;
+
+public:
+    Propietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
 };
 
 #endif

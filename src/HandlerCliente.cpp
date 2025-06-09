@@ -1,8 +1,12 @@
 #include "HandlerCliente.h"
+#include "../include/Cliente.h"
+#include <map>
 
-HandlerCliente* HandlerCliente::instancia = nullptr;
+using namespace std;
 
-HandlerCliente::HandlerCliente() {}
+HandlerCliente* HandlerCliente::instancia = nullptr; //inicializar el puntero estático a nullptr, me lo dijo mi amigo que lo agregue (copilot)
+
+HandlerCliente::HandlerCliente() {} //El credor va vacio
 
 HandlerCliente* HandlerCliente::getInstancia() {
     if (!instancia)
@@ -26,7 +30,8 @@ bool HandlerCliente::existeCliente(const std::string& nickname) {
 }
 
 HandlerCliente::~HandlerCliente() {
-    for (auto& par : clientes) {
-        delete par.second;
+    map<string, Cliente*>::iterator it;
+    while (it != clientes.end()) {
+        it = coleccionClientes.erase(it); // Eliminar el cliente del map
     }
 }

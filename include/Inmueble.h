@@ -13,6 +13,13 @@ class Inmueble {
     public:
         Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
         ~Inmueble();
+        
+        int getCodigo() ;
+        std::string getDireccion() ;
+        int getNumeroPuerta() ;
+        int getSuperficie() ;
+        int getAnoConstruccion() ;
+
 };
 
 #endif

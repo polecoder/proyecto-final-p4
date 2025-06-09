@@ -11,13 +11,20 @@ class HandlerUsuarios
 {
 private:
     map<string, Usuario> coleccionUsuarios;
-
-public:
+    static HandlerUsuarios *instance;
     /**
-     * @brief Constructor de HandlerUsuarios
+     * @brief Constructor de HandlerUsuarios (PRIVADO)
      *
      */
     HandlerUsuarios();
+
+public:
+    /**
+     * @brief Getter para la instancia del HandlerUsuarios
+     *
+     * @return HandlerUsuarios
+     */
+    static HandlerUsuarios *getInstance();
     /**
      * @brief Destructor de HandlerUsuarios
      *

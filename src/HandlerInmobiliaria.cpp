@@ -14,16 +14,16 @@ using namespace std;
     }
 }
 
-void handlerInmobiliaria::agregarInmobiliaria(const string& nickname, const string& contrasena,const string& nombre, const string& email, const string& direccion, const string& url,const string& telefono) {
-    coleccionInmobiliarias[nickname]= Inmobiliaria(nickname,contrasena,nombre,email, direccion, url,telefono); // Agrega una nueva inmobiliaria al mapa
+void handlerInmobiliaria::agregarInmobiliaria( Inmobiliaria inmobiliaria) {
+    coleccionInmobiliarias[inmobiliaria.getNickname()]= inmobiliaria; // Agrega una nueva inmobiliaria al mapa
 }
 
 
-void handlerInmobiliaria::eliminarInmobiliaria(const string& nickname) {
+void handlerInmobiliaria::eliminarInmobiliaria( string& nickname) {
     coleccionInmobiliarias.erase(nickname);
 }
 
-map<string, Inmobiliaria> handlerInmobiliaria::DevolverInmobiliarias() const {
+map<string, Inmobiliaria> handlerInmobiliaria::DevolverInmobiliarias() {
     return coleccionInmobiliarias; // Devuelve el mapa completo
 }
 

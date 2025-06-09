@@ -3,6 +3,15 @@
 
 using namespace std;
 
+Listar::Listar(handlerInmobiliaria* Hinmobiliarias, IControladorFechaActual* fechaActual) {
+    this->Hinmobiliarias = Hinmobiliarias; // Inicializa el handler de inmobiliarias
+    this->fechaActual = fechaActual; // Inicializa el controlador de fecha actual
+
+}; 
+Listar:: ~Listar(){
+
+}; 
+
 void Listar::inicializarHInmobiliarias(handlerInmobiliaria* handler){
     Hinmobiliarias = handler;
 }
@@ -20,7 +29,7 @@ set<DTInmuebleAdministrado> Listar :: listarInmueblesAdministrados(string nickna
     vector<AdministraPropiedad> adProp= Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
     vector<AdministraPropiedad> ::iterator it;
     for (it=adProp.begin();it!=adProp.end();++it){
-        Inmueble in= (*it).getinmueble();
+        Inmueble in= (*it).getInmueble();
         int codigo= in.getCodigo();
         string direccion=in.getDireccion();
         salida.insert(DTInmuebleAdministrado(codigo, direccion,fechaActual->getFechaActual()));

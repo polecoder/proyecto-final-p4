@@ -16,7 +16,8 @@ private:
     handlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
 public:
-    void inicializarHInmobiliarias(handlerInmobiliaria* handler);
+    SubeYBaja();  // Constructor
+    ~SubeYBaja(); // Destructor
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
 };
 

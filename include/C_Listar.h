@@ -17,6 +17,9 @@ private:
     handlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
 public:
+    Listar(handlerInmobiliaria *Hinmobiliarias, IControladorFechaActual *fechaActual);  
+    ~Listar(); 
+
     void inicializarHInmobiliarias(handlerInmobiliaria* handler);
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);

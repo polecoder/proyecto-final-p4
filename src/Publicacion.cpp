@@ -20,12 +20,15 @@ DTFecha* Publicacion :: getFecha() {
 TipoPublicacion Publicacion :: getTipo() {
     return tipo;
 };
-bool Publicacion :: getactiva() {
+bool Publicacion :: getActiva() {
     return activa;
 };
-int Publicacion :: getcodigo(){
+int Publicacion :: getCodigo(){
     return codigo;
 };
-void Publicacion :: setactiva(bool activa){
+void Publicacion :: setActiva(bool activa){
     this->activa = activa;
 };
+float Publicacion:: getPrecio(){
+    return precio;
+}

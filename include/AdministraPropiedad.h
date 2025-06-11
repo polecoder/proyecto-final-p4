@@ -25,7 +25,7 @@ class AdministraPropiedad {
         void agregarPublicacion(int codigo, Publicacion publicacion);
 
         bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
-        Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
+        Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);//busca una publicacion con ese tipo que este activa  
 };
 
 #endif

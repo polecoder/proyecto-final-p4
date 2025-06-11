@@ -30,3 +30,14 @@ vector<AdministraPropiedad> Inmobiliaria:: getadministraProps() {
     return administraProps;
 
 };
+
+void Inmobiliaria:: notificar(DTNotificacion notificacion){
+    map<string,Cliente> ::iterator it;
+    map<string,Propietario>:: iterator it2;
+    for (it=clientesAsociados.begin();it!=clientesAsociados.end();it++){
+        (*it).second.agregarNotificacion(notificacion);
+    };
+    for (it2=PropietariosAsociados.begin();it2!=PropietariosAsociados.end();it++){
+        (*it2).second.agregarNotificacion(notificacion);
+    }
+}

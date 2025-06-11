@@ -37,9 +37,9 @@ public:
      */
     void agregarUsuario(const Usuario &usuario);
     /**
-     * PRE-CONDICIÓN: existeUsuario(nickname) == true
-     *
      * @brief Elimina al Usuario u tal que u.nickname=nickname de la colección de Usuarios y libera la memoria asociada a dicho elemento u
+     *
+     * PRE-CONDICIÓN: existeUsuario(nickname) == true
      *
      * @param nickname El nickname del usuario que se quiere eliminar
      */

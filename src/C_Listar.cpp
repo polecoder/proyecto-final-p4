@@ -20,7 +20,7 @@ set<DTInmuebleAdministrado> Listar :: listarInmueblesAdministrados(string nickna
     vector<AdministraPropiedad> adProp= Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
     vector<AdministraPropiedad> ::iterator it;
     for (it=adProp.begin();it!=adProp.end();++it){
-        Inmueble in= (*it).getinmueble();
+        Inmueble in= (*it).getInmueble();
         int codigo= in.getCodigo();
         string direccion=in.getDireccion();
         salida.insert(DTInmuebleAdministrado(codigo, direccion,fechaActual->getFechaActual()));

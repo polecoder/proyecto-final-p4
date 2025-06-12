@@ -6,18 +6,26 @@ using namespace std;
 
 
 static HandlerPropietario* HandlerPropietario::instancia = nullptr;
+HandlerPropietario* HandlerPropietario::getInstancia() {
+    if (instancia == nullptr) {
+        instancia = new HandlerPropietario();
+    }
+    return instancia;
+}
 
+//Agregra un propietario al map de propietarios
 agregarPropietario(Propietario* propietario) {
     string nick = propietario->getNickname();
     propietarios[nick] = propietario;
 }
 
 Propietario* HandlerPropietario::obtenerPropietario(const string& nickname) {
-    if (propietarios.count(nickname))
+    if (propietarios.count(nickname)) // funcion que está en map, verifica si el nickname existe
         return propietarios[nickname];
     return nullptr;
 }
 
+// DEvuelve true si existe el propietario, false si no
 bool HandlerPropietario::existePropietario(const string& nickname) {
-    return propietarios.count(nickname) > 0;
+    return propietarios.count(nickname) > 0; // si existe devueleve 1, si no 0
 }

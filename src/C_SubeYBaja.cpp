@@ -1,5 +1,14 @@
 #include "../include/C_SubeYBaja.h"
+#include "../include/HandlerInmobiliaria.h"
+#include "../include/DTFecha.h"
+#include "../include/Publicacion.h"
+#include "../include/TipoPublicacion.h"
+#include "../include/Propietario.h"
+#include "../include/Inmobiliaria.h"
+
+#include "../include/HandlerPropietario.h"
 #include <iostream>
+
 
 bool SubeYBaja:: altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio){
     vector<AdministraPropiedad> adProp= Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
@@ -23,3 +32,23 @@ bool SubeYBaja:: altaPublicacion(string nicknameInmobiliaria, int codigoInmueble
     (*it).agregarPubli(p.getcodigo(),p);
     return true ;
 };
+
+bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono){
+    bool existe = existePropietario(nickname);
+    if (!existe) {
+        Propietario* nuevoPropietario = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+        HandlerPropietario::getInstancia()->agregarPropietario(nuevoPropietario);
+        return true; // Alta exitosa
+    }
+    return false;
+}
+
+bool altaInmobiliaria(nickname:String, contrasena:String, nombre:String, email:String, url:String, telefono:String){
+    bool existe = existeInmobiliaria (nickname);
+    if (!existe){
+        Inmobilaria* nuevaInmobiliaria = new Inmobiliaria (nickname, contrasena, nombre, email, direccion, url, telefono);
+        HandlerInmobiliaria:: getInstancia()->agregarInmobiliaria (nuevaInmobiliaria);
+        return true;  
+    }
+    return false;
+}

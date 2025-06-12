@@ -13,12 +13,12 @@ HandlerPublicacion* HandlerPublicacion::getInstancia(){
     return instancia;
 }
 
-void HandlerPublicacion::agregarPublicacion(Publicacion &publicacion){
-  coleccionPublicaciones.insert({publicacion.getCodigo(), publicacion})  
+void HandlerPublicacion::agregarPublicacion(const Publicacion &publicacion){
+  coleccionPublicaciones.insert({publicacion.getCodigo(), publicacion});
 }
 
 void HandlerPublicacion::eliminarPublicacion(int codigo){
-
+    
 }
 
 bool HandlerPublicacion::existePublicacion(int codigo){
@@ -30,20 +30,20 @@ Publicacion HandlerPublicacion::getPublicacion(int codigo){
     return coleccionPublicaciones.at(codigo);
 }
 
-vector<Publicacion> HandlerPublicacion::obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo){
-    vector<Publicacion> publicaciones;
+set<Publicacion> HandlerPublicacion::obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo){
+    set<Publicacion> publicaciones;
     if(tipo == Todos){
         for(map<int, Publicacion>::iterator it = coleccionPublicaciones.begin(); it != coleccionPublicaciones.end(); ++it){
             Publicacion& pub = it->second;
             if(pub.getActiva() && pub.getTipo() == tipoPub && precioMin < pub.getPrecio() && pub.getPrecio() < precioMax){
-                publicaciones.push_back(pub);
+                publicaciones.insert(pub);
             }
         }
     }else{
         for(map<int, Publicacion>::iterator it = coleccionPublicaciones.begin(); it != coleccionPublicaciones.end(); ++it){
             Publicacion& pub = it->second;
             if(pub.getActiva() && pub.getTipo() == tipo && precioMin < pub.getPrecio() && pub.getPrecio() < precioMax && pub.getTipoInmueble() == tipo){
-                publicaciones.push_back(pub);
+                publicaciones.insert(pub);
             }
         }
     }

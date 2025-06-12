@@ -4,7 +4,7 @@
 #include "Publicacion.h"
 
 #include <map>
-#include <vector>
+#include <set>
 #include <string>
 
 using namespace std;
@@ -28,7 +28,7 @@ public:
 
     Publicacion getPublicacion(int codigo);
 
-    vector<Publicacion> obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
+    set<Publicacion> obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
 };
 
 #endif

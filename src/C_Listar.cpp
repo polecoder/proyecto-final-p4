@@ -20,11 +20,25 @@ set<DTInmuebleAdministrado> Listar :: listarInmueblesAdministrados(string nickna
     vector<AdministraPropiedad> adProp= Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
     vector<AdministraPropiedad> ::iterator it;
     for (it=adProp.begin();it!=adProp.end();++it){
-        Inmueble in= (*it).getInmueble();
-        int codigo= in.getCodigo();
-        string direccion=in.getDireccion();
+        Inmueble* in= (*it).getInmueble();
+        int codigo = in->getCodigo();
+        string direccion=in->getDireccion();
         salida.insert(DTInmuebleAdministrado(codigo, direccion,fechaActual->getFechaActual()));
     }
     return salida;
 }
 
+set<DTPublicacion> Listar:: listarPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo){
+    set<Publicacion> listaPublicaciones = HandlerPublicacion::getInstancia()->obtenerPublicacionesActivas(tipoPub, precioMin, precioMax, tipo);
+    set<DTPublicacion> dtp;
+    for(set<Publicacion>::iterator it = listaPublicaciones.begin(); it != listaPublicaciones.end(); ++it){
+        int codigo = it->getCodigo();
+        DTFecha* fecha = it->getFecha();
+        string texto = it->getTexto();
+        string precio = to_string(it->getPrecio());
+        string inmobiliaria = it->getNicknameInmobiliaria();
+        
+        dtp.insert(DTPublicacion(codigo, fecha,texto, precio, inmobiliaria));
+    }
+    return dtp;
+}

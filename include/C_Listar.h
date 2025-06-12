@@ -7,9 +7,13 @@
 #include "DTInmuebleAdministrado.h"
 #include "AdministraPropiedad.h"
 #include "IControladorFechaActual.h"
+#include "HandlerPublicacion.h"
+#include "DTPublicacion.h"
+
 #include <map>
 #include <string>
 #include <set>
+
 using namespace std; // Esto evita tener que escribir std::
 
 class Listar {
@@ -20,6 +24,9 @@ public:
     void inicializarHInmobiliarias(handlerInmobiliaria* handler);
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
+
+    set<DTPublicacion> listarPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
+    DTPublicacion detalleInmueble(int codigoPublicacion);
 };
 
 #endif

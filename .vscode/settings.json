@@ -49,6 +49,9 @@
         "typeinfo": "cpp",
         "format": "cpp",
         "span": "cpp",
-        "text_encoding": "cpp"
+        "text_encoding": "cpp",
+        "charconv": "cpp",
+        "ctime": "cpp",
+        "variant": "cpp"
     }
 }

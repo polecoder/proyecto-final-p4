@@ -19,6 +19,7 @@ class Inmueble {
         int getNumeroPuerta() ;
         int getSuperficie() ;
         int getAnoConstruccion() ;
+        virtual TipoInmueble getTipoInmueble() const = 0;
 
 };
 

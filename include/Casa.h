@@ -2,6 +2,7 @@
 #define CASA_H
 #include "Inmueble.h"
 #include "TipoTecho.h"
+#include "TipoInmueble.h"
 
 class Casa : public Inmueble {
     private:
@@ -11,6 +12,7 @@ class Casa : public Inmueble {
     public:
         Casa(bool esPH, TipoTecho techo);
         ~Casa();
+        TipoInmueble getTipoInmueble() const override {return TipoInmueble::Casa;}
 };
 
 #endif

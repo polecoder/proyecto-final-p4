@@ -33,7 +33,7 @@ bool SubeYBaja:: altaPublicacion(string nicknameInmobiliaria, int codigoInmueble
     return true ;
 };
 
-bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono){
+bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono) {
     bool existe = existePropietario(nickname);
     if (!existe) {
         Propietario* nuevoPropietario = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
@@ -43,21 +43,21 @@ bool altaPropietario(string nickname, string contrasena, string nombre, string e
     return false;
 }
 
-bool altaInmobiliaria(string nickname, stirng contrasena, string nombre, string email, string url, string telefono){
-    bool existe = existeInmobiliaria (nickname);
-    if (!existe){
-        Inmobilaria* nuevaInmobiliaria = new Inmobiliaria (nickname, contrasena, nombre, email, direccion, url, telefono);
-        HandlerInmobiliaria:: getInstancia()->agregarInmobiliaria (nuevaInmobiliaria);
-        return true;  
+bool altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono) {
+    bool existe = existeInmobiliaria(nickname);
+    if (!existe) {
+        Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        HandlerInmobiliaria::getInstancia()->agregarInmobiliaria(nuevaInmobiliaria);
+        return true;
     }
     return false;
 }
 
-bool altaCliente (string nickname, string contrasena, string nombre, string email, string apellido, string documento){
-    bool existe = existeCliente (nickname);
-    if (!existe){
-        cliente* nuevoCliente = new NuevoCliente (nickname, contrasena, nombre, email, apellido, documento);
-        HandlerCliente:: getInstancia()->agregarCliente(NuevoCliente);
+bool altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento) {
+    bool existe = existeCliente(nickname);
+    if (!existe) {
+        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
+        HandlerCliente::getInstancia()->agregarCliente(nuevoCliente);
         return true;
     }
     return false;

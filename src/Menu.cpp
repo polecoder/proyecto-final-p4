@@ -1,6 +1,9 @@
 #include <iostream>
 #include "../include/Menu.h"
 #include "../include/CargaDatos.h"
+#include "../include/HandlerPropietario.h"
+#include "../include/HandlerInmobiliaria.h"
+#include "../include/HandlerCliente.h"
 #include "../include/TipoInmueble.h"
 #include "../include/TipoPublicacion.h"
 #include "../include/TipoTecho.h"
@@ -134,6 +137,7 @@ void altaUsuario(){
         std::getline(std::cin, apellido);
         std::cout << "Documento: ";
         std::getline(std::cin, documento);
+        altaCliente(nickname, contrasena, nombre, email, apellido, documento); //Diria que este es el To Do
         //TODO: usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
 
     }else if (tipoUsuario == 1){

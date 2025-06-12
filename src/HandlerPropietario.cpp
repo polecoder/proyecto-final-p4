@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-
+// Devuelve las instancias 
 static HandlerPropietario* HandlerPropietario::instancia = nullptr;
 HandlerPropietario* HandlerPropietario::getInstancia() {
     if (instancia == nullptr) {
@@ -19,6 +19,7 @@ agregarPropietario(Propietario* propietario) {
     propietarios[nick] = propietario;
 }
 
+//Devuelve el propietario 
 Propietario* HandlerPropietario::obtenerPropietario(const string& nickname) {
     if (propietarios.count(nickname)) // funcion que está en map, verifica si el nickname existe
         return propietarios[nickname];

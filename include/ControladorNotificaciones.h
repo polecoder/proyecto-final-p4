@@ -11,7 +11,9 @@ class ControladorNotificaciones
 {
 private:
     static ControladorNotificaciones *instance;
-    HandlerUsuarios &handlerUsuarios;
+    HandlerPropietarios &HandlerPropietarios;
+    HandlerInmobiliarias &HandlerInmobiliarias;
+    HandlerClientes &handlerClientes;
     /**
      * @brief Constructor de ControladorNotificaciones (PRIVADO)
      *
@@ -33,7 +35,7 @@ public:
     /**
      * @brief Devuelve todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *
-     * PRE-CONDICIÓN: existeUsuario(nicknameUsuario) == true.
+     * PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true.
      *
      * @param nicknameUsuario
      *
@@ -43,7 +45,7 @@ public:
     /**
      * @brief Borra todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *
-     * PRE-CONDICIÓN: existeUsuario(nicknameUsuario) == true.
+     * PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true.
      *
      * @param nicknameUsuario
      */

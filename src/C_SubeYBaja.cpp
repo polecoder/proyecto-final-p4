@@ -5,7 +5,7 @@
 #include "../include/TipoPublicacion.h"
 #include "../include/Propietario.h"
 #include "../include/Inmobiliaria.h"
-
+#include "..include/HandlerCliente.h"
 #include "../include/HandlerPropietario.h"
 #include <iostream>
 
@@ -43,12 +43,22 @@ bool altaPropietario(string nickname, string contrasena, string nombre, string e
     return false;
 }
 
-bool altaInmobiliaria(nickname:String, contrasena:String, nombre:String, email:String, url:String, telefono:String){
+bool altaInmobiliaria(string nickname, stirng contrasena, string nombre, string email, string url, string telefono){
     bool existe = existeInmobiliaria (nickname);
     if (!existe){
         Inmobilaria* nuevaInmobiliaria = new Inmobiliaria (nickname, contrasena, nombre, email, direccion, url, telefono);
         HandlerInmobiliaria:: getInstancia()->agregarInmobiliaria (nuevaInmobiliaria);
         return true;  
+    }
+    return false;
+}
+
+bool altaCliente (string nickname, string contrasena, string nombre, string email, string apellido, string documento){
+    bool existe = existeCliente (nickname);
+    if (!existe){
+        cliente* nuevoCliente = new NuevoCliente (nickname, contrasena, nombre, email, apellido, documento);
+        HandlerCliente:: getInstancia()->agregarCliente(NuevoCliente);
+        return true;
     }
     return false;
 }

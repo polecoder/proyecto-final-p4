@@ -17,8 +17,8 @@ public:
     static HandlerCliente* getInstancia();
 
     void agregarCliente(Cliente* cliente);
-    Cliente* obtenerCliente(const string& nickname);
-    bool existeCliente(const string& nickname);
+    Cliente* obtenerCliente( string& nickname);
+    bool existeCliente( string& nickname);
 
     ~HandlerCliente();
 };

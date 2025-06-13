@@ -34,7 +34,7 @@ public:
     /**
      * @brief Getter para apellido
      *
-     * @return Un string correspondiente a la cuenta bancaria del cliente
+     * @return Un string correspondiente al apellido del cliente
      */
     string getApellido();
     /**

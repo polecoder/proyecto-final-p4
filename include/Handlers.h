@@ -12,7 +12,7 @@ using namespace std;
 class HandlerPropietarios
 {
 private:
-    map<string, Propietario> coleccionPropietarios;
+    map<string, Propietario *> coleccionPropietarios;
     static HandlerPropietarios *instance;
     /**
      * @brief Constructor de HandlerPropietarios (PRIVADO)
@@ -35,9 +35,11 @@ public:
     /**
      * @brief Agrega un Propietario a la colección de Propietarios, se utiliza el nickname del propietario pasado por parámetro para agregarlo a la colección
      *
+     * PRE-CONDICIÓN: existePropietario(propietario.nickname) == false
+     *
      * @param propietario El propietario que se quiere agregar a la colección
      */
-    void agregarPropietario(const Propietario &propietario);
+    void agregarPropietario(Propietario *propietario);
     /**
      * @brief Elimina al Propietario "p" tal que p.nickname=nickname de la colección de Propietarios y libera la memoria asociada a dicho objeto "p"
      *
@@ -60,19 +62,19 @@ public:
      * @param nickname El nickname del propietario que se quiere devolver
      * @return Un Propietario p tal que p.nickname=nickname
      */
-    Propietario getPropietario(string nickname);
+    Propietario *getPropietario(string nickname);
     /**
      * @brief Devuelve la colección de todos los propietarios que hay en el sistema
      *
-     * @return map<string, Propietario>
+     * @return map<string, Propietario*>
      */
-    map<string, Propietario> getColeccionPropietarios();
+    const map<string, Propietario *> &getColeccionPropietarios() const; // ACLARACIÓN: La definición de la función es de esta forma porque: queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
 };
 
 class HandlerInmobiliarias
 {
 private:
-    map<string, Inmobiliaria> coleccionInmobiliarias;
+    map<string, Inmobiliaria *> coleccionInmobiliarias;
     static HandlerInmobiliarias *instance;
     /**
      * @brief Constructor de HandlerInmobiliarias (PRIVADO)
@@ -95,9 +97,11 @@ public:
     /**
      * @brief Agrega un Inmobiliaria a la colección de Inmobiliarias, se utiliza el nickname del inmobiliaria pasado por parámetro para agregarlo a la colección
      *
+     * PRE-CONDICIÓN: existeInmobiliaria(inmobiliaria.nickname) == false
+     *
      * @param inmobiliaria El inmobiliaria que se quiere agregar a la colección
      */
-    void agregarInmobiliaria(const Inmobiliaria &inmobiliaria);
+    void agregarInmobiliaria(Inmobiliaria *inmobiliaria);
     /**
      * @brief Elimina la Inmobiliaria "i" tal que i.nickname=nickname de la colección de Inmobiliarias y libera la memoria asociada a dicho elemento "i"
      *
@@ -120,19 +124,19 @@ public:
      * @param nickname El nickname del inmobiliaria que se quiere devolver
      * @return Un Inmobiliaria i tal que i.nickname=nickname
      */
-    Inmobiliaria getInmobiliaria(string nickname);
+    Inmobiliaria *getInmobiliaria(string nickname);
     /**
      * @brief Devuelve la colección de todos las inmobiliarias que hay en el sistema
      *
-     * @return map<string, Inmobiliaria>
+     * @return map<string, Inmobiliaria*>
      */
-    map<string, Inmobiliaria> getColeccionInmobiliarias();
+    const map<string, Inmobiliaria *> &getColeccionInmobiliarias() const; // ACLARACIÓN: La definición de la función es de esta forma porque: queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
 };
 
 class HandlerClientes
 {
 private:
-    map<string, Cliente> coleccionClientes;
+    map<string, Cliente *> coleccionClientes;
     static HandlerClientes *instance;
     /**
      * @brief Constructor de HandlerClientes (PRIVADO)
@@ -155,9 +159,11 @@ public:
     /**
      * @brief Agrega un Cliente a la colección de Clientes, se utiliza el nickname del cliente pasado por parámetro para agregarlo a la colección
      *
+     * PRE-CONDICIÓN: existeCliente(cliente.nickname) == false
+     *
      * @param cliente El cliente que se quiere agregar a la colección
      */
-    void agregarCliente(const Cliente &cliente);
+    void agregarCliente(Cliente *cliente);
     /**
      * @brief Elimina la Cliente "c" tal que c.nickname=nickname de la colección de Clientes y libera la memoria asociada a dicho elemento "c"
      *
@@ -180,13 +186,13 @@ public:
      * @param nickname El nickname del cliente que se quiere devolver
      * @return Un Cliente c tal que c.nickname=nickname
      */
-    Cliente getCliente(string nickname);
+    Cliente *getCliente(string nickname);
     /**
-     * @brief Devuelve la colección de todos las clientes que hay en el sistema
+     * @brief Devuelve la colección de todos las clientes que hay en el sistema.
      *
-     * @return map<string, Cliente>
+     * @return map<string, Cliente*>
      */
-    map<string, Cliente> getColeccionClientes();
+    const map<string, Cliente *> &getColeccionClientes() const; // ACLARACIÓN: La definición de la función es de esta forma porque: queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
 };
 
 #endif

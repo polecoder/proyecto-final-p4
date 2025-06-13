@@ -68,12 +68,6 @@ public:
      */
     void agregarNotificacion(DTNotificacion const &notificacion);
     /**
-     * @brief Se encarga de eliminar la notificación pasada por parámetro al set de notificaciones del cliente
-     *
-     * @param codigoPublicacion El código de la publicación asociada a la notificación que se quiere eliminar al set de notificaciones
-     */
-    void eliminarNotificacion(int codigoPublicacion);
-    /**
      * @brief Se encarga de eliminar TODAS las notificaciones del set de notificaciones del cliente
      *
      */

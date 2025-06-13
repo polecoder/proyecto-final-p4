@@ -1,0 +1,54 @@
+#include <string>
+#include "Usuario.h"
+
+using namespace std;
+
+Usuario::Usuario(string nickname, string contrasena, string nombre, string email)
+{
+    this->nickname = nickname;
+    this->contrasena = contrasena;
+    this->nombre = nombre;
+    this->email = email;
+}
+
+Usuario::~Usuario() {}
+
+string Usuario::getNickname()
+{
+    return this->nickname;
+}
+
+string Usuario::getContrasena()
+{
+    return this->contrasena;
+}
+
+string Usuario::getNombre()
+{
+    return this->nombre;
+}
+
+string Usuario::getEmail()
+{
+    return this->email;
+}
+
+void Usuario::setNickname(string nickname)
+{
+    this->nickname = nickname;
+}
+
+void Usuario::setContrasena(string contrasena)
+{
+    this->contrasena = contrasena;
+}
+
+void Usuario::setNombre(string nombre)
+{
+    this->nombre = nombre;
+}
+
+void Usuario::setEmail(string email)
+{
+    this->email = email;
+}

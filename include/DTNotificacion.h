@@ -92,6 +92,10 @@ public:
      * @param tipoInmueble Tipo del inmueble de la publicación asociada a la notificación
      */
     void setTipoInmueble(TipoInmueble tipoInmueble);
+    /**
+     * @brief Operador < para comparar DTNotificacion, se usa para ordenar un set de este tipo
+     */
+    bool operator<(const DTNotificacion &other) const;
 };
 
 #endif

@@ -27,3 +27,8 @@ int Inmueble::getSuperficie(){
 int Inmueble::getAnoConstruccion(){
     return anoConstruccion;
 };
+
+Propietario Inmueble::getPropietario() const{
+    return *propietario; 
+};
+

@@ -3,40 +3,40 @@
 #include <iostream>
 
 using namespace std;
-handlerInmobiliaria* handlerInmobiliaria::instancia = nullptr;
+HandlerInmobiliaria* HandlerInmobiliaria::instancia = nullptr;
 
-handlerInmobiliaria::handlerInmobiliaria() {
+HandlerInmobiliaria::HandlerInmobiliaria() {
 }
 
-handlerInmobiliaria::~handlerInmobiliaria() {
+HandlerInmobiliaria::~HandlerInmobiliaria() {
     map<string,Inmobiliaria>::iterator it;
     while (it != coleccionInmobiliarias.end()) {
         it = coleccionInmobiliarias.erase(it); // erase() devuelve el siguiente iterador válido
     }
 }
 
-handlerInmobiliaria* handlerInmobiliaria::getInstancia() {
+HandlerInmobiliaria* HandlerInmobiliaria::getInstancia() {
     if (instancia == nullptr) {
-        instancia = new handlerInmobiliaria();
+        instancia = new HandlerInmobiliaria();
     }
     return instancia;
 }
 
-void handlerInmobiliaria::agregarInmobiliaria( Inmobiliaria inmobiliaria) {
+void HandlerInmobiliaria::agregarInmobiliaria( Inmobiliaria inmobiliaria) {
     coleccionInmobiliarias[inmobiliaria.getNickname()]= inmobiliaria; // Agrega una nueva inmobiliaria al mapa
 }
 
 
-void handlerInmobiliaria::eliminarInmobiliaria( string& nickname) {
+void HandlerInmobiliaria::eliminarInmobiliaria( string& nickname) {
     coleccionInmobiliarias.erase(nickname);
 }
 
-map<string, Inmobiliaria> handlerInmobiliaria::DevolverInmobiliarias() {
+map<string, Inmobiliaria> HandlerInmobiliaria::DevolverInmobiliarias() {
     return coleccionInmobiliarias; 
 }
-Inmobiliaria handlerInmobiliaria:: DevolverInmobiliaria(string nickname){
+Inmobiliaria HandlerInmobiliaria:: DevolverInmobiliaria(string nickname){
     return coleccionInmobiliarias.find(nickname)->second;
 }
-vector<AdministraPropiedad> handlerInmobiliaria:: DevolverAdProp(string nickname){
+vector<AdministraPropiedad> HandlerInmobiliaria:: DevolverAdProp(string nickname){
     return  coleccionInmobiliarias[nickname].getadministraProps();
  };

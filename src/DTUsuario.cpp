@@ -5,12 +5,12 @@ DTUsuario::DTUsuario(std::string nickname, std::string nombre) {
     this->nickname = nickname;
     this->nombre = nombre;
 }
-
-std::string DTUsuario::getNickname() {
+//le tuve que poner los const porque sino no lo puedo llamar desde el menu
+std::string DTUsuario::getNickname() const {
     return nickname;
 }
 
-std::string DTUsuario::getNombre() {
+std::string DTUsuario::getNombre()const{
     return nombre;
 }
 

@@ -11,10 +11,12 @@ class DTInmuebleAdministrado {
 
     public:
         DTInmuebleAdministrado(int codigo, std::string direccion, DTFecha* fechaComienzo);
-        int getCodigo();
-        std::string getDireccion();
+        ~DTInmuebleAdministrado();  
+        //les puse const porque siono no puedo mostrarlo en el menu
+        int getCodigo() const;
+        std::string getDireccion()const;
         DTFecha* getFechaComienzo();
-        ~DTInmuebleAdministrado();
+       
 };
 
 #endif

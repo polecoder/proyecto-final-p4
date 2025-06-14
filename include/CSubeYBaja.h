@@ -1,5 +1,5 @@
-#ifndef SUBE_Y_BAJA
-#define SUBE_Y_BAJA
+#ifndef C_SUBE_Y_BAJA
+#define C_SUBE_Y_BAJA
 #include "Publicacion.h"
 #include "Inmobiliaria.h"
 #include "HandlerInmobiliaria.h"
@@ -18,7 +18,7 @@ using namespace std;
 
 class SubeYBaja{
 private:
-    handlerInmobiliaria* Hinmobiliarias;
+    HandlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
     HandlerPublicacion* HPublicacion;
 public:

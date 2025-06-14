@@ -7,14 +7,14 @@ using namespace std; // Esto evita tener que escribir std::
 
 
 
-class handlerInmobiliaria {
+class HandlerInmobiliaria {
 private:
     map<string, Inmobiliaria> coleccionInmobiliarias;
-    static handlerInmobiliaria* instancia;
-    handlerInmobiliaria();  // Constructor
-    ~handlerInmobiliaria(); // Destructor, borra la coleccion
+    static HandlerInmobiliaria* instancia;
+    HandlerInmobiliaria();  // Constructor
+    ~HandlerInmobiliaria(); // Destructor, borra la coleccion
 public:
-    static handlerInmobiliaria* getInstancia(); 
+    static HandlerInmobiliaria* getInstancia(); 
     
     void agregarInmobiliaria(Inmobiliaria inmobiliaria);
     void eliminarInmobiliaria(string& nickname);

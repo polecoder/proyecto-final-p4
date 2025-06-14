@@ -12,7 +12,6 @@ class ControladorNotificaciones
 private:
     static ControladorNotificaciones *instance;
     HandlerPropietarios *handlerPropietarios;
-    HandlerInmobiliarias *handlerInmobiliarias;
     HandlerClientes *handlerClientes;
     /**
      * @brief Constructor de ControladorNotificaciones (PRIVADO)

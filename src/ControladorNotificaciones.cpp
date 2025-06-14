@@ -10,7 +10,6 @@ ControladorNotificaciones *ControladorNotificaciones::instance = NULL;
 ControladorNotificaciones::ControladorNotificaciones()
 {
     this->handlerPropietarios = HandlerPropietarios::getInstance();
-    this->handlerInmobiliarias = HandlerInmobiliarias::getInstance();
     this->handlerClientes = HandlerClientes::getInstance();
 }
 

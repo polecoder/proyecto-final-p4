@@ -1,19 +1,4 @@
-<<<<<<< HEAD
-#ifndef ADMINISTRAPROPIEDAD_H
-#define ADMINISTRAPROPIEDAD_H
-#include "DTFecha.h"
 
-class AdministraPropiedad {
-    private:
-        DTFecha* fecha;
-
-    public:
-        AdministraPropiedad(DTFecha* fecha);
-        ~AdministraPropiedad();
-};
-
-#endif
-=======
 #ifndef ADMINISTRAPROPIEDAD_H
 #define ADMINISTRAPROPIEDAD_H
 #include "DTFecha.h"
@@ -45,4 +30,4 @@ class AdministraPropiedad {
 };
 
 #endif
->>>>>>> 4f76a58b1d5350245de078f27e3caaafaa547ee3
+

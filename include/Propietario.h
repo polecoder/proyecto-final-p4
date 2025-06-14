@@ -1,7 +1,7 @@
 #ifndef PROPIETARIO_H
 #define PROPIETARIO_H
 #include "Usuario.h"
-#include "DTNotificaciones.h"
+//#include "DTNotificaciones.h"
 #include <string>
 #include <set>
 using namespace std;

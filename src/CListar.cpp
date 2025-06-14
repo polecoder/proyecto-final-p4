@@ -1,6 +1,9 @@
 #include "../include/CListar.h"
 #include <iostream>
-
+#include <ios>
+#include <string>
+#include <set>
+#include <map>
 using namespace std;
 
 Listar::Listar(){
@@ -26,7 +29,7 @@ set<DTInmuebleAdministrado> Listar :: listarInmueblesAdministrados(string nickna
     set<DTInmuebleAdministrado> salida; 
     vector<AdministraPropiedad>::iterator it;
     for (it = adProp.begin(); it != adProp.end(); ++it) {
-        salida.insert(DTInmuebleAdministrado((*it).getInmueble().getCodigo(), (*it).getInmueble().getDireccion(), fechaActual->getFechaActual()));
+        salida.insert(DTInmuebleAdministrado((*(*it).getInmueble()).getCodigo(),(*(*it).getInmueble()).getDireccion(),fechaActual->getFechaActual()));
     }
     return salida;
 }

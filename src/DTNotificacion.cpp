@@ -8,3 +8,7 @@ DTNotificacion::DTNotificacion(string nicknameInmobiliaria, int codigoPublicacio
     this->tipoPublicacion = tipoPublicacion;
     this->tipoInmueble = tipoInmueble;
 }
+
+bool DTNotificacion::operator<(const DTNotificacion& other) const {
+    return this->codigoPublicacion < other.codigoPublicacion;
+}

@@ -18,34 +18,15 @@ void HandlerPublicacion::agregarPublicacion(Publicacion &publicacion){
 }
 
 void HandlerPublicacion::eliminarPublicacion(int codigo){
-
+    map<int, Publicacion>::iterator it = coleccionPublicaciones.find(codigo);//si ponemos como precondicion que existe podemos sacar este if 
+    if (it != coleccionPublicaciones.end()) {
+        coleccionPublicaciones.erase(it);
+    }
 }
 
-bool HandlerPublicacion::existePublicacion(int codigo){
-
-}
 
 Publicacion HandlerPublicacion::getPublicacion(int codigo){
     
     return coleccionPublicaciones.at(codigo);
 }
 
-vector<Publicacion> HandlerPublicacion::obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo){
-    vector<Publicacion> publicaciones;
-    if(tipo == Todos){
-        for(map<int, Publicacion>::iterator it = coleccionPublicaciones.begin(); it != coleccionPublicaciones.end(); ++it){
-            Publicacion& pub = it->second;
-            if(pub.getActiva() && pub.getTipo() == tipoPub && precioMin < pub.getPrecio() && pub.getPrecio() < precioMax){
-                publicaciones.push_back(pub);
-            }
-        }
-    }else{
-        for(map<int, Publicacion>::iterator it = coleccionPublicaciones.begin(); it != coleccionPublicaciones.end(); ++it){
-            Publicacion& pub = it->second;
-            if(pub.getActiva() && pub.getTipo() == tipo && precioMin < pub.getPrecio() && pub.getPrecio() < precioMax && pub.getTipoInmueble() == tipo){
-                publicaciones.push_back(pub);
-            }
-        }
-    }
-    return publicaciones;
-}

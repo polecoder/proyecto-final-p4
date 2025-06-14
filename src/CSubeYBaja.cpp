@@ -17,7 +17,7 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
     vector<AdministraPropiedad> adProp = Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
     vector<AdministraPropiedad>::iterator it;
     it = adProp.begin();
-    while (((*it).getInmueble().getCodigo() != codigoInmueble)) { //busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
+    while (((*(*it).getInmueble()).getCodigo() != codigoInmueble)) { //busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
         it++;
     }
     bool e=(*it).existePublicacion( fechaActual->getFechaActual(), tipoPublicacion);
@@ -44,7 +44,7 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
 
     //una vez creada la publicacion se debe notificar a los suscriptores
     Inmobiliaria Inmobiliaria = Hinmobiliarias->DevolverInmobiliaria(nicknameInmobiliaria);
-    Inmueble* inmueble = &(*it).getInmueble();
+    Inmueble* inmueble = (*it).getInmueble();
     class::Casa* esCasa = dynamic_cast<class::Casa*>(inmueble);
     if (esCasa != nullptr) {
         Inmobiliaria.notificar(DTNotificacion( nicknameInmobiliaria, p.getCodigo(), texto, tipoPublicacion, Casa));

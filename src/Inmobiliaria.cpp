@@ -2,6 +2,13 @@
 #include <iostream>
 
 using namespace std;
+Inmobiliaria::Inmobiliaria() : Usuario() // Llama al constructor por defecto de Usuario
+{
+    direccion = "";
+    url = "";
+    telefono = "";
+    // El vector administraProps se inicializa solo
+}
 
 Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)
     : Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario

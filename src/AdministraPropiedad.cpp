@@ -16,8 +16,8 @@ AdministraPropiedad :: ~AdministraPropiedad(){
     // TODO: Implementar
 };
 
-Inmueble AdministraPropiedad::getInmueble() {
-    return *this->inmueble;
+Inmueble* AdministraPropiedad::getInmueble() {
+    return this->inmueble;
 };
   
 int AdministraPropiedad::getUltimaPublicacion(){
@@ -45,7 +45,7 @@ bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoP
 Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tipoPublicacion) {
     map<int,Publicacion> :: iterator it;
     it=publicaciones.begin();
-    while(it!=publicaciones.end()&&(!(*it).second.getactiva()||(*it).second.getTipo()!=tipoPublicacion)) {
+    while(it!=publicaciones.end()&&(!(*it).second.getActiva()||(*it).second.getTipo()!=tipoPublicacion)) {
         it++;
     };
     if (it==publicaciones.end()){

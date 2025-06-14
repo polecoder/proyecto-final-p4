@@ -2,7 +2,14 @@
 #include <iostream>
 using namespace std;
 
-Usuario:: Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email){
+Usuario::Usuario() {
+    nickname = "";
+    contrasena = "";
+    nombre = "";
+    email = "";
+}
+
+Usuario::Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email){
     this->nickname = nickname;
     this->contrasena = contrasena;
     this->nombre = nombre;

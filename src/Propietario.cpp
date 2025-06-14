@@ -8,9 +8,7 @@ Propietario::Propietario(string nickname, string contrasena, string nombre, stri
     this->telefono = telefono;
 };
 
-Propietario::~Propietario(){
 
-};
 
 void Propietario::agregarNotificacion(DTNotificacion notificacion){
     notificaciones.insert(notificacion);

@@ -23,5 +23,4 @@ class Inmobiliaria : public Usuario {
         std::vector<AdministraPropiedad> getadministraProps() ;
 };
 
->>>>>>> 4f76a58b1d5350245de078f27e3caaafaa547ee3
 #endif

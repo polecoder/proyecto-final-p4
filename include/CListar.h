@@ -16,7 +16,7 @@ using namespace std; // Esto evita tener que escribir std::
 class Listar {
 private:
     HandlerInmobiliaria* Hinmobiliarias;
-    ControladorFechaActual* fechaActual;
+    ControladorFechaActual* fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
 public:
     Listar();  
     ~Listar(); 

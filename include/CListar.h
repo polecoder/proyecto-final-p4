@@ -4,9 +4,10 @@
 #include "Usuario.h"
 #include "Inmobiliaria.h"
 #include "HandlerInmobiliaria.h"
+#include "HandlerInmueble.h"
 #include "DTInmuebleAdministrado.h"
 #include "AdministraPropiedad.h"
-#include "IControladorFechaActual.h"
+#include "ControladorFechaActual.h"
 #include <map>
 #include <string>
 #include <set>
@@ -14,10 +15,12 @@ using namespace std; // Esto evita tener que escribir std::
 
 class Listar {
 private:
-    handlerInmobiliaria* Hinmobiliarias;
-    IControladorFechaActual* fechaActual;
+    HandlerInmobiliaria* Hinmobiliarias;
+    ControladorFechaActual* fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
 public:
-    void inicializarHInmobiliarias(handlerInmobiliaria* handler);
+    Listar();  
+    ~Listar(); 
+
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
 };

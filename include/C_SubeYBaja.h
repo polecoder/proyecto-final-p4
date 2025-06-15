@@ -16,6 +16,7 @@ private:
     handlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
 public:
+    // TODO: Agregar constructor y destructor
     void inicializarHInmobiliarias(handlerInmobiliaria* handler);
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
     

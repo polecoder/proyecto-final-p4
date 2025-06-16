@@ -3,6 +3,8 @@
 
 using namespace std;
 
+SubeYBaja* SubeYBaja::Instancia = nullptr;
+
 SubeYBaja* SubeYBaja::getInstancia(){
     if (Instancia==nullptr){
         Instancia= new SubeYBaja();

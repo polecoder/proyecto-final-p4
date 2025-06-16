@@ -6,6 +6,8 @@
 #include <map>
 using namespace std;
 
+Listar* Listar::instancia = nullptr;
+
 Listar* Listar:: getInstancia(){
     if (instancia == nullptr){
         instancia= new Listar();

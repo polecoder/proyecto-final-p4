@@ -3,7 +3,6 @@
 #include "Apartamento.h"
 #include "DTCasa.h"
 #include "DTApartamento.h"
-#include <stdexcept>
 #include <typeinfo>
 #include <map>
 
@@ -42,6 +41,15 @@ set<DTInmuebleListado> ControladorListar::listarInmuebles()
     return inmueblesListados;
 }
 
+set<DTUsuario> ControladorListar::listarInmobiliarias()
+{
+    set<DTUsuario> inmobiliariasListadas;
+
+    {
+    }
+    return;
+}
+
 DTInmueble ControladorListar::detalleInmueble(int codigoInmueble)
 {
     Inmueble *inmueble = handlerInmuebles->getInmueble(codigoInmueble);
@@ -51,16 +59,18 @@ DTInmueble ControladorListar::detalleInmueble(int codigoInmueble)
     int numeroPuerta = inmueble->getNumeroPuerta();
     int superficie = inmueble->getSuperficie();
     int anoConstruccion = inmueble->getAnoConstruccion();
+    Casa *casa = dynamic_cast<Casa *>(inmueble);
 
-    if (Casa *casa = dynamic_cast<Casa *>(inmueble))
+    if (casa)
     {
         bool esPH = casa->getEsPH();
         TipoTecho techo = casa->getTecho();
         return DTCasa(codigo, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
     }
 
-    if (Apartamento *apartamento = dynamic_cast<Apartamento *>(inmueble))
+    else
     {
+        Apartamento *apartamento = dynamic_cast<Apartamento *>(inmueble);
         int piso = apartamento->getPiso();
         bool tieneAscensor = apartamento->getTieneAscensor();
         float gastosComunes = apartamento->getGastosComunes();

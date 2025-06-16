@@ -3,15 +3,51 @@
 #include "Usuario.h"
 #include <string>
 
-class Inmobiliaria : public Usuario {
-    private:
-        std::string direccion;
-        std::string url;
-        std::string telefono;
+using namespace std;
 
-    public:
-        Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
-        ~Inmobiliaria();
+class Inmobiliaria : public Usuario
+{
+private:
+    string direccion;
+    string url;
+    string telefono;
+
+public:
+    /**
+     * @brief Constructor de Inmobiliaria
+     *
+     * @param nickname
+     * @param contrasena
+     * @param nombre
+     * @param email
+     * @param direccion
+     * @param url
+     * @param telefono
+     */
+    Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
+    /**
+     * @brief Getter de Direccion
+     *
+     * @return * string
+     */
+    string getDireccion();
+    /**
+     * @brief Getter de Url
+     *
+     * @return string
+     */
+    string getUrl();
+    /**
+     * @brief Getter de Telefono
+     *
+     * @return string
+     */
+    string getTelefono();
+    /**
+     * @brief Destructor Inmobiliaria
+     *
+     */
+    ~Inmobiliaria();
 };
 
 #endif

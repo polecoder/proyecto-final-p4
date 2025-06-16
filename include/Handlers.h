@@ -1,8 +1,9 @@
 #ifndef HANDLERS_H
 #define HANDLERS_H
 
-#include <map>
 #include "Inmueble.h"
+#include "Inmobiliaria.h"
+#include <map>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ private:
     map<int, Inmueble *> coleccionInmuebles;
     static HandlerInmuebles *instance;
     /**
-     * @brief Construct a new Handler Inmuebles object
+     * @brief Constructor de HandlerInmuebles
      *
      */
     HandlerInmuebles();
@@ -31,13 +32,13 @@ public:
      */
     bool existeInmueble(int codigoInmueble);
     /**
-     * @brief Getter de  Inmueble
+     * @brief Getter de Inmueble
      *
      * @return Inmueble
      */
     Inmueble *getInmueble(int codigoInmueble);
     /**
-     * @brief Getetr de la Colecccion Inmueble
+     * @brief Getter de la Colecccion Inmueble
      *
      * @return map<int, Inmueble*>
      */
@@ -55,4 +56,29 @@ public:
     ~HandlerInmuebles();
 };
 
+class HandlerInmobiliarias
+{
+private:
+    map<string, Inmobiliaria *> coleccionInmobiliarias;
+    static HandlerInmobiliarias *instance;
+    /**
+     * @brief Constructor de HandlerInmobiliarias
+     *
+     */
+    HandlerInmobiliarias();
+
+public:
+    /**
+     * @brief Getter de la instancia del HandlerInmobiliarias
+     *
+     * @return HandlerInmobiliarias*
+     */
+    static HandlerInmobiliarias *getInstance();
+    /**
+     * @brief Getter de la Colecccion Inmobiliaria
+     *
+     * @return map<int, Inmobiliaria*>
+     */
+    const map<string, Inmobiliaria *> &getColecccionInmobiliaria() const;
+};
 #endif

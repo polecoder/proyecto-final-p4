@@ -1,5 +1,7 @@
 #include "Handlers.h"
 
+// Handler para Inmueble
+
 HandlerInmuebles *HandlerInmuebles::instance = NULL;
 
 HandlerInmuebles::HandlerInmuebles()
@@ -48,4 +50,23 @@ HandlerInmuebles::~HandlerInmuebles()
         delete par.second;
     }
     coleccionInmuebles.clear();
+}
+
+// Handler para Inmobiliaria
+
+HandlerInmobiliarias *HandlerInmobiliarias::instance = NULL;
+
+HandlerInmobiliarias::HandlerInmobiliarias()
+{
+    map<string, Inmobiliaria *> coleccionInmobiliarias;
+    this->coleccionInmobiliarias = coleccionInmobiliarias;
+}
+
+HandlerInmobiliarias *HandlerInmobiliarias::getInstance()
+{
+    if (instance == NULL)
+    {
+        instance = new HandlerInmobiliarias();
+    }
+    return instance;
 }

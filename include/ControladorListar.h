@@ -4,6 +4,7 @@
 #include "Inmueble.h"
 #include "DTInmueble.h"
 #include "DTInmuebleListado.h"
+#include "DTUsuario.h"
 #include "Handlers.h"
 #include "IControladorListar.h"
 #include <set>
@@ -16,32 +17,38 @@ private:
     static ControladorListar *instance;
     HandlerInmuebles *handlerInmuebles;
     /**
-     * @brief Construct a new Controlador Listar object
+     * @brief Constructor de ControladorListar
      *
      */
     ControladorListar();
 
 public:
     /**
-     * @brief Get the Instance object
+     * @brief Getter de la instancia de ControladorListar
      *
      * @return ControladorListar*
      */
     ControladorListar *getInstance();
     /**
-     * @brief
+     * @brief Devuelve la información de código, dirección y nombre del propietario de los inmuebles de la coleccion
      *
      * @return set<DTInmuebleListado>
      */
     set<DTInmuebleListado> listarInmuebles();
     /**
-     * @brief
+     * @brief Devuelve la información el nickname y nombre de todas las inmobiliarias de la coleccion
+     *
+     * @return set<DTUsuario>
+     */
+    set<DTUsuario> listarInmobiliarias();
+    /**
+     * @brief Devuelve la información detallada del inmueble tal que inmueble.inmueble=codigoInmueble
      *
      * @return DTInmueble
      */
     DTInmueble detalleInmueble(int codigoInmueble);
     /**
-     * @brief Destroy the Controlador Listar object
+     * @brief Destructor de ControladorListar
      *
      */
     ~ControladorListar();

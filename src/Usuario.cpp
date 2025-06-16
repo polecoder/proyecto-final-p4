@@ -18,7 +18,7 @@ Usuario::Usuario(string nickname,string contrasena,string nombre,string email){
 Usuario:: ~Usuario(){
 
 };
-string Usuario:: getNickname() {
+string Usuario:: getNickname()const {
     return nickname;
 };
 string Usuario:: getContrasena() {

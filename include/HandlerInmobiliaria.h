@@ -9,19 +9,20 @@ using namespace std; // Esto evita tener que escribir std::
 
 class HandlerInmobiliaria {
 private:
-    map<string, Inmobiliaria> coleccionInmobiliarias;
+    map<string, Inmobiliaria*> coleccionInmobiliarias;
     static HandlerInmobiliaria* instancia;
     HandlerInmobiliaria();  // Constructor
-    ~HandlerInmobiliaria(); // Destructor, borra la coleccion
-public:
-    static HandlerInmobiliaria* getInstancia(); 
     
-    void agregarInmobiliaria(Inmobiliaria inmobiliaria);
+public:
+    static HandlerInmobiliaria* getInstancia();
+
+    void agregarInmobiliaria(Inmobiliaria*& inmobiliaria);
     void eliminarInmobiliaria(string& nickname);
 
-    map<string, Inmobiliaria> DevolverInmobiliarias() ;// Devuelve el mapa completo
-    Inmobiliaria DevolverInmobiliaria(string nickname);// Devuelve la inmobiliaria con ese nickname
-    vector<AdministraPropiedad> DevolverAdProp(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado
+    map<string, Inmobiliaria*> DevolverInmobiliarias(); // Devuelve el mapa completo
+    Inmobiliaria* DevolverInmobiliaria(string nickname); // Devuelve la inmobiliaria con ese nickname
+    vector<AdministraPropiedad> DevolverAdProp(string nickname); //devuelve los ap realcionado con una inmobiliaria con el nickname dado
+    ~HandlerInmobiliaria(); // Destructor, borra la coleccion
 };
 
 #endif // HANDLER_INMOBILIARIA

@@ -18,11 +18,13 @@ using namespace std;
 
 class SubeYBaja{
 private:
+    static SubeYBaja* Instancia;
     HandlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
     HandlerPublicacion* HPublicacion;
-public:
     SubeYBaja();  // Constructor
+public:
+    static SubeYBaja* getInstancia();
     ~SubeYBaja(); // Destructor
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
 };

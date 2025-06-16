@@ -18,6 +18,7 @@ class Inmobiliaria : public Usuario {
         map<string,Propietario> PropietariosAsociados;
 
     public:
+        Inmobiliaria();//constructor por defecto
         Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
         ~Inmobiliaria();
 

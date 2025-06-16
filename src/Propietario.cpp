@@ -8,7 +8,9 @@ Propietario::Propietario(string nickname, string contrasena, string nombre, stri
     this->telefono = telefono;
 };
 
-
+Propietario::~Propietario(){
+    // Destructor vacio, no es necesario liberar memoria ya que no hay punteros
+};
 
 void Propietario::agregarNotificacion(DTNotificacion notificacion){
     notificaciones.insert(notificacion);

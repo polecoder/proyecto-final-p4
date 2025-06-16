@@ -3,6 +3,7 @@
 #include "DTNotificacion.h"
 #include "Usuario.h"
 #include <string>
+#include <set>
 
 class Propietario : public Usuario {
     private:
@@ -11,6 +12,7 @@ class Propietario : public Usuario {
         set<DTNotificacion> notificaciones;
     public:
         Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
+        ~Propietario();
         void agregarNotificacion(DTNotificacion notificacion);
 };
 

@@ -21,15 +21,12 @@ public:
     
     static HandlerPublicacion *getInstancia();
 
-    void agregarPublicacion( Publicacion &publicacion);// Agrega una publicacion a la coleccion de publicacion, la clave es el codigo de la publicacion
+    void agregarPublicacion( const Publicacion &publicacion);// Agrega una publicacion a la coleccion de publicacion, la clave es el codigo de la publicacion
 
     void eliminarPublicacion(int codigo);
 
-    bool existePublicacion(int codigo);
-
     Publicacion getPublicacion(int codigo);
 
-    vector<Publicacion> obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
 };
 
 #endif

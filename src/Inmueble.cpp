@@ -37,7 +37,7 @@ int Inmueble::getAnoConstruccion(){
     return anoConstruccion;
 };
 
-Propietario Inmueble::getPropietario() const{
-    return *propietario; 
+Propietario* Inmueble::getPropietario() const{
+    return propietario; 
 };
 

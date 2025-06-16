@@ -13,6 +13,7 @@ class Inmueble {
         Propietario* propietario;//no lo cambien a mayuscula
 
     public:
+        Inmueble();// constructor por defecto
         Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
         virtual ~Inmueble();
         
@@ -22,7 +23,7 @@ class Inmueble {
         int getSuperficie() ;
         int getAnoConstruccion() ;
         // Cambiado a const para poder usarlo en el menu
-        Propietario getPropietario() const;
+        Propietario* getPropietario() const;
 
 };
 

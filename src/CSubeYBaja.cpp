@@ -2,6 +2,16 @@
 #include <iostream>
 
 using namespace std;
+
+SubeYBaja* SubeYBaja::Instancia = nullptr;
+
+SubeYBaja* SubeYBaja::getInstancia(){
+    if (Instancia==nullptr){
+        Instancia= new SubeYBaja();
+    }
+    return Instancia;
+};
+
 SubeYBaja::SubeYBaja() {
     Hinmobiliarias = HandlerInmobiliaria::getInstancia(); // Inicializa el Handler de inmobiliarias
     fechaActual = ControladorFechaActual::getInstance(); // Inicializa el controlador de fecha actual
@@ -43,7 +53,7 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
     HPublicacion->agregarPublicacion(p);
 
     //una vez creada la publicacion se debe notificar a los suscriptores
-    Inmobiliaria Inmobiliaria = Hinmobiliarias->DevolverInmobiliaria(nicknameInmobiliaria);
+    Inmobiliaria Inmobiliaria = (*Hinmobiliarias->DevolverInmobiliaria(nicknameInmobiliaria));
     Inmueble* inmueble = (*it).getInmueble();
     class::Casa* esCasa = dynamic_cast<class::Casa*>(inmueble);
     if (esCasa != nullptr) {

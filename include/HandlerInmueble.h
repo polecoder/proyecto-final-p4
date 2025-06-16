@@ -7,18 +7,18 @@ using namespace std;
 
 class HandlerInmueble {
 private:
-    map<int, Inmueble> coleccionInmuebles;
+    map<int, Inmueble*> coleccionInmuebles;
     static HandlerInmueble* instancia;
     HandlerInmueble();  // Constructor
     ~HandlerInmueble(); // Destructor
 public:
-    static HandlerInmueble* getInstancia(); 
-    
-    void agregarInmueble(Inmueble inmueble);
+    static HandlerInmueble* getInstancia();
+
+    void agregarInmueble(Inmueble* inmueble);
     void eliminarInmueble(int codigo);
-    
-    map<int, Inmueble> DevolverInmuebles(); // Devuelve el mapa completo
-    Inmueble DevolverInmueble(int codigo); // Devuelve el inmueble con ese codigo
+
+    map<int, Inmueble*> DevolverInmuebles(); // Devuelve el mapa completo
+    Inmueble* DevolverInmueble(int codigo); // Devuelve el inmueble con ese codigo
 
 };
 #endif

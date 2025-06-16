@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 #ifndef INMUEBLE_H
 #define INMUEBLE_H
 #include <string>

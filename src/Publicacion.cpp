@@ -23,7 +23,7 @@ TipoPublicacion Publicacion :: getTipo() {
 bool Publicacion :: getActiva() {
     return activa;
 };
-int Publicacion :: getCodigo(){
+int Publicacion :: getCodigo()const{
     return codigo;
 };
 void Publicacion :: setActiva(bool activa){

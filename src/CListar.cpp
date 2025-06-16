@@ -15,12 +15,12 @@ Listar:: ~Listar(){
 }; 
 
 set<DTUsuario> Listar::listarInmobiliarias() {
-    map<string, Inmobiliaria> inmo = Hinmobiliarias->DevolverInmobiliarias();
-    set<DTUsuario> salida; 
-    map<string, Inmobiliaria>::iterator it;
-    for ( it= inmo.begin(); it != inmo.end(); ++it) { 
-        salida.insert(DTUsuario(it->first, it->second.getNombre()));//first es el nickname, second es el objeto inmobiliaria
-    } 
+    map<string, Inmobiliaria*> inmo = Hinmobiliarias->DevolverInmobiliarias();
+    set<DTUsuario> salida;
+    map<string, Inmobiliaria*>::iterator it;
+    for (it = inmo.begin(); it != inmo.end(); ++it) {
+        salida.insert(DTUsuario(it->first, it->second->getNombre()));//first es el nickname, second es el objeto inmobiliaria
+    }
     return salida;
 }
 

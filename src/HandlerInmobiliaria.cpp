@@ -9,10 +9,10 @@ HandlerInmobiliaria::HandlerInmobiliaria() {
 }
 
 HandlerInmobiliaria::~HandlerInmobiliaria() {
-    map<string,Inmobiliaria>::iterator it;
-    while (it != coleccionInmobiliarias.end()) {
-        it = coleccionInmobiliarias.erase(it); // erase() devuelve el siguiente iterador válido
+    for (auto it = coleccionInmobiliarias.begin(); it != coleccionInmobiliarias.end(); ++it) {
+        delete it->second; // Libera la memoria de cada Inmobiliaria
     }
+    coleccionInmobiliarias.clear(); // Limpia el mapa
 }
 
 HandlerInmobiliaria* HandlerInmobiliaria::getInstancia() {
@@ -22,21 +22,21 @@ HandlerInmobiliaria* HandlerInmobiliaria::getInstancia() {
     return instancia;
 }
 
-void HandlerInmobiliaria::agregarInmobiliaria( Inmobiliaria inmobiliaria) {
-    coleccionInmobiliarias[inmobiliaria.getNickname()]= inmobiliaria; // Agrega una nueva inmobiliaria al mapa
+void HandlerInmobiliaria::agregarInmobiliaria( Inmobiliaria* inmobiliaria) {
+    coleccionInmobiliarias[inmobiliaria->getNickname()] = inmobiliaria; // Agrega una nueva inmobiliaria al mapa
 }
 
 
-void HandlerInmobiliaria::eliminarInmobiliaria( string& nickname) {
+void HandlerInmobiliaria::eliminarInmobiliaria(string& nickname) {
     coleccionInmobiliarias.erase(nickname);
 }
 
-map<string, Inmobiliaria> HandlerInmobiliaria::DevolverInmobiliarias() {
-    return coleccionInmobiliarias; 
+map<string, Inmobiliaria*> HandlerInmobiliaria::DevolverInmobiliarias() {
+    return coleccionInmobiliarias;
 }
-Inmobiliaria HandlerInmobiliaria:: DevolverInmobiliaria(string nickname){
+Inmobiliaria* HandlerInmobiliaria::DevolverInmobiliaria(string nickname) {
     return coleccionInmobiliarias.find(nickname)->second;
 }
-vector<AdministraPropiedad> HandlerInmobiliaria:: DevolverAdProp(string nickname){
-    return  coleccionInmobiliarias[nickname].getadministraProps();
- };
+vector<AdministraPropiedad> HandlerInmobiliaria::DevolverAdProp(string nickname) {
+    return coleccionInmobiliarias[nickname]->getadministraProps();
+};

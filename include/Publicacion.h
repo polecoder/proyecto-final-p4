@@ -21,7 +21,7 @@ public:
     DTFecha* getFecha();
     bool getActiva();
     void setActiva(bool activa);
-    int getCodigo();
+    int getCodigo()const;
 };
 
 #endif

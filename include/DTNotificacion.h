@@ -18,7 +18,7 @@ private:
 
 public:
    
-    DTNotificacion( string nicknameInmobiliaria,  int codigoPublicacion,  string textoPublicacion,  TipoPublicacion tipoPublicacion,  TipoInmueble tipoInmueble);
+    DTNotificacion(const string &nicknameInmobiliaria, const int &codigoPublicacion, const string &textoPublicacion, const TipoPublicacion &tipoPublicacion, const TipoInmueble &tipoInmueble);
 
     ~DTNotificacion();
 
@@ -41,6 +41,7 @@ public:
     void setTipoPublicacion(TipoPublicacion tipoPublicacion);
    
     void setTipoInmueble(TipoInmueble tipoInmueble);
-};
 
+    bool operator<(const DTNotificacion& other) const;
+};
 #endif

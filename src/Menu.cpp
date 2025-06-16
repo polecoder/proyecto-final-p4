@@ -246,7 +246,6 @@ void altaPublicacion(){
 
     std::cout << "Lista de Inmobiliarias:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
-    HandlerInmueble* HInmueble = HandlerInmueble::getInstancia();
     Listar controladorListar = Listar(); 
     set<DTUsuario> DTUsuarios = controladorListar.listarInmobiliarias();
     //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
@@ -260,10 +259,9 @@ void altaPublicacion(){
     //TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> DTInmueblesAdministrados=controladorListar.listarInmueblesAdministrados(nicknameInmobiliaria);
     //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
-    set<DTInmuebleAdministrado> :: iterator it2;
-    for(it2=DTInmueblesAdministrados.begin();it2!=DTInmueblesAdministrados.end();++it){
-        Propietario propietario= HInmueble->DevolverInmueble((*it2).getCodigo()).getPropietario();
-        std::cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion()<< ", Propietario: " << propietario.getNickname()<< std::endl;
+    set<DTInmuebleAdministrado>::iterator it2;
+    for(it2=DTInmueblesAdministrados.begin();it2!=DTInmueblesAdministrados.end();++it2){
+        std::cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion()<< std::endl;
     };
     int codigoInmueble;
     std::cout << "Inmueble: ";

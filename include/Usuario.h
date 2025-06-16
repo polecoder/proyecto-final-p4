@@ -10,9 +10,10 @@ class Usuario {
         std::string email;
 
     public:
+        Usuario(); // Constructor por defecto
         Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email);
         virtual ~Usuario();
-        std::string getNickname() ;
+        std::string getNickname()const ;
         std::string getContrasena() ;
         std::string getNombre() ;
         std::string getEmail() ;

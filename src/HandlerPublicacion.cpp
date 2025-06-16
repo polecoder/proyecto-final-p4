@@ -13,7 +13,7 @@ HandlerPublicacion* HandlerPublicacion::getInstancia(){
     return instancia;
 }
 
-void HandlerPublicacion::agregarPublicacion(Publicacion &publicacion){
+void HandlerPublicacion::agregarPublicacion( const Publicacion &publicacion){
   coleccionPublicaciones.insert({publicacion.getCodigo(), publicacion});  
 }
 

@@ -18,7 +18,7 @@ class AdministraPropiedad {
         AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
         ~AdministraPropiedad(); // TODO: no se si borramos las publicaciones o no
 
-        Inmueble getInmueble();  
+        Inmueble* getInmueble();  
         int getUltimaPublicacion();  
 
         void setUltimaPublicacion(int up);

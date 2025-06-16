@@ -11,6 +11,7 @@ class DTUsuario {
         DTUsuario(std::string nickname, std::string nombre);
         std::string getNickname() const;
         std::string getNombre() const;
-        bool operator<(DTUsuario& other);
+        // necesito que sea const para que compile
+        bool operator<(const DTUsuario& other) const;
 };
 #endif

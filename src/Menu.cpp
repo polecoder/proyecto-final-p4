@@ -10,9 +10,14 @@
 #include "../include/DTFecha.h"
 #include "../include/DTInmueble.h"
 #include "../include/DTInmuebleAdministrado.h"
-#include "../include/DTinmuebleListado.h"
+#include "../include/DTInmuebleListado.h"
 #include "../include/DTPublicacion.h"
 #include "../include/DTUsuario.h"
+#include "../include/CListar.h"
+#include "../include/CSubeYBaja.h"
+#include "../include/IControladorFechaActual.h"
+#include "../include/HandlerInmobiliaria.h"
+#include "../include/HandlerInmueble.h"
 #include <string>
 #include <set>
 
@@ -241,12 +246,25 @@ void altaPublicacion(){
 
     std::cout << "Lista de Inmobiliarias:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
+    HandlerInmueble* HInmueble = HandlerInmueble::getInstancia();
+    Listar controladorListar = Listar(); 
+    set<DTUsuario> DTUsuarios = controladorListar.listarInmobiliarias();
     //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+    set<DTUsuario>::iterator it;
+    for (it = DTUsuarios.begin(); it != DTUsuarios.end(); ++it) {
+        std::cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << std::endl;
+    };
     std::cout << "Nickname de la inmobiliaria: ";
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
     //TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
+    set<DTInmuebleAdministrado> DTInmueblesAdministrados=controladorListar.listarInmueblesAdministrados(nicknameInmobiliaria);
     //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
+    set<DTInmuebleAdministrado> :: iterator it2;
+    for(it2=DTInmueblesAdministrados.begin();it2!=DTInmueblesAdministrados.end();++it){
+        Propietario propietario= HInmueble->DevolverInmueble((*it2).getCodigo()).getPropietario();
+        std::cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion()<< ", Propietario: " << propietario.getNickname()<< std::endl;
+    };
     int codigoInmueble;
     std::cout << "Inmueble: ";
     std::cin >> codigoInmueble;
@@ -267,6 +285,8 @@ void altaPublicacion(){
     std::cin >> precio;
     std::cin.ignore();
     //TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
+    SubeYBaja controladorSubeYBaja = SubeYBaja();
+    bool altapublicacion= controladorSubeYBaja.altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 
 void consultaPublicaciones(){

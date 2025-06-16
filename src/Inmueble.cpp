@@ -1,6 +1,15 @@
 #include "../include/Inmueble.h"
 #include <iostream>
 using namespace std;
+
+Inmueble :: Inmueble(){
+    codigo = 0;
+    direccion = "";
+    numeroPuerta = 0;
+    superficie = 0;
+    anoConstruccion = 0;
+    propietario = nullptr; 
+};
 Inmueble :: Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion){
     this->codigo = codigo;
     this->direccion = direccion;
@@ -27,3 +36,8 @@ int Inmueble::getSuperficie(){
 int Inmueble::getAnoConstruccion(){
     return anoConstruccion;
 };
+
+Propietario Inmueble::getPropietario() const{
+    return *propietario; 
+};
+

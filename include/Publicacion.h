@@ -16,11 +16,12 @@ private:
 public:
     Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa);
     ~Publicacion();
-    DTFecha* getFecha() const;
-    TipoPublicacion getTipo() const;
-    bool getactiva() const;
-    void setactiva(bool activa);
-    int getcodigo();
+    float getPrecio();
+    TipoPublicacion getTipo();
+    DTFecha* getFecha();
+    bool getActiva();
+    void setActiva(bool activa);
+    int getCodigo();
 };
 
 #endif

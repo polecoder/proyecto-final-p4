@@ -14,18 +14,21 @@ Publicacion :: Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, std
 Publicacion :: ~Publicacion(){
     delete fecha; // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
 };
-DTFecha* Publicacion :: getFecha() const{
+DTFecha* Publicacion :: getFecha() {
     return fecha;
 };
-TipoPublicacion Publicacion :: getTipo() const{
+TipoPublicacion Publicacion :: getTipo() {
     return tipo;
 };
-bool Publicacion :: getactiva() const{
+bool Publicacion :: getActiva() {
     return activa;
 };
-int Publicacion :: getcodigo(){
+int Publicacion :: getCodigo(){
     return codigo;
 };
-void Publicacion :: setactiva(bool activa){
+void Publicacion :: setActiva(bool activa){
     this->activa = activa;
 };
+float Publicacion:: getPrecio(){
+    return precio;
+}

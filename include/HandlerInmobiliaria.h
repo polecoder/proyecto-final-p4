@@ -16,7 +16,7 @@ private:
 public:
     static HandlerInmobiliaria* getInstancia();
 
-    void agregarInmobiliaria(Inmobiliaria* inmobiliaria);
+    void agregarInmobiliaria(Inmobiliaria*& inmobiliaria);
     void eliminarInmobiliaria(string& nickname);
 
     map<string, Inmobiliaria*> DevolverInmobiliarias(); // Devuelve el mapa completo

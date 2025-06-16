@@ -246,7 +246,7 @@ void altaPublicacion(){
 
     std::cout << "Lista de Inmobiliarias:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
-    Listar controladorListar = Listar(); 
+    Listar controladorListar = *Listar::getInstancia(); 
     set<DTUsuario> DTUsuarios = controladorListar.listarInmobiliarias();
     //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
     set<DTUsuario>::iterator it;
@@ -283,7 +283,7 @@ void altaPublicacion(){
     std::cin >> precio;
     std::cin.ignore();
     //TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
-    SubeYBaja controladorSubeYBaja = SubeYBaja();
+    SubeYBaja controladorSubeYBaja = *SubeYBaja::getInstancia();
     bool altapublicacion= controladorSubeYBaja.altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 

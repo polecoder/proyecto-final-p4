@@ -15,10 +15,13 @@ using namespace std; // Esto evita tener que escribir std::
 
 class Listar {
 private:
+    static Listar* instancia;
     HandlerInmobiliaria* Hinmobiliarias;
     ControladorFechaActual* fechaActual;
-public:
     Listar();  
+public:
+    static Listar* getInstancia();
+
     ~Listar(); 
 
     set<DTUsuario> listarInmobiliarias();

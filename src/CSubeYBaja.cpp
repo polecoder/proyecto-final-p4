@@ -2,6 +2,14 @@
 #include <iostream>
 
 using namespace std;
+
+SubeYBaja* SubeYBaja::getInstancia(){
+    if (Instancia==nullptr){
+        Instancia= new SubeYBaja();
+    }
+    return Instancia;
+};
+
 SubeYBaja::SubeYBaja() {
     Hinmobiliarias = HandlerInmobiliaria::getInstancia(); // Inicializa el Handler de inmobiliarias
     fechaActual = ControladorFechaActual::getInstance(); // Inicializa el controlador de fecha actual

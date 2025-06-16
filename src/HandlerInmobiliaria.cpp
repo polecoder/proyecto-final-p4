@@ -22,7 +22,7 @@ HandlerInmobiliaria* HandlerInmobiliaria::getInstancia() {
     return instancia;
 }
 
-void HandlerInmobiliaria::agregarInmobiliaria( Inmobiliaria* inmobiliaria) {
+void HandlerInmobiliaria::agregarInmobiliaria( Inmobiliaria*& inmobiliaria) {
     coleccionInmobiliarias[inmobiliaria->getNickname()] = inmobiliaria; // Agrega una nueva inmobiliaria al mapa
 }
 

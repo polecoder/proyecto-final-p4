@@ -6,6 +6,13 @@
 #include <map>
 using namespace std;
 
+Listar* Listar:: getInstancia(){
+    if (instancia == nullptr){
+        instancia= new Listar();
+    }
+    return instancia;
+};
+
 Listar::Listar(){
     Hinmobiliarias = HandlerInmobiliaria::getInstancia(); // Inicializa el handler de inmobiliarias
     fechaActual = ControladorFechaActual::getInstance(); // Inicializa el controlador de fecha actual

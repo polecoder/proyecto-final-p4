@@ -16,6 +16,7 @@
 #include "../include/DTInmuebleListado.h"
 #include "../include/DTPublicacion.h"
 #include "../include/DTUsuario.h"
+#include "../include/C_SubeYBaja.h"
 #include <string>
 #include <set>
 
@@ -137,7 +138,7 @@ void altaUsuario(){
         std::getline(std::cin, apellido);
         std::cout << "Documento: ";
         std::getline(std::cin, documento);
-        altaCliente(nickname, contrasena, nombre, email, apellido, documento); //Diria que este es el To Do
+        C_subeYBaja::altaCliente(nickname, contrasena, nombre, email, apellido, documento); //Diria que este es el To Do
         //TODO: usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
 
     }else if (tipoUsuario == 1){
@@ -147,7 +148,7 @@ void altaUsuario(){
         std::getline(std::cin, url);
         std::cout << "Telefono: ";
         std::getline(std::cin, telefono);
-        altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        C_subeYBaja::altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
         //TODO: usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
 
     }else if (tipoUsuario == 2){
@@ -155,7 +156,7 @@ void altaUsuario(){
         std::getline(std::cin, cuentaBancaria);
         std::cout << "Telefono: ";
         std::getline(std::cin, telefono);
-        altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+        C_subeYBaja::altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
         //TODO: usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
 
     }

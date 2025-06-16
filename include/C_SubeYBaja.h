@@ -13,16 +13,18 @@ using namespace std;
 
 class SubeYBaja{
 private:
-    handlerInmobiliaria* Hinmobiliarias;
+    HandlerInmobiliaria* Hinmobiliarias;
+    HandlerPropietario* Hpropietarios;
+    HandlerCliente* Hclientes;
     IControladorFechaActual* fechaActual;
 public:
-    void inicializarHInmobiliarias(handlerInmobiliaria* handler);
+    void inicializarHInmobiliarias(HandlerInmobiliaria* handler);
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
-    
-    
-    bool altaPropietario(nickname:String, contrasena:String, nombre:String, email:String, cuentaBancaria:String, telefono:String);
-    bool altaInmobiliaria(nickname:String, contrasena:String, nombre:String, email:String, url:String, telefono:String);
-    bool altaCliente(nickname:String, contrasena:String, nombre:String, email:String, apellido:String, documento:String);
+
+
+    bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
+    bool altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string url, string telefono);
+    bool altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento);
 };
 
 

@@ -1,4 +1,4 @@
-#include "../include/C_SubeYBaja.h"
+#include "../include/CSubeYBaja.h"
 #include <iostream>
 
 bool SubeYBaja:: altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio){

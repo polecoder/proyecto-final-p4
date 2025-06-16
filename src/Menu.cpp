@@ -10,9 +10,13 @@
 #include "../include/DTFecha.h"
 #include "../include/DTInmueble.h"
 #include "../include/DTInmuebleAdministrado.h"
-#include "../include/DTinmuebleListado.h"
+#include "../include/DTInmuebleListado.h"
 #include "../include/DTPublicacion.h"
 #include "../include/DTUsuario.h"
+#include "../include/HandlerInmobiliaria.h"
+#include "../include/HandlerPublicacion.h"
+#include "../include/C_Listar.h"
+#include "../include/C_SubeYBaja.h"
 #include <string>
 #include <set>
 
@@ -301,7 +305,13 @@ void consultaPublicaciones(){
     }
     std::cout << "Publicaciones encontradas:\n";
     //TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
+    Listar controladorListar = Listar();
+    set<DTPublicacion> publicaciones = controladorListar.listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
     //Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
+    set<DTPublicacion>:: iterator it;
+    for (it = publicaciones.begin(); it != publicaciones.end(); ++it){
+        std::cout << "- Codigo: "<< (*it).getCodigo() <<", fecha: " << (*it).getFecha() <<", texto: "<<", precio: "<< (*it).getPrecio() <<", inmobiliaria: "<< (*it).getInmobiliaria() <<std::endl;   
+    }
     int verDetalle;
     std::cout << "Ver detalle de la publicacion: (1: Si, 0: No)";
     std::cin >> verDetalle;
@@ -314,7 +324,17 @@ void consultaPublicaciones(){
         std::cout << "Detalle del inmueble:\n";
         //TODO: DTInmueble = Controlador->detalleInmueblePublicacion(codigoPublicacion): DTInmueble
         //Mostrarlo:
+        DTInmueble inmueble = controladorListar.detalleInmueblePublicacion(codigoPublicacion);
         // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
+        DTInmueble* inmue = &inmueble; 
+        if(DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmue)){
+            std::cout<<"Codigo: "<<apartamento->getCodigo()<<", direccion: "<<apartamento->getDireccion()<<", nro. puerta:" << apartamento->getNumeroPuerta()<<", construccion: "<<apartamento->getAnioConstruccion()<< ", piso: "<< apartamento->getPiso() <<
+            ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes()<<std::endl;
+        }
+        if(DTCasa* casa = dynamic_cast<DTCasa*>(inmue)){
+            std::cout<<"Codigo: "<<casa->getCodigo()<<", direccion:"<<casa->getDireccion()<<"nro. puerta"<< casa->getNumeroPuerta()<<", superficie: "<<casa->getSuperficie()<<
+            ", construccion: "<< casa->getAnioConstruccion()<< "PH: "<< casa->getEsPH()<<" Tipo de techo: "<< casa->getTecho()<<std::endl;
+        }
         // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
     }
 }

@@ -2,6 +2,8 @@
 #define APARTAMENTO_H
 #include "Inmueble.h"
 
+using namespace std;
+
 
 class Apartamento : public Inmueble {
     private:
@@ -10,8 +12,11 @@ class Apartamento : public Inmueble {
         float gastosComunes;
 
     public:
-        Apartamento(int piso, bool tieneAscensor, float gastosComunes);
+        Apartamento(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes);
         ~Apartamento();
+        int getPiso();
+        bool getAscensor();
+        float getGastosComunes();
 };
 
 #endif

@@ -13,22 +13,24 @@ class HandlerPublicacion
 {
 private:
     static HandlerPublicacion *instancia;
-    map<int, Publicacion> coleccionPublicaciones;
+    map<int, Publicacion*> coleccionPublicaciones;
     HandlerPublicacion();
 
 public:
     
     static HandlerPublicacion *getInstancia();
 
-    void agregarPublicacion(const Publicacion &publicacion);// Agrega una publicacion a la coleccion de publicacion, la clave es el codigo de la publicacion
+    void agregarPublicacion(Publicacion* publicacion);// Agrega una publicacion a la coleccion de publicacion, la clave es el codigo de la publicacion.
 
-    void eliminarPublicacion(int codigo);
+    void eliminarPublicacion(const int& codigo);//se elimiina de la coleccion la publicacion con p.codigo=codigo.
 
-    bool existePublicacion(int codigo);
+    bool existePublicacion(const int& codigo);// devuelve true si existe una publicacion con p.codigo=codigo.
 
-    Publicacion getPublicacion(int codigo);
+    Publicacion* getPublicacion(const int& codigo);// devuelve un puntgero a una publicacion con p.codigo=codigo.
 
-    set<Publicacion> obtenerPublicacionesActivas(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
+    set<Publicacion*> obtenerPublicacionesActivas();// devuelve todas las publicaciones activas.
+
+    ~HandlerPublicacion();//destructor.
 };
 
 #endif

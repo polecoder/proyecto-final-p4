@@ -14,8 +14,8 @@ using namespace std;
 class SubeYBaja{
 private:
     HandlerInmobiliaria* Hinmobiliarias;
-    HandlerPropietario* Hpropietarios;
-    HandlerCliente* Hclientes;
+    HandlerPropietario* Hpropietario;
+    HandlerCliente* Hcliente;
     IControladorFechaActual* fechaActual;
 public:
     void inicializarHInmobiliarias(HandlerInmobiliaria* handler);

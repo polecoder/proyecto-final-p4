@@ -14,7 +14,7 @@ class Inmobiliaria : public Usuario {
         std::vector <AdministraPropiedad> administraProps;
 
     public:
-        Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string direccion, std::string url, std::string telefono);
+        Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string url, std::string telefono);
         ~Inmobiliaria();
 
         std::string getDireccion() ;
@@ -23,5 +23,5 @@ class Inmobiliaria : public Usuario {
         std::vector<AdministraPropiedad> getadministraProps() ;
 };
 
->>>>>>> 4f76a58b1d5350245de078f27e3caaafaa547ee3
+
 #endif

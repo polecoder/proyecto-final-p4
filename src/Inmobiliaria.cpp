@@ -30,3 +30,11 @@ vector<AdministraPropiedad> Inmobiliaria:: getadministraProps() {
     return administraProps;
 
 };
+
+void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente){
+    this->coleccionClientes[cliente->getNickname()] = cliente;
+};
+
+void Inmobiliaria::agregarPropietarioSuscripto(Propietario *propietario){
+    this->coleccionPropietarios[propietario->getNickname()] = propietario;
+};

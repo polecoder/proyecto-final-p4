@@ -34,4 +34,8 @@ void Cliente::agregarSuscripcion(Inmobiliaria* &inmobiliaria){
 void Cliente::eliminarSuscripcion(string &nicknameInmobiliaria){
     if(this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end())
         this->suscripciones.erase(nicknameInmobiliaria);
-}
+};
+
+bool Cliente::estaSuscripto(const string &nicknameInmobiliaria){
+    return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
+};

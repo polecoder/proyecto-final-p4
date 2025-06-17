@@ -25,7 +25,9 @@ class Inmobiliaria : public Usuario {
         string getDireccion() ;
         string getUrl() ;
         string getTelefono() ;
-        vector<AdministraPropiedad> getadministraProps() ;
+        vector<AdministraPropiedad> getadministraProps();
+        void agregarClienteSuscripto(Cliente *cliente);
+        void agregarPropietarioSuscripto(Propietario *propietario);
 };
 
 #endif

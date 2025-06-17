@@ -2,7 +2,16 @@
 #include <iostream>
 using namespace std;
 
-Usuario:: Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email){
+
+Usuario::Usuario() {
+    nickname = "";
+    contrasena = "";
+    nombre = "";
+    email = "";
+}
+
+Usuario::Usuario(string nickname,string contrasena,string nombre,string email){
+
     this->nickname = nickname;
     this->contrasena = contrasena;
     this->nombre = nombre;
@@ -11,7 +20,10 @@ Usuario:: Usuario(std::string nickname, std::string contrasena, std::string nomb
 Usuario:: ~Usuario(){
 
 };
-string Usuario:: getNickname() {
+
+
+string Usuario:: getNickname()const {
+
     return nickname;
 };
 string Usuario:: getContrasena() {
@@ -22,4 +34,8 @@ string Usuario:: getNombre() {
 };
 string Usuario:: getEmail() {
     return email;   
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> origin/main

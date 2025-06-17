@@ -4,7 +4,9 @@
 
 using namespace std;
 
-AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble inmueble){
+
+AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble){
+
     this->fecha = fecha;
     this->ultimaPublicacion = 0;
     this->inmueble = inmueble;
@@ -16,8 +18,10 @@ AdministraPropiedad :: ~AdministraPropiedad(){
     // TODO: Implementar
 };
 
-Inmueble AdministraPropiedad::getInmueble() {
-    return *this->inmueble;
+
+Inmueble* AdministraPropiedad::getInmueble() {
+    return this->inmueble;
+
 };
   
 int AdministraPropiedad::getUltimaPublicacion(){
@@ -42,11 +46,17 @@ bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoP
     return (it!=publicaciones.end());
 }
 
-Publicacion AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tipoPublicacion) {
+
+Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tipoPublicacion) {
     map<int,Publicacion> :: iterator it;
-    it=Publis.begin();
-    while(it!=publicaciones.end()&&(!(*it).second.getactiva()||(*it).second.getTipo()!=tipoPublicacion)) {
+    it=publicaciones.begin();
+    while(it!=publicaciones.end()&&(!(*it).second.getActiva()||(*it).second.getTipo()!=tipoPublicacion)) {
         it++;
     };
-    return (*it).second;
+    if (it==publicaciones.end()){
+        return NULL;
+    }
+    Publicacion* pub = new Publicacion((*it).second);
+    return pub;
+
 };

@@ -2,25 +2,33 @@
 #ifndef INMOBILIARIA_H
 #define INMOBILIARIA_H
 #include "Usuario.h"
+#include "Cliente.h"
+#include "Propietario.h"
 #include "AdministraPropiedad.h"
 #include <string>
+#include <map>
 #include <vector>
-
+using namespace std;
 class Inmobiliaria : public Usuario {
     private:
-        std::string direccion;
-        std::string url;
-        std::string telefono;
-        std::vector <AdministraPropiedad> administraProps;
+        string direccion;
+        string url;
+        string telefono;
+        vector <AdministraPropiedad> administraProps;
+        map<string,Cliente> clientesAsociados;
+        map<string,Propietario> PropietariosAsociados;
 
     public:
-        Inmobiliaria(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string url, std::string telefono);
+        Inmobiliaria();//constructor por defecto
+        Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
         ~Inmobiliaria();
 
-        std::string getDireccion() ;
-        std::string getUrl() ;
-        std::string getTelefono() ;
-        std::vector<AdministraPropiedad> getadministraProps() ;
+        string getDireccion() ;
+        string getUrl() ;
+        string getTelefono() ;
+        vector<AdministraPropiedad> getadministraProps() ;
+        void notificar(DTNotificacion notificacion);
+
 };
 
 #endif

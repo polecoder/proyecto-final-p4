@@ -1,23 +1,26 @@
+
+
+
 #ifndef PROPIETARIO_H
 #define PROPIETARIO_H
-#include "Usuario.h"
 #include "DTNotificacion.h"
+#include "Usuario.h"
 #include <string>
 #include <set>
-using namespace std;
 
 class Propietario : public Usuario {
     private:
-        string cuentaBancaria;
-        string telefono;
+        std::string cuentaBancaria;
+        std::string telefono;
         set<DTNotificacion> notificaciones;
-
     public:
-        Propietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
-
+        Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
+        ~Propietario();
+        void agregarNotificacion(DTNotificacion notificacion);
         string getCuentaBancaria();
         string getTelefono();
         set<DTNotificacion> getNotificaciones();
 };
 
 #endif
+

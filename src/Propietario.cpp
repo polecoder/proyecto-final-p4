@@ -1,7 +1,7 @@
-#include "Usuario.h"
-#include "DTNotificacion.h"
-#include "Propietario.h"
-#include "Inmobiliaria.h"
+#include "../include/Usuario.h"
+#include "../include/DTNotificacion.h"
+#include "../include/Propietario.h"
+#include "../include/Inmobiliaria.h"
 #include <set>
 #include <map>
 #include <string>

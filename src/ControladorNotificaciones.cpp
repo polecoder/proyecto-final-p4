@@ -1,7 +1,7 @@
 #include <set>
-#include "Handlers.h"
-#include "DTNotificacion.h"
-#include "ControladorNotificaciones.h"
+#include "../include/Handlers.h"
+#include "../include/DTNotificacion.h"
+#include "../include/ControladorNotificaciones.h"
 
 using namespace std;
 

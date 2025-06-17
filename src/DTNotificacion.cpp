@@ -1,7 +1,7 @@
 #include <string>
-#include "TipoPublicacion.h"
-#include "TipoInmueble.h"
-#include "DTNotificacion.h"
+#include "../include/TipoPublicacion.h"
+#include "../include/TipoInmueble.h"
+#include "../include/DTNotificacion.h"
 
 using namespace std;
 

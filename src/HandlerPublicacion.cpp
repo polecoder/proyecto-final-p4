@@ -3,9 +3,12 @@
 
 using namespace std;
 
-HandlerPublicacion* HandlerPublicacion:: instancia = NULL;
+HandlerPublicacion *HandlerPublicacion:: instancia = NULL;
 
-HandlerPublicacion::HandlerPublicacion() {}
+HandlerPublicacion::HandlerPublicacion() {
+    map<int, Publicacion *> coleccionPublicaciones;
+    this->coleccionPublicaciones = coleccionPublicaciones;
+}
 
 HandlerPublicacion* HandlerPublicacion::getInstancia(){
     if (instancia == NULL)
@@ -18,16 +21,19 @@ void HandlerPublicacion::agregarPublicacion(Publicacion* &publicacion){
   coleccionPublicaciones[codPublicacion] = publicacion;
 };
 
-void HandlerPublicacion::eliminarPublicacion(const int& codigo){
-    if(coleccionPublicaciones.count(codigo))
-        coleccionPublicaciones[codigo]->~Publicacion();
+void HandlerPublicacion::eliminarPublicacion(int codigo){
+    map<int, Publicacion*>::iterator it = this->coleccionPublicaciones.find(codigo);
+    if(it != coleccionPublicaciones.end()){
+        delete it->second;
+        coleccionPublicaciones.erase(it);
+    }
 };
 
-bool HandlerPublicacion::existePublicacion(const int& codigo){
+bool HandlerPublicacion::existePublicacion(int codigo){
     return coleccionPublicaciones.find(codigo) != coleccionPublicaciones.end();
 };
 
-Publicacion* HandlerPublicacion::getPublicacion(const int& codigo){
+Publicacion* HandlerPublicacion::getPublicacion(int codigo){
     if(coleccionPublicaciones.count(codigo) > 0)
         return coleccionPublicaciones[codigo];
     return nullptr;
@@ -42,9 +48,11 @@ set<Publicacion*> HandlerPublicacion::obtenerPublicacionesActivas(){
     }
     
 };
+
 HandlerPublicacion::~HandlerPublicacion(){
     map<int, Publicacion*>::iterator it;
-    for(it != coleccionPublicaciones.begin(); it != coleccionPublicaciones.end(); it++){
-        (*it).second->~Publicacion();
+    for(it != this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++){
+       delete it->second;
     }
+    this->coleccionPublicaciones.clear();
 };

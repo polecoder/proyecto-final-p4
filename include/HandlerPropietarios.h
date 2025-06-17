@@ -17,10 +17,10 @@ public:
     ~HandlerPropietarios();
 
     void agregarPropietario(Propietario* &propietario);
-    void eliminarPorpietario(string& nickname);
-    bool existePropietario(string &nickname);
+    void eliminarPorpietario(string nickname);
+    bool existePropietario(string nickname);
 
-    Propietario* getPropietario(string &nickname);
+    Propietario* getPropietario(string nickname);
     map<string, Propietario*> getColeccionPropietarios();
 };
 

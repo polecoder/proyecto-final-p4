@@ -13,10 +13,12 @@ using namespace std;
 
 class SubeYBaja{
 private:
-    handlerInmobiliaria* Hinmobiliarias;
+    static SubeYBaja* instancia;
+    HandlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
+    HandlerPublicacion* HPublicacion;
 public:
-    void inicializarHInmobiliarias(handlerInmobiliaria* handler);
+    static SubeYBaja* getInstancia();
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
 };
 

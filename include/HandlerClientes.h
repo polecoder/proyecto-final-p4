@@ -16,11 +16,11 @@ public:
     static HandlerClientes* getInstancia();
     ~HandlerClientes();
 
-    void agregarCliente(Cliente* cliente);
-    void eliminarCliente(string &nickname);
-    bool existeCliente(string &nickname);
+    void agregarCliente(Cliente* &cliente);
+    void eliminarCliente(string nickname);
+    bool existeCliente(string nickname);
 
-    Cliente* getCliente(string &nickname);
+    Cliente* getCliente(string nickname);
     map<string, Cliente*> getColeccionClientes();
 };
 

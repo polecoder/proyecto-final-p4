@@ -62,4 +62,23 @@ set<DTUsuario> ControladorSuscripciones::listarSuscripciones(string nicknameUsua
 // PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario)) && (para todas inmobiliariasElegidas) existeInmobiliaria(nicknameInmobiliaria)
 void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas)
 {
+    // TODO: Hacerlo sin if/else (no se me ocurre mejor forma que esta)
+    if (this->handlerClientes->existeCliente(nicknameUsuario))
+    {
+        Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
+        set<string>::iterator it;
+        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
+        {
+            cliente->eliminarSuscripcion(*it);
+        }
+    }
+    else
+    {
+        Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
+        set<string>::iterator it;
+        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
+        {
+            propietario->eliminarSuscripcion(*it);
+        }
+    }
 }

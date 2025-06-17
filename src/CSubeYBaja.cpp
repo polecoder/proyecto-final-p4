@@ -1,6 +1,8 @@
 #include "../include/CSubeYBaja.h"
 #include <iostream>
 #include "../include/HandlerInmobiliaria.h"
+#include "../include/HandlerPropietario.h"
+#include "../include/HandlerCliente.h"
 #include "../include/DTFecha.h"
 #include "../include/Publicacion.h"
 #include "../include/TipoPublicacion.h"

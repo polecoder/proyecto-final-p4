@@ -1,8 +1,8 @@
 #ifndef C_SUBE_Y_BAJA
 #define C_SUBE_Y_BAJA
-#include "Publicacion.h"
-#include "Inmobiliaria.h"
 #include "HandlerInmobiliaria.h"
+#include "HandlerPropietario.h"
+#include "HandlerCliente.h"
 
 #include "Publicacion.h"
 #include "Inmobiliaria.h"

@@ -34,8 +34,7 @@ string Usuario:: getNombre() {
 };
 string Usuario:: getEmail() {
     return email;   
-<<<<<<< HEAD
+
+
 };
-=======
-};
->>>>>>> origin/main
+

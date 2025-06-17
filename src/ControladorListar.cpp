@@ -1,36 +1,49 @@
 #include <set>
-#include <string>
-#include "Handlers.h"
-#include "DTUsuario.h"
-#include "ControladorSuscripciones.h"
+#include "../include/Handlers.h"
+#include "../include/DTNotificacion.h"
+#include "../include/ControladorListar.h"
 
 using namespace std;
 
-ControladorSuscripciones *ControladorSuscripciones::instance = NULL;
+ControladorListar *ControladorListar::instance = NULL;
 
-ControladorSuscripciones::ControladorSuscripciones()
+ControladorListar::ControladorListar()
 {
     this->handlerPropietarios = HandlerPropietarios::getInstance();
-    this->handlerInmobiliarias = HandlerInmobiliarias::getInstance();
     this->handlerClientes = HandlerClientes::getInstance();
 }
 
-ControladorSuscripciones *ControladorSuscripciones::getInstance()
+ControladorListar *ControladorListar::getInstance()
 {
     if (instance == NULL)
     {
-        instance = new ControladorSuscripciones;
+        instance = new ControladorListar;
     }
     return instance;
 }
 
-ControladorSuscripciones::~ControladorSuscripciones()
+ControladorListar::~ControladorListar()
 {
     // TODO: Revisar si corresponde eliminar los Handlers en este destructor
 }
 
+// PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true
+set<DTNotificacion> ControladorListar::listarNotificacionesDeUsuario(string nicknameUsuario)
+{
+    if (this->handlerClientes->existeCliente(nicknameUsuario))
+    {
+        Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
+        return cliente->getNotificaciones();
+    }
+    else
+    {
+        Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
+        return propietario->getNotificaciones();
+    }
+}
+
 // PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario))
-set<DTUsuario> ControladorSuscripciones::listarSuscripciones(string nicknameUsuario)
+set<DTUsuario> ControladorListar::listarSuscripciones(string nicknameUsuario)
 {
     set<DTUsuario> resultado;
     // TODO: Hacerlo sin if/else (no se me ocurre mejor forma que esta)
@@ -57,28 +70,4 @@ set<DTUsuario> ControladorSuscripciones::listarSuscripciones(string nicknameUsua
         }
     }
     return resultado;
-}
-
-// PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario)) && (para todas inmobiliariasElegidas) existeInmobiliaria(nicknameInmobiliaria)
-void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas)
-{
-    // TODO: Hacerlo sin if/else (no se me ocurre mejor forma que esta)
-    if (this->handlerClientes->existeCliente(nicknameUsuario))
-    {
-        Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
-        set<string>::iterator it;
-        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
-        {
-            cliente->eliminarSuscripcion(*it);
-        }
-    }
-    else
-    {
-        Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
-        set<string>::iterator it;
-        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
-        {
-            propietario->eliminarSuscripcion(*it);
-        }
-    }
 }

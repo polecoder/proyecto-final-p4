@@ -16,7 +16,7 @@
 
 using namespace std;
 
-class SubeYBaja{
+class SubeYBaja : public IControladorSubeYBaja{
 private:
     static SubeYBaja* Instancia;
     HandlerInmobiliaria* Hinmobiliarias;

@@ -3,6 +3,8 @@
 #include "../include/IControladorFechaActual.h"
 #include "../include/ControladorListar.h"
 #include "../include/IControladorListar.h"
+#include "../include/ControladorSuscripciones.h"
+#include "../include/IControladorSuscripciones.h"
 #include <cstddef>
 
 Factory *Factory::instance = NULL;
@@ -26,4 +28,9 @@ IControladorFechaActual *Factory::getControladorFechaActual()
 IControladorListar *Factory::getControladorListar()
 {
     return ControladorListar::getInstance();
+}
+
+IControladorSuscripciones *Factory::getControladorSuscripciones()
+{
+    return ControladorSuscripciones::getInstance();
 }

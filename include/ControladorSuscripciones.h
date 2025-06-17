@@ -1,46 +1,37 @@
-#ifndef CONTROLADORNOTIFICACIONES_H
-#define CONTROLADORNOTIFICACIONES_H
+#ifndef CONTROLADORSUSCRIPCIONES_H
+#define CONTROLADORSUSCRIPCIONES_H
 
 #include <set>
 #include "Handlers.h"
 #include "DTNotificacion.h"
+#include "IControladorSuscripciones.h"
 
 using namespace std;
 
-class ControladorNotificaciones
+class ControladorSuscripciones : public IControladorSuscripciones
 {
 private:
-    static ControladorNotificaciones *instance;
+    static ControladorSuscripciones *instance;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
     /**
-     * @brief Constructor de ControladorNotificaciones (PRIVADO)
+     * @brief Constructor de ControladorSuscripciones (PRIVADO)
      *
      */
-    ControladorNotificaciones();
+    ControladorSuscripciones();
 
 public:
     /**
-     * @brief Getter para la instancia del ControladorNotificaciones
+     * @brief Getter para la instancia del ControladorSuscripciones
      *
-     * @return ControladorNotificaciones
+     * @return ControladorSuscripciones
      */
-    static ControladorNotificaciones *getInstance();
+    static ControladorSuscripciones *getInstance();
     /**
-     * @brief Destructor de ControladorNotificaciones
+     * @brief Destructor de ControladorSuscripciones
      *
      */
-    ~ControladorNotificaciones();
-    /**
-     * @brief Devuelve todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
-     *
-     * PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true.
-     *
-     * @param nicknameUsuario
-     *
-     * @return set<DTNotificacion> que contiene todas las notificaciones del usuario "u"
-     */
-    set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario);
+    ~ControladorSuscripciones();
     /**
      * @brief Borra todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *

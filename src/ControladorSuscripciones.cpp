@@ -1,34 +1,34 @@
 #include <set>
 #include "../include/Handlers.h"
 #include "../include/DTNotificacion.h"
-#include "../include/ControladorNotificaciones.h"
+#include "../include/ControladorSuscripciones.h"
 
 using namespace std;
 
-ControladorNotificaciones *ControladorNotificaciones::instance = NULL;
+ControladorSuscripciones *ControladorSuscripciones::instance = NULL;
 
-ControladorNotificaciones::ControladorNotificaciones()
+ControladorSuscripciones::ControladorSuscripciones()
 {
     this->handlerPropietarios = HandlerPropietarios::getInstance();
     this->handlerClientes = HandlerClientes::getInstance();
 }
 
-ControladorNotificaciones *ControladorNotificaciones::getInstance()
+ControladorSuscripciones *ControladorSuscripciones::getInstance()
 {
     if (instance == NULL)
     {
-        instance = new ControladorNotificaciones;
+        instance = new ControladorSuscripciones;
     }
     return instance;
 }
 
-ControladorNotificaciones::~ControladorNotificaciones()
+ControladorSuscripciones::~ControladorSuscripciones()
 {
     // TODO: Revisar si corresponde eliminar los Handlers en este destructor
 }
 
 // PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true
-void ControladorNotificaciones::borrarNotificaciones(string nicknameUsuario)
+void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
 {
     if (this->handlerClientes->existeCliente(nicknameUsuario))
     {
@@ -43,7 +43,7 @@ void ControladorNotificaciones::borrarNotificaciones(string nicknameUsuario)
 }
 
 // PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario)) && (para todas inmobiliariasElegidas) existeInmobiliaria(nicknameInmobiliaria)
-void ControladorNotificaciones::eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas)
+void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas)
 {
     // TODO: Hacerlo sin if/else (no se me ocurre mejor forma que esta)
     if (this->handlerClientes->existeCliente(nicknameUsuario))

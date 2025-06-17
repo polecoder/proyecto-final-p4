@@ -1,38 +1,16 @@
-#ifndef CONTROLADORLISTAR_H
-#define CONTROLADORLISTAR_H
+#ifndef ICONTROLADORLISTAR_H
+#define ICONTROLADORLISTAR_H
 
+#include <string>
 #include <set>
-#include "Handlers.h"
 #include "DTNotificacion.h"
 #include "DTUsuario.h"
-#include "IControladorListar.h"
 
 using namespace std;
 
-class ControladorListar : public IControladorListar
+class IControladorListar
 {
-private:
-    static ControladorListar *instance;
-    HandlerPropietarios *handlerPropietarios;
-    HandlerClientes *handlerClientes;
-    /**
-     * @brief Constructor de ControladorListar (PRIVADO)
-     *
-     */
-    ControladorListar();
-
 public:
-    /**
-     * @brief Getter para la instancia del ControladorListar
-     *
-     * @return ControladorListar
-     */
-    static ControladorListar *getInstance();
-    /**
-     * @brief Destructor de ControladorListar
-     *
-     */
-    ~ControladorListar();
     /**
      * @brief Devuelve todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *
@@ -42,7 +20,7 @@ public:
      *
      * @return set<DTNotificacion> que contiene todas las notificaciones del usuario "u"
      */
-    set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario);
+    virtual set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario) = 0;
     /**
      * @brief Lista el nickname y nombre de todas las Inmobiliarias a las que el usuario "u" en el sistema tal que u.nickname=nicknameUsuario está suscrito
      *
@@ -51,7 +29,12 @@ public:
      * @param nicknameUsuario El nickname del usuario del que se quieren listar las suscripciones
      * @return set<DTUsuario> que contiene el nickname y nombre de todas las Inmobiliarias a las que el usuario está suscrito
      */
-    set<DTUsuario> listarSuscripciones(string nicknameUsuario);
+    virtual set<DTUsuario> listarSuscripciones(string nicknameUsuario) = 0;
+    /**
+     * @brief Destructor de IControladorListar
+     *
+     */
+    virtual ~IControladorListar() {}
 };
 
 #endif

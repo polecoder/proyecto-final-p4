@@ -2,17 +2,20 @@
 #define FACTORY_H
 
 #include "IControladorFechaActual.h"
+#include "IControladorListar.h"
 
-class Factory {
-    private:
-        static Factory* instance;
-        Factory();
+class Factory
+{
+private:
+    static Factory *instance;
+    Factory();
 
-    public:
-        static Factory* getInstance();
-        IControladorFechaActual* getControladorFechaActual();
-        //TODO: Get interfaces de controladores
-        ~Factory();
+public:
+    static Factory *getInstance();
+    IControladorFechaActual *getControladorFechaActual();
+    IControladorListar *getControladorListar();
+    // TODO: Get interfaces de controladores
+    ~Factory();
 };
 
 #endif

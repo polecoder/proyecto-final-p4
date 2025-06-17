@@ -1,19 +1,29 @@
 #include "../include/Factory.h"
 #include "../include/ControladorFechaActual.h"
+#include "../include/IControladorFechaActual.h"
+#include "../include/ControladorListar.h"
+#include "../include/IControladorListar.h"
 #include <cstddef>
 
-Factory* Factory::instance = NULL;
+Factory *Factory::instance = NULL;
 
-Factory::Factory() {
-}
+Factory::Factory() {}
 
-Factory* Factory::getInstance() {
-    if (instance == NULL) {
+Factory *Factory::getInstance()
+{
+    if (instance == NULL)
+    {
         instance = new Factory();
     }
     return instance;
 }
 
-IControladorFechaActual* Factory::getControladorFechaActual(){
+IControladorFechaActual *Factory::getControladorFechaActual()
+{
     return ControladorFechaActual::getInstance();
+}
+
+IControladorListar *Factory::getControladorListar()
+{
+    return ControladorListar::getInstance();
 }

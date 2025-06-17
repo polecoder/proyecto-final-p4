@@ -2,15 +2,18 @@
 #define DTUSUARIO_H
 #include <string>
 
-class DTUsuario {
-    private:
-        std::string nickname;
-        std::string nombre;
+using namespace std;
 
-    public:
-        DTUsuario(std::string nickname, std::string nombre);
-        std::string getNickname();
-        std::string getNombre();
-        bool operator<(DTUsuario& other);
+class DTUsuario
+{
+private:
+    string nickname;
+    string nombre;
+
+public:
+    DTUsuario(string nickname, string nombre);
+    string getNickname();
+    string getNombre();
+    bool operator<(DTUsuario &other);
 };
 #endif

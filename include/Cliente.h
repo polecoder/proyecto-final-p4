@@ -1,8 +1,10 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 #include "Usuario.h"
+#include "Inmobiliaria.h"
 #include "DTNotificacion.h"
 #include <set>
+#include <map>
 #include <string>
 
 using namespace std;
@@ -13,6 +15,7 @@ private:
     string apellido;
     string documento;
     set<DTNotificacion> notificaciones;
+    map<string, Inmobiliaria *> suscripciones;
 
 public:
     /**
@@ -50,6 +53,12 @@ public:
      */
     set<DTNotificacion> getNotificaciones();
     /**
+     * @brief Devuelve todas las suscripciones del cliente
+     *
+     * @return set<Inmobiliaria*> que contiene todas las suscripciones del cliente
+     */
+    map<string, Inmobiliaria *> getSuscripciones();
+    /**
      * @brief Setter para apellido
      *
      * @param apellido Apellido para asignar al cliente
@@ -72,6 +81,18 @@ public:
      *
      */
     void eliminarNotificaciones();
+    /**
+     * @brief Se encarga de agregar la inmobiliaria pasada por parámetro al set de Inmobiliarias a las que el usuario está suscrito
+     *
+     * @param inmobiliaria La inmobiliaria que se quiere agregar al set de suscripciones
+     */
+    void agregarSuscripcion(Inmobiliaria *inmobiliaria);
+    /**
+     * @brief Se encarga de eliminar la inmobiliaria "i" del set de suscripciones tal que i.nickname=nicknameInmobiliaria
+     *
+     * @param nicknameInmobiliaria El nickname de la inmobiliaria que se quiere eliminar del set de suscripciones
+     */
+    void eliminarSuscripcion(string nicknameInmobiliaria);
 };
 
 #endif

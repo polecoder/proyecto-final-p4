@@ -1,19 +1,25 @@
 #include "../include/DTUsuario.h"
 #include <iostream>
 
-DTUsuario::DTUsuario(std::string nickname, std::string nombre) {
+using namespace std;
+
+DTUsuario::DTUsuario(string nickname, string nombre)
+{
     this->nickname = nickname;
     this->nombre = nombre;
 }
 
-std::string DTUsuario::getNickname() {
+string DTUsuario::getNickname()
+{
     return nickname;
 }
 
-std::string DTUsuario::getNombre() {
+string DTUsuario::getNombre()
+{
     return nombre;
 }
 
-bool DTUsuario::operator<(DTUsuario& other) {
+bool DTUsuario::operator<(DTUsuario &other)
+{
     return nickname < other.nickname; // Comparar directamente los campos
 }

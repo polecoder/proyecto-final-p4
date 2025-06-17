@@ -3,6 +3,7 @@
 #include "Usuario.h"
 #include "DTNotificacion.h"
 #include <set>
+#include <map>
 #include <string>
 
 using namespace std;
@@ -13,6 +14,7 @@ private:
     string cuentaBancaria;
     string telefono;
     set<DTNotificacion> notificaciones;
+    map<string, Inmobiliaria *> suscripciones;
 
 public:
     /**
@@ -50,6 +52,12 @@ public:
      */
     set<DTNotificacion> getNotificaciones();
     /**
+     * @brief Devuelve todas las suscripciones del cliente
+     *
+     * @return map<string, Inmobiliaria *> que contiene todas las suscripciones del cliente
+     */
+    map<string, Inmobiliaria *> getSuscripciones();
+    /**
      * @brief Setter para cuentaBancaria
      *
      * @param cuentaBancaria Cuenta bancaria para asignar al propietario
@@ -72,6 +80,18 @@ public:
      *
      */
     void eliminarNotificaciones();
+    /**
+     * @brief Se encarga de agregar la inmobiliaria pasada por parámetro al map de Inmobiliarias a las que el usuario está suscrito
+     *
+     * @param inmobiliaria La inmobiliaria que se quiere agregar al map de suscripciones
+     */
+    void agregarSuscripcion(Inmobiliaria *inmobiliaria);
+    /**
+     * @brief Se encarga de eliminar la inmobiliaria "i" del map de suscripciones tal que i.nickname=nicknameInmobiliaria
+     *
+     * @param nicknameInmobiliaria El nickname de la inmobiliaria que se quiere eliminar del map de suscripciones
+     */
+    void eliminarSuscripcion(string nicknameInmobiliaria);
 };
 
 #endif

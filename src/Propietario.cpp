@@ -1,7 +1,9 @@
 #include "Usuario.h"
 #include "DTNotificacion.h"
 #include "Propietario.h"
+#include "Inmobiliaria.h"
 #include <set>
+#include <map>
 #include <string>
 
 using namespace std;
@@ -30,6 +32,11 @@ set<DTNotificacion> Propietario::getNotificaciones()
     return this->notificaciones;
 }
 
+map<string, Inmobiliaria *> Propietario::getSuscripciones()
+{
+    return this->suscripciones;
+}
+
 void Propietario::setCuentaBancaria(string cuentaBancaria)
 {
     this->cuentaBancaria = cuentaBancaria;
@@ -48,4 +55,20 @@ void Propietario::agregarNotificacion(DTNotificacion const &notificacion)
 void Propietario::eliminarNotificaciones()
 {
     this->notificaciones.clear();
+}
+
+void Propietario::agregarSuscripcion(Inmobiliaria *inmobiliaria)
+{
+    this->suscripciones[inmobiliaria->getNickname()] = inmobiliaria;
+}
+
+void Propietario::eliminarSuscripcion(string nicknameInmobiliaria)
+{
+    // find() retorna this->suscripciones.end() si el elemento no existe
+    map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
+    if (it != this->suscripciones.end())
+    {
+        delete it->second; // Llama al destructor de Inmobiliaria
+        suscripciones.erase(it);
+    }
 }

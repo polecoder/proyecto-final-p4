@@ -13,7 +13,7 @@ HandlerPublicacion* HandlerPublicacion::getInstancia(){
     return instancia;
 };
 
-void HandlerPublicacion::agregarPublicacion(Publicacion* publicacion){
+void HandlerPublicacion::agregarPublicacion(Publicacion* &publicacion){
   int codPublicacion = publicacion->getCodigo();
   coleccionPublicaciones[codPublicacion] = publicacion;
 };

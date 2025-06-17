@@ -15,7 +15,7 @@
 #include "../include/DTUsuario.h"
 #include "../include/HandlerInmobiliaria.h"
 #include "../include/HandlerPublicacion.h"
-#include "../include/C_Listar.h"
+#include "../include/CListar.h"
 #include "../include/C_SubeYBaja.h"
 #include <string>
 #include <set>
@@ -328,8 +328,8 @@ void consultaPublicaciones(){
         // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
         DTInmueble* inmue = &inmueble; 
         if(DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmue)){
-            std::cout<<"Codigo: "<<apartamento->getCodigo()<<", direccion: "<<apartamento->getDireccion()<<", nro. puerta:" << apartamento->getNumeroPuerta()<<", construccion: "<<apartamento->getAnioConstruccion()<< ", piso: "<< apartamento->getPiso() <<
-            ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes()<<std::endl;
+            std::cout<<"Codigo: "<<apartamento->getCodigo()<<", direccion: "<<apartamento->getDireccion()<<", nro. puerta:" << apartamento->getNumeroPuerta()<<", construccion: "<<apartamento->getAnioConstruccion()
+            << ", piso: "<< apartamento->getPiso() <<", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes()<<std::endl;
         }
         if(DTCasa* casa = dynamic_cast<DTCasa*>(inmue)){
             std::cout<<"Codigo: "<<casa->getCodigo()<<", direccion:"<<casa->getDireccion()<<"nro. puerta"<< casa->getNumeroPuerta()<<", superficie: "<<casa->getSuperficie()<<

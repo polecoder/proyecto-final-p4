@@ -23,10 +23,12 @@ using namespace std; // Esto evita tener que escribir std::
 
 class Listar {
 private:
-    handlerInmobiliaria* Hinmobiliarias;
+    static Listar* instancia;
+    HandlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
 public:
-    void inicializarHInmobiliarias(handlerInmobiliaria* handler);
+    static Listar* getInstancia();
+
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
 

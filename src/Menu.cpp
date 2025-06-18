@@ -16,6 +16,8 @@
 #include "../include/CListar.h"
 #include "../include/CSubeYBaja.h"
 #include "../include/IControladorFechaActual.h"
+#include "../include/IControladorListar.h"
+#include "../include/IControladorSubeYBaja.h"
 #include "../include/HandlerInmobiliaria.h"
 #include "../include/HandlerInmueble.h"
 #include <string>
@@ -241,13 +243,12 @@ void altaUsuario(){
 }
 
 void altaPublicacion(){
-
     Factory* factory = Factory::getInstance();
 
     std::cout << "Lista de Inmobiliarias:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
-    Listar controladorListar = *Listar::getInstancia(); 
-    set<DTUsuario> DTUsuarios = controladorListar.listarInmobiliarias();
+    IControladorListar* controladorListar = factory->getControladorListar();
+    set<DTUsuario> DTUsuarios = controladorListar->listarInmobiliarias();
     //Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
     set<DTUsuario>::iterator it;
     for (it = DTUsuarios.begin(); it != DTUsuarios.end(); ++it) {
@@ -257,7 +258,7 @@ void altaPublicacion(){
     std::string nicknameInmobiliaria;
     std::getline(std::cin, nicknameInmobiliaria);
     //TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
-    set<DTInmuebleAdministrado> DTInmueblesAdministrados=controladorListar.listarInmueblesAdministrados(nicknameInmobiliaria);
+    set<DTInmuebleAdministrado> DTInmueblesAdministrados=controladorListar->listarInmueblesAdministrados(nicknameInmobiliaria);
     //Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
     set<DTInmuebleAdministrado>::iterator it2;
     for(it2=DTInmueblesAdministrados.begin();it2!=DTInmueblesAdministrados.end();++it2){
@@ -283,8 +284,8 @@ void altaPublicacion(){
     std::cin >> precio;
     std::cin.ignore();
     //TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
-    SubeYBaja controladorSubeYBaja = *SubeYBaja::getInstancia();
-    bool altapublicacion= controladorSubeYBaja.altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
+    IControladorSubeYBaja* controladorSubeYBaja = factory->getControladorSubeYBaja();
+    bool altapublicacion= controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 
 void consultaPublicaciones(){

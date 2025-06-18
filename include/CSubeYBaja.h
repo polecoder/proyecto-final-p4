@@ -10,13 +10,14 @@
 #include "TipoPublicacion.h"
 #include "DTNotificacion.h"
 #include "Casa.h"
+#include "IControladorSubeYBaja.h"
 #include "Apartamento.h"
 #include "TipoInmueble.h"
 #include <string>
 
 using namespace std;
 
-class SubeYBaja{
+class SubeYBaja : public IControladorSubeYBaja{
 private:
     static SubeYBaja* Instancia;
     HandlerInmobiliaria* Hinmobiliarias;

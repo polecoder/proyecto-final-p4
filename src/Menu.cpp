@@ -17,6 +17,9 @@
 #include "../include/HandlerPublicacion.h"
 #include "../include/CListar.h"
 #include "../include/C_SubeYBaja.h"
+#include "../include/ControladorSuscripciones.h"
+#include "../include/HandlerClientes.h"
+#include "../include/HandlerPropietarios.h"
 #include <string>
 #include <set>
 
@@ -305,8 +308,8 @@ void consultaPublicaciones(){
     }
     std::cout << "Publicaciones encontradas:\n";
     //TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
-    Listar controladorListar = Listar();
-    set<DTPublicacion> publicaciones = controladorListar.listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
+    Listar* controladorListar = Listar::getInstancia();
+    set<DTPublicacion> publicaciones = controladorListar->listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
     //Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
     set<DTPublicacion>:: iterator it;
     for (it = publicaciones.begin(); it != publicaciones.end(); ++it){
@@ -324,7 +327,7 @@ void consultaPublicaciones(){
         std::cout << "Detalle del inmueble:\n";
         //TODO: DTInmueble = Controlador->detalleInmueblePublicacion(codigoPublicacion): DTInmueble
         //Mostrarlo:
-        DTInmueble inmueble = controladorListar.detalleInmueblePublicacion(codigoPublicacion);
+        DTInmueble inmueble = controladorListar->detalleInmueblePublicacion(codigoPublicacion);
         // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
         DTInmueble* inmue = &inmueble; 
         if(DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmue)){
@@ -365,6 +368,39 @@ void eliminarInmueble(){
 }
 
 void suscribirseNotificaciones(){
+
+    Factory* factory = Factory::getInstance();
+
+    string nicknameUsuario;
+    std::cout << "Ingrese su nickname: ";
+    std::cin >> nicknameUsuario;
+    std::cin.ignore();
+    std::cout << "Inmobiliarias a las cuales se puede suscribir:\n";
+    //TODO: Coleccion de DTUsuario = controlador->listarInmobiliariasNoSuscripto(nickname)
+    ControladorSuscripciones* CSuscripciones = ControladorSuscripciones::getInstancia();
+    std::set<DTUsuario> inmobiliarias = CSuscripciones->listarInmobiliariasNoSuscripto(nicknameUsuario);
+    //TODO: Recorrer la coleccion y mostrar "Nickname:, nombre: ";
+    for(set<DTUsuario>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
+        std::cout << "Nickname: "<< (*it).getNickname() << ", nombre: "<< (*it).getNombre()<<std::endl;
+    }
+    set<string> inmobiliariasElegidas;
+    int salir = 1;
+    std::cout<<"¿Quiere suscribirse a alguna inmobiliaria? (1: Si, 0: No): ";
+    std::cin >> salir;
+    std::cin.ignore();
+    string nicknameInmobiliaria;
+    while(salir != 0){
+        std::cout<< "Ingrese el nickname de la inmobiliaria: ";
+        std::cin >> nicknameInmobiliaria;
+        std::cin.ignore();
+        inmobiliariasElegidas.insert(nicknameInmobiliaria);
+        std::cout<<"¿Quiere suscribirse a mas inmobiliarias? (1: Si, 2: No): ";
+        std::cin >> salir;
+        std::cin.ignore();
+    }
+    //TODO:Controlador->suscribirse(nicknameUsuario, inmobiliariasElegidas);
+    CSuscripciones->suscribirse(nicknameUsuario, inmobiliariasElegidas);
+    
 
 }
 

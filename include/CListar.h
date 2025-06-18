@@ -26,8 +26,10 @@ private:
     static Listar* instancia;
     HandlerInmobiliaria* Hinmobiliarias;
     IControladorFechaActual* fechaActual;
+    Listar();
 public:
     static Listar* getInstancia();
+    ~Listar();
 
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);

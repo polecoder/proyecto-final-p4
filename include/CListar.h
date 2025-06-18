@@ -20,7 +20,6 @@ private:
     static Listar* instancia;
     HandlerInmobiliaria* Hinmobiliarias;
     ControladorFechaActual* fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
-public:
     Listar();  
 public:
     static Listar* getInstancia();

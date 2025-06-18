@@ -2,6 +2,7 @@
 #include "../include/Handlers.h"
 #include "../include/DTNotificacion.h"
 #include "../include/ControladorListar.h"
+#include "../include/DTUsuario.h"
 
 using namespace std;
 

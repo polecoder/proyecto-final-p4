@@ -12,13 +12,14 @@ Inmobiliaria::Inmobiliaria() : Usuario() // Llama al constructor por defecto de 
 }
 
 Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)
-    : Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
+    :Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
 {
     this->direccion = direccion;
     this->url = url;
     this->telefono = telefono;
     // El vector administraProps se inicializa solo
 }
+
 Inmobiliaria:: ~Inmobiliaria(){
 };
         

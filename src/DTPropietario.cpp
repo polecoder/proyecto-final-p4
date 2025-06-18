@@ -1,11 +1,7 @@
-#include "../include/HPUsuario.h"
 #include "../include/Propietario.h"
+#include "../include/Usuario.h"
 
-#include <iostream>
-using namespace std;
-
-inmobiliaria::Usuario::Propietario(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)
-    : Usuario(nickname, contrasena, nombre, email), direccion(direccion), url(url), telefono(telefono) {
-    
+Propietario::Propietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono)
+    : Usuario(nickname, contrasena, nombre, email), cuentaBancaria(cuentaBancaria), telefono(telefono) {
+    // cuerpo del constructor si es necesario
 }
-// Constructor de Propietario

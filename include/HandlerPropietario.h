@@ -3,9 +3,12 @@
 
 
 #include "Cliente.h"
+#include "Propietario.h"
 #include <map>
 #include <string>
 using namespace std;
+
+class Propietario;
 
 class HandlerPropietario {
 private:

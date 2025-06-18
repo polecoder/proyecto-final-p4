@@ -5,7 +5,8 @@
 using namespace std;
 
 // Devuelve las instancias 
-static HandlerPropietario* HandlerPropietario::instancia = nullptr;
+HandlerPropietario* HandlerPropietario::instancia = nullptr;
+
 HandlerPropietario* HandlerPropietario::getInstancia() {
     if (instancia == nullptr) {
         instancia = new HandlerPropietario();
@@ -14,7 +15,7 @@ HandlerPropietario* HandlerPropietario::getInstancia() {
 }
 
 //Agregra un propietario al map de propietarios
-agregarPropietario(Propietario* propietario) {
+void HandlerPropietario::agregarPropietario(Propietario* propietario) {
     string nick = propietario->getNickname();
     propietarios[nick] = propietario;
 }

@@ -99,7 +99,7 @@ bool SubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nom
 bool SubeYBaja:: altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento) {
     bool existe = Hcliente->existeCliente(nickname);
     if (!existe) {
-        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
+        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email,  apellido, documento);
         Hcliente->agregarCliente(nuevoCliente);
         return true;
     }

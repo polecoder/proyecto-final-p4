@@ -15,22 +15,18 @@ class Inmueble {
     public:
         Inmueble();// constructor por defecto
         Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
-<<<<<<< HEAD
-        ~Inmueble();
-=======
+
         virtual ~Inmueble();
->>>>>>> origin/main
         
         int getCodigo() ;
         std::string getDireccion() ;
         int getNumeroPuerta() ;
         int getSuperficie() ;
         int getAnoConstruccion() ;
-<<<<<<< HEAD
-=======
+
         // Cambiado a const para poder usarlo en el menu
         Propietario* getPropietario() const;
->>>>>>> origin/main
+
 
 };
 

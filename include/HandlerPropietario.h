@@ -26,4 +26,5 @@ public:
     ~HandlerPropietario();
 };
 
+
 #endif // HANDLERPROPIETARIO_H

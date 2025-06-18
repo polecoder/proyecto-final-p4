@@ -38,7 +38,7 @@ public:
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
 
      bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
-    bool altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string url, string telefono);
+    bool altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
     bool altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento);
 
 };

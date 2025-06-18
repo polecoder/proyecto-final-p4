@@ -86,10 +86,10 @@ bool SubeYBaja:: altaPropietario(string nickname, string contrasena, string nomb
     return false;
 }
 
-bool SubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string url, string telefono) {
+bool SubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono) {
     bool existe = Hinmobiliarias->existeInmobiliaria(nickname);
     if (!existe) {
-        Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, url, telefono);
+        Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
         Hinmobiliarias->agregarInmobiliaria(nuevaInmobiliaria);
         return true;
     }

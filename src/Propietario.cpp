@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Propietario::Propietario(string nickname, string contrasena, string nombre, string email, string apellido, string documento)
+Propietario::Propietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono)
 :Usuario(nickname, contrasena, nombre, email){
     this->cuentaBancaria = cuentaBancaria;
     this->telefono = telefono;

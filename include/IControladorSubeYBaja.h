@@ -1,7 +1,9 @@
 #ifndef ICONTROLADORSubeYBaja_H
 #define ICONTROLADORSubeYBaja_H
 
-#include "CSubeYBaja.h"
+#include <string>
+#include "TipoPublicacion.h"
+using namespace std;
 
 class IControladorSubeYBaja {
     public:

@@ -1,7 +1,12 @@
 #ifndef ICONTROLADORLISTAR_H
 #define ICONTROLADORLISTAR_H
 
-#include "CListar.h"
+#include <set>
+#include <string>
+#include "DTUsuario.h"
+#include "DTInmuebleAdministrado.h"
+
+using namespace std;
 
 class IControladorListar{
     public:

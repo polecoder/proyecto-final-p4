@@ -6,6 +6,7 @@
 #include "HandlerInmobiliaria.h"
 #include "HandlerInmueble.h"
 #include "DTInmuebleAdministrado.h"
+#include "IControladorListar.h"
 #include "AdministraPropiedad.h"
 #include "ControladorFechaActual.h"
 #include "IControladorListar.h"

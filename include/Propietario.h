@@ -20,57 +20,13 @@ private:
     map<string, Inmobiliaria *> suscripciones;
 
 public:
-    /**
-     * @brief Constructor de Propietario
-     *
-     * @param nickname
-     * @param contrasena
-     * @param nombre
-     * @param email
-     * @param cuentaBancaria
-     * @param telefono
-     */
     Propietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
-    /**
-     * @brief Destructor de Propietario
-     *
-     */
     ~Propietario();
-    /**
-     * @brief Getter para cuentaBancaria
-     *
-     * @return Un string correspondiente a la cuenta bancaria del propietario
-     */
-    string getCuentaBancaria();
-    /**
-     * @brief Getter para telefono
-     *
-     * @return Un string correspondiente al telefono del propietario
-     */
-    string getTelefono();
-    /**
-     * @brief Getter para notificaciones
-     *
-     * @return Un set<DTNotificacion> correspondiente a TODAS las notificaciones del propietario
-     */
-    set<DTNotificacion> getNotificaciones();
-    /**
-     * @brief Devuelve todas las suscripciones del cliente
-     *
-     * @return map<string, Inmobiliaria *> que contiene todas las suscripciones del cliente
-     */
-    map<string, Inmobiliaria *> getSuscripciones();
-    /**
-     * @brief Setter para cuentaBancaria
-     *
-     * @param cuentaBancaria Cuenta bancaria para asignar al propietario
-     */
+    string getCuentaBancaria() const;
+    string getTelefono() const;
+    set<DTNotificacion> getNotificaciones() const;
+    map<string, Inmobiliaria *> getSuscripciones() const;
     void setCuentaBancaria(string cuentaBancaria);
-    /**
-     * @brief Setter para telefono
-     *
-     * @param telefono Telefono para asignar al propietario
-     */
     void setTelefono(string telefono);
     /**
      * @brief Se encarga de agregar la notificación pasada por parámetro al set de notificaciones del propietario

@@ -13,18 +13,20 @@
 #include <map>
 #include <string>
 #include <set>
-using namespace std; // Esto evita tener que escribir std::
+using namespace std;
 
-class Listar: public IControladorListar {
+class Listar : public IControladorListar
+{
 private:
-    static Listar* instancia;
-    HandlerInmobiliaria* Hinmobiliarias;
-    IControladorFechaActual* fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
-    Listar();  
-public:
-    static Listar* getInstancia();
+    static Listar *instancia;
+    HandlerInmobiliaria *Hinmobiliarias;
+    IControladorFechaActual *fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
+    Listar();
 
-    ~Listar(); 
+public:
+    static Listar *getInstancia();
+
+    ~Listar();
 
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);

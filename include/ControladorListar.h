@@ -15,24 +15,26 @@ private:
     static ControladorListar *instance;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
-    /**
-     * @brief Constructor de ControladorListar (PRIVADO)
-     *
-     */
+    HandlerInmobiliarias *handlerInmobiliarias;
+    IControladorFechaActual *interfazFechaActual;
     ControladorListar();
 
 public:
-    /**
-     * @brief Getter para la instancia del ControladorListar
-     *
-     * @return ControladorListar
-     */
     static ControladorListar *getInstance();
-    /**
-     * @brief Destructor de ControladorListar
-     *
-     */
     ~ControladorListar();
+    /**
+     * @brief TODO: Agregar descripción de la operación
+     *
+     * @return set<DTUsuario> TODO: Agregar descripción de los datos de retorno
+     */
+    set<DTUsuario> listarInmobiliarias();
+    /**
+     * @brief TODO: Agregar descripción de la operación
+     *
+     * @param nicknameInmobiliaria TODO: Agregar descripción de parámetros
+     * @return set<DTInmuebleAdministrado> TODO: Agregar descripción de los datos de retorno
+     */
+    set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
     /**
      * @brief Devuelve todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *

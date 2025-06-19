@@ -28,7 +28,7 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
     vector<AdministraPropiedad*> adProp = Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
     vector<AdministraPropiedad*>::iterator it;
     it = adProp.begin();
-    while (((*(*it)->getInmueble()).getCodigo() != codigoInmueble)) { //busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
+    while ((((*it)->getInmueble())->getCodigo() != codigoInmueble)) { //busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
         it++;
     }
     bool e=(*it)->existePublicacion( fechaActual->getFechaActual(), tipoPublicacion);

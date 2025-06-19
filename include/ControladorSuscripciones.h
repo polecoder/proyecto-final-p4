@@ -15,23 +15,10 @@ private:
     static ControladorSuscripciones *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
-    /**
-     * @brief Constructor de ControladorSuscripciones (PRIVADO)
-     *
-     */
     ControladorSuscripciones();
 
 public:
-    /**
-     * @brief Getter para la instancia del ControladorSuscripciones
-     *
-     * @return ControladorSuscripciones
-     */
     static ControladorSuscripciones *getInstancia();
-    /**
-     * @brief Destructor de ControladorSuscripciones
-     *
-     */
     ~ControladorSuscripciones();
     /**
      * @brief Borra todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario

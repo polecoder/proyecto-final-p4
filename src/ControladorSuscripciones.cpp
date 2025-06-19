@@ -23,10 +23,7 @@ ControladorSuscripciones *ControladorSuscripciones::getInstancia()
     return instancia;
 }
 
-ControladorSuscripciones::~ControladorSuscripciones()
-{
-    // TODO: Revisar si corresponde eliminar los Handlers en este destructor
-}
+ControladorSuscripciones::~ControladorSuscripciones() {}
 
 // PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true
 void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)

@@ -270,7 +270,7 @@ void altaPublicacion()
 {
     Factory *factory = Factory::getInstancia();
 
-    std::cout << "Lista de Inmobiliarias:\n";
+    cout << "Lista de Inmobiliarias:\n";
     // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
     IControladorListar *controladorListar = factory->getControladorListar();
     set<DTUsuario> DTUsuarios = controladorListar->listarInmobiliarias();
@@ -278,18 +278,18 @@ void altaPublicacion()
     set<DTUsuario>::iterator it;
     for (it = DTUsuarios.begin(); it != DTUsuarios.end(); ++it)
     {
-        std::cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << std::endl;
+        cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << endl;
     };
-    std::cout << "Nickname de la inmobiliaria: ";
-    std::string nicknameInmobiliaria;
-    std::getline(std::cin, nicknameInmobiliaria);
+    cout << "Nickname de la inmobiliaria: ";
+    string nicknameInmobiliaria;
+    getline(cin, nicknameInmobiliaria);
     // TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> DTInmueblesAdministrados = controladorListar->listarInmueblesAdministrados(nicknameInmobiliaria);
-    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
+    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy
     set<DTInmuebleAdministrado>::iterator it2;
     for (it2 = DTInmueblesAdministrados.begin(); it2 != DTInmueblesAdministrados.end(); ++it2)
     {
-        std::cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion() << std::endl;
+        cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion() << endl;
     };
     int codigoInmueble;
     cout << "Inmueble: ";
@@ -309,8 +309,8 @@ void altaPublicacion()
     getline(cin, texto);
     cout << "Precio: ";
     float precio;
-    std::cin >> precio;
-    std::cin.ignore();
+    cin >> precio;
+    cin.ignore();
     // TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
     IControladorSubeYBaja *controladorSubeYBaja = factory->getControladorSubeYBaja();
     bool altapublicacion = controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);

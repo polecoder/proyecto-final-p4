@@ -27,10 +27,7 @@ ControladorListar *ControladorListar::getInstancia()
     return instancia;
 }
 
-ControladorListar::~ControladorListar()
-{
-    // TODO: Revisar si corresponde eliminar los Handlers en este destructor
-}
+ControladorListar::~ControladorListar() {}
 
 set<DTUsuario> ControladorListar::listarInmobiliarias()
 {
@@ -59,6 +56,7 @@ set<DTInmuebleAdministrado> ControladorListar::listarInmueblesAdministrados(stri
 // PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true
 set<DTNotificacion> ControladorListar::listarNotificacionesDeUsuario(string nicknameUsuario)
 {
+    // TODO: Implementar con dynamic_cast<>
     if (this->handlerClientes->existeCliente(nicknameUsuario))
     {
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
@@ -74,8 +72,9 @@ set<DTNotificacion> ControladorListar::listarNotificacionesDeUsuario(string nick
 // PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario))
 set<DTUsuario> ControladorListar::listarSuscripciones(string nicknameUsuario)
 {
-    set<DTUsuario> resultado;
+    // TODO: Implementar con dynamic_cast<>
     // TODO: Hacerlo sin if/else (no se me ocurre mejor forma que esta)
+    set<DTUsuario> resultado;
     if (this->handlerClientes->existeCliente(nicknameUsuario))
     {
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);

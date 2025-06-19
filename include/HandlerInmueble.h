@@ -10,7 +10,7 @@ private:
     map<int, Inmueble*> coleccionInmuebles;
     static HandlerInmueble* instancia;
     HandlerInmueble();  // Constructor
-    ~HandlerInmueble(); // Destructor
+    
 public:
     static HandlerInmueble* getInstancia();
 
@@ -19,6 +19,6 @@ public:
 
     map<int, Inmueble*> DevolverInmuebles(); // Devuelve el mapa completo
     Inmueble* DevolverInmueble(int codigo); // Devuelve el inmueble con ese codigo
-
+    ~HandlerInmueble(); // Destructor
 };
 #endif

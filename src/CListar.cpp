@@ -34,11 +34,11 @@ set<DTUsuario> Listar::listarInmobiliarias() {
 }
 
 set<DTInmuebleAdministrado> Listar :: listarInmueblesAdministrados(string nicknameInmobiliaria){
-    vector<AdministraPropiedad> adProp= Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
+    vector<AdministraPropiedad*> adProp= Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> salida; 
-    vector<AdministraPropiedad>::iterator it;
+    vector<AdministraPropiedad*>::iterator it;
     for (it = adProp.begin(); it != adProp.end(); ++it) {
-        salida.insert(DTInmuebleAdministrado((*(*it).getInmueble()).getCodigo(),(*(*it).getInmueble()).getDireccion(),fechaActual->getFechaActual()));
+        salida.insert(DTInmuebleAdministrado((*(*it)->getInmueble()).getCodigo(),(*(*it)->getInmueble()).getDireccion(),fechaActual->getFechaActual()));
     }
     return salida;
 }

@@ -3,6 +3,8 @@
 #include "DTFecha.h"
 #include "TipoPublicacion.h"
 #include <string>
+class AdministraPropiedad;
+using namespace std;
 
 class Publicacion {
 private:
@@ -12,9 +14,10 @@ private:
     std::string texto;
     float precio;
     bool activa;
+    AdministraPropiedad* apAsociado; 
 
 public:
-    Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, std::string texto, float precio, bool activa);
+    Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, string texto, float precio, bool activa, AdministraPropiedad* apAsociado);
     ~Publicacion();
     float getPrecio();
     TipoPublicacion getTipo();

@@ -1,4 +1,4 @@
-#include "../include/HandlerInmobiliaria.h"
+#include "../include/HandlerInmobiliarias.h"
 #include "../include/Inmobiliaria.h"
 #include <iostream>
 
@@ -31,12 +31,12 @@ void HandlerInmobiliaria::eliminarInmobiliaria(string& nickname) {
     coleccionInmobiliarias.erase(nickname);
 }
 
-map<string, Inmobiliaria*> HandlerInmobiliaria::DevolverInmobiliarias() {
+map<string, Inmobiliaria*> HandlerInmobiliaria::getInmobiliarias() {
     return coleccionInmobiliarias;
 }
-Inmobiliaria* HandlerInmobiliaria::DevolverInmobiliaria(string nickname) {
+Inmobiliaria* HandlerInmobiliaria::getInmobiliaria(string nickname) {
     return coleccionInmobiliarias.find(nickname)->second;
 }
-vector<AdministraPropiedad*> HandlerInmobiliaria::DevolverAdProp(string nickname) {
+vector<AdministraPropiedad*> HandlerInmobiliaria::getAdProp(string nickname) {
     return coleccionInmobiliarias[nickname]->getadministraProps();
 };

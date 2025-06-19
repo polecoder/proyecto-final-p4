@@ -20,9 +20,9 @@ public:
     void agregarInmobiliaria(Inmobiliaria* &inmobiliaria);
     void eliminarInmobiliaria(string& nickname);
 
-    map<string, Inmobiliaria*> DevolverInmobiliarias();// Devuelve el mapa completo.
-    Inmobiliaria* DevolverInmobiliaria(string nickname);// Devuelve la inmobiliaria con ese nickname.
-    vector<AdministraPropiedad*> DevolverAdProp(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
+    map<string, Inmobiliaria*> getInmobiliarias();// Devuelve el mapa completo.
+    Inmobiliaria* getInmobiliaria(string nickname);// Devuelve la inmobiliaria con ese nickname.
+    vector<AdministraPropiedad*> getAdProp(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
     ~HandlerInmobiliaria(); // Destructor, borra la coleccion
 };
 

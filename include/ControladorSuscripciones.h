@@ -4,7 +4,7 @@
 #include <set>
 #include "HandlerClientes.h"
 #include "HandlerPropietarios.h"
-#include "HandlerInmobiliaria.h"
+#include "HandlerInmobiliarias.h"
 #include "IControladorSuscripciones.h"
 #include <DTUsuario.h>
 #include <string>

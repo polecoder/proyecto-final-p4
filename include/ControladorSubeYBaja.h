@@ -2,7 +2,7 @@
 #define C_SUBE_Y_BAJA
 #include "Publicacion.h"
 #include "Inmobiliaria.h"
-#include "HandlerInmobiliaria.h"
+#include "HandlerInmobiliarias.h"
 #include "HandlerPublicacion.h"
 #include "DTFecha.h"
 #include "IControladorFechaActual.h"

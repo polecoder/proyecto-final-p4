@@ -1,5 +1,8 @@
+#include <string>
+#include <ostream>
+#include "../include/TipoPublicacion.h"
+#include "../include/TipoInmueble.h"
 #include "../include/DTNotificacion.h"
-#include <iostream>
 
 using namespace std;
 
@@ -14,27 +17,27 @@ DTNotificacion::DTNotificacion(const string &nicknameInmobiliaria, const int &co
 
 DTNotificacion::~DTNotificacion() {}
 
-string DTNotificacion::getNicknameInmobiliaria()
+string DTNotificacion::getNicknameInmobiliaria() const
 {
     return this->nicknameInmobiliaria;
 }
 
-int DTNotificacion::getCodigoPublicacion()
+int DTNotificacion::getCodigoPublicacion() const
 {
     return this->codigoPublicacion;
 }
 
-string DTNotificacion::getTextoPublicacion()
+string DTNotificacion::getTextoPublicacion() const
 {
     return this->textoPublicacion;
 }
 
-TipoPublicacion DTNotificacion::getTipoPublicacion()
+TipoPublicacion DTNotificacion::getTipoPublicacion() const
 {
     return this->tipoPublicacion;
 }
 
-TipoInmueble DTNotificacion::getTipoInmueble()
+TipoInmueble DTNotificacion::getTipoInmueble() const
 {
     return this->tipoInmueble;
 }
@@ -67,4 +70,14 @@ void DTNotificacion::setTipoInmueble(TipoInmueble tipoInmueble)
 bool DTNotificacion::operator<(const DTNotificacion &other) const
 {
     return this->codigoPublicacion < other.codigoPublicacion;
+}
+
+ostream &operator<<(ostream &os, const DTNotificacion &dt)
+{
+    os << "Inmobiliaria: " << dt.getNicknameInmobiliaria()
+       << ", Código: " << dt.getCodigoPublicacion()
+       << ", Texto: " << dt.getTextoPublicacion()
+       << ", Tipo Publicación: " << dt.getTipoPublicacion()
+       << ", Tipo Inmueble: " << dt.getTipoInmueble();
+    return os;
 }

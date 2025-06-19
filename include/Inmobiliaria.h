@@ -8,16 +8,10 @@
 #include <string>
 #include <map>
 #include <vector>
-using namespace std;
-class Inmobiliaria : public Usuario {
-    private:
-        string direccion;
-        string url;
-        string telefono;
-        vector <AdministraPropiedad> administraProps;
-        map<string,Cliente> clientesAsociados;
-        map<string,Propietario> PropietariosAsociados;
 
+using namespace std;
+
+<<<<<<< HEAD
     public:
         Inmobiliaria();//constructor por defecto
         Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion,  string url, string telefono);
@@ -29,6 +23,32 @@ class Inmobiliaria : public Usuario {
         vector<AdministraPropiedad> getadministraProps() ;
         void notificar(DTNotificacion notificacion);
 
+=======
+// Forward declaration
+class AdministraPropiedad;
+class Cliente;
+class Propietario;
+
+class Inmobiliaria : public Usuario
+{
+private:
+    string direccion;
+    string url;
+    string telefono;
+    vector<AdministraPropiedad *> administraProps;
+    map<string, Cliente *> clientesAsociados;
+    map<string, Propietario *> PropietariosAsociados;
+
+public:
+    Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
+    ~Inmobiliaria();
+
+    string getDireccion() const;
+    string getUrl() const;
+    string getTelefono() const;
+    vector<AdministraPropiedad *> getadministraProps() const;
+    void notificar(DTNotificacion notificacion);
+>>>>>>> origin/main
 };
 
 #endif

@@ -10,7 +10,7 @@ AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble){
     this->fecha = fecha;
     this->ultimaPublicacion = 0;
     this->inmueble = inmueble;
-    map<int,Publicacion> publicaciones;
+    map<int,Publicacion*> publicaciones;
     this->publicaciones = publicaciones;
 };
 
@@ -33,14 +33,14 @@ void AdministraPropiedad::setUltimaPublicacion(int up){
 };
 
 // TODO: no usar codigo, usar publi.codigo
-void AdministraPropiedad::agregarPublicacion(int codigo, Publicacion publi) {
+void AdministraPropiedad::agregarPublicacion(int codigo, Publicacion* publi) {
     publicaciones.insert({codigo, publi});
 };
 
 bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion){
-    map<int,Publicacion> :: iterator it;
+    map<int,Publicacion*> :: iterator it;
     it=publicaciones.begin();
-    while(it!=publicaciones.end()&&(!(fecha.operator==((*it).second.getFecha()))|| (*it).second.getTipo()!=tipoPublicacion)){
+    while(it!=publicaciones.end()&&(!(fecha.operator==((*it).second->getFecha()))|| (*it).second->getTipo()!=tipoPublicacion)){
         it++;
     };
     return (it!=publicaciones.end());
@@ -48,15 +48,19 @@ bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoP
 
 
 Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tipoPublicacion) {
-    map<int,Publicacion> :: iterator it;
+    map<int,Publicacion*> :: iterator it;
     it=publicaciones.begin();
-    while(it!=publicaciones.end()&&(!(*it).second.getActiva()||(*it).second.getTipo()!=tipoPublicacion)) {
+    while(it!=publicaciones.end()&&(!(*it).second->getActiva()||(*it).second->getTipo()!=tipoPublicacion)) {
         it++;
     };
     if (it==publicaciones.end()){
         return NULL;
     }
+<<<<<<< HEAD
     Publicacion* pub = new Publicacion((*it).second);
     return pub;
 
+=======
+    return it->second;
+>>>>>>> origin/main
 };

@@ -1,15 +1,16 @@
 #ifndef C_LISTAR
 #define C_LISTAR
 #include "DTUsuario.h"
-#include "DTInmueble.h"
 #include "Usuario.h"
 #include "Inmobiliaria.h"
 #include "HandlerInmobiliaria.h"
 #include "DTInmuebleAdministrado.h"
+#include "IControladorListar.h"
 #include "AdministraPropiedad.h"
-#include "IControladorFechaActual.h"
+#include "ControladorFechaActual.h"
 #include "HandlerPublicacion.h"
 #include "DTPublicacion.h"
+#include "DTInmueble.h"
 #include "DTCasa.h"
 #include "DTApartamento.h"
 #include "Casa.h"
@@ -21,7 +22,7 @@
 
 using namespace std; // Esto evita tener que escribir std::
 
-class Listar {
+class Listar: public IControladorListar {
 private:
     static Listar* instancia;
     HandlerInmobiliaria* Hinmobiliarias;

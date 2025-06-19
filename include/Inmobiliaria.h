@@ -11,19 +11,6 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-    public:
-        Inmobiliaria();//constructor por defecto
-        Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion,  string url, string telefono);
-        ~Inmobiliaria();
-
-        string getDireccion() ;
-        string getUrl() ;
-        string getTelefono() ;
-        vector<AdministraPropiedad> getadministraProps() ;
-        void notificar(DTNotificacion notificacion);
-
-=======
 // Forward declaration
 class AdministraPropiedad;
 class Cliente;
@@ -48,7 +35,6 @@ public:
     string getTelefono() const;
     vector<AdministraPropiedad *> getadministraProps() const;
     void notificar(DTNotificacion notificacion);
->>>>>>> origin/main
 };
 
 #endif

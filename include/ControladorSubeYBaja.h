@@ -5,6 +5,9 @@
 #include "IControladorFechaActual.h"
 #include "HandlerInmobiliarias.h"
 #include "HandlerPublicacion.h"
+#include "HandlerClientes.h"
+#include "HandlerPropietarios.h"
+#include "Publicacion.h"
 
 #include <string>
 
@@ -14,15 +17,25 @@ class ControladorSubeYBaja : public IControladorSubeYBaja
 {
 private:
     static ControladorSubeYBaja *instancia;
+    
     HandlerInmobiliarias *Hinmobiliarias;
-    IControladorFechaActual *fechaActual;
     HandlerPublicacion *HPublicacion;
+    HandlerClientes *Hcliente;
+    HandlerPropietarios *Hpropietario;
+
+    
+    IControladorFechaActual *fechaActual;
     ControladorSubeYBaja();
 
 public:
     static ControladorSubeYBaja *getInstancia();
     ~ControladorSubeYBaja();
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio);
+
+    bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
+    bool altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
+    bool altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento);
+
 };
 
 #endif // CONTROLADORSUBEYBAJA_H

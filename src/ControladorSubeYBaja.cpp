@@ -78,7 +78,7 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     return true;
 }
 
-bool SubeYBaja:: altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono) {
+bool ControladorSubeYBaja:: altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono) {
     bool existe = Hpropietario->existePropietario(nickname);
     if (!existe) {
         Propietario* nuevoPropietario = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
@@ -88,7 +88,7 @@ bool SubeYBaja:: altaPropietario(string nickname, string contrasena, string nomb
     return false;
 }
 
-bool SubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono) {
+bool ControladorSubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono) {
     bool existe = Hinmobiliarias->existeInmobiliaria(nickname);
     if (!existe) {
         Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
@@ -98,7 +98,7 @@ bool SubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nom
     return false;
 }
 
-bool SubeYBaja:: altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento) {
+bool ControladorSubeYBaja:: altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento) {
     bool existe = Hcliente->existeCliente(nickname);
     if (!existe) {
         Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email,  apellido, documento);

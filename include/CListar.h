@@ -15,6 +15,8 @@
 #include "DTApartamento.h"
 #include "Casa.h"
 #include "Apartamento.h"
+#include "HandlerClientes.h"
+#include "HandlerPropietarios.h"
 
 #include <map>
 #include <string>
@@ -22,21 +24,25 @@
 
 using namespace std; // Esto evita tener que escribir std::
 
-class Listar: public IControladorListar {
+class ControladorListar: public IControladorListar {
 private:
-    static Listar* instancia;
-    HandlerInmobiliaria* Hinmobiliarias;
+    static ControladorListar *instancia;
+    HandlerPropietarios* handlerPropietarios;
+    HandlerClientes* handlerClientes;
+    HandlerInmobiliaria* handlerInmobiliaria;
     ControladorFechaActual* fechaActual;
-    Listar();
+    ControladorListar();
 public:
-    static Listar* getInstancia();
-    ~Listar();
+    static ControladorListar* getInstancia();
+    ~ControladorListar();
 
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
 
     set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
     DTInmueble detalleInmueblePublicacion(int codigoPublicacion);
+
+    set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario);//PRE: existe un usuario con nickname=nicknameUsuario.
 };
 
 #endif

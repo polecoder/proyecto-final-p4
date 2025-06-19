@@ -7,15 +7,15 @@ DTApartamento::DTApartamento(int codigo, std::string direccion, int numeroPuerta
     this->gastosComunes = gastosComunes;
 }
 
-int DTApartamento::getPiso() {
+int DTApartamento::getPiso() const {
     return piso;
 }
 
-bool DTApartamento::getTieneAscensor() {
+bool DTApartamento::getTieneAscensor() const {
     return tieneAscensor;
 }
 
-float DTApartamento::getGastosComunes() {
+float DTApartamento::getGastosComunes() const {
     return gastosComunes;
 }
 

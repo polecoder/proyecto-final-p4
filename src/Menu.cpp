@@ -103,7 +103,7 @@ void ejecutarOpcion(int opcion) {
 
 void altaUsuario(){
 
-    Factory* factory = Factory::getInstance();
+    Factory* factory = Factory::getInstancia();
 
     std::cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
@@ -244,7 +244,7 @@ void altaUsuario(){
 
 void altaPublicacion(){
 
-    Factory* factory = Factory::getInstance();
+    Factory* factory = Factory::getInstancia();
 
     std::cout << "Lista de Inmobiliarias:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
@@ -278,7 +278,7 @@ void altaPublicacion(){
 
 void consultaPublicaciones(){
 
-    Factory* factory = Factory::getInstance();
+    Factory* factory = Factory::getInstancia();
 
     int inTipoPublicacion;
     std::cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler)";
@@ -308,12 +308,12 @@ void consultaPublicaciones(){
     }
     std::cout << "Publicaciones encontradas:\n";
     //TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
-    Listar* controladorListar = Listar::getInstancia();
+    IControladorListar *controladorListar = factory->getControladorListar();
     set<DTPublicacion> publicaciones = controladorListar->listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
     //Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
     set<DTPublicacion>:: iterator it;
     for (it = publicaciones.begin(); it != publicaciones.end(); ++it){
-        std::cout << "- Codigo: "<< (*it).getCodigo() <<", fecha: " << (*it).getFecha() <<", texto: "<<", precio: "<< (*it).getPrecio() <<", inmobiliaria: "<< (*it).getInmobiliaria() <<std::endl;   
+        std::cout << "- Codigo: "<< (*it).getCodigo() <<", fecha: " << (*it).getFecha()->toString() <<", texto: "<<", precio: "<< (*it).getPrecio() <<", inmobiliaria: "<< (*it).getInmobiliaria() <<std::endl;   
     }
     int verDetalle;
     std::cout << "Ver detalle de la publicacion: (1: Si, 0: No)";
@@ -344,7 +344,7 @@ void consultaPublicaciones(){
 
 void eliminarInmueble(){
 
-    Factory* factory = Factory::getInstance();
+    Factory* factory = Factory::getInstancia();
     std::cout << "Listado de inmuebles:\n";
     //TODO: Coleccion de DTInmuebleListado = Controlador->listarInmuebles();
     //Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
@@ -369,16 +369,16 @@ void eliminarInmueble(){
 
 void suscribirseNotificaciones(){
 
-    Factory* factory = Factory::getInstance();
-
+    Factory* factory = Factory::getInstancia();
+    IControladorSuscripciones *controladorSuscripciones = factory->getControladorSuscripciones();
     string nicknameUsuario;
     std::cout << "Ingrese su nickname: ";
     std::cin >> nicknameUsuario;
     std::cin.ignore();
     std::cout << "Inmobiliarias a las cuales se puede suscribir:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliariasNoSuscripto(nickname)
-    ControladorSuscripciones* CSuscripciones = ControladorSuscripciones::getInstancia();
-    std::set<DTUsuario> inmobiliarias = CSuscripciones->listarInmobiliariasNoSuscripto(nicknameUsuario);
+    IControladorListar *CListar = factory->getControladorListar();
+    std::set<DTUsuario> inmobiliarias = CListar->listarInmobiliariasNoSuscripto(nicknameUsuario);
     //TODO: Recorrer la coleccion y mostrar "Nickname:, nombre: ";
     for(set<DTUsuario>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
         std::cout << "Nickname: "<< (*it).getNickname() << ", nombre: "<< (*it).getNombre()<<std::endl;
@@ -399,7 +399,7 @@ void suscribirseNotificaciones(){
         std::cin.ignore();
     }
     //TODO:Controlador->suscribirse(nicknameUsuario, inmobiliariasElegidas);
-    CSuscripciones->suscribirse(nicknameUsuario, inmobiliariasElegidas);
+    controladorSuscripciones->suscribirse(nicknameUsuario, inmobiliariasElegidas);
     
 
 }
@@ -413,7 +413,7 @@ void eliminarSuscripciones(){
 }
 
 void altaAdministracionPropiedad(){
-    Factory* factory = Factory::getInstance();
+    Factory* factory = Factory::getInstancia();
 
     std::cout << "Lista de Inmobiliarias:\n";
     //TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
@@ -435,7 +435,7 @@ void cargarDatos(){
 }
 
 void verFechaActual(){
-Factory* factory = Factory::getInstance();
+Factory* factory = Factory::getInstancia();
 IControladorFechaActual* cfecha = factory->getControladorFechaActual();
 DTFecha* fechaActual = cfecha->getFechaActual();
 std::cout << "fecha actual: " << fechaActual;
@@ -443,7 +443,7 @@ delete fechaActual;
 }
 
 void asignarFechaActual(){
-Factory* factory = Factory::getInstance();
+Factory* factory = Factory::getInstancia();
 IControladorFechaActual* cfecha = factory->getControladorFechaActual();
 std::cout << "dia: ";
 int dia;

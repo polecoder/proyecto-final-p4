@@ -2,6 +2,9 @@
 #define INMUEBLE_H
 #include <string>
 #include "TipoInmueble.h"
+#include "Propietario.h"
+
+class Propietario;
 
 using namespace std;
 
@@ -24,6 +27,7 @@ class Inmueble {
         int getAnoConstruccion() ;
         virtual TipoInmueble getTipoInmueble() const = 0;
 
+        Propietario* getPropietario() const;
 };
 
 #endif

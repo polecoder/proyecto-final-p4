@@ -9,6 +9,8 @@
 
 using namespace std;
 
+class Inmobiliaria;
+
 class Propietario : public Usuario {
     private:
         string cuentaBancaria;
@@ -19,15 +21,16 @@ class Propietario : public Usuario {
     public:
         Propietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);
         ~Propietario();
-        string getCuentaBancaria();
-        string getTelefono();
-        map<string, Inmobiliaria*> getSuscripciones();
+        string getCuentaBancaria() const;
+        string getTelefono() const;
+        map<string, Inmobiliaria*> getSuscripciones() const;
         void setCuentaBancaria(string cuentaBancaria);
         void setTelefono(string telefono);
         void agregarSuscripcion(Inmobiliaria* inmobiliaria);//PRE: el propietario no esta suscripto a la inmobiliaria.
-        void eliminarSuscripcion(string &nicknameInmobiliaria);//PRE: el propietario esta suscripto a la inmobiliaria con nickname=nicknameInmobiliaria.
+        void eliminarSuscripcion(string nicknameInmobiliaria);//PRE: el propietario esta suscripto a la inmobiliaria con nickname=nicknameInmobiliaria.
         bool estaSuscripto(const string &nicknameInmobiliaria);
         void agregarNotificacion(DTNotificacion notificacion);
+        void eliminarNotificaciones();
 };
 
 

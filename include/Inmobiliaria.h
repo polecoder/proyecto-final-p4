@@ -27,10 +27,10 @@ class Inmobiliaria : public Usuario {
         Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
         ~Inmobiliaria();
 
-        string getDireccion() ;
-        string getUrl() ;
-        string getTelefono() ;
-        vector<AdministraPropiedad*> getadministraProps();
+        string getDireccion() const;
+        string getUrl() const;
+        string getTelefono() const;
+        vector<AdministraPropiedad*> getadministraProps() const;
         void agregarClienteSuscripto(Cliente *cliente);
         void agregarPropietarioSuscripto(Propietario *propietario);
         void notificar(DTNotificacion notificacion);

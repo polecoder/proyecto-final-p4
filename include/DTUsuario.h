@@ -6,14 +6,16 @@ using namespace std;
 
 class DTUsuario {
     private:
-        std::string nickname;
-        std::string nombre;
+        string nickname;
+        string nombre;
 
     public:
-        DTUsuario(std::string nickname, std::string nombre);
-        std::string getNickname() const;
-        std::string getNombre() const;
-
+        DTUsuario(string nickname, string nombre);
+        string getNickname() const;
+        string getNombre() const;
         bool operator<(const DTUsuario& other) const;
 };
+
+ostream &operator<<(ostream &os, const DTUsuario &dt);
+
 #endif

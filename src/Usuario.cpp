@@ -11,15 +11,15 @@ Usuario:: Usuario(std::string nickname, std::string contrasena, std::string nomb
 Usuario:: ~Usuario(){
 
 };
-string Usuario:: getNickname() {
+string Usuario:: getNickname() const{
     return nickname;
 };
-string Usuario:: getContrasena() {
+string Usuario:: getContrasena() const {
     return contrasena;
 };
-string Usuario:: getNombre() {
+string Usuario:: getNombre() const {
     return nombre;
 };
-string Usuario:: getEmail() {
+string Usuario:: getEmail() const {
     return email;   
 };

@@ -16,28 +16,28 @@ Publicacion :: ~Publicacion(){
     delete fecha; // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
     delete apAsociado;// se elimina el link al administraPropiedad asociado a la publicacion
 };
-int Publicacion::getCodigo() {
+int Publicacion::getCodigo() const {
     return codigo;
 }
-DTFecha* Publicacion :: getFecha() {
+DTFecha* Publicacion :: getFecha() const {
     return fecha;
 }
-TipoPublicacion Publicacion :: getTipo() {
+TipoPublicacion Publicacion :: getTipo() const {
     return tipo;
 };
-string Publicacion::getTexto() {
+string Publicacion::getTexto() const {
     return texto;
 };
-float Publicacion:: getPrecio() {
+float Publicacion:: getPrecio() const {
     return precio;
 }
-bool Publicacion :: getActiva() {
+bool Publicacion :: getActiva() const {
     return activa;
 };
 void Publicacion :: setActiva(bool activa){
     this->activa = activa;
 };
-TipoInmueble Publicacion::getTipoInmueble() { // accede al AdministraPropiedad asociado a la publicacion y devuelve el tipoInmueble del inmueble
+TipoInmueble Publicacion::getTipoInmueble() const { // accede al AdministraPropiedad asociado a la publicacion y devuelve el tipoInmueble del inmueble
     if (this->apAsociado != NULL){
         Inmueble* inmueble = this->apAsociado->getInmueble();
         if (inmueble != nullptr) {
@@ -46,7 +46,7 @@ TipoInmueble Publicacion::getTipoInmueble() { // accede al AdministraPropiedad a
     }
     return TipoInmueble();
 }
-string Publicacion:: getNicknameInmobiliaria() {
+string Publicacion:: getNicknameInmobiliaria() const{
     if (this->apAsociado != NULL){
         Inmobiliaria* inmo = this->apAsociado->getInmobiliaria();
         string nicknameInmobiliaria = inmo->getNickname();
@@ -54,9 +54,9 @@ string Publicacion:: getNicknameInmobiliaria() {
     }
     return nullptr;
 }
-Inmobiliaria* Publicacion:: getInmobiliaria(){
+Inmobiliaria* Publicacion:: getInmobiliaria() const{
     return this->apAsociado->getInmobiliaria();
 }
-Inmueble* Publicacion:: getInmueble(){
+Inmueble* Publicacion:: getInmueble() const{
     return this->apAsociado->getInmueble();
 }

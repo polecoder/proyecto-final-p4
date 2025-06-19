@@ -15,8 +15,8 @@ class Casa : public Inmueble {
         Casa(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho tipo);
         ~Casa();
         TipoInmueble getTipoInmueble() const override {return TipoInmueble::Casa;}
-        bool getEsPH();
-        TipoTecho getTipoTecho();
+        bool getEsPH() const;
+        TipoTecho getTipoTecho() const;
 };
 
 #endif

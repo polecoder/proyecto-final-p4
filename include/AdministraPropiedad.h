@@ -5,11 +5,14 @@
 #include "Publicacion.h"
 #include "Inmobiliaria.h"
 #include "DTFecha.h"
+#include "TipoPublicacion.h"
+#include "TipoInmueble.h"
 #include "ControladorFechaActual.h"
 #include <map>
 
 class Publicacion;
-// class Inmueble;
+class Inmueble;
+class Inmobiliaria;
 
 class AdministraPropiedad{
     private:

@@ -9,15 +9,15 @@ Propietario::Propietario(string nickname, string contrasena, string nombre, stri
     this->telefono = telefono;
 };
 
-string Propietario::getCuentaBancaria(){
+string Propietario::getCuentaBancaria() const{
     return this->cuentaBancaria;
 };
 
-string Propietario::getTelefono(){
+string Propietario::getTelefono() const{
     return this->telefono;
 };
 
-map<string, Inmobiliaria*> Propietario::getSuscripciones(){
+map<string, Inmobiliaria*> Propietario::getSuscripciones() const{
     return this->suscripciones;
 };
 
@@ -33,7 +33,7 @@ void Propietario::agregarSuscripcion(Inmobiliaria* inmobiliaria){
     this->suscripciones.insert({inmobiliaria->getNickname(), inmobiliaria});
 }
 
-void Propietario::eliminarSuscripcion(string &nicknameInmobiliaria){
+void Propietario::eliminarSuscripcion(string nicknameInmobiliaria){
     if(this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end())
         this->suscripciones.erase(nicknameInmobiliaria);
 };
@@ -49,4 +49,8 @@ void Propietario::agregarNotificacion(DTNotificacion notificacion){
 Propietario::~Propietario(){
     suscripciones.clear();
     notificaciones.clear();
+};
+
+void Propietario::eliminarNotificaciones(){
+    this->notificaciones.clear();
 };

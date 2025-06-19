@@ -2,17 +2,19 @@
 #define DTINMUEBLELISTADO_H
 #include <string>
 
+using namespace std;
+
 class DTInmuebleListado {
     private:
         int codigo;
-        std::string direccion;
-        std::string propietario;
+        string direccion;
+        string propietario;
 
     public:
-        DTInmuebleListado(int codigo, std::string direccion, std::string propietario);
+        DTInmuebleListado(int codigo, string direccion, string propietario);
         int getCodigo();
-        std::string getDireccion();
-        std::string getPropietario();
+        string getDireccion();
+        string getPropietario();
 };
 
 #endif

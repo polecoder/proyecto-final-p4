@@ -2,6 +2,8 @@
 #define DTAPARTAMENTO_H
 #include "DTInmueble.h"
 
+using namespace std;
+
 class DTApartamento : public DTInmueble {
     private:
         int piso;
@@ -9,10 +11,10 @@ class DTApartamento : public DTInmueble {
         float gastosComunes;
 
     public:
-        DTApartamento(int codigo, std::string direccion, int numeroPuerta, int superficie, int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes);
-        int getPiso();
-        bool getTieneAscensor();
-        float getGastosComunes();
+        DTApartamento(int codigo, string direccion, int numeroPuerta, int superficie, int anioConstruccion, int piso, bool tieneAscensor, float gastosComunes);
+        int getPiso() const;
+        bool getTieneAscensor() const;
+        float getGastosComunes() const;
         virtual ~DTApartamento();
 };
 

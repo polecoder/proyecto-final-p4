@@ -14,9 +14,9 @@ class Apartamento : public Inmueble {
     public:
         Apartamento(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes);
         ~Apartamento();
-        int getPiso();
-        bool getAscensor();
-        float getGastosComunes();
+        int getPiso() const;
+        bool getAscensor() const;
+        float getGastosComunes() const;
 };
 
 #endif

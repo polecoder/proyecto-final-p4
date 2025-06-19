@@ -14,19 +14,19 @@ Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, st
 Inmobiliaria:: ~Inmobiliaria(){
 };
         
-string Inmobiliaria:: getDireccion(){
+string Inmobiliaria:: getDireccion() const{
     return direccion;
 
 };
-string Inmobiliaria::getUrl() {
+string Inmobiliaria::getUrl() const {
     return url;
 
 };
-string Inmobiliaria:: getTelefono() {
+string Inmobiliaria:: getTelefono() const {
     return telefono;
 
 };
-vector<AdministraPropiedad*> Inmobiliaria:: getadministraProps() {
+vector<AdministraPropiedad*> Inmobiliaria:: getadministraProps() const {
     return administraProps;
 
 };

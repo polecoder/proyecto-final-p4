@@ -6,11 +6,11 @@ DTCasa::DTCasa(int codigo, std::string direccion, int numeroPuerta, int superfic
     this->techo = techo;
 }
 
-bool DTCasa::getEsPH() {
+bool DTCasa::getEsPH() const{
     return esPH;
 }
 
-TipoTecho DTCasa::getTecho() {
+TipoTecho DTCasa::getTecho() const{
     return techo;
 }
 

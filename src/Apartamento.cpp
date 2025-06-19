@@ -11,13 +11,13 @@ Apartamento::Apartamento(int codigo, string direccion, int numeroPuerta, int sup
 };
 Apartamento::~Apartamento(){};
 
-int Apartamento::getPiso(){
+int Apartamento::getPiso() const{
     return this->piso;
 };
-bool Apartamento:: getAscensor(){
+bool Apartamento:: getAscensor() const{
     return this->tieneAscensor;
 };
-float Apartamento:: getGastosComunes(){
+float Apartamento:: getGastosComunes() const{
     return this->gastosComunes;
 };
 

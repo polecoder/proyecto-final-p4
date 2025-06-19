@@ -10,9 +10,9 @@ Casa::Casa(int codigo, string direccion, int numeroPuerta, int superficie, int a
 };
 Casa::~Casa(){};
 
-bool Casa:: getEsPH(){
+bool Casa:: getEsPH() const{
     return this->esPH;
 }
-TipoTecho Casa:: getTipoTecho(){
+TipoTecho Casa:: getTipoTecho() const{
     return this->techo;
 }

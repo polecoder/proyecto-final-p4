@@ -13,33 +13,37 @@ Cliente::Cliente(string nickname, string contrasena, string nombre, string email
 
 Cliente::~Cliente(){}
 
-string Cliente::getApellido(){
+string Cliente::getApellido()const{
     return this->apellido;
 };
-string Cliente:: getDocumento(){
+string Cliente:: getDocumento()const{
     return this->documento;
 };
-map<string, Inmobiliaria*> Cliente::getSuscripciones(){
+map<string, Inmobiliaria*> Cliente::getSuscripciones()const{
     return this->suscripciones;
 };
-void Cliente::setApellido(string &apellido){
+void Cliente::setApellido(string apellido){
     this->apellido = apellido;
 };
-void Cliente::setDocumento(string &documento){
+void Cliente::setDocumento(string documento){
     this->documento = documento;
 };
 void Cliente::agregarSuscripcion(Inmobiliaria* &inmobiliaria){
     this->suscripciones.insert({inmobiliaria->getNickname(), inmobiliaria});
 };
-void Cliente::eliminarSuscripcion(string &nicknameInmobiliaria){
+void Cliente::eliminarSuscripcion(string nicknameInmobiliaria){
     if(this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end())
         this->suscripciones.erase(nicknameInmobiliaria);
 };
 
-bool Cliente::estaSuscripto(const string &nicknameInmobiliaria){
+bool Cliente::estaSuscripto(const string nicknameInmobiliaria){
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
 };
 
 void Cliente::agregarNotificacion(DTNotificacion notificacion){
     notificaciones.insert(notificacion);
 };
+
+void Cliente::eliminarNotificaciones(){
+    this->notificaciones.clear();
+}

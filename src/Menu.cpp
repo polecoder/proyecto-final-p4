@@ -392,15 +392,58 @@ void consultaNotificaciones()
     IControladorSuscripciones *controladorSuscripciones = factory->getControladorSuscripciones();
     IControladorListar *controladorListar = factory->getControladorListar();
     // IMPORTANTE: Se asume que el nickname de usuario ingresado está en el sistema, y además es o un Usuario o un Propietario
-    cout << "Indique el nickname del usuario del que quiere consultar las notificaciones:";
+    cout << "Indique el nickname del usuario del que quiere consultar las notificaciones:\n";
     string nicknameUsuario;
     getline(cin, nicknameUsuario);
-    controladorListar->listarNotificacionesDeUsuario(nicknameUsuario);
+    set<DTNotificacion> notificaciones = controladorListar->listarNotificacionesDeUsuario(nicknameUsuario);
     controladorSuscripciones->borrarNotificaciones(nicknameUsuario);
+    int contador = 1;
+    for (set<DTNotificacion>::const_iterator it = notificaciones.begin(); it != notificaciones.end(); ++it)
+    {
+        cout << contador << " - " << *it << endl;
+        ++contador;
+    }
 }
 
 void eliminarSuscripciones()
 {
+    Factory *factory = Factory::getInstance();
+    IControladorSuscripciones *controladorSuscripciones = factory->getControladorSuscripciones();
+    IControladorListar *controladorListar = factory->getControladorListar();
+    // IMPORTANTE: Se asume que el nickname de usuario ingresado está en el sistema, y además es o un Usuario o un Propietario
+    cout << "Indique el nickname del usuario del que quiere eliminar las suscripciones:\n";
+    string nicknameUsuario;
+    getline(cin, nicknameUsuario);
+    // Listar las suscripciones del usuario
+    set<DTUsuario> suscripciones = controladorListar->listarSuscripciones(nicknameUsuario);
+    cout << "Las suscripciones son las siguientes:\n";
+    int contador = 1;
+    for (set<DTUsuario>::const_iterator it = suscripciones.begin(); it != suscripciones.end(); ++it)
+    {
+        cout << contador << " - " << *it << endl;
+        ++contador;
+    }
+    // Eliminar las suscripciones elegidas por el Administrador
+    int deseaEliminar;
+    cout << "¿Desea eliminar alguna suscripción?: (1: Si, 0: No)";
+    cin >> deseaEliminar;
+    cin.ignore();
+    if (deseaEliminar = 0)
+    {
+        return;
+    }
+    set<string> inmobiliariasElegidas;
+    while (deseaEliminar = 1)
+    {
+        cout << "Ingrese el nickname de la inmobiliaria de la que se quiere desuscribir:\n";
+        string nicknameInmobiliaria;
+        getline(cin, nicknameInmobiliaria);
+        inmobiliariasElegidas.insert(nicknameInmobiliaria);
+        cout << "¿Desea eliminar otra suscripción?: (1: Si, 0: No)";
+        cin >> deseaEliminar;
+        cin.ignore();
+    }
+    controladorSuscripciones->eliminarSuscripcion(nicknameUsuario, inmobiliariasElegidas);
 }
 
 void altaAdministracionPropiedad()

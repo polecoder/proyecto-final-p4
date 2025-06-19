@@ -9,12 +9,12 @@ DTUsuario::DTUsuario(string nickname, string nombre)
     this->nombre = nombre;
 }
 
-string DTUsuario::getNickname()
+string DTUsuario::getNickname() const
 {
     return nickname;
 }
 
-string DTUsuario::getNombre()
+string DTUsuario::getNombre() const
 {
     return nombre;
 }
@@ -22,4 +22,10 @@ string DTUsuario::getNombre()
 bool DTUsuario::operator<(const DTUsuario &other) const
 {
     return nickname < other.nickname; // Comparar directamente los campos
+}
+
+ostream &operator<<(ostream &os, const DTUsuario &dt)
+{
+    os << "NICKNAME: " << dt.getNickname() << ", NOMBRE: " << dt.getNombre();
+    return os;
 }

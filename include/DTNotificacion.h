@@ -2,6 +2,7 @@
 #define DTNOTIFICACION_H
 
 #include <string>
+#include <ostream>
 #include "TipoPublicacion.h"
 #include "TipoInmueble.h"
 
@@ -37,31 +38,31 @@ public:
      *
      * @return Un string correspondiente al nickname de la inmobiliaria que creó la publicación asociada a la notificación
      */
-    string getNicknameInmobiliaria();
+    string getNicknameInmobiliaria() const;
     /**
      * @brief Getter para codigoPublicacion
      *
      * @return Un int correspondiente al código de la publicación asociada a la notificación
      */
-    int getCodigoPublicacion();
+    int getCodigoPublicacion() const;
     /**
      * @brief Getter para textoPublicacion
      *
      * @return Un string correspondiente al texto de la publicación asociada a la notificación
      */
-    string getTextoPublicacion();
+    string getTextoPublicacion() const;
     /**
      * @brief Getter para tipoPublicacion
      *
      * @return Un TipoPublicacion correspondiente al tipo de la publicación asociada a la notificación
      */
-    TipoPublicacion getTipoPublicacion();
+    TipoPublicacion getTipoPublicacion() const;
     /**
      * @brief Getter para tipoInmueble
      *
      * @return Un TipoInmueble correspondiente al tipo del inmueble de la publicación asociada a la notificación
      */
-    TipoInmueble getTipoInmueble();
+    TipoInmueble getTipoInmueble() const;
     /**
      * @brief Setter para nicknameInmobiliaria
      *
@@ -97,5 +98,10 @@ public:
      */
     bool operator<(const DTNotificacion &other) const;
 };
+
+/**
+ * @brief Sobrecarga para operador << para imprimir en pantalla elementos de tipo DTNotificacion
+ */
+ostream &operator<<(ostream &os, const DTNotificacion &dt);
 
 #endif

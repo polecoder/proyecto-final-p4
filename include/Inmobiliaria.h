@@ -13,9 +13,9 @@ class Inmobiliaria : public Usuario {
         string direccion;
         string url;
         string telefono;
-        vector <AdministraPropiedad> administraProps;
-        map<string,Cliente> clientesAsociados;
-        map<string,Propietario> PropietariosAsociados;
+        vector <AdministraPropiedad*> administraProps;
+        map<string,Cliente*> clientesAsociados;
+        map<string,Propietario*> PropietariosAsociados;
 
     public:
         Inmobiliaria();//constructor por defecto
@@ -25,7 +25,7 @@ class Inmobiliaria : public Usuario {
         string getDireccion() ;
         string getUrl() ;
         string getTelefono() ;
-        vector<AdministraPropiedad> getadministraProps() ;
+        vector<AdministraPropiedad*> getadministraProps() ;
         void notificar(DTNotificacion notificacion);
 };
 

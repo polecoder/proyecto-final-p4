@@ -13,19 +13,19 @@ HandlerPublicacion* HandlerPublicacion::getInstancia(){
     return instancia;
 }
 
-void HandlerPublicacion::agregarPublicacion( const Publicacion &publicacion){
-  coleccionPublicaciones.insert({publicacion.getCodigo(), publicacion});  
+void HandlerPublicacion::agregarPublicacion( Publicacion* &publicacion){
+  coleccionPublicaciones.insert({publicacion->getCodigo(), publicacion});  
 }
 
 void HandlerPublicacion::eliminarPublicacion(int codigo){
-    map<int, Publicacion>::iterator it = coleccionPublicaciones.find(codigo);//si ponemos como precondicion que existe podemos sacar este if 
+    map<int, Publicacion*>::iterator it = coleccionPublicaciones.find(codigo);//si ponemos como precondicion que existe podemos sacar este if 
     if (it != coleccionPublicaciones.end()) {
         coleccionPublicaciones.erase(it);
     }
 }
 
 
-Publicacion HandlerPublicacion::getPublicacion(int codigo){
+Publicacion* HandlerPublicacion::getPublicacion(int codigo){
     
     return coleccionPublicaciones.at(codigo);
 }

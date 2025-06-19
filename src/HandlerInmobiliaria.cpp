@@ -37,6 +37,6 @@ map<string, Inmobiliaria*> HandlerInmobiliaria::DevolverInmobiliarias() {
 Inmobiliaria* HandlerInmobiliaria::DevolverInmobiliaria(string nickname) {
     return coleccionInmobiliarias.find(nickname)->second;
 }
-vector<AdministraPropiedad> HandlerInmobiliaria::DevolverAdProp(string nickname) {
+vector<AdministraPropiedad*> HandlerInmobiliaria::DevolverAdProp(string nickname) {
     return coleccionInmobiliarias[nickname]->getadministraProps();
 };

@@ -12,7 +12,7 @@ class AdministraPropiedad {
         DTFecha* fecha;
         int ultimaPublicacion;
         Inmueble* inmueble;
-        map<int,Publicacion> publicaciones;
+        map<int,Publicacion*> publicaciones;
 
     public:
         AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
@@ -22,7 +22,7 @@ class AdministraPropiedad {
         int getUltimaPublicacion();  
 
         void setUltimaPublicacion(int up);
-        void agregarPublicacion(int codigo, Publicacion publicacion);
+        void agregarPublicacion(int codigo, Publicacion* publicacion);
 
         bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
         Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);//busca una publicacion con ese tipo que este activa  

@@ -2,21 +2,23 @@
 #define USUARIO_H
 #include <string>
 
+using namespace std;
+
 class Usuario {
     private:
-        std::string nickname;
-        std::string contrasena;
-        std::string nombre;
-        std::string email;
+        string nickname;
+        string contrasena;
+        string nombre;
+        string email;
 
     public:
         Usuario(); // Constructor por defecto
-        Usuario(std::string nickname, std::string contrasena, std::string nombre, std::string email);
+        Usuario(string nickname, string contrasena, string nombre, string email);
         virtual ~Usuario();
-        std::string getNickname()const ;
-        std::string getContrasena() ;
-        std::string getNombre() ;
-        std::string getEmail() ;
+        string getNickname()const ;
+        string getContrasena() ;
+        string getNombre() ;
+        string getEmail() ;
 };
 
 #endif

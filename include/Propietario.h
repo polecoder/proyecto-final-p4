@@ -32,6 +32,4 @@ class Propietario : public Usuario {
         void agregarNotificacion(DTNotificacion notificacion);
         void eliminarNotificaciones();
 };
-
-
 #endif

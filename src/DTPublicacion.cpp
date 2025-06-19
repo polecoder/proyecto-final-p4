@@ -34,4 +34,4 @@ DTPublicacion::~DTPublicacion(){
 
 bool DTPublicacion::operator<(const DTPublicacion& other)const{
     return codigo < other.codigo;
-}
+};

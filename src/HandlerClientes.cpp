@@ -34,6 +34,7 @@ bool HandlerClientes::existeCliente(string nickname){
 Cliente* HandlerClientes::getCliente(string nickname){
     if(this->coleccionClientes.count(nickname) > 0)
         return this->coleccionClientes[nickname];
+    return nullptr;
 };
 
 map<string, Cliente*> HandlerClientes:: getColeccionClientes(){

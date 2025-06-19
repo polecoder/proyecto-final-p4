@@ -3,30 +3,40 @@
 #include <iostream>
 
 using namespace std;
+HandlerInmobiliaria* HandlerInmobiliaria::instancia = nullptr;
 
- handlerInmobiliaria::handlerInmobiliaria() {
-     //constructor, no es necesario poner nada, map se inicializa solo
+HandlerInmobiliaria::HandlerInmobiliaria() {
 }
- handlerInmobiliaria::~handlerInmobiliaria() {
-    map<string,Inmobiliaria>::iterator it;
-    while (it != coleccionInmobiliarias.end()) {
-        it = coleccionInmobiliarias.erase(it); // erase() devuelve el siguiente iterador válido
+
+HandlerInmobiliaria::~HandlerInmobiliaria() {
+    for (auto it = coleccionInmobiliarias.begin(); it != coleccionInmobiliarias.end(); ++it) {
+        delete it->second; // Libera la memoria de cada Inmobiliaria
     }
+    coleccionInmobiliarias.clear(); // Limpia el mapa
 }
 
-void handlerInmobiliaria::agregarInmobiliaria(const string& nickname, const string& contrasena,const string& nombre, const string& email, const string& direccion, const string& url,const string& telefono) {
-    coleccionInmobiliarias[nickname]= Inmobiliaria(nickname,contrasena,nombre,email, direccion, url,telefono); // Agrega una nueva inmobiliaria al mapa
+HandlerInmobiliaria* HandlerInmobiliaria::getInstancia() {
+    if (instancia == nullptr) {
+        instancia = new HandlerInmobiliaria();
+    }
+    return instancia;
+}
+
+void HandlerInmobiliaria::agregarInmobiliaria( Inmobiliaria*& inmobiliaria) {
+    coleccionInmobiliarias[inmobiliaria->getNickname()] = inmobiliaria; // Agrega una nueva inmobiliaria al mapa
 }
 
 
-void handlerInmobiliaria::eliminarInmobiliaria(const string& nickname) {
+void HandlerInmobiliaria::eliminarInmobiliaria(string& nickname) {
     coleccionInmobiliarias.erase(nickname);
 }
 
-map<string, Inmobiliaria> handlerInmobiliaria::DevolverInmobiliarias() const {
-    return coleccionInmobiliarias; // Devuelve el mapa completo
+map<string, Inmobiliaria*> HandlerInmobiliaria::DevolverInmobiliarias() {
+    return coleccionInmobiliarias;
 }
-
-  vector<AdministraPropiedad> handlerInmobiliaria:: DevolverAdProp(string nickname){
-    return  coleccionInmobiliarias[nickname].getadministraProps();
-  };
+Inmobiliaria* HandlerInmobiliaria::DevolverInmobiliaria(string nickname) {
+    return coleccionInmobiliarias.find(nickname)->second;
+}
+vector<AdministraPropiedad*> HandlerInmobiliaria::DevolverAdProp(string nickname) {
+    return coleccionInmobiliarias[nickname]->getadministraProps();
+};

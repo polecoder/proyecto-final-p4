@@ -17,8 +17,7 @@ HandlerPublicacion* HandlerPublicacion::getInstancia(){
 };
 
 void HandlerPublicacion::agregarPublicacion(Publicacion* &publicacion){
-  int codPublicacion = publicacion->getCodigo();
-  coleccionPublicaciones[codPublicacion] = publicacion;
+  coleccionPublicaciones.insert({publicacion->getCodigo(), publicacion});
 };
 
 void HandlerPublicacion::eliminarPublicacion(int codigo){
@@ -46,7 +45,7 @@ set<Publicacion*> HandlerPublicacion::obtenerPublicacionesActivas(){
         if((*it).second->getActiva())
             publicacionesActivas.insert((*it).second);
     }
-    
+    return publicacionesActivas;
 };
 
 HandlerPublicacion::~HandlerPublicacion(){

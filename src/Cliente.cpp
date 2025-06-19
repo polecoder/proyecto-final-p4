@@ -39,3 +39,7 @@ void Cliente::eliminarSuscripcion(string &nicknameInmobiliaria){
 bool Cliente::estaSuscripto(const string &nicknameInmobiliaria){
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
 };
+
+void Cliente::agregarNotificacion(DTNotificacion notificacion){
+    notificaciones.insert(notificacion);
+};

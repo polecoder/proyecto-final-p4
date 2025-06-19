@@ -22,8 +22,8 @@ public:
 
     map<string, Inmobiliaria*> DevolverInmobiliarias();// Devuelve el mapa completo.
     Inmobiliaria* DevolverInmobiliaria(string nickname);// Devuelve la inmobiliaria con ese nickname.
-    vector<AdministraPropiedad> DevolverAdProp(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
-    
+    vector<AdministraPropiedad*> DevolverAdProp(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
+    ~HandlerInmobiliaria(); // Destructor, borra la coleccion
 };
 
 #endif // HANDLER_INMOBILIARIA

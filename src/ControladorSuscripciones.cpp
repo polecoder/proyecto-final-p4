@@ -32,7 +32,7 @@ set<DTUsuario> ControladorSuscripciones::listarInmobiliariasNoSuscripto(string n
                 inmobiliariasNoSuscripto.insert(DTUsuario(it->second->getNickname(), it->second->getNombre()));
             }
         }
-        return inmobiliariasNoSuscripto;
+        // return inmobiliariasNoSuscripto;
     }
     if(this->HPropietarios->existePropietario(nicknameUsuario)){
         Propietario *propietario = this->HPropietarios->getPropietario(nicknameUsuario);
@@ -44,8 +44,9 @@ set<DTUsuario> ControladorSuscripciones::listarInmobiliariasNoSuscripto(string n
                 inmobiliariasNoSuscripto.insert(DTUsuario(it->second->getNickname(), it->second->getNickname()));
             }
         }
-        return inmobiliariasNoSuscripto;
+        // return inmobiliariasNoSuscripto;
     }
+    return inmobiliariasNoSuscripto;
 };
 
 void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas){

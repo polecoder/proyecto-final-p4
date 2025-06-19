@@ -8,6 +8,9 @@
 
 using namespace std;
 
+class AdministraPropiedad;
+class Inmobiliaria;
+
 class Publicacion {
 private:
     int codigo;

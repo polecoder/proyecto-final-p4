@@ -8,12 +8,15 @@
 #include "ControladorFechaActual.h"
 #include <map>
 
-class AdministraPropiedad {
+class Publicacion;
+// class Inmueble;
+
+class AdministraPropiedad{
     private:
         DTFecha* fecha;
         int ultimaPublicacion;
         Inmueble* inmueble;
-        map<int,Publicacion> publicaciones;
+        map<int, Publicacion*> publicaciones;
         Inmobiliaria* inmobiliaria;
 
     public:
@@ -24,10 +27,10 @@ class AdministraPropiedad {
         int getUltimaPublicacion();  
 
         void setUltimaPublicacion(int up);
-        void agregarPublicacion(int codigo, Publicacion publicacion);
+        void agregarPublicacion(int codigo, Publicacion *publicacion);
 
         bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
-        Publicacion encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
+        Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
 
         Inmobiliaria* getInmobiliaria();
 };

@@ -29,7 +29,7 @@ void Propietario::setTelefono(string telefono){
     this->telefono = telefono;
 };
 
-void Propietario::agregarSuscripcion(Inmobiliaria* &inmobiliaria){
+void Propietario::agregarSuscripcion(Inmobiliaria* inmobiliaria){
     this->suscripciones.insert({inmobiliaria->getNickname(), inmobiliaria});
 }
 
@@ -40,4 +40,13 @@ void Propietario::eliminarSuscripcion(string &nicknameInmobiliaria){
 
 bool Propietario::estaSuscripto(const string &nicknameInmobiliaria){
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
-}
+};
+
+void Propietario::agregarNotificacion(DTNotificacion notificacion){
+    notificaciones.insert(notificacion);
+};
+
+Propietario::~Propietario(){
+    suscripciones.clear();
+    notificaciones.clear();
+};

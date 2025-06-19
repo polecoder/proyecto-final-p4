@@ -15,6 +15,8 @@ class DTInmuebleAdministrado {
         std::string getDireccion();
         DTFecha* getFechaComienzo();
         ~DTInmuebleAdministrado();
+
+        bool operator<(const DTInmuebleAdministrado& other) const;
 };
 
 #endif

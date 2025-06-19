@@ -52,7 +52,7 @@ string Publicacion:: getNicknameInmobiliaria() {
         string nicknameInmobiliaria = inmo->getNickname();
         return nicknameInmobiliaria;
     }
-    
+    return nullptr;
 }
 Inmobiliaria* Publicacion:: getInmobiliaria(){
     return this->apAsociado->getInmobiliaria();

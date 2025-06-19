@@ -25,7 +25,7 @@ class Listar {
 private:
     static Listar* instancia;
     HandlerInmobiliaria* Hinmobiliarias;
-    IControladorFechaActual* fechaActual;
+    ControladorFechaActual* fechaActual;
     Listar();
 public:
     static Listar* getInstancia();

@@ -4,8 +4,13 @@
 #include "AdministraPropiedad.h"
 #include "Cliente.h"
 #include "Propietario.h"
+#include "DTNotificacion.h"
 #include <string>
 #include <vector>
+
+class AdministraPropiedad;
+class Cliente;
+class Propietario;
 
 using namespace std;
 
@@ -14,9 +19,9 @@ class Inmobiliaria : public Usuario {
         string direccion;
         string url;
         string telefono;
-        vector <AdministraPropiedad> administraProps;
-        map<string, Cliente*> coleccionClientes; // se guardan los clientes suscriptos para recibir notificaciones.
-        map<string, Propietario*> coleccionPropietarios;// se guardan los propietarios suscriptos para recibir notificaciones.
+        vector <AdministraPropiedad*> administraProps;
+        map<string, Cliente*> clientesAsociados; // se guardan los clientes suscriptos para recibir notificaciones.
+        map<string, Propietario*> PropietariosAsociados;// se guardan los propietarios suscriptos para recibir notificaciones.
 
     public:
         Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
@@ -25,9 +30,10 @@ class Inmobiliaria : public Usuario {
         string getDireccion() ;
         string getUrl() ;
         string getTelefono() ;
-        vector<AdministraPropiedad> getadministraProps();
+        vector<AdministraPropiedad*> getadministraProps();
         void agregarClienteSuscripto(Cliente *cliente);
         void agregarPropietarioSuscripto(Propietario *propietario);
+        void notificar(DTNotificacion notificacion);
 };
 
 #endif

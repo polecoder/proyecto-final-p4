@@ -34,6 +34,7 @@ bool HandlerPropietarios:: existePropietario(string nickname){
 Propietario* HandlerPropietarios::getPropietario(string nickname){
     if(this->coleccionPropietarios.count(nickname) > 0)
         return this->coleccionPropietarios[nickname];
+    return nullptr;
 };
 
 map<string, Propietario*> HandlerPropietarios::getColeccionPropietarios(){

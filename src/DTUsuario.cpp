@@ -6,14 +6,14 @@ DTUsuario::DTUsuario(std::string nickname, std::string nombre) {
     this->nombre = nombre;
 }
 
-std::string DTUsuario::getNickname() {
+std::string DTUsuario::getNickname() const{
     return nickname;
 }
 
-std::string DTUsuario::getNombre() {
+std::string DTUsuario::getNombre() const{
     return nombre;
 }
 
-bool DTUsuario::operator<(DTUsuario& other) {
+bool DTUsuario::operator<(const DTUsuario& other) const{
     return nickname < other.nickname; // Comparar directamente los campos
 }

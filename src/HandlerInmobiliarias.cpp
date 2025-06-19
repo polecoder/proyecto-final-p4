@@ -1,3 +1,5 @@
+#include <string>
+#include <map>
 #include "../include/HandlerInmobiliarias.h"
 #include "../include/Inmobiliaria.h"
 

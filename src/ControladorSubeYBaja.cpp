@@ -1,4 +1,5 @@
-#include "../include/CSubeYBaja.h"
+#include "../include/ControladorSubeYBaja.h"
+#include "../include/Casa.h"
 #include <iostream>
 
 using namespace std;
@@ -24,7 +25,7 @@ SubeYBaja::~SubeYBaja() {
 
 bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio) {
     //se busca si existe una publicacion con el mismo tipo y fecha
-    vector<AdministraPropiedad*> adProp = Hinmobiliarias->DevolverAdProp(nicknameInmobiliaria);
+    vector<AdministraPropiedad*> adProp = Hinmobiliarias->getAdProp(nicknameInmobiliaria);
     vector<AdministraPropiedad*>::iterator it;
     it = adProp.begin();
     while ((((*it)->getInmueble())->getCodigo() != codigoInmueble)) { //busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
@@ -52,7 +53,7 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
     HPublicacion->agregarPublicacion(p);
 
     //una vez creada la publicacion se debe notificar a los suscriptores
-    Inmobiliaria *Inmobiliaria = (Hinmobiliarias->DevolverInmobiliaria(nicknameInmobiliaria));
+    Inmobiliaria *Inmobiliaria = (Hinmobiliarias->getInmobiliaria(nicknameInmobiliaria));
     Inmueble *inmueble = (*it)->getInmueble();
     class::Casa* esCasa = dynamic_cast<class::Casa*>(inmueble);
     if (esCasa != nullptr) {

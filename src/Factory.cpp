@@ -1,7 +1,7 @@
 #include "../include/Factory.h"
 #include "../include/ControladorFechaActual.h"
-#include "../include/CSubeYBaja.h"
-#include "../include/CListar.h"
+#include "../include/ControladorSubeYBaja.h"
+#include "../include/ControladorListar.h"
 #include "../include/ControladorSuscripciones.h"
 #include <cstddef>
 

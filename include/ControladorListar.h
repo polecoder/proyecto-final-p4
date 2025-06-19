@@ -3,7 +3,7 @@
 #include "DTUsuario.h"
 #include "Usuario.h"
 #include "Inmobiliaria.h"
-#include "HandlerInmobiliaria.h"
+#include "HandlerInmobiliarias.h"
 #include "DTInmuebleAdministrado.h"
 #include "IControladorListar.h"
 #include "AdministraPropiedad.h"

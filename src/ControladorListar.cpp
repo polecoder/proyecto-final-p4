@@ -1,4 +1,4 @@
-#include "../include/CListar.h"
+#include "../include/ControladorListar.h"
 #include <iostream>
 #include <ios>
 #include <string>
@@ -29,7 +29,7 @@ ControladorListar:: ~ControladorListar(){
 };
 
 set<DTUsuario> ControladorListar::listarInmobiliarias() {
-    map<string, Inmobiliaria*> inmo = handlerInmobiliaria->DevolverInmobiliarias();
+    map<string, Inmobiliaria*> inmo = handlerInmobiliaria->getInmobiliarias();
     set<DTUsuario> salida;
     map<string, Inmobiliaria*>::iterator it;
     for (it = inmo.begin(); it != inmo.end(); ++it) {
@@ -39,7 +39,7 @@ set<DTUsuario> ControladorListar::listarInmobiliarias() {
 }
 
 set<DTInmuebleAdministrado> ControladorListar :: listarInmueblesAdministrados(string nicknameInmobiliaria){
-    vector<AdministraPropiedad*> adProp= handlerInmobiliaria->DevolverAdProp(nicknameInmobiliaria);
+    vector<AdministraPropiedad*> adProp= handlerInmobiliaria->getAdProp(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> salida; 
     vector<AdministraPropiedad*>::iterator it;
     for (it = adProp.begin(); it != adProp.end(); ++it) {
@@ -92,7 +92,7 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
     set<DTUsuario> inmobiliariasNoSuscripto;
     if(this->handlerClientes->existeCliente(nicknameUsuario)){
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
-        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliaria->DevolverInmobiliarias();
+        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliaria->getInmobiliarias();
         map<string, Inmobiliaria*>::iterator it;
         for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
             string nicknameInmobiliaria = it->first;
@@ -104,7 +104,7 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
     }
     if(this->handlerPropietarios->existePropietario(nicknameUsuario)){
         Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
-        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliaria->DevolverInmobiliarias();
+        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliaria->getInmobiliarias();
         map<string, Inmobiliaria*>::iterator it;
         for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
             string nicknameInmobiliaria = it->first;

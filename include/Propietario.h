@@ -1,41 +1,12 @@
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> origin/main
 #ifndef PROPIETARIO_H
 #define PROPIETARIO_H
 #include "DTNotificacion.h"
 #include "Usuario.h"
-<<<<<<< HEAD
-#include <string>
-#include <set>
-
-class Propietario : public Usuario {
-    private:
-        std::string cuentaBancaria;
-        std::string telefono;
-        set<DTNotificacion> notificaciones;
-    public:
-        Propietario(std::string nickname, std::string contrasena, std::string nombre, std::string email, std::string cuentaBancaria, std::string telefono);
-        ~Propietario();
-        void agregarNotificacion(DTNotificacion notificacion);
-        string getCuentaBancaria();
-        string getTelefono();
-        set<DTNotificacion> getNotificaciones();
-};
-
-#endif
-
-=======
-#include "DTNotificacion.h"
-#include "Propietario.h"
 #include "Inmobiliaria.h"
 #include <set>
 #include <map>
 #include <string>
-
 using namespace std;
 
 // Forward declaration
@@ -84,4 +55,3 @@ public:
 };
 
 #endif
->>>>>>> origin/main

@@ -19,7 +19,7 @@ class Listar: public IControladorListar {
 private:
     static Listar* instancia;
     HandlerInmobiliaria* Hinmobiliarias;
-    ControladorFechaActual* fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
+    IControladorFechaActual* fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
     Listar();  
 public:
     static Listar* getInstancia();

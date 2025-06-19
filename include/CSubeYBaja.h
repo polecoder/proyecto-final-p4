@@ -21,7 +21,7 @@ class SubeYBaja : public IControladorSubeYBaja{
 private:
     static SubeYBaja* Instancia;
     HandlerInmobiliaria* Hinmobiliarias;
-    ControladorFechaActual* fechaActual;
+    IControladorFechaActual* fechaActual;
     HandlerPublicacion* HPublicacion;
     SubeYBaja();  // Constructor
 public:

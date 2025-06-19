@@ -14,7 +14,8 @@ SubeYBaja* SubeYBaja::getInstancia(){
 
 SubeYBaja::SubeYBaja() {
     Hinmobiliarias = HandlerInmobiliaria::getInstancia(); // Inicializa el Handler de inmobiliarias
-    fechaActual = ControladorFechaActual::getInstance(); // Inicializa el controlador de fecha actual
+    IControladorFechaActual * Icontrolador= ControladorFechaActual::getInstance();
+    fechaActual = Icontrolador; // Inicializa el controlador de fecha actual
     HPublicacion = HandlerPublicacion::getInstancia(); // Inicializa el Handler de publicaciones
 };
 SubeYBaja::~SubeYBaja() {
@@ -44,6 +45,7 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
     } else if ((*pu).getFecha()->operator<(fechaActual->getFechaActual())) {
         activa = true;
         (*pu).setActiva(false);
+    }
     Publicacion* p = new Publicacion((*it)->getUltimaPublicacion() + 1, fechaActual->getFechaActual(), tipoPublicacion, texto, precio, activa,(*it));//si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
     (*it)->setUltimaPublicacion((*it)->getUltimaPublicacion() + 1);
     (*it)->agregarPublicacion(p->getCodigo(), p);
@@ -62,5 +64,4 @@ bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,
     }
 
     return true;
-};
 }

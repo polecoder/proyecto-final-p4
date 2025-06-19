@@ -17,7 +17,8 @@ Listar* Listar:: getInstancia(){
 
 Listar::Listar(){
     Hinmobiliarias = HandlerInmobiliaria::getInstancia(); // Inicializa el handler de inmobiliarias
-    fechaActual = ControladorFechaActual::getInstance(); // Inicializa el controlador de fecha actual
+    IControladorFechaActual * IControlador= ControladorFechaActual::getInstance();
+    fechaActual = IControlador;// Inicializa el controlador de fecha actual
 }; 
 Listar:: ~Listar(){
 

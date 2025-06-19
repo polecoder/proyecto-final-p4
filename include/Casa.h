@@ -3,14 +3,15 @@
 #include "Inmueble.h"
 #include "TipoTecho.h"
 
-class Casa : public Inmueble {
-    private:
-        bool esPH;
-        TipoTecho techo;
+class Casa : public Inmueble
+{
+private:
+    bool esPH;
+    TipoTecho techo;
 
-    public:
-        Casa(bool esPH, TipoTecho techo);
-        ~Casa();
+public:
+    Casa(bool esPH, TipoTecho techo);
+    ~Casa();
 };
 
 #endif

@@ -7,25 +7,29 @@
 #include "ControladorFechaActual.h"
 #include <map>
 
-class AdministraPropiedad {
-    private:
-        DTFecha* fecha;
-        int ultimaPublicacion;
-        Inmueble* inmueble;
-        map<int,Publicacion*> publicaciones;
+// Forward declaration
+class Inmueble;
 
-    public:
-        AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
-        ~AdministraPropiedad(); // TODO: no se si borramos las publicaciones o no
+class AdministraPropiedad
+{
+private:
+    DTFecha *fecha;
+    int ultimaPublicacion;
+    Inmueble *inmueble;
+    map<int, Publicacion *> publicaciones;
 
-        Inmueble* getInmueble();  
-        int getUltimaPublicacion();  
+public:
+    AdministraPropiedad(DTFecha *fecha, Inmueble *inmueble); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
+    ~AdministraPropiedad();                                  // TODO: no se si borramos las publicaciones o no
 
-        void setUltimaPublicacion(int up);
-        void agregarPublicacion(int codigo, Publicacion* publicacion);
+    Inmueble *getInmueble();
+    int getUltimaPublicacion();
 
-        bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
-        Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);//busca una publicacion con ese tipo que este activa  
+    void setUltimaPublicacion(int up);
+    void agregarPublicacion(int codigo, Publicacion *publicacion);
+
+    bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
+    Publicacion *encontrarPublicacionActiva(TipoPublicacion tipoPublicacion); // busca una publicacion con ese tipo que este activa
 };
 
 #endif

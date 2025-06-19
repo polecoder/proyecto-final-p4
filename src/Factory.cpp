@@ -1,27 +1,44 @@
 #include "../include/Factory.h"
 #include "../include/ControladorFechaActual.h"
-#include "../include/CSubeYBaja.h"
-#include "../include/CListar.h"
+#include "../include/ControladorSubeYBaja.h"
+#include "../include/IControladorSubeYBaja.h"
+#include "../include/ControladorFechaActual.h"
+#include "../include/IControladorFechaActual.h"
+#include "../include/ControladorListar.h"
+#include "../include/IControladorListar.h"
+#include "../include/ControladorSuscripciones.h"
+#include "../include/IControladorSuscripciones.h"
 #include <cstddef>
 
-Factory* Factory::instance = NULL;
+Factory *Factory::instancia = NULL;
 
-Factory::Factory() {
-}
+Factory::Factory() {}
 
-Factory* Factory::getInstance() {
-    if (instance == NULL) {
-        instance = new Factory();
+Factory *Factory::getInstancia()
+{
+    if (instancia == NULL)
+    {
+        instancia = new Factory();
     }
-    return instance;
+    return instancia;
 }
 
-IControladorFechaActual* Factory::getControladorFechaActual(){
-    return ControladorFechaActual::getInstance();
+IControladorFechaActual *Factory::getControladorFechaActual()
+{
+    return ControladorFechaActual::getInstancia();
 }
-IControladorSubeYBaja* Factory::getControladorSubeYBaja(){
-    return SubeYBaja::getInstancia();
+
+IControladorSubeYBaja *Factory::getControladorSubeYBaja()
+{
+    return ControladorSubeYBaja::getInstancia();
 }
-IControladorListar* Factory:: getControladorListar(){
-    return Listar::getInstancia();
+
+IControladorListar *Factory::getControladorListar()
+{
+    return ControladorListar::getInstancia();
+}
+
+IControladorSuscripciones *Factory::getControladorSuscripciones()
+{
+    return ControladorSuscripciones::getInstancia();
 }

@@ -32,7 +32,7 @@ ControladorListar::~ControladorListar()
 
 set<DTUsuario> ControladorListar::listarInmobiliarias()
 {
-    map<string, Inmobiliaria *> inmo = this->handlerInmobiliarias->DevolverInmobiliarias();
+    map<string, Inmobiliaria *> inmo = this->handlerInmobiliarias->getColeccionInmobiliarias();
     set<DTUsuario> salida;
     map<string, Inmobiliaria *>::iterator it;
     for (it = inmo.begin(); it != inmo.end(); ++it)
@@ -44,7 +44,7 @@ set<DTUsuario> ControladorListar::listarInmobiliarias()
 
 set<DTInmuebleAdministrado> ControladorListar ::listarInmueblesAdministrados(string nicknameInmobiliaria)
 {
-    vector<AdministraPropiedad *> adProp = this->handlerInmobiliarias->DevolverAdProp(nicknameInmobiliaria);
+    vector<AdministraPropiedad *> adProp = this->handlerInmobiliarias->getColeccionAdministraPropiedad(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> salida;
     vector<AdministraPropiedad *>::iterator it;
     for (it = adProp.begin(); it != adProp.end(); ++it)

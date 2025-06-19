@@ -66,68 +66,6 @@ const map<string, Propietario *> &HandlerPropietarios::getColeccionPropietarios(
     return this->coleccionPropietarios;
 }
 
-HandlerInmobiliarias *HandlerInmobiliarias::instance = NULL;
-
-HandlerInmobiliarias::HandlerInmobiliarias()
-{
-    map<string, Inmobiliaria *> coleccionInmobiliarias;
-    this->coleccionInmobiliarias = coleccionInmobiliarias;
-}
-
-HandlerInmobiliarias *HandlerInmobiliarias::getInstance()
-{
-    if (instance == NULL)
-    {
-        instance = new HandlerInmobiliarias;
-    }
-    return instance;
-}
-
-HandlerInmobiliarias::~HandlerInmobiliarias()
-{
-    map<string, Inmobiliaria *>::iterator it;
-
-    for (it = this->coleccionInmobiliarias.begin(); it != this->coleccionInmobiliarias.end(); it++)
-    {
-        delete it->second;
-    }
-
-    this->coleccionInmobiliarias.clear();
-}
-
-void HandlerInmobiliarias::agregarInmobiliaria(Inmobiliaria *inmobiliaria)
-{
-    string nickname = inmobiliaria->getNickname();
-    this->coleccionInmobiliarias[nickname] = inmobiliaria;
-}
-
-void HandlerInmobiliarias::eliminarInmobiliaria(string nickname)
-{
-    // find() retorna this->coleccionInmobiliarias.end() si el elemento no existe
-    map<string, Inmobiliaria *>::iterator it = this->coleccionInmobiliarias.find(nickname);
-    if (it != this->coleccionInmobiliarias.end())
-    {
-        delete it->second; // Llama al destructor de Inmobiliaria
-        coleccionInmobiliarias.erase(it);
-    }
-}
-
-bool HandlerInmobiliarias::existeInmobiliaria(string nickname)
-{
-    // find() retorna this->coleccionInmobiliarias.end() si el elemento no existe
-    return this->coleccionInmobiliarias.find(nickname) != this->coleccionInmobiliarias.end();
-}
-
-Inmobiliaria *HandlerInmobiliarias::getInmobiliaria(string nickname)
-{
-    return this->coleccionInmobiliarias[nickname];
-}
-
-const map<string, Inmobiliaria *> &HandlerInmobiliarias::getColeccionInmobiliarias() const
-{
-    return this->coleccionInmobiliarias;
-}
-
 HandlerClientes *HandlerClientes::instance = NULL;
 
 HandlerClientes::HandlerClientes()

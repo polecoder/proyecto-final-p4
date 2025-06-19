@@ -3,7 +3,7 @@
 #include "DTUsuario.h"
 #include "Usuario.h"
 #include "Inmobiliaria.h"
-#include "HandlerInmobiliaria.h"
+#include "HandlerInmobiliarias.h"
 #include "HandlerInmueble.h"
 #include "DTInmuebleAdministrado.h"
 #include "IControladorListar.h"
@@ -19,7 +19,7 @@ class Listar : public IControladorListar
 {
 private:
     static Listar *instancia;
-    HandlerInmobiliaria *Hinmobiliarias;
+    HandlerInmobiliarias *Hinmobiliarias;
     IControladorFechaActual *fechaActual; // TODO: chequear si corresponde usar directamente el controlador, o si corresponde usar la interfaz
     Listar();
 

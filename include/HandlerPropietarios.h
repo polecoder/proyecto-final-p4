@@ -11,11 +11,11 @@ class HandlerPropietarios
 {
 private:
     map<string, Propietario *> coleccionPropietarios;
-    static HandlerPropietarios *instance;
+    static HandlerPropietarios *instancia;
     HandlerPropietarios();
 
 public:
-    static HandlerPropietarios *getInstance();
+    static HandlerPropietarios *getInstancia();
     ~HandlerPropietarios();
     /**
      * @brief Agrega un Propietario a la colección de Propietarios, se utiliza el nickname del propietario pasado por parámetro para agregarlo a la colección

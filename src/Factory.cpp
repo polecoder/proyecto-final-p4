@@ -1,6 +1,6 @@
 #include "../include/Factory.h"
 #include "../include/ControladorFechaActual.h"
-#include "../include/CSubeYBaja.h"
+#include "../include/ControladorSubeYBaja.h"
 #include "../include/IControladorSubeYBaja.h"
 #include "../include/ControladorFechaActual.h"
 #include "../include/IControladorFechaActual.h"
@@ -30,7 +30,7 @@ IControladorFechaActual *Factory::getControladorFechaActual()
 
 IControladorSubeYBaja *Factory::getControladorSubeYBaja()
 {
-    return SubeYBaja::getInstancia();
+    return ControladorSubeYBaja::getInstancia();
 }
 
 IControladorListar *Factory::getControladorListar()

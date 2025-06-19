@@ -2,7 +2,9 @@
 #define CONTROLADORLISTAR_H
 
 #include <set>
-#include "Handlers.h"
+#include "HandlerPropietarios.h"
+#include "HandlerClientes.h"
+#include "HandlerInmobiliarias.h"
 #include "DTNotificacion.h"
 #include "DTUsuario.h"
 #include "IControladorListar.h"
@@ -12,7 +14,7 @@ using namespace std;
 class ControladorListar : public IControladorListar
 {
 private:
-    static ControladorListar *instance;
+    static ControladorListar *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
     HandlerInmobiliarias *handlerInmobiliarias;
@@ -20,7 +22,7 @@ private:
     ControladorListar();
 
 public:
-    static ControladorListar *getInstance();
+    static ControladorListar *getInstancia();
     ~ControladorListar();
     /**
      * @brief TODO: Agregar descripción de la operación

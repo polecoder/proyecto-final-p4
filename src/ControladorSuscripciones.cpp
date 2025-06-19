@@ -1,5 +1,6 @@
 #include <set>
-#include "../include/Handlers.h"
+#include "../include/HandlerPropietarios.h"
+#include "../include/HandlerClientes.h"
 #include "../include/DTNotificacion.h"
 #include "../include/ControladorSuscripciones.h"
 
@@ -9,8 +10,8 @@ ControladorSuscripciones *ControladorSuscripciones::instance = NULL;
 
 ControladorSuscripciones::ControladorSuscripciones()
 {
-    this->handlerPropietarios = HandlerPropietarios::getInstance();
-    this->handlerClientes = HandlerClientes::getInstance();
+    this->handlerPropietarios = HandlerPropietarios::getInstancia();
+    this->handlerClientes = HandlerClientes::getInstancia();
 }
 
 ControladorSuscripciones *ControladorSuscripciones::getInstance()

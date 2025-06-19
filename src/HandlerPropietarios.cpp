@@ -5,7 +5,7 @@
 
 using namespace std;
 
-HandlerPropietarios *HandlerPropietarios::instance = NULL;
+HandlerPropietarios *HandlerPropietarios::instancia = NULL;
 
 HandlerPropietarios::HandlerPropietarios()
 {
@@ -13,13 +13,13 @@ HandlerPropietarios::HandlerPropietarios()
     this->coleccionPropietarios = coleccionPropietarios;
 }
 
-HandlerPropietarios *HandlerPropietarios::getInstance()
+HandlerPropietarios *HandlerPropietarios::getInstancia()
 {
-    if (instance == NULL)
+    if (instancia == NULL)
     {
-        instance = new HandlerPropietarios;
+        instancia = new HandlerPropietarios;
     }
-    return instance;
+    return instancia;
 }
 
 HandlerPropietarios::~HandlerPropietarios()

@@ -1,32 +1,33 @@
-#include "../include/CSubeYBaja.h"
+#include "../include/ControladorSubeYBaja.h"
+#include "../include/Casa.h"
 #include <iostream>
 
 using namespace std;
 
-SubeYBaja *SubeYBaja::Instancia = nullptr;
+ControladorSubeYBaja *ControladorSubeYBaja::Instancia = nullptr;
 
-SubeYBaja *SubeYBaja::getInstancia()
+ControladorSubeYBaja *ControladorSubeYBaja::getInstancia()
 {
     if (Instancia == nullptr)
     {
-        Instancia = new SubeYBaja();
+        Instancia = new ControladorSubeYBaja();
     }
     return Instancia;
 };
 
-SubeYBaja::SubeYBaja()
+ControladorSubeYBaja::ControladorSubeYBaja()
 {
     Hinmobiliarias = HandlerInmobiliarias::getInstancia(); // Inicializa el Handler de inmobiliarias
     IControladorFechaActual *Icontrolador = ControladorFechaActual::getInstance();
     fechaActual = Icontrolador;                        // Inicializa el controlador de fecha actual
     HPublicacion = HandlerPublicacion::getInstancia(); // Inicializa el Handler de publicaciones
 };
-SubeYBaja::~SubeYBaja() {
+ControladorSubeYBaja::~ControladorSubeYBaja() {
     // Destructor vacio, no es necesario liberar memoria ya que no hay punteros
     // Los Handlers se encargan de liberar su propia memoria
 };
 
-bool SubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio)
+bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio)
 {
     // se busca si existe una publicacion con el mismo tipo y fecha
     vector<AdministraPropiedad *> adProp = Hinmobiliarias->getColeccionAdministraPropiedad(nicknameInmobiliaria);

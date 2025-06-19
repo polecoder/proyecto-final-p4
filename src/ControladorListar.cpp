@@ -1,28 +1,30 @@
 #include <set>
-#include "../include/Handlers.h"
+#include "../include/HandlerPropietarios.h"
+#include "../include/HandlerClientes.h"
+#include "../include/HandlerInmobiliarias.h"
 #include "../include/DTNotificacion.h"
 #include "../include/ControladorListar.h"
 #include "../include/DTUsuario.h"
 
 using namespace std;
 
-ControladorListar *ControladorListar::instance = NULL;
+ControladorListar *ControladorListar::instancia = NULL;
 
 ControladorListar::ControladorListar()
 {
-    this->handlerPropietarios = HandlerPropietarios::getInstance();
-    this->handlerClientes = HandlerClientes::getInstance();
-    this->handlerInmobiliarias = HandlerInmobiliarias::getInstance();
+    this->handlerPropietarios = HandlerPropietarios::getInstancia();
+    this->handlerClientes = HandlerClientes::getInstancia();
+    this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
     this->interfazFechaActual = ControladorFechaActual::getInstance();
 }
 
-ControladorListar *ControladorListar::getInstance()
+ControladorListar *ControladorListar::getInstancia()
 {
-    if (instance == NULL)
+    if (instancia == NULL)
     {
-        instance = new ControladorListar;
+        instancia = new ControladorListar;
     }
-    return instance;
+    return instancia;
 }
 
 ControladorListar::~ControladorListar()
@@ -42,7 +44,7 @@ set<DTUsuario> ControladorListar::listarInmobiliarias()
     return salida;
 }
 
-set<DTInmuebleAdministrado> ControladorListar ::listarInmueblesAdministrados(string nicknameInmobiliaria)
+set<DTInmuebleAdministrado> ControladorListar::listarInmueblesAdministrados(string nicknameInmobiliaria)
 {
     vector<AdministraPropiedad *> adProp = this->handlerInmobiliarias->getColeccionAdministraPropiedad(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> salida;

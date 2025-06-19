@@ -2,8 +2,9 @@
 #define CONTROLADORSUSCRIPCIONES_H
 
 #include <set>
-#include "Handlers.h"
-#include "DTNotificacion.h"
+#include <string>
+#include "HandlerPropietarios.h"
+#include "HandlerClientes.h"
 #include "IControladorSuscripciones.h"
 
 using namespace std;

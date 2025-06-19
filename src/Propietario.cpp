@@ -17,22 +17,22 @@ Propietario::Propietario(string nickname, string contrasena, string nombre, stri
 
 Propietario::~Propietario() {}
 
-string Propietario::getCuentaBancaria()
+string Propietario::getCuentaBancaria() const
 {
     return this->cuentaBancaria;
 }
 
-string Propietario::getTelefono()
+string Propietario::getTelefono() const
 {
     return this->telefono;
 }
 
-set<DTNotificacion> Propietario::getNotificaciones()
+set<DTNotificacion> Propietario::getNotificaciones() const
 {
     return this->notificaciones;
 }
 
-map<string, Inmobiliaria *> Propietario::getSuscripciones()
+map<string, Inmobiliaria *> Propietario::getSuscripciones() const
 {
     return this->suscripciones;
 }

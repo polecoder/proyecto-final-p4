@@ -16,6 +16,8 @@
 #include "../include/Usuario.h"
 #include "../include/Propietario.h"
 #include "../include/Cliente.h"
+#include "../include/IControladorSubeYBaja.h"
+#include "../include/IControladorFechaActual.h"
 #include "../include/IControladorSuscripciones.h"
 #include "../include/IControladorListar.h"
 #include <string>
@@ -266,17 +268,29 @@ void altaUsuario()
 
 void altaPublicacion()
 {
-
     Factory *factory = Factory::getInstance();
 
-    cout << "Lista de Inmobiliarias:\n";
+    std::cout << "Lista de Inmobiliarias:\n";
     // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
+    IControladorListar *controladorListar = factory->getControladorListar();
+    set<DTUsuario> DTUsuarios = controladorListar->listarInmobiliarias();
     // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
-    cout << "Nickname de la inmobiliaria: ";
-    string nicknameInmobiliaria;
-    getline(cin, nicknameInmobiliaria);
+    set<DTUsuario>::iterator it;
+    for (it = DTUsuarios.begin(); it != DTUsuarios.end(); ++it)
+    {
+        std::cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << std::endl;
+    };
+    std::cout << "Nickname de la inmobiliaria: ";
+    std::string nicknameInmobiliaria;
+    std::getline(std::cin, nicknameInmobiliaria);
     // TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
+    set<DTInmuebleAdministrado> DTInmueblesAdministrados = controladorListar->listarInmueblesAdministrados(nicknameInmobiliaria);
     // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
+    set<DTInmuebleAdministrado>::iterator it2;
+    for (it2 = DTInmueblesAdministrados.begin(); it2 != DTInmueblesAdministrados.end(); ++it2)
+    {
+        std::cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion() << std::endl;
+    };
     int codigoInmueble;
     cout << "Inmueble: ";
     cin >> codigoInmueble;
@@ -295,9 +309,11 @@ void altaPublicacion()
     getline(cin, texto);
     cout << "Precio: ";
     float precio;
-    cin >> precio;
-    cin.ignore();
+    std::cin >> precio;
+    std::cin.ignore();
     // TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
+    IControladorSubeYBaja *controladorSubeYBaja = factory->getControladorSubeYBaja();
+    bool altapublicacion = controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 
 void consultaPublicaciones()

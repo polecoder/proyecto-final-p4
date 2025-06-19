@@ -3,6 +3,7 @@
 
 #include "IControladorFechaActual.h"
 #include "IControladorListar.h"
+#include "IControladorSubeYBaja.h"
 #include "IControladorSuscripciones.h"
 
 class Factory
@@ -14,9 +15,9 @@ private:
 public:
     static Factory *getInstance();
     IControladorFechaActual *getControladorFechaActual();
+    IControladorSubeYBaja *getControladorSubeYBaja();
     IControladorListar *getControladorListar();
     IControladorSuscripciones *getControladorSuscripciones();
-    // TODO: Get interfaces de controladores
     ~Factory();
 };
 

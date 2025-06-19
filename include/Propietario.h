@@ -1,5 +1,6 @@
 #ifndef PROPIETARIO_H
 #define PROPIETARIO_H
+#include "DTNotificacion.h"
 #include "Usuario.h"
 #include "DTNotificacion.h"
 #include "Propietario.h"

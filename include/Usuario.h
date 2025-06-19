@@ -32,25 +32,25 @@ public:
      *
      * @return Un string correspondiente al nickname del usuario
      */
-    string getNickname();
+    string getNickname() const;
     /**
      * @brief Getter para contrasena
      *
      * @return Un string correspondiente a la contraseña del usuario
      */
-    string getContrasena();
+    string getContrasena() const;
     /**
      * @brief Getter para nombre
      *
      * @return Un string correspondiente al nombre del usuario
      */
-    string getNombre();
+    string getNombre() const;
     /**
      * @brief Getter para email
      *
      * @return Un string correspondiente al email del usuario
      */
-    string getEmail();
+    string getEmail() const;
     /**
      * @brief Setter para nickname
      *

@@ -3,18 +3,24 @@
 #include "DTFecha.h"
 #include <string>
 
+using namespace std; 
+
 class DTInmuebleAdministrado {
     private:
         int codigo;
-        std::string direccion;
+        string direccion;
         DTFecha* fechaComienzo;
 
     public:
-        DTInmuebleAdministrado(int codigo, std::string direccion, DTFecha* fechaComienzo);
-        int getCodigo();
-        std::string getDireccion();
+        DTInmuebleAdministrado(int codigo, string direccion, DTFecha* fechaComienzo);
+        ~DTInmuebleAdministrado();  
+        //les puse const porque siono no puedo mostrarlo en el menu
+        int getCodigo() const;
+        string getDireccion()const;
         DTFecha* getFechaComienzo();
-        ~DTInmuebleAdministrado();
+
+        bool operator<(const DTInmuebleAdministrado& other) const;
+       
 };
 
 #endif

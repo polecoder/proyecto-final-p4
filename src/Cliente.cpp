@@ -1,7 +1,7 @@
-#include "Usuario.h"
-#include "DTNotificacion.h"
-#include "Cliente.h"
-#include "Inmobiliaria.h"
+#include "../include/Usuario.h"
+#include "../include/DTNotificacion.h"
+#include "../include/Cliente.h"
+#include "../include/Inmobiliaria.h"
 #include <set>
 #include <map>
 #include <string>
@@ -17,22 +17,22 @@ Cliente::Cliente(string nickname, string contrasena, string nombre, string email
 
 Cliente::~Cliente() {}
 
-string Cliente::getApellido()
+string Cliente::getApellido() const
 {
     return this->apellido;
 }
 
-string Cliente::getDocumento()
+string Cliente::getDocumento() const
 {
     return this->documento;
 }
 
-set<DTNotificacion> Cliente::getNotificaciones()
+set<DTNotificacion> Cliente::getNotificaciones() const
 {
     return this->notificaciones;
 }
 
-map<string, Inmobiliaria *> Cliente::getSuscripciones()
+map<string, Inmobiliaria *> Cliente::getSuscripciones() const
 {
     return this->suscripciones;
 }
@@ -68,7 +68,6 @@ void Cliente::eliminarSuscripcion(string nicknameInmobiliaria)
     map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
     if (it != this->suscripciones.end())
     {
-        delete it->second; // Llama al destructor de Inmobiliaria
         suscripciones.erase(it);
     }
 }

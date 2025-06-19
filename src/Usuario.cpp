@@ -13,22 +13,22 @@ Usuario::Usuario(string nickname, string contrasena, string nombre, string email
 
 Usuario::~Usuario() {}
 
-string Usuario::getNickname()
+string Usuario::getNickname() const
 {
     return this->nickname;
 }
 
-string Usuario::getContrasena()
+string Usuario::getContrasena() const
 {
     return this->contrasena;
 }
 
-string Usuario::getNombre()
+string Usuario::getNombre() const
 {
     return this->nombre;
 }
 
-string Usuario::getEmail()
+string Usuario::getEmail() const
 {
     return this->email;
 }

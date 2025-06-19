@@ -1,16 +1,30 @@
 #ifndef ICONTROLADORLISTAR_H
 #define ICONTROLADORLISTAR_H
 
-#include <string>
 #include <set>
+#include <string>
 #include "DTNotificacion.h"
 #include "DTUsuario.h"
+#include "DTInmuebleAdministrado.h"
 
 using namespace std;
 
 class IControladorListar
 {
 public:
+    /**
+     * @brief TODO: Agregar descripción de la operación
+     *
+     * @return set<DTUsuario> TODO: Agregar descripción de los datos de retorno
+     */
+    virtual set<DTUsuario> listarInmobiliarias() = 0;
+    /**
+     * @brief TODO: Agregar descripción de la operación
+     *
+     * @param nicknameInmobiliaria TODO: Agregar descripción de parámetros
+     * @return set<DTInmuebleAdministrado> TODO: Agregar descripción de los datos de retorno
+     */
+    virtual set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria) = 0;
     /**
      * @brief Devuelve todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *

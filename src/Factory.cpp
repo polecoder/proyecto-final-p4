@@ -1,5 +1,8 @@
 #include "../include/Factory.h"
 #include "../include/ControladorFechaActual.h"
+#include "../include/CSubeYBaja.h"
+#include "../include/IControladorSubeYBaja.h"
+#include "../include/ControladorFechaActual.h"
 #include "../include/IControladorFechaActual.h"
 #include "../include/ControladorListar.h"
 #include "../include/IControladorListar.h"
@@ -23,6 +26,11 @@ Factory *Factory::getInstance()
 IControladorFechaActual *Factory::getControladorFechaActual()
 {
     return ControladorFechaActual::getInstance();
+}
+
+IControladorSubeYBaja *Factory::getControladorSubeYBaja()
+{
+    return SubeYBaja::getInstancia();
 }
 
 IControladorListar *Factory::getControladorListar()

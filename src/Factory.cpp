@@ -10,22 +10,22 @@
 #include "../include/IControladorSuscripciones.h"
 #include <cstddef>
 
-Factory *Factory::instance = NULL;
+Factory *Factory::instancia = NULL;
 
 Factory::Factory() {}
 
-Factory *Factory::getInstance()
+Factory *Factory::getInstancia()
 {
-    if (instance == NULL)
+    if (instancia == NULL)
     {
-        instance = new Factory();
+        instancia = new Factory();
     }
-    return instance;
+    return instancia;
 }
 
 IControladorFechaActual *Factory::getControladorFechaActual()
 {
-    return ControladorFechaActual::getInstance();
+    return ControladorFechaActual::getInstancia();
 }
 
 IControladorSubeYBaja *Factory::getControladorSubeYBaja()
@@ -35,10 +35,10 @@ IControladorSubeYBaja *Factory::getControladorSubeYBaja()
 
 IControladorListar *Factory::getControladorListar()
 {
-    return ControladorListar::getInstance();
+    return ControladorListar::getInstancia();
 }
 
 IControladorSuscripciones *Factory::getControladorSuscripciones()
 {
-    return ControladorSuscripciones::getInstance();
+    return ControladorSuscripciones::getInstancia();
 }

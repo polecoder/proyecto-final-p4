@@ -12,7 +12,7 @@ using namespace std;
 class ControladorSuscripciones : public IControladorSuscripciones
 {
 private:
-    static ControladorSuscripciones *instance;
+    static ControladorSuscripciones *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
     /**
@@ -27,7 +27,7 @@ public:
      *
      * @return ControladorSuscripciones
      */
-    static ControladorSuscripciones *getInstance();
+    static ControladorSuscripciones *getInstancia();
     /**
      * @brief Destructor de ControladorSuscripciones
      *

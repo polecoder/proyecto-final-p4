@@ -4,23 +4,22 @@
 
 using namespace std;
 
-ControladorSubeYBaja *ControladorSubeYBaja::Instancia = nullptr;
+ControladorSubeYBaja *ControladorSubeYBaja::instancia = nullptr;
 
 ControladorSubeYBaja *ControladorSubeYBaja::getInstancia()
 {
-    if (Instancia == nullptr)
+    if (instancia == nullptr)
     {
-        Instancia = new ControladorSubeYBaja();
+        instancia = new ControladorSubeYBaja();
     }
-    return Instancia;
+    return instancia;
 };
 
 ControladorSubeYBaja::ControladorSubeYBaja()
 {
     Hinmobiliarias = HandlerInmobiliarias::getInstancia(); // Inicializa el Handler de inmobiliarias
-    IControladorFechaActual *Icontrolador = ControladorFechaActual::getInstance();
-    fechaActual = Icontrolador;                        // Inicializa el controlador de fecha actual
-    HPublicacion = HandlerPublicacion::getInstancia(); // Inicializa el Handler de publicaciones
+    fechaActual = ControladorFechaActual::getInstancia();  // Inicializa el controlador de fecha actual
+    HPublicacion = HandlerPublicacion::getInstancia();     // Inicializa el Handler de publicaciones
 };
 ControladorSubeYBaja::~ControladorSubeYBaja() {
     // Destructor vacio, no es necesario liberar memoria ya que no hay punteros

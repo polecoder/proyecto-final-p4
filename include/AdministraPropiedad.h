@@ -7,6 +7,9 @@
 #include "ControladorFechaActual.h"
 #include <map>
 
+// Forward declaration
+class Inmueble;
+
 class AdministraPropiedad
 {
 private:

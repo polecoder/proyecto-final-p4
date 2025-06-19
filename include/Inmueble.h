@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// Forward declaration
+class Propietario;
+
 class Inmueble
 {
 private:
@@ -16,7 +19,6 @@ private:
     Propietario *propietario;
 
 public:
-    Inmueble(); // constructor por defecto
     Inmueble(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion);
     virtual ~Inmueble();
 

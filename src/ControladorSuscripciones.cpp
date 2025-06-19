@@ -6,7 +6,7 @@
 
 using namespace std;
 
-ControladorSuscripciones *ControladorSuscripciones::instance = NULL;
+ControladorSuscripciones *ControladorSuscripciones::instancia = NULL;
 
 ControladorSuscripciones::ControladorSuscripciones()
 {
@@ -14,13 +14,13 @@ ControladorSuscripciones::ControladorSuscripciones()
     this->handlerClientes = HandlerClientes::getInstancia();
 }
 
-ControladorSuscripciones *ControladorSuscripciones::getInstance()
+ControladorSuscripciones *ControladorSuscripciones::getInstancia()
 {
-    if (instance == NULL)
+    if (instancia == NULL)
     {
-        instance = new ControladorSuscripciones;
+        instancia = new ControladorSuscripciones;
     }
-    return instance;
+    return instancia;
 }
 
 ControladorSuscripciones::~ControladorSuscripciones()

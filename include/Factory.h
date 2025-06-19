@@ -9,11 +9,11 @@
 class Factory
 {
 private:
-    static Factory *instance;
+    static Factory *instancia;
     Factory();
 
 public:
-    static Factory *getInstance();
+    static Factory *getInstancia();
     IControladorFechaActual *getControladorFechaActual();
     IControladorSubeYBaja *getControladorSubeYBaja();
     IControladorListar *getControladorListar();

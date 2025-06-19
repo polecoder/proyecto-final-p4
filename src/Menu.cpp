@@ -110,7 +110,7 @@ void ejecutarOpcion(int opcion)
 void altaUsuario()
 {
 
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
 
     cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
@@ -268,7 +268,7 @@ void altaUsuario()
 
 void altaPublicacion()
 {
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
 
     std::cout << "Lista de Inmobiliarias:\n";
     // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
@@ -319,7 +319,7 @@ void altaPublicacion()
 void consultaPublicaciones()
 {
 
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
 
     int inTipoPublicacion;
     cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler)";
@@ -375,7 +375,7 @@ void consultaPublicaciones()
 void eliminarInmueble()
 {
 
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
     cout << "Listado de inmuebles:\n";
     // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmuebles();
     // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
@@ -404,7 +404,7 @@ void suscribirseNotificaciones()
 
 void consultaNotificaciones()
 {
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
     IControladorSuscripciones *controladorSuscripciones = factory->getControladorSuscripciones();
     IControladorListar *controladorListar = factory->getControladorListar();
     // IMPORTANTE: Se asume que el nickname de usuario ingresado está en el sistema, y además es o un Usuario o un Propietario
@@ -423,7 +423,7 @@ void consultaNotificaciones()
 
 void eliminarSuscripciones()
 {
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
     IControladorSuscripciones *controladorSuscripciones = factory->getControladorSuscripciones();
     IControladorListar *controladorListar = factory->getControladorListar();
     // IMPORTANTE: Se asume que el nickname de usuario ingresado está en el sistema, y además es o un Usuario o un Propietario
@@ -464,7 +464,7 @@ void eliminarSuscripciones()
 
 void altaAdministracionPropiedad()
 {
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
 
     cout << "Lista de Inmobiliarias:\n";
     // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
@@ -483,12 +483,12 @@ void altaAdministracionPropiedad()
 
 void cargarDatos()
 {
-    CargaDatos::getInstance();
+    CargaDatos::getInstancia();
 }
 
 void verFechaActual()
 {
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
     IControladorFechaActual *cfecha = factory->getControladorFechaActual();
     DTFecha *fechaActual = cfecha->getFechaActual();
     cout << "fecha actual: " << fechaActual;
@@ -497,7 +497,7 @@ void verFechaActual()
 
 void asignarFechaActual()
 {
-    Factory *factory = Factory::getInstance();
+    Factory *factory = Factory::getInstancia();
     IControladorFechaActual *cfecha = factory->getControladorFechaActual();
     cout << "dia: ";
     int dia;

@@ -15,7 +15,7 @@ ControladorListar::ControladorListar()
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerClientes = HandlerClientes::getInstancia();
     this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
-    this->interfazFechaActual = ControladorFechaActual::getInstance();
+    this->interfazFechaActual = ControladorFechaActual::getInstancia();
 }
 
 ControladorListar *ControladorListar::getInstancia()

@@ -13,7 +13,7 @@ using namespace std;
 class ControladorSubeYBaja : public IControladorSubeYBaja
 {
 private:
-    static ControladorSubeYBaja *Instancia;
+    static ControladorSubeYBaja *instancia;
     HandlerInmobiliarias *Hinmobiliarias;
     IControladorFechaActual *fechaActual;
     HandlerPublicacion *HPublicacion;

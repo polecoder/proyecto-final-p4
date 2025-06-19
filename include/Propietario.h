@@ -11,6 +11,9 @@
 
 using namespace std;
 
+// Forward declaration
+class Inmobiliaria;
+
 class Propietario : public Usuario
 {
 private:

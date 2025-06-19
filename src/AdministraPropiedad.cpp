@@ -56,11 +56,5 @@ Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tip
     if (it==publicaciones.end()){
         return NULL;
     }
-<<<<<<< HEAD
-    Publicacion* pub = new Publicacion((*it).second);
-    return pub;
-
-=======
     return it->second;
->>>>>>> origin/main
 };

@@ -28,12 +28,8 @@ public:
     DTFecha *getFecha();
     bool getActiva();
     void setActiva(bool activa);
-<<<<<<< HEAD
     int getCodigo()const;
 
-=======
-    int getCodigo() const;
->>>>>>> origin/main
 };
 
 

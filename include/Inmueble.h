@@ -5,24 +5,6 @@
 
 using namespace std;
 
-<<<<<<< HEAD
-    public:
-        Inmueble();// constructor por defecto
-        Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion);
-
-        virtual ~Inmueble();
-        
-        int getCodigo() ;
-        std::string getDireccion() ;
-        int getNumeroPuerta() ;
-        int getSuperficie() ;
-        int getAnoConstruccion() ;
-
-        // Cambiado a const para poder usarlo en el menu
-        Propietario* getPropietario() const;
-
-
-=======
 // Forward declaration
 class Propietario;
 
@@ -47,7 +29,6 @@ public:
     int getAnoConstruccion();
     // Cambiado a const para poder usarlo en el menu
     Propietario *getPropietario() const;
->>>>>>> origin/main
 };
 
 

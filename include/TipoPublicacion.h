@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-#ifndef TIPOPUBLICACION_H
-#define TIPOPUBLICACION_H
-
-enum TipoPublicacion {
-    Venta,
-    Alquiler
-};
-
-=======
 #ifndef TIPOPUBLICACION_H
 #define TIPOPUBLICACION_H
 
@@ -26,5 +16,4 @@ enum TipoPublicacion
  */
 ostream &operator<<(ostream &os, TipoPublicacion tipo);
 
->>>>>>> origin/main
 #endif

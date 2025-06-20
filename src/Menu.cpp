@@ -251,6 +251,8 @@ void altaUsuario()
                         {
                             techo = Plano;
                         }
+                        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                        ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, esPH, techo);
                         // TODO: controlador->altaCasa(direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
                     }
                     else

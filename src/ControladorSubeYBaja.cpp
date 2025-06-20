@@ -1,5 +1,9 @@
 #include "../include/ControladorSubeYBaja.h"
 #include "../include/Casa.h"
+#include "../include/Apartamento.h"
+
+#include "../include/Inmueble.h"
+#include "../include/HandlerInmueble.h"
 #include <iostream>
 
 using namespace std;
@@ -122,9 +126,23 @@ void ControladorSubeYBaja::representarPropietario(string nicknamePropietario) {
 }
 
 void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho techo) {
-    int codigoInmueble = codigoUltimoInmueble + 1; // Obtiene el último código de inmueble y le suma 1
-    Casa* nuevaCasa = new Casa(codigoInmueble, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
-    Hpropietario->agregarInmueble(nuevaCasa);
-    codigoUltimoInmueble = codigoInmueble; // Actualiza el último código de inmueble
+    int codigoInmueble = codigoUltimoInmueble + 1;
+    class ::Casa* nuevaCasa = new class::Casa(codigoInmueble, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+    if (UltimoPropietario != nullptr) {
+        nuevaCasa->setPropietario(UltimoPropietario);
+    }
+    // Aquí deberías guardar nuevaCasa en el handler correspondiente, por ejemplo:
+    HInmueble->agregarInmueble(nuevaCasa);
+    codigoUltimoInmueble = codigoInmueble;
+}    
+
+void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes) {
+    int codigoInmueble = codigoUltimoInmueble + 1;
+    class ::Apartamento* nuevoApartamento = new class ::Apartamento(codigoInmueble, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
+    if (UltimoPropietario != nullptr) {
+        nuevoApartamento->setPropietario(UltimoPropietario);
+    }
+    // Aquí deberías guardar nuevoApartamento en el handler correspondiente, por ejemplo:
+    HInmueble->agregarInmueble(nuevoApartamento);
+    codigoUltimoInmueble = codigoInmueble;
 }
-    

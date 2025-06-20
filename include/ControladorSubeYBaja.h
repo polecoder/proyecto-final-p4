@@ -7,6 +7,8 @@
 #include "HandlerPublicacion.h"
 #include "HandlerClientes.h"
 #include "HandlerPropietarios.h"
+#include "HandlerInmueble.h"
+#include "TipoTecho.h"
 #include "Publicacion.h"
 
 #include <string>
@@ -22,6 +24,7 @@ private:
     HandlerPublicacion *HPublicacion;
     HandlerClientes *Hcliente;
     HandlerPropietarios *Hpropietario;
+    HandlerInmueble *HInmueble;
 
     Inmobiliaria* UltimaInmobiliaria = nullptr; // Tuve que agregarlo para una funcion nueva :(
     Propietario* UltimoPropietario = nullptr; // No estoy seguro de si tiene que estar aca, me parece que en el handler no, pero creo que es necesario.    

@@ -15,7 +15,11 @@ Cliente::Cliente(string nickname, string contrasena, string nombre, string email
     this->documento = documento;
 }
 
-Cliente::~Cliente() {}
+Cliente::~Cliente()
+{
+    this->notificaciones.clear();
+    this->suscripciones.clear();
+}
 
 string Cliente::getApellido() const
 {

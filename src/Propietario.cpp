@@ -15,7 +15,11 @@ Propietario::Propietario(string nickname, string contrasena, string nombre, stri
     this->telefono = telefono;
 }
 
-Propietario::~Propietario() {}
+Propietario::~Propietario()
+{
+    this->notificaciones.clear();
+    this->suscripciones.clear();
+}
 
 string Propietario::getCuentaBancaria() const
 {

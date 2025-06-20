@@ -75,10 +75,54 @@ public:
      */
     static HandlerInmobiliarias *getInstance();
     /**
+     * @brief Obtiene la inmobiliaria de la coleccion
+     *
+     * @return Inmobiliaria
+     */
+    Inmobiliaria *getInmobiliaria(string nicknameInmobiliaria);
+    /**
      * @brief Getter de la Colecccion Inmobiliaria
      *
      * @return map<int, Inmobiliaria*>
      */
-    const map<string, Inmobiliaria *> &getColecccionInmobiliaria() const;
+    const map<string, Inmobiliaria *> &getColecccionInmobiliaria();
 };
+
+class HandlerAdministraPropiedad
+{
+private:
+    vector<AdministraPropiedad *> coleccionAdministraPropiedad;
+    static HandlerAdministraPropiedad *instance;
+    /**
+     * @brief Constructor de HandlerAdministraPropiedad
+     *
+     */
+    HandlerAdministraPropiedad();
+
+public:
+    /**
+     * @brief Getter de la instancia del HandlerAdministraPropiedad
+     *
+     * @return HandlerAdministraPropiedad*
+     */
+    static HandlerAdministraPropiedad *getInstance();
+    /**
+     * @brief Getter de la Colecccion AdministraPropiedad
+     *
+     * @return map<DTFecha, AdministraPropiedad*>
+     */
+    const vector<AdministraPropiedad *> &getColecccionAdministraPropiedad() const;
+    /**
+     * @brief Agrega administraPropiedad a la coleccion
+     *
+     * @param administraPropiedad
+     */
+    void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
+    /**
+     * @brief Destructor de HandlerAdministraPropiedad
+     *
+     */
+    ~HandlerAdministraPropiedad();
+};
+
 #endif

@@ -40,6 +40,11 @@ Propietario *Inmueble::getPropietario()
     return propietario;
 }
 
+vector<AdministraPropiedad *> Inmueble::getAdministraPropiedad()
+{
+    return administraPropiedad;
+}
+
 void Inmueble::setCodigo(int codigo)
 {
     this->codigo = codigo;
@@ -68,6 +73,11 @@ void Inmueble::setAnoConstruccion(int anoConstruccion)
 void Inmueble::setPropietario(Propietario *propietario)
 {
     this->propietario = propietario;
+}
+
+void Inmueble::agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
+{
+    this->administraPropiedad.push_back(administraPropiedad);
 }
 
 Inmueble::~Inmueble()

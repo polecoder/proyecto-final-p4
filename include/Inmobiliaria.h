@@ -1,7 +1,9 @@
 #ifndef INMOBILIARIA_H
 #define INMOBILIARIA_H
 #include "Usuario.h"
+#include "Propietario.h"
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -11,6 +13,8 @@ private:
     string direccion;
     string url;
     string telefono;
+    map<string, Propietario *> propietariosRepresentados;
+    vector<AdministraPropiedad *> administraPropiedad;
 
 public:
     /**
@@ -43,6 +47,18 @@ public:
      * @return string
      */
     string getTelefono();
+    /**
+     * @brief Getter de los propietarios representados
+     *
+     * @return map<string, Propietario *>
+     */
+    map<string, Propietario *> getPropietarios();
+    /**
+     * @brief Asocia administraPropiedad a la inmobiliaria
+     *
+     * @param administraPropiedad
+     */
+    void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
     /**
      * @brief Destructor Inmobiliaria
      *

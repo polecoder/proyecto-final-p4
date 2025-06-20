@@ -2,6 +2,7 @@
 #define INMUEBLE_H
 
 #include "Propietario.h"
+#include "AdministraPropiedad.h"
 #include <algorithm>
 #include <string>
 
@@ -16,6 +17,7 @@ private:
     int superficie;
     int anoConstruccion;
     Propietario *propietario;
+    vector<AdministraPropiedad *> administraPropiedad;
 
 public:
     /**
@@ -65,6 +67,12 @@ public:
      */
     Propietario *getPropietario();
     /**
+     * @brief Geter de AdministraPropiedad
+     *
+     * @return vector<AdministraPropiedad *>
+     */
+    vector<AdministraPropiedad *> getAdministraPropiedad();
+    /**
      * @brief Seter para codigo
      *
      * @param codigo
@@ -101,10 +109,16 @@ public:
      */
     void setPropietario(Propietario *propietario);
     /**
-     * @brief Destructor de Inmueble
+     * @brief Asocia administraPropiedad al innmueble
      *
+     * @param administraPropiedad
      */
-    virtual ~Inmueble();
+    void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
+        /**
+         * @brief Destructor de Inmueble
+         *
+         */
+        virtual ~Inmueble();
 };
 
 #endif

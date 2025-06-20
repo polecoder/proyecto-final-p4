@@ -21,6 +21,14 @@ string Inmobiliaria::getUrl()
 {
     return url;
 };
+map<string, Propietario *> Inmobiliaria::getPropietarios()
+{
+    return propietariosRepresentados;
+}
+void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
+{
+    this->administraPropiedad.push_back(administraPropiedad);
+}
 string Inmobiliaria::getTelefono()
 {
     return telefono;

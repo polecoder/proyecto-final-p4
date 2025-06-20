@@ -1,4 +1,5 @@
 #include "ControladorSubeYBaja.h"
+#include "AdministraPropiedad.h"
 using namespace std;
 
 ControladorSubeYBaja *ControladorSubeYBaja::instance = NULL;
@@ -6,6 +7,8 @@ ControladorSubeYBaja *ControladorSubeYBaja::instance = NULL;
 ControladorSubeYBaja::ControladorSubeYBaja()
 {
     handlerInmuebles = HandlerInmuebles::getInstance();
+    handlerInmobiliarias = HandlerInmobiliarias::getInstance();
+    handlerAdministraPropiedad = HandlerAdministraPropiedad::getInstance();
 }
 
 ControladorSubeYBaja *ControladorSubeYBaja::getInstance()
@@ -20,6 +23,11 @@ ControladorSubeYBaja *ControladorSubeYBaja::getInstance()
 bool ControladorSubeYBaja::existeInmueble(int codigoInmueble)
 {
     return handlerInmuebles->existeInmueble(codigoInmueble);
+}
+
+Inmueble *ControladorSubeYBaja::getInmueble(int codigoInmueble)
+{
+    return handlerInmuebles->getInmueble(codigoInmueble);
 }
 
 void ControladorSubeYBaja::eliminarInmueble(int codigoInmueble)
@@ -42,4 +50,35 @@ void ControladorSubeYBaja::eliminarInmueble(int codigoInmueble)
     }
 }
 
+ControladorSubeYBaja *ControladorSubeYBaja::getInstance()
+{
+    if (instance == NULL)
+    {
+        instance = new ControladorSubeYBaja();
+    }
+    return instance;
+}
+
+Inmobiliaria *ControladorSubeYBaja::getInmobiliaria(string nicknameInmobiliaria)
+{
+    map<string, Inmobiliaria *> inmobiliarias = handlerInmobiliarias->getColecccionInmobiliaria();
+    map<string, Inmobiliaria *>::iterator iterador = inmobiliarias.find(nicknameInmobiliaria);
+    if (iterador != inmobiliarias.end())
+    {
+        return iterador->second;
+    }
+    return NULL;
+}
+
+void ControladorSubeYBaja::altaAdministraPropiedad(string nicknameInmobiliaria, int codigoInmueble)
+{
+    Inmobiliaria *inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    Inmueble *inmueble = getInmueble(codigoInmueble);
+    // COMO MIERDA PONGO FECHA ACTUAL DEL SISTEMMMMMMA
+    DTFecha *fechaActual = new DTFecha(1, 1, 1);
+    AdministraPropiedad *administraPropiedad = new AdministraPropiedad(fechaActual, inmueble, inmobiliaria);
+    inmueble->agregarAdministraPropiedad(administraPropiedad);
+    inmobiliaria->agregarAdministraPropiedad(administraPropiedad);
+    handlerAdministraPropiedad->agregarAdministraPropiedad(administraPropiedad);
+}
 ControladorSubeYBaja::~ControladorSubeYBaja() {}

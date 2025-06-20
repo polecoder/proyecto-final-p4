@@ -2,6 +2,7 @@
 #define CONTROLADORLISTAR_H
 
 #include "Inmueble.h"
+#include "Propietario.h"
 #include "DTInmueble.h"
 #include "DTInmuebleListado.h"
 #include "DTUsuario.h"
@@ -11,36 +12,32 @@
 
 using namespace std;
 
-class ControladorListar : public IControladorListar
+// CONTROLADOR PARA INMUEBLES
+
+class ControladorInmueblesListar : public IControladorListar
 {
 private:
-    static ControladorListar *instance;
+    static ControladorInmueblesListar *instance;
     HandlerInmuebles *handlerInmuebles;
     /**
-     * @brief Constructor de ControladorListar
+     * @brief Constructor de ControladorInmueblesListar
      *
      */
-    ControladorListar();
+    ControladorInmueblesListar();
 
 public:
     /**
-     * @brief Getter de la instancia de ControladorListar
+     * @brief Getter de la instancia de ControladorInmueblesListar
      *
      * @return ControladorListar*
      */
-    ControladorListar *getInstance();
-    /**
+    ControladorInmueblesListar *getInstance();
+    /**ControladorInmueblesListar
      * @brief Devuelve la información de código, dirección y nombre del propietario de los inmuebles de la coleccion
      *
      * @return set<DTInmuebleListado>
      */
     set<DTInmuebleListado> listarInmuebles();
-    /**
-     * @brief Devuelve la información el nickname y nombre de todas las inmobiliarias de la coleccion
-     *
-     * @return set<DTUsuario>
-     */
-    set<DTUsuario> listarInmobiliarias();
     /**
      * @brief Devuelve la información detallada del inmueble tal que inmueble.inmueble=codigoInmueble
      *
@@ -48,10 +45,63 @@ public:
      */
     DTInmueble detalleInmueble(int codigoInmueble);
     /**
-     * @brief Destructor de ControladorListar
+     * @brief Destructor de ControladorInmueblesListar
      *
      */
-    ~ControladorListar();
+    ~ControladorInmueblesListar();
+};
+
+// CONTROLADOR PARA INMOBILIARIAS
+
+class ControladorInmobiliariasListar : public IControladorListar
+{
+private:
+    static ControladorInmobiliariasListar *instance;
+    HandlerInmobiliarias *handlerInmobiliarias;
+    /**
+     * @brief Constructor de ControladorInmobiliariasListar
+     *
+     */
+    ControladorInmobiliariasListar();
+
+public:
+    /**
+     * @brief Getter de la instancia de ControladorInmueblesListar
+     *
+     * @return ControladorInmobiliariasListar*
+     */
+    ControladorInmobiliariasListar *getInstance();
+    /**
+     * @brief Devuelve la información el nickname y nombre de todas las inmobiliarias de la coleccion
+     *
+     * @return set<DTUsuario>
+     */
+    set<DTUsuario> listarInmobiliarias();
+    /**
+     * @brief Obtiene inmobiliaria tal que inmobiliaria.nickname = nicknameInmobiliaria
+     *
+     * @param nicknameInmobiliaria
+     * @return Inmobiliaria*
+     */
+    Inmobiliaria *getInmobiliaria(string nicknameInmobiliaria);
+    /**
+     * @brief Obtiene los inmuebles que no son administrados por la inmobiliaria
+     *
+     * @return set<DTInmuebleListado>
+     */
+    set<DTInmuebleListado> getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria);
+    /**
+     * @brief Obtiene los inmuebles que no son administrados por la inmobiliaria de un propietario con el que esta asociado
+     *
+     * @param Propietario
+     * @return set<DTInmuebleListado>
+     */
+    set<DTInmuebleListado> getInmueblesNoAdministradosPropietario(Propietario Propietario);
+    /**
+     * @brief Destructor de ControladorInmobiliariasListar
+     *
+     */
+    ~ControladorInmobiliariasListar();
 };
 
 #endif

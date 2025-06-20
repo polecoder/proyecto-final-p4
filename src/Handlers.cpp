@@ -62,11 +62,54 @@ HandlerInmobiliarias::HandlerInmobiliarias()
     this->coleccionInmobiliarias = coleccionInmobiliarias;
 }
 
+// PRE: Existe unja inmobiliaria tal que inmobiliaria.nickname=nicknameInmobiliaria
+Inmobiliaria *HandlerInmobiliarias::getInmobiliaria(string nicknameInmobiliaria)
+{
+    map<string, Inmobiliaria *>::iterator inmobiliaria = coleccionInmobiliarias.find(nicknameInmobiliaria);
+    if (inmobiliaria != coleccionInmobiliarias.end())
+    {
+        return inmobiliaria->second;
+    }
+}
+
+const map<string, Inmobiliaria *> &HandlerInmobiliarias::getColecccionInmobiliaria()
+{
+    return coleccionInmobiliarias;
+}
+
 HandlerInmobiliarias *HandlerInmobiliarias::getInstance()
 {
     if (instance == NULL)
     {
         instance = new HandlerInmobiliarias();
+    }
+    return instance;
+}
+
+// Handler para AdministraPropiedad
+
+HandlerAdministraPropiedad *HandlerAdministraPropiedad::instance = NULL;
+
+HandlerAdministraPropiedad::HandlerAdministraPropiedad()
+{
+    coleccionAdministraPropiedad = vector<AdministraPropiedad *>();
+}
+
+const vector<AdministraPropiedad *> &HandlerAdministraPropiedad::getColecccionAdministraPropiedad() const
+{
+    return coleccionAdministraPropiedad;
+}
+
+void HandlerAdministraPropiedad::agregarAdministraPropiedad(AdministraPropiedad *AdministraPropiedad)
+{
+    coleccionAdministraPropiedad.push_back(AdministraPropiedad);
+}
+
+HandlerAdministraPropiedad *HandlerAdministraPropiedad::getInstance()
+{
+    if (instance == NULL)
+    {
+        instance = new HandlerAdministraPropiedad();
     }
     return instance;
 }

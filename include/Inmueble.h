@@ -2,6 +2,7 @@
 #define INMUEBLE_H
 #include <string>
 #include "Propietario.h"
+#include "TipoInmueble.h"
 
 using namespace std;
 
@@ -27,9 +28,11 @@ public:
     int getNumeroPuerta();
     int getSuperficie();
     int getAnoConstruccion();
-    // Cambiado a const para poder usarlo en el menu
-    Propietario *getPropietario() const;
-};
 
+    void setPropietario(Propietario *propietario);
+    
+    Propietario *getPropietario() const;    // Cambiado a const para poder usarlo en el menu
+    virtual TipoInmueble getTipoInmueble() const = 0;
+};
 
 #endif

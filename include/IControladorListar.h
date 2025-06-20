@@ -48,6 +48,7 @@ public:
      * @brief Destructor de IControladorListar
      *
      */
+    virtual set<DTUsuario> listarPropietarios() = 0;
     virtual ~IControladorListar() {}
 };
 

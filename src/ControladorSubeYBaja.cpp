@@ -1,5 +1,9 @@
 #include "../include/ControladorSubeYBaja.h"
 #include "../include/Casa.h"
+#include "../include/Apartamento.h"
+
+#include "../include/Inmueble.h"
+#include "../include/HandlerInmueble.h"
 #include <iostream>
 
 using namespace std;
@@ -83,6 +87,7 @@ bool ControladorSubeYBaja:: altaPropietario(string nickname, string contrasena, 
     if (!existe) {
         Propietario* nuevoPropietario = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
         Hpropietario->agregarPropietario(nuevoPropietario);
+        UltimoPropietario = nuevoPropietario; // Guardar el último propietario creado
         return true; // Alta exitosa
     }
     return false;
@@ -93,6 +98,7 @@ bool ControladorSubeYBaja:: altaInmobiliaria(string nickname, string contrasena,
     if (!existe) {
         Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
         Hinmobiliarias->agregarInmobiliaria(nuevaInmobiliaria);
+        UltimaInmobiliaria = nuevaInmobiliaria; // Guardar la última inmobiliaria creada
         return true;
     }
     return false;
@@ -106,4 +112,37 @@ bool ControladorSubeYBaja:: altaCliente(string nickname, string contrasena, stri
         return true;
     }
     return false;
+}
+
+//PRE: Existe una referencia a una instancia Inmobiliaria recordada
+//PRE2: Existe un propietario p con p.nickname = nicknamePropietario
+void ControladorSubeYBaja::representarPropietario(string nicknamePropietario) {
+    if (Hpropietario->existePropietario(nicknamePropietario)) {
+        Propietario* propietario = Hpropietario->getPropietario(nicknamePropietario);
+        if (UltimaInmobiliaria != nullptr) { // Verifica si hay una inmobiliaria registrada
+            UltimaInmobiliaria->agregarPropietario(propietario);
+        } 
+    }
+}
+
+void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho techo) {
+    int codigoInmueble = codigoUltimoInmueble + 1;
+    class ::Casa* nuevaCasa = new class::Casa(codigoInmueble, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+    if (UltimoPropietario != nullptr) {
+        nuevaCasa->setPropietario(UltimoPropietario);
+    }
+    // Aquí deberías guardar nuevaCasa en el handler correspondiente, por ejemplo:
+    HInmueble->agregarInmueble(nuevaCasa);
+    codigoUltimoInmueble = codigoInmueble;
+}    
+
+void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes) {
+    int codigoInmueble = codigoUltimoInmueble + 1;
+    class ::Apartamento* nuevoApartamento = new class ::Apartamento(codigoInmueble, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
+    if (UltimoPropietario != nullptr) {
+        nuevoApartamento->setPropietario(UltimoPropietario);
+    }
+    // Aquí deberías guardar nuevoApartamento en el handler correspondiente, por ejemplo:
+    HInmueble->agregarInmueble(nuevoApartamento);
+    codigoUltimoInmueble = codigoInmueble;
 }

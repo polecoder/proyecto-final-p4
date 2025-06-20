@@ -66,6 +66,10 @@ void Cliente::agregarSuscripcion(Inmobiliaria *inmobiliaria)
     this->suscripciones[inmobiliaria->getNickname()] = inmobiliaria;
 }
 
+bool Cliente::estaSuscripto(const string nicknameInmobiliaria){
+    return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
+};
+
 void Cliente::eliminarSuscripcion(string nicknameInmobiliaria){
 
     // find() retorna this->suscripciones.end() si el elemento no existe

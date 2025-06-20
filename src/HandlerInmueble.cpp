@@ -1,5 +1,6 @@
 #include "../include/HandlerInmueble.h"
 #include <iostream>
+#include <map>
 using namespace std;
 
 HandlerInmueble* HandlerInmueble::instancia = nullptr;
@@ -11,7 +12,7 @@ HandlerInmueble::~HandlerInmueble() {
 
 }
 HandlerInmueble* HandlerInmueble::getInstancia() {
-    if (instancia == nullptr) {
+    if (instancia == NULL) {
         instancia = new HandlerInmueble();
     }
     return instancia;

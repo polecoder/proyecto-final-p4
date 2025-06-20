@@ -19,6 +19,8 @@ class DTPublicacion {
         string getPrecio()const;
         string getInmobiliaria()const;
         ~DTPublicacion();
+
+        bool operator<(const DTPublicacion& other) const;
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include <string>
 #include <ostream>
+#include <iostream>
 #include "../include/TipoPublicacion.h"
 #include "../include/TipoInmueble.h"
 #include "../include/DTNotificacion.h"

@@ -4,14 +4,13 @@
 
 using namespace std;
 
-
-AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble){
-
+AdministraPropiedad :: AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble, Inmobiliaria* inmo){// paso un puntero de una instancia de inmueble // paso un puntero de una instancia de inmobiliaria
     this->fecha = fecha;
     this->ultimaPublicacion = 0;
     this->inmueble = inmueble;
     map<int,Publicacion*> publicaciones;
     this->publicaciones = publicaciones;
+    this->inmobiliaria = inmo;
 };
 
 AdministraPropiedad :: ~AdministraPropiedad(){
@@ -57,4 +56,8 @@ Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tip
         return NULL;
     }
     return it->second;
+};
+
+Inmobiliaria* AdministraPropiedad::getInmobiliaria(){
+    return this->inmobiliaria;
 };

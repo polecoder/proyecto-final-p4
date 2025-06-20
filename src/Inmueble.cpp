@@ -1,8 +1,9 @@
 #include "../include/Inmueble.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
-Inmueble ::Inmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anoConstruccion)
+Inmueble ::Inmueble(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion)
 {
     this->codigo = codigo;
     this->direccion = direccion;

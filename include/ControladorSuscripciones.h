@@ -2,10 +2,13 @@
 #define CONTROLADORSUSCRIPCIONES_H
 
 #include <set>
-#include <string>
-#include "HandlerPropietarios.h"
 #include "HandlerClientes.h"
+#include "HandlerPropietarios.h"
+#include "HandlerInmobiliarias.h"
 #include "IControladorSuscripciones.h"
+#include <DTUsuario.h>
+#include <string>
+#include <map>
 
 using namespace std;
 
@@ -15,12 +18,16 @@ private:
     static ControladorSuscripciones *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
+    HandlerInmobiliarias *handlerInmobiliarias;
     ControladorSuscripciones();
 
 public:
+
     static ControladorSuscripciones *getInstancia();
     ~ControladorSuscripciones();
-    /**
+
+    // set<DTUsuario> listarSuscripciones(string nicknameUsuario);
+     /**
      * @brief Borra todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *
      * PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true.
@@ -28,15 +35,9 @@ public:
      * @param nicknameUsuario
      */
     void borrarNotificaciones(string nicknameUsuario);
-    /**
-     * @brief Elimina la relación entre el usuario "u" en el sistema tal que u.nickname=nicknameUsuario y las inmobiliarias indicadas por parámetro
-     *
-     * PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario)) && (para todas inmobiliariasElegidas) existeInmobiliaria(nicknameInmobiliaria)
-     *
-     * @param nicknameUsuario El nickname del usuario del que se quieren eliminar las suscripciones
-     * @param inmobiliariasElegidas Un set de todos los nicknames de las inmobiliarias a las que el usuario se va a desuscribir
-     */
+    void suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas);//PRE: existe usuario con nickname=nicknameUsuario && existen todas las inmobiliarias del set y ademas no estan relacionadas con el usuario. 
     void eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas);
+
 };
 
 #endif

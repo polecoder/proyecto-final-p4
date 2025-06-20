@@ -76,3 +76,6 @@ void Propietario::eliminarSuscripcion(string nicknameInmobiliaria)
         suscripciones.erase(it);
     }
 }
+bool Propietario::estaSuscripto(const string &nicknameInmobiliaria){
+    return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
+};

@@ -1,31 +1,29 @@
 #include <set>
 #include "../include/HandlerPropietarios.h"
 #include "../include/HandlerClientes.h"
+#include "../include/HandlerInmobiliarias.h"
 #include "../include/DTNotificacion.h"
 #include "../include/ControladorSuscripciones.h"
+#include <map>
 
 using namespace std;
 
-ControladorSuscripciones *ControladorSuscripciones::instancia = NULL;
+ControladorSuscripciones *ControladorSuscripciones::instancia =NULL;
 
-ControladorSuscripciones::ControladorSuscripciones()
-{
+ControladorSuscripciones::ControladorSuscripciones(){
+    this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerClientes = HandlerClientes::getInstancia();
-}
+};
 
-ControladorSuscripciones *ControladorSuscripciones::getInstancia()
-{
-    if (instancia == NULL)
-    {
-        instancia = new ControladorSuscripciones;
+ControladorSuscripciones *ControladorSuscripciones::getInstancia(){
+    if(instancia == NULL){
+        instancia = new ControladorSuscripciones();
     }
     return instancia;
 }
+ControladorSuscripciones::~ControladorSuscripciones(){};
 
-ControladorSuscripciones::~ControladorSuscripciones() {}
-
-// PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true
 void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
 {
     if (this->handlerClientes->existeCliente(nicknameUsuario))
@@ -40,7 +38,27 @@ void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
     }
 }
 
-// PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario)) && (para todas inmobiliariasElegidas) existeInmobiliaria(nicknameInmobiliaria)
+void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas){
+    if(this->handlerClientes->existeCliente(nicknameUsuario)){
+        Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
+        for(set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it){
+            string nicknameInmobiliaria = *it;
+            Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
+            cliente->agregarSuscripcion(inmobiliaria);
+            inmobiliaria->agregarClienteSuscripto(cliente);
+        }
+    }
+    if(this->handlerPropietarios->existePropietario(nicknameUsuario)){
+        Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
+        for(set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it){
+            string nicknameInmobiliaria = *it;
+            Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
+            propietario->agregarSuscripcion(inmobiliaria);
+            inmobiliaria->agregarPropietario(propietario);
+        }
+    }
+}
+
 void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas)
 {
     // TODO: Hacerlo sin if/else (no se me ocurre mejor forma que esta)

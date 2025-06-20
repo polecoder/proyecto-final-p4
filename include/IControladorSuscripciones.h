@@ -30,7 +30,7 @@ public:
      * @brief Destructor de IControladorSuscripciones
      *
      */
-    virtual ~IControladorSuscripciones() {}
+    virtual void suscribirse(string nicknameUsuario, set<string> inmobiliairasElegidas)=0;
 };
 
 #endif

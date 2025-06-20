@@ -1,16 +1,23 @@
 #ifndef CONTROLADORSUBEYBAJA_H
 #define CONTROLADORSUBEYBAJA_H
 
-#include "IControladorSubeYBaja.h"
-#include "IControladorFechaActual.h"
+#include "Publicacion.h"
+#include "Inmobiliaria.h"
 #include "HandlerInmobiliarias.h"
 #include "HandlerPublicacion.h"
+#include "DTFecha.h"
+#include "IControladorFechaActual.h"
+#include "AdministraPropiedad.h"
+#include "TipoPublicacion.h"
+#include "DTNotificacion.h"
+#include "Casa.h"
+#include "IControladorSubeYBaja.h"
+#include "Apartamento.h"
+#include "TipoInmueble.h"
+#include "TipoTecho.h"
 #include "HandlerClientes.h"
 #include "HandlerPropietarios.h"
 #include "HandlerInmueble.h"
-#include "TipoTecho.h"
-#include "Publicacion.h"
-
 #include <string>
 
 using namespace std;

@@ -3,65 +3,28 @@
 #include "Inmobiliaria.h"
 #include <map>
 #include <string>
+#include <vector>
+using namespace std; // Esto evita tener que escribir std:: 
 
-using namespace std;
 
-class HandlerInmobiliarias
-{
+
+class HandlerInmobiliarias {
 private:
-    map<string, Inmobiliaria *> coleccionInmobiliarias;
-    static HandlerInmobiliarias *instancia;
+    map<string, Inmobiliaria*> coleccionInmobiliarias;
+    static HandlerInmobiliarias* instancia;
     HandlerInmobiliarias();
 
 public:
-    static HandlerInmobiliarias *getInstancia();
-    /**
-     * @brief Agrega un Inmobiliaria a la colección de Inmobiliarias, se utiliza el nickname del inmobiliaria pasado por parámetro para agregarlo a la colección
-     *
-     * PRE-CONDICIÓN: existeInmobiliaria(inmobiliaria.nickname) == false
-     *
-     * @param inmobiliaria El inmobiliaria que se quiere agregar a la colección
-     */
-    void agregarInmobiliaria(Inmobiliaria *inmobiliaria);
-    /**
-     * @brief Elimina la Inmobiliaria "i" tal que i.nickname=nickname de la colección de Inmobiliarias y libera la memoria asociada a dicho elemento "i"
-     *
-     * PRE-CONDICIÓN: existeInmobiliaria(nickname) == true
-     *
-     * @param nickname El nickname de la inmobiliaria que se quiere eliminar
-     */
+    static HandlerInmobiliarias* getInstancia();
+    
+    void agregarInmobiliaria(Inmobiliaria* inmobiliaria);
     void eliminarInmobiliaria(string nickname);
-    /**
-     * @brief Devuelve true si y sólo si existe un Inmobiliaria i en la colección tal que i.nickname=nickname. En caso contrario devuelve false
-     *
-     * @param nickname El nickname del inmobiliaria que se quiere buscar
-     */
+
+    const map<string, Inmobiliaria *> &getColeccionInmobiliarias() const;// Devuelve el mapa completo.
+    Inmobiliaria* getInmobiliaria(string nickname);// Devuelve la inmobiliaria con ese nickname.
+    vector<AdministraPropiedad *> getColeccionAdministraPropiedad(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
     bool existeInmobiliaria(string nickname);
-    /**
-     * @brief Devuelve el Inmobiliaria i en la colección de Inmobiliarias tal que i.nickname=nickname
-     *
-     * PRE-CONDICIÓN: existeInmobiliaria(nickname) == true
-     *
-     * @param nickname El nickname del inmobiliaria que se quiere devolver
-     * @return Un Inmobiliaria i tal que i.nickname=nickname
-     */
-    Inmobiliaria *getInmobiliaria(string nickname);
-    /**
-     * @brief Devuelve la colección de todos las inmobiliarias que hay en el sistema
-     *
-     * @return map<string, Inmobiliaria*>
-     */
-    const map<string, Inmobiliaria *> &getColeccionInmobiliarias() const; // ACLARACIÓN: La definición de la función es de esta forma porque: queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
-    /**
-     * @brief Devuelve la colección de todos las objetos AdministraPropiedad que están relacionados a la inmobiliaria "i" que cumple que (i.nickname==nickname)
-     *
-     * PRE-CONDICIÓN: existeInmobiliaria(nickname) == true
-     *
-     * @param nickname
-     * @return vector<AdministraPropiedad *>
-     */
-    vector<AdministraPropiedad *> getColeccionAdministraPropiedad(string nickname);
-    ~HandlerInmobiliarias();
+    ~HandlerInmobiliarias(); // Destructor, borra la coleccion
 };
 
-#endif // HANDLERINMOBILIARIAS_H
+#endif // HANDLER_INMOBILIARIA

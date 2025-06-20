@@ -27,7 +27,7 @@ HandlerInmobiliarias *HandlerInmobiliarias::getInstancia()
     return instancia;
 }
 
-void HandlerInmobiliarias::agregarInmobiliaria(Inmobiliaria *inmobiliaria)
+void HandlerInmobiliarias::agregarInmobiliaria(Inmobiliaria* inmobiliaria)
 {
     string nickname = inmobiliaria->getNickname();
     this->coleccionInmobiliarias[nickname] = inmobiliaria;

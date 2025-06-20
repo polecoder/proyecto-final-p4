@@ -1,5 +1,7 @@
 #include "../include/HandlerPublicacion.h"
 #include <string>
+#include <map>
+#include <set>
 
 using namespace std;
 
@@ -24,9 +26,29 @@ void HandlerPublicacion::eliminarPublicacion(int codigo){
     }
 }
 
+bool HandlerPublicacion::existePublicacion(int codigo){
+    return coleccionPublicaciones.find(codigo) != coleccionPublicaciones.end();
+};
 
 Publicacion* HandlerPublicacion::getPublicacion(int codigo){
     
     return coleccionPublicaciones.at(codigo);
 }
 
+set<Publicacion*> HandlerPublicacion::obtenerPublicacionesActivas(){
+    set<Publicacion*> publicacionesActivas;
+    map<int, Publicacion*>::iterator it;
+    for(it = coleccionPublicaciones.begin() ; it != coleccionPublicaciones.end(); ++it){
+        if((*it).second->getActiva())
+            publicacionesActivas.insert((*it).second);
+    }
+    return publicacionesActivas;
+};
+
+HandlerPublicacion::~HandlerPublicacion(){
+    map<int, Publicacion*>::iterator it;
+    for(it != this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++){
+       delete it->second;
+    }
+    this->coleccionPublicaciones.clear();
+};

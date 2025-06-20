@@ -1,63 +1,52 @@
 #ifndef CONTROLADORLISTAR_H
 #define CONTROLADORLISTAR_H
-
-#include <set>
-#include "HandlerPropietarios.h"
-#include "HandlerClientes.h"
+#include "Usuario.h"
+#include "Inmobiliaria.h"
 #include "HandlerInmobiliarias.h"
-#include "DTNotificacion.h"
-#include "DTUsuario.h"
+#include "HandlerClientes.h"
+#include "HandlerPropietarios.h"
 #include "IControladorListar.h"
+#include "AdministraPropiedad.h"
+#include "ControladorFechaActual.h"
+#include "HandlerPublicacion.h"
+#include "DTUsuario.h"
+#include "DTInmuebleAdministrado.h"
+#include "DTPublicacion.h"
+#include "DTInmueble.h"
+#include "DTCasa.h"
+#include "DTApartamento.h"
+#include "DTNotificacion.h"
+#include "Casa.h"
+#include "Apartamento.h"
 
-using namespace std;
+#include <map>
+#include <string>
+#include <set>
 
-class ControladorListar : public IControladorListar
-{
+using namespace std; // Esto evita tener que escribir std::
+
+class ControladorListar: public IControladorListar {
 private:
     static ControladorListar *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
-    HandlerInmobiliarias *handlerInmobiliarias;
-    IControladorFechaActual *interfazFechaActual;
+    HandlerInmobiliarias* handlerInmobiliarias;
+    IControladorFechaActual* interfazFechaActual;
     ControladorListar();
-
 public:
-    static ControladorListar *getInstancia();
+    static ControladorListar* getInstancia();
     ~ControladorListar();
-    /**
-     * @brief TODO: Agregar descripción de la operación
-     *
-     * @return set<DTUsuario> TODO: Agregar descripción de los datos de retorno
-     */
-    set<DTUsuario> listarInmobiliarias();
-    /**
-     * @brief TODO: Agregar descripción de la operación
-     *
-     * @param nicknameInmobiliaria TODO: Agregar descripción de parámetros
-     * @return set<DTInmuebleAdministrado> TODO: Agregar descripción de los datos de retorno
-     */
-    set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
-    /**
-     * @brief Devuelve todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
-     *
-     * PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true.
-     *
-     * @param nicknameUsuario
-     *
-     * @return set<DTNotificacion> que contiene todas las notificaciones del usuario "u"
-     */
-    set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario);
-    /**
-     * @brief Lista el nickname y nombre de todas las Inmobiliarias a las que el usuario "u" en el sistema tal que u.nickname=nicknameUsuario está suscrito
-     *
-     * PRE-CONDICIÓN: (existeCliente(nicknameUsuario) || existePropietario(nicknameUsuario))
-     *
-     * @param nicknameUsuario El nickname del usuario del que se quieren listar las suscripciones
-     * @return set<DTUsuario> que contiene el nickname y nombre de todas las Inmobiliarias a las que el usuario está suscrito
-     */
-    set<DTUsuario> listarSuscripciones(string nicknameUsuario);
 
+    set<DTUsuario> listarInmobiliarias();
+    set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
+    set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario);
+    set<DTUsuario> listarSuscripciones(string nicknameUsuario);
     set<DTUsuario> listarPropietarios();
+
+    set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
+    DTInmueble detalleInmueblePublicacion(int codigoPublicacion);
+
+    set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario);//PRE: existe un usuario con nickname=nicknameUsuario.
 };
 
 #endif

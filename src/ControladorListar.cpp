@@ -6,6 +6,9 @@
 #include "../include/ControladorListar.h"
 #include "../include/DTUsuario.h"
 
+#include <typeinfo>
+#include <map>
+
 using namespace std;
 
 ControladorListar *ControladorListar::instancia = NULL;
@@ -176,3 +179,62 @@ set<DTUsuario> ControladorListar::listarPropietarios(){
     }
     return Mostrar;
 }
+
+set<DTInmuebleListado> ControladorListar::listarInmuebles()
+{
+    set<DTInmuebleListado> inmueblesListados;
+    map<int, Inmueble *> inmuebles = handlerInmueble->DevolverInmuebles();
+    for (const pair<int, Inmueble *> &par : inmuebles)
+    {
+        Inmueble *inmueble = par.second;
+        int codigo = inmueble->getCodigo();
+        string direccion = inmueble->getDireccion();
+        Propietario *propietario = inmueble->getPropietario();
+        string nicknamePropietario;
+        if (propietario != NULL){
+            nicknamePropietario = propietario->getNickname();
+        }
+        DTInmuebleListado DTInmuebleListado(codigo, direccion, nicknamePropietario);
+        inmueblesListados.insert(DTInmuebleListado);
+    }
+    return inmueblesListados;
+}
+
+set<DTInmuebleListado> ControladorInmobiliariasListar::getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria)
+{
+    set<DTInmuebleListado> inmueblesNoAdministrados;
+    Inmobiliaria *Inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    map<string, Propietario *> propietariosRepresentados = Inmobiliaria->getPropietarios();
+    // Recorro la coleccion de propietarios que son representados por la inmobiliaria
+    for (const auto &par : propietariosRepresentados)
+    {
+        Propietario *propietario = par.second;
+        vector<Inmueble *> &inmuebles = propietario->getInmuebles();
+        // Recorro la coleccion de inmuebles que tiene el propietario
+        for (Inmueble *inmueble : inmuebles)
+        {
+            bool esAdministrado = false;
+            vector<AdministraPropiedad *> administraPropiedades = inmueble->getAdministraPropiedad();
+            // Recorro los administra propiedad del inmueble
+            for (AdministraPropiedad *administraPropiedad : administraPropiedades)
+            {
+                string inmobiliariaActual = administraPropiedad->getNicknameInmobiliaria();
+                if (nicknameInmobiliaria == inmobiliariaActual)
+                {
+                    esAdministrado = true;
+                }
+            }
+            // Si la inmobiliaria no administra el inmueble se agrega al set<DTInmuebleListado>
+            if (!esAdministrado)
+            {
+                int codigo = inmueble->getCodigo();
+                string direccion = inmueble->getDireccion();
+                // Es el nickname?
+                string nicknamePropietario = propietario->getNickname();
+                DTInmuebleListado DTInmList = DTInmuebleListado(codigo, direccion, nicknamePropietario);
+                inmueblesNoAdministrados.insert(DTInmList);
+            }
+        }
+    }
+}
+

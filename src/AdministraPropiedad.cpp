@@ -27,6 +27,11 @@ int AdministraPropiedad::getUltimaPublicacion(){
     return this->ultimaPublicacion;
 };  
 
+string AdministraPropiedad::getNicknameInmobiliaria()
+{
+    return inmobiliaria->getNickname();
+}
+
 void AdministraPropiedad::setUltimaPublicacion(int up){
     ultimaPublicacion=up;
 };

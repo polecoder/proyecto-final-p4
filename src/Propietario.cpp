@@ -79,3 +79,17 @@ void Propietario::eliminarSuscripcion(string nicknameInmobiliaria)
 bool Propietario::estaSuscripto(const string &nicknameInmobiliaria){
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
 };
+void Propietario::agregarInmueble(Inmueble *inmueble)
+{
+    // Asegura que el inmueble no sea vacio y no este vinculado al propietario
+    if ((inmueble != NULL) && find(inmuebles.begin(), inmuebles.end(), inmueble) == inmuebles.end())
+    {
+        inmueble->setPropietario(this);
+        inmuebles.push_back(inmueble);
+    }
+}
+
+vector<Inmueble *> &Propietario::getInmuebles()
+{
+    return inmuebles;
+}

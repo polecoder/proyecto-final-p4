@@ -37,6 +37,11 @@ public:
     static ControladorListar* getInstancia();
     ~ControladorListar();
 
+    set<DTInmuebleListado> listarInmuebles();//Devuelve la información de código, dirección y nombre del propietario de los inmuebles de la coleccion
+    Inmobiliaria *getInmobiliaria(string nicknameInmobiliaria);//Obtiene inmobiliaria tal que inmobiliaria.nickname = nicknameInmobiliaria
+    set<DTInmuebleListado> getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria);//Obtiene los inmuebles que no son administrados por la inmobiliaria
+    set<DTInmuebleListado> getInmueblesNoAdministradosPropietario(Propietario Propietario);//Obtiene los inmuebles que no son administrados por la inmobiliaria de un propietario con el que esta asociado
+
     set<DTUsuario> listarInmobiliarias();
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
     set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario);

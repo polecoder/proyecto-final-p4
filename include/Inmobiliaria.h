@@ -34,9 +34,11 @@ class Inmobiliaria : public Usuario {
         string getDireccion() const;
         string getUrl() const;
         string getTelefono() const;
+        map<string, Propietario *> getPropietarios();
         vector<AdministraPropiedad*> getadministraProps() const;
         void agregarClienteSuscripto(Cliente *cliente);
         void agregarPropietario(Propietario *propietario);
+        void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
         void eliminarPropietario(string nicknamePropietario);
         void notificar(DTNotificacion notificacion);
 };

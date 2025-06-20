@@ -1,4 +1,3 @@
-
 #include "../include/DTInmuebleAdministrado.h"
 
 DTInmuebleAdministrado::DTInmuebleAdministrado(int codigo, std::string direccion, DTFecha* fechaComienzo) {

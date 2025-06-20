@@ -34,6 +34,11 @@ vector<AdministraPropiedad *> Inmobiliaria::getadministraProps() const
     return administraProps;
 };
 
+map<string, Propietario *> Inmobiliaria::getPropietarios()
+{
+    return PropietariosAsociados;
+}
+
 void Inmobiliaria::notificar(DTNotificacion notificacion)
 {
     map<string, Cliente *>::iterator it;
@@ -58,3 +63,9 @@ void Inmobiliaria::agregarPropietario(Propietario *propietario){
 void Inmobiliaria::eliminarPropietario(string nicknamePropietario){
     this->PropietariosAsociados.erase(nicknamePropietario);
 };
+
+void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
+{
+    this->administraPropiedad.push_back(administraPropiedad);
+}
+

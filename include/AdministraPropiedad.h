@@ -37,6 +37,7 @@ class AdministraPropiedad{
         Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
 
         Inmobiliaria* getInmobiliaria();
+        string getNicknameInmobiliaria();
 };
 
 #endif

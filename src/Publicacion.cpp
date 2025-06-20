@@ -1,4 +1,5 @@
 #include "../include/Publicacion.h"
+#include "../include/AdministraPropiedad.h"
 #include <iostream>
 using namespace std;
 

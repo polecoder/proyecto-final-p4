@@ -1,5 +1,6 @@
 #ifndef PROPIETARIO_H
 #define PROPIETARIO_H
+#include "DTNotificacion.h"
 #include "Usuario.h"
 #include "Inmobiliaria.h"
 #include "DTNotificacion.h"
@@ -29,7 +30,8 @@ class Propietario : public Usuario {
         void agregarSuscripcion(Inmobiliaria* inmobiliaria);//PRE: el propietario no esta suscripto a la inmobiliaria.
         void eliminarSuscripcion(string nicknameInmobiliaria);//PRE: el propietario esta suscripto a la inmobiliaria con nickname=nicknameInmobiliaria.
         bool estaSuscripto(const string &nicknameInmobiliaria);
-        void agregarNotificacion(DTNotificacion notificacion);
+        void agregarNotificacion(DTNotificacion const &notificacion);
         void eliminarNotificaciones();
+        set<DTNotificacion> getNotificaciones() const;
 };
 #endif

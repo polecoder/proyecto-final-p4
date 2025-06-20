@@ -1,4 +1,10 @@
+#include "../include/Usuario.h"
+#include "../include/DTNotificacion.h"
 #include "../include/Propietario.h"
+#include "../include/Inmobiliaria.h"
+#include <set>
+#include <map>
+#include <string>
 
 using namespace std;
 
@@ -7,50 +13,62 @@ Propietario::Propietario(string nickname, string contrasena, string nombre, stri
 {
     this->cuentaBancaria = cuentaBancaria;
     this->telefono = telefono;
-};
-
-string Propietario::getCuentaBancaria() const{
-    return this->cuentaBancaria;
-};
-
-string Propietario::getTelefono() const{
-    return this->telefono;
-};
-
-map<string, Inmobiliaria*> Propietario::getSuscripciones() const{
-    return this->suscripciones;
-};
-
-void Propietario::setCuentaBancaria(string cuentaBancaria){
-    this->cuentaBancaria = cuentaBancaria;
-};
-
-void Propietario::setTelefono(string telefono){
-    this->telefono = telefono;
-};
-
-void Propietario::agregarSuscripcion(Inmobiliaria* inmobiliaria){
-    this->suscripciones.insert({inmobiliaria->getNickname(), inmobiliaria});
 }
 
-void Propietario::eliminarSuscripcion(string nicknameInmobiliaria){
-    if(this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end())
-        this->suscripciones.erase(nicknameInmobiliaria);
-};
+Propietario::~Propietario() {}
 
-bool Propietario::estaSuscripto(const string &nicknameInmobiliaria){
-    return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
-};
+string Propietario::getCuentaBancaria() const
+{
+    return this->cuentaBancaria;
+}
 
-void Propietario::agregarNotificacion(DTNotificacion notificacion){
-    notificaciones.insert(notificacion);
-};
+string Propietario::getTelefono() const
+{
+    return this->telefono;
+}
 
-Propietario::~Propietario(){
-    suscripciones.clear();
-    notificaciones.clear();
-};
+set<DTNotificacion> Propietario::getNotificaciones() const
+{
+    return this->notificaciones;
+}
 
-void Propietario::eliminarNotificaciones(){
+map<string, Inmobiliaria *> Propietario::getSuscripciones() const
+{
+    return this->suscripciones;
+}
+
+void Propietario::setCuentaBancaria(string cuentaBancaria)
+{
+    this->cuentaBancaria = cuentaBancaria;
+}
+
+void Propietario::setTelefono(string telefono)
+{
+    this->telefono = telefono;
+}
+
+void Propietario::agregarNotificacion(DTNotificacion const &notificacion)
+{
+    this->notificaciones.insert(notificacion);
+}
+
+void Propietario::eliminarNotificaciones()
+{
     this->notificaciones.clear();
-};
+}
+
+void Propietario::agregarSuscripcion(Inmobiliaria *inmobiliaria)
+{
+    this->suscripciones[inmobiliaria->getNickname()] = inmobiliaria;
+}
+
+void Propietario::eliminarSuscripcion(string nicknameInmobiliaria)
+{
+    // find() retorna this->suscripciones.end() si el elemento no existe
+    map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
+    if (it != this->suscripciones.end())
+    {
+        delete it->second; // Llama al destructor de Inmobiliaria
+        suscripciones.erase(it);
+    }
+}

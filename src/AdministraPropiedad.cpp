@@ -30,7 +30,7 @@ void AdministraPropiedad::setUltimaPublicacion(int up){
 };
 
 // TODO: no usar codigo, usar publi.codigo
-void AdministraPropiedad::agregarPublicacion(int codigo, Publicacion *publi) {
+void AdministraPropiedad::agregarPublicacion(int codigo, Publicacion* publi) {
     publicaciones.insert({codigo, publi});
 };
 
@@ -49,7 +49,10 @@ Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tip
     while(it!=publicaciones.end()&&(!(*it).second->getActiva()||(*it).second->getTipo()!=tipoPublicacion)) {
         it++;
     };
-    return (*it).second;
+    if (it==publicaciones.end()){
+        return NULL;
+    }
+    return it->second;
 };
 
 Inmobiliaria* AdministraPropiedad::getInmobiliaria(){

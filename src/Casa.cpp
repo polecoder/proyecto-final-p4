@@ -1,4 +1,5 @@
 #include "../include/Casa.h"
+#include <iostream>
 
 using namespace std;
 

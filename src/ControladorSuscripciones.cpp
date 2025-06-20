@@ -1,5 +1,9 @@
-#include "../include/ControladorSuscripciones.h"
 #include <set>
+#include "../include/HandlerPropietarios.h"
+#include "../include/HandlerClientes.h"
+#include "../include/HandlerInmobiliarias.h"
+#include "../include/DTNotificacion.h"
+#include "../include/ControladorSuscripciones.h"
 #include <map>
 
 using namespace std;
@@ -19,6 +23,20 @@ ControladorSuscripciones *ControladorSuscripciones::getInstancia(){
     return instancia;
 }
 ControladorSuscripciones::~ControladorSuscripciones(){};
+
+void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
+{
+    if (this->handlerClientes->existeCliente(nicknameUsuario))
+    {
+        Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
+        cliente->eliminarNotificaciones();
+    }
+    else
+    {
+        Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
+        propietario->eliminarNotificaciones();
+    }
+}
 
 void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas){
     if(this->handlerClientes->existeCliente(nicknameUsuario)){
@@ -63,17 +81,4 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
         }
     }
 }
-
-void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
-{
-    if (this->handlerClientes->existeCliente(nicknameUsuario))
-    {
-        Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
-        cliente->eliminarNotificaciones();
-    }
-    else
-    {
-        Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
-        propietario->eliminarNotificaciones();
-    }
 }

@@ -1,6 +1,10 @@
+#include "../include/Usuario.h"
+#include "../include/DTNotificacion.h"
 #include "../include/Cliente.h"
-#include <string>
+#include "../include/Inmobiliaria.h"
+#include <set>
 #include <map>
+#include <string>
 
 using namespace std;
 
@@ -19,6 +23,10 @@ string Cliente::getApellido()const{
 string Cliente:: getDocumento()const{
     return this->documento;
 };
+set<DTNotificacion> Cliente::getNotificaciones() const
+{
+    return this->notificaciones;
+}
 map<string, Inmobiliaria*> Cliente::getSuscripciones()const{
     return this->suscripciones;
 };
@@ -32,8 +40,12 @@ void Cliente::agregarSuscripcion(Inmobiliaria* &inmobiliaria){
     this->suscripciones.insert({inmobiliaria->getNickname(), inmobiliaria});
 };
 void Cliente::eliminarSuscripcion(string nicknameInmobiliaria){
-    if(this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end())
-        this->suscripciones.erase(nicknameInmobiliaria);
+    // find() retorna this->suscripciones.end() si el elemento no existe
+    map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
+    if (it != this->suscripciones.end())
+    {
+        suscripciones.erase(it);
+    };
 };
 
 bool Cliente::estaSuscripto(const string nicknameInmobiliaria){

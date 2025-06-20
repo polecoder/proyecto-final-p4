@@ -9,7 +9,7 @@
 class Factory
 {
 private:
-    static Factory *instance;
+    static Factory *instancia;
     Factory();
 
 public:

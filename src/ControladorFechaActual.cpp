@@ -1,28 +1,33 @@
 #include "../include/ControladorFechaActual.h"
 #include <cstddef>
 
-ControladorFechaActual* ControladorFechaActual::instance = NULL;
+ControladorFechaActual *ControladorFechaActual::instancia = NULL;
 
-ControladorFechaActual::ControladorFechaActual() {
-    fechaActual = new DTFecha(1,1,1900);
+ControladorFechaActual::ControladorFechaActual()
+{
+    fechaActual = new DTFecha(1, 1, 1900);
 }
 
-ControladorFechaActual* ControladorFechaActual::getInstance() {
-    if (instance == NULL) {
-        instance = new ControladorFechaActual();
+ControladorFechaActual *ControladorFechaActual::getInstancia()
+{
+    if (instancia == NULL)
+    {
+        instancia = new ControladorFechaActual();
     }
-    return instance;
+    return instancia;
 }
 
-DTFecha* ControladorFechaActual::getFechaActual(){
+DTFecha *ControladorFechaActual::getFechaActual()
+{
     return new DTFecha(fechaActual);
 }
-void ControladorFechaActual::setNewFechaActual(int dia, int mes, int anio){
+void ControladorFechaActual::setNewFechaActual(int dia, int mes, int anio)
+{
     delete fechaActual;
     fechaActual = new DTFecha(dia, mes, anio);
 }
 
-ControladorFechaActual::~ControladorFechaActual(){
+ControladorFechaActual::~ControladorFechaActual()
+{
     delete fechaActual;
-    instance = NULL;
 }

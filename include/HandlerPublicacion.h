@@ -2,9 +2,11 @@
 #define HANDLERPUBLICACION
 
 #include "Publicacion.h"
+#include "TipoInmueble.h"
 
-#include <map>
 #include <set>
+#include <map>
+#include <vector>
 #include <string>
 
 using namespace std;

@@ -1,5 +1,6 @@
-#ifndef C_SUBE_Y_BAJA
-#define C_SUBE_Y_BAJA
+#ifndef CONTROLADORSUBEYBAJA_H
+#define CONTROLADORSUBEYBAJA_H
+
 #include "Publicacion.h"
 #include "Inmobiliaria.h"
 #include "HandlerInmobiliarias.h"
@@ -17,19 +18,19 @@
 
 using namespace std;
 
-class SubeYBaja : public IControladorSubeYBaja{
+class ControladorSubeYBaja : public IControladorSubeYBaja
+{
 private:
-    static SubeYBaja* Instancia;
-    HandlerInmobiliaria* Hinmobiliarias;
-    ControladorFechaActual* fechaActual;
-    HandlerPublicacion* HPublicacion;
-    SubeYBaja();  // Constructor
+    static ControladorSubeYBaja *instancia;
+    HandlerInmobiliarias *Hinmobiliarias;
+    IControladorFechaActual *fechaActual;
+    HandlerPublicacion *HPublicacion;
+    ControladorSubeYBaja();
+
 public:
-    static SubeYBaja* getInstancia();
-    ~SubeYBaja(); // Destructor
-    bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble,TipoPublicacion tipoPublicacion, string texto, float precio);
+    static ControladorSubeYBaja *getInstancia();
+    ~ControladorSubeYBaja();
+    bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio);
 };
 
-
-
-#endif
+#endif // CONTROLADORSUBEYBAJA_H

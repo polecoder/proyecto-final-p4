@@ -28,5 +28,3 @@ $(OBJ_DIR):
 # Limpiar archivos generados
 clean:
 	rm -rf $(OBJ_DIR) $(BIN)
-
-.PHONY: all clean

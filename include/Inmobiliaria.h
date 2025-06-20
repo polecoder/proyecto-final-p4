@@ -1,11 +1,14 @@
 #ifndef INMOBILIARIA_H
 #define INMOBILIARIA_H
 #include "Usuario.h"
+#include "Cliente.h"
+#include "Propietario.h"
 #include "AdministraPropiedad.h"
 #include "Cliente.h"
 #include "Propietario.h"
 #include "DTNotificacion.h"
 #include <string>
+#include <map>
 #include <vector>
 
 class AdministraPropiedad;

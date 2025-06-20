@@ -20,8 +20,8 @@ DTFecha* DTInmuebleAdministrado::getFechaComienzo() {
 
 DTInmuebleAdministrado::~DTInmuebleAdministrado(){
     delete fechaComienzo;
-};
+}
 
 bool DTInmuebleAdministrado::operator<(const DTInmuebleAdministrado& other) const {
     return codigo < other.codigo; // Comparar directamente los campos
-};
+}

@@ -6,10 +6,9 @@
 #include "TipoPublicacion.h"
 #include "AdministraPropiedad.h"
 #include <string>
+using namespace std;
 
 class Inmueble;
-
-using namespace std;
 
 class AdministraPropiedad;
 class Inmobiliaria;
@@ -17,7 +16,7 @@ class Inmobiliaria;
 class Publicacion {
 private:
     int codigo;
-    DTFecha* fecha;
+    DTFecha *fecha;
     TipoPublicacion tipo;
     string texto;
     float precio;

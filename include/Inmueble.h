@@ -15,7 +15,7 @@ class Inmueble {
         int numeroPuerta;
         int superficie;
         int anoConstruccion;
-
+        Propietario *propietario;
     public:
         Inmueble(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion);
         virtual ~Inmueble();

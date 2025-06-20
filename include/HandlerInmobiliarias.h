@@ -1,5 +1,5 @@
-#ifndef HANDLER_INMOBILIARIA
-#define HANDLER_INMOBILIARIA
+#ifndef HANDLERINMOBILIARIAS_H
+#define HANDLERINMOBILIARIAS_H
 #include "Inmobiliaria.h"
 #include <map>
 #include <string>
@@ -20,9 +20,10 @@ public:
     void agregarInmobiliaria(Inmobiliaria* &inmobiliaria);
     void eliminarInmobiliaria(string& nickname);
 
-    map<string, Inmobiliaria*> getInmobiliarias();// Devuelve el mapa completo.
+    const map<string, Inmobiliaria *> &getColeccionInmobiliarias() const;// Devuelve el mapa completo.
     Inmobiliaria* getInmobiliaria(string nickname);// Devuelve la inmobiliaria con ese nickname.
-    vector<AdministraPropiedad*> getAdProp(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
+    vector<AdministraPropiedad *> getColeccionAdministraPropiedad(string nickname);//devuelve los ap realcionado con una inmobiliaria con el nickname dado.
+    bool existeInmobiliaria(string nickname);
     ~HandlerInmobiliaria(); // Destructor, borra la coleccion
 };
 

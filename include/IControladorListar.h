@@ -3,6 +3,7 @@
 
 #include <set>
 #include <string>
+#include "DTNotificacion.h"
 #include "DTUsuario.h"
 #include "DTInmuebleAdministrado.h"
 #include "TipoPublicacion.h"
@@ -16,9 +17,12 @@ class IControladorListar{
     public:
         virtual set<DTUsuario> listarInmobiliarias()=0;
         virtual set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria)=0;
+        virtual set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario) = 0;
+        virtual set<DTUsuario> listarSuscripciones(string nicknameUsuario) = 0;
         virtual set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo)=0;
         virtual DTInmueble detalleInmueblePublicacion(int codigoPublicacion)=0;
         virtual set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario)=0;
+        virtual ~IControladorListar() {}
 };
 
 #endif

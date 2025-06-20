@@ -1,50 +1,68 @@
+#include <string>
+#include <map>
 #include "../include/HandlerClientes.h"
+#include "../include/Cliente.h"
 
-using namespace std;
+HandlerClientes *HandlerClientes::instancia = NULL;
 
-HandlerClientes *HandlerClientes:: instancia = NULL;
-
-HandlerClientes::HandlerClientes(){
-    map<string, Cliente*> coleccionClientes;
+HandlerClientes::HandlerClientes()
+{
+    map<string, Cliente *> coleccionClientes;
     this->coleccionClientes = coleccionClientes;
-};
+}
 
-HandlerClientes* HandlerClientes::getInstancia(){
-    if(instancia == NULL)
-        instancia = new HandlerClientes();
+HandlerClientes *HandlerClientes::getInstancia()
+{
+    if (instancia == NULL)
+    {
+        instancia = new HandlerClientes;
+    }
     return instancia;
-};
+}
 
-void HandlerClientes::agregarCliente(Cliente* &cliente){
-    coleccionClientes[cliente->getNickname()] = cliente;
-};
+HandlerClientes::~HandlerClientes()
+{
+    map<string, Cliente *>::iterator it;
 
-void HandlerClientes::eliminarCliente(string nickname){
-    map<string, Cliente*>::iterator it = this->coleccionClientes.find(nickname);
-    if(it != coleccionClientes.end()){
+    for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
+    {
         delete it->second;
+    }
+
+    this->coleccionClientes.clear();
+}
+
+void HandlerClientes::agregarCliente(Cliente *cliente)
+{
+    string nickname = cliente->getNickname();
+    this->coleccionClientes[nickname] = cliente;
+}
+
+void HandlerClientes::eliminarCliente(string nickname)
+{
+    // find() retorna this->coleccionClientes.end() si el elemento no existe
+    map<string, Cliente *>::iterator it = this->coleccionClientes.find(nickname);
+    if (it != this->coleccionClientes.end())
+    {
+        delete it->second; // Llama al destructor de Cliente
         coleccionClientes.erase(it);
     }
-};
+}
 
-bool HandlerClientes::existeCliente(string nickname){
+bool HandlerClientes::existeCliente(string nickname)
+{
+    // find() retorna this->coleccionClientes.end() si el elemento no existe
     return this->coleccionClientes.find(nickname) != this->coleccionClientes.end();
-};
+}
 
-Cliente* HandlerClientes::getCliente(string nickname){
-    if(this->coleccionClientes.count(nickname) > 0)
-        return this->coleccionClientes[nickname];
-    return nullptr;
-};
+Cliente *HandlerClientes::getCliente(string nickname)
+{
+    return this->coleccionClientes[nickname];
+}
 
-map<string, Cliente*> HandlerClientes:: getColeccionClientes(){
+const map<string, Cliente *> &HandlerClientes::getColeccionClientes() const
+{
     return this->coleccionClientes;
-};
+}
 
-HandlerClientes::~HandlerClientes(){
-    map<string, Cliente*>::iterator it;
-    for(it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++){
-        delete it->second;
-    }
-    this->coleccionClientes.clear();
-};
+using namespace std;

@@ -22,7 +22,6 @@ class IControladorListar{
         virtual set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo)=0;
         virtual DTInmueble detalleInmueblePublicacion(int codigoPublicacion)=0;
         virtual set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario)=0;
-        virtual ~IControladorListar() {}
 };
 
 #endif

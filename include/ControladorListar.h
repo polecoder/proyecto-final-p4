@@ -30,8 +30,8 @@ private:
     static ControladorListar *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
-    HandlerInmobiliaria* handlerInmobiliaria;
-    IControladorFechaActual* fechaActual;
+    HandlerInmobiliarias* handlerInmobiliarias;
+    IControladorFechaActual* interfazFechaActual;
     ControladorListar();
 public:
     static ControladorListar* getInstancia();

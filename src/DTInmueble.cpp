@@ -1,6 +1,8 @@
 #include "../include/DTInmueble.h"
 
-DTInmueble::DTInmueble(int codigo, std::string direccion, int numeroPuerta, int superficie, int anioConstruccion) {
+using namespace std;
+
+DTInmueble::DTInmueble(int codigo, string direccion, int numeroPuerta, int superficie, int anioConstruccion) {
     this->codigo = codigo;
     this->direccion = direccion;
     this->numeroPuerta = numeroPuerta;
@@ -12,7 +14,7 @@ int DTInmueble::getCodigo() const {
     return codigo;
 }
 
-std::string DTInmueble::getDireccion() const {
+string DTInmueble::getDireccion() const {
     return direccion;
 }
 
@@ -30,4 +32,7 @@ int DTInmueble::getAnioConstruccion() const {
 
 DTInmueble::~DTInmueble(){
     
+}
+bool DTInmueble:: operator<(const DTInmueble& other) const{
+    return codigo < other.getCodigo();
 }

@@ -1,6 +1,7 @@
 #include "../include/Publicacion.h"
 #include "../include/AdministraPropiedad.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 
@@ -39,13 +40,13 @@ void Publicacion :: setActiva(bool activa){
     this->activa = activa;
 };
 TipoInmueble Publicacion::getTipoInmueble() const { // accede al AdministraPropiedad asociado a la publicacion y devuelve el tipoInmueble del inmueble
-    if (this->apAsociado != NULL){
-        Inmueble* inmueble = this->apAsociado->getInmueble();
-        if (inmueble != nullptr) {
-            return inmueble->getTipoInmueble();
-        }
-    }
-    return TipoInmueble();
+    // if (this->apAsociado != NULL){
+    //     Inmueble* inmueble = this->apAsociado->getInmueble();
+    //     if (inmueble != nullptr) {
+    return this->apAsociado->getInmueble()->getTipoInmueble();
+    //     }
+    // }
+
 }
 string Publicacion:: getNicknameInmobiliaria() const{
     if (this->apAsociado != NULL){
@@ -53,7 +54,7 @@ string Publicacion:: getNicknameInmobiliaria() const{
         string nicknameInmobiliaria = inmo->getNickname();
         return nicknameInmobiliaria;
     }
-    return nullptr;
+    return "";
 }
 Inmobiliaria* Publicacion:: getInmobiliaria() const{
     return this->apAsociado->getInmobiliaria();

@@ -34,13 +34,13 @@ HandlerPropietarios::~HandlerPropietarios()
     this->coleccionPropietarios.clear();
 }
 
-void HandlerPropietarios::agregarPropietario(Propietario *propietario)
+void HandlerPropietarios::agregarPropietario(Propietario* &propietario)
 {
     string nickname = propietario->getNickname();
     this->coleccionPropietarios[nickname] = propietario;
 }
 
-void HandlerPropietarios::eliminarPropietario(string nickname)
+void HandlerPropietarios::eliminarPorpietario(string nickname)
 {
     // find() retorna this->coleccionPropietarios.end() si el elemento no existe
     map<string, Propietario *>::iterator it = this->coleccionPropietarios.find(nickname);

@@ -3,10 +3,7 @@
 #include "Usuario.h"
 #include "Inmobiliaria.h"
 #include "DTNotificacion.h"
-#include "Inmobiliaria.h"
-#include "DTNotificacion.h"
 #include <map>
-#include <string>
 #include <string>
 #include <set>
 
@@ -17,8 +14,10 @@ class Inmobiliaria;
 
 class Cliente : public Usuario {
     private:
-        std::string apellido;
-        std::string documento;
+        string apellido;
+        string documento;
+        map<string, Inmobiliaria*> suscripciones;
+        set<DTNotificacion> notificaciones;
 
     public:
         Cliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento);

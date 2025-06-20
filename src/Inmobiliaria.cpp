@@ -1,5 +1,8 @@
 #include "../include/Inmobiliaria.h"
 #include <iostream>
+#include <vector>
+#include <map>
+#include <string>
 
 using namespace std;
 
@@ -44,3 +47,10 @@ void Inmobiliaria::notificar(DTNotificacion notificacion)
         (*it2).second->agregarNotificacion(notificacion);
     }
 }
+void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente){
+    this->clientesAsociados[cliente->getNickname()] = cliente;
+};
+
+void Inmobiliaria::agregarPropietario(Propietario *propietario){
+    this->PropietariosAsociados[propietario->getNickname()] = propietario;
+};

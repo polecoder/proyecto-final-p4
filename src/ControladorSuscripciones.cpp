@@ -11,7 +11,7 @@ using namespace std;
 ControladorSuscripciones *ControladorSuscripciones::instancia =NULL;
 
 ControladorSuscripciones::ControladorSuscripciones(){
-    this->handlerInmobiliaria = HandlerInmobiliaria::getInstancia();
+    this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerClientes = HandlerClientes::getInstancia();
 };
@@ -43,7 +43,7 @@ void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> i
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
         for(set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it){
             string nicknameInmobiliaria = *it;
-            Inmobiliaria *inmobiliaria = this->handlerInmobiliaria->getInmobiliaria(nicknameInmobiliaria);
+            Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
             cliente->agregarSuscripcion(inmobiliaria);
             inmobiliaria->agregarClienteSuscripto(cliente);
         }
@@ -52,9 +52,9 @@ void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> i
         Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
         for(set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it){
             string nicknameInmobiliaria = *it;
-            Inmobiliaria *inmobiliaria = this->handlerInmobiliaria->getInmobiliaria(nicknameInmobiliaria);
+            Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
             propietario->agregarSuscripcion(inmobiliaria);
-            inmobiliaria->agregarPropietarioSuscripto(propietario);
+            inmobiliaria->agregarPropietario(propietario);
         }
     }
 }
@@ -80,5 +80,4 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
             propietario->eliminarSuscripcion(*it);
         }
     }
-}
 }

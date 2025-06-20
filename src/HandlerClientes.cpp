@@ -3,6 +3,8 @@
 #include "../include/HandlerClientes.h"
 #include "../include/Cliente.h"
 
+using namespace std;
+
 HandlerClientes *HandlerClientes::instancia = NULL;
 
 HandlerClientes::HandlerClientes()
@@ -32,7 +34,7 @@ HandlerClientes::~HandlerClientes()
     this->coleccionClientes.clear();
 }
 
-void HandlerClientes::agregarCliente(Cliente *cliente)
+void HandlerClientes::agregarCliente(Cliente* cliente)//saco el "&" de aca
 {
     string nickname = cliente->getNickname();
     this->coleccionClientes[nickname] = cliente;
@@ -64,5 +66,3 @@ const map<string, Cliente *> &HandlerClientes::getColeccionClientes() const
 {
     return this->coleccionClientes;
 }
-
-using namespace std;

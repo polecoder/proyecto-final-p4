@@ -52,7 +52,7 @@ bool Cliente::estaSuscripto(const string nicknameInmobiliaria){
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
 };
 
-void Cliente::agregarNotificacion(DTNotificacion notificacion){
+void Cliente::agregarNotificacion(DTNotificacion const &notificacion){
     notificaciones.insert(notificacion);
 };
 

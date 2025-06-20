@@ -8,6 +8,7 @@
 #include "IControladorSuscripciones.h"
 #include <DTUsuario.h>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ private:
     static ControladorSuscripciones *instancia;
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
-    HandlerInmobiliaria *handlerInmobiliaria;
+    HandlerInmobiliarias *handlerInmobiliarias;
     ControladorSuscripciones();
 
 public:

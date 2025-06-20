@@ -142,7 +142,7 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
     set<DTUsuario> inmobiliariasNoSuscripto;
     if(this->handlerClientes->existeCliente(nicknameUsuario)){
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
-        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliaria->getInmobiliarias();
+        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliarias->getColeccionInmobiliarias();
         map<string, Inmobiliaria*>::iterator it;
         for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
             string nicknameInmobiliaria = it->first;
@@ -150,11 +150,10 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
                 inmobiliariasNoSuscripto.insert(DTUsuario(it->second->getNickname(), it->second->getNombre()));
             }
         }
-        // return inmobiliariasNoSuscripto;
     }
     if(this->handlerPropietarios->existePropietario(nicknameUsuario)){
         Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
-        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliaria->getInmobiliarias();
+        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliarias->getColeccionInmobiliarias();
         map<string, Inmobiliaria*>::iterator it;
         for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
             string nicknameInmobiliaria = it->first;
@@ -162,7 +161,6 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
                 inmobiliariasNoSuscripto.insert(DTUsuario(it->second->getNickname(), it->second->getNickname()));
             }
         }
-        // return inmobiliariasNoSuscripto;
     }
     return inmobiliariasNoSuscripto;
 };

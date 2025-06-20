@@ -1,3 +1,4 @@
+
 #include "../include/DTInmuebleAdministrado.h"
 
 DTInmuebleAdministrado::DTInmuebleAdministrado(int codigo, std::string direccion, DTFecha* fechaComienzo) {
@@ -25,3 +26,4 @@ DTInmuebleAdministrado::~DTInmuebleAdministrado(){
 bool DTInmuebleAdministrado::operator<(const DTInmuebleAdministrado& other) const {
     return codigo < other.codigo; // Comparar directamente los campos
 }
+

@@ -150,6 +150,8 @@ void altaUsuario()
         getline(cin, apellido);
         cout << "Documento: ";
         getline(cin, documento);
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        bool usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
         // TODO: usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
     }
     else if (tipoUsuario == 1)
@@ -160,6 +162,8 @@ void altaUsuario()
         getline(cin, url);
         cout << "Telefono: ";
         getline(cin, telefono);
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
         // TODO: usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
     }
     else if (tipoUsuario == 2)
@@ -168,6 +172,8 @@ void altaUsuario()
         getline(cin, cuentaBancaria);
         cout << "Telefono: ";
         getline(cin, telefono);
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
         // TODO: usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
     }
     if (usuarioOk)

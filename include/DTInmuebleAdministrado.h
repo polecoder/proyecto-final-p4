@@ -1,3 +1,4 @@
+
 #ifndef DTINMUEBLEADMINISTRADO_H
 #define DTINMUEBLEADMINISTRADO_H
 #include "DTFecha.h"
@@ -22,5 +23,6 @@ class DTInmuebleAdministrado {
         bool operator<(const DTInmuebleAdministrado& other) const;
        
 };
+
 
 #endif

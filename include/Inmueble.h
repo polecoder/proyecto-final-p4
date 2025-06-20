@@ -31,4 +31,5 @@ public:
     Propietario *getPropietario() const;
 };
 
+
 #endif

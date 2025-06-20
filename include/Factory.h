@@ -1,3 +1,4 @@
+
 #ifndef FACTORY_H
 #define FACTORY_H
 
@@ -20,5 +21,6 @@ public:
     IControladorSuscripciones *getControladorSuscripciones();
     ~Factory();
 };
+
 
 #endif

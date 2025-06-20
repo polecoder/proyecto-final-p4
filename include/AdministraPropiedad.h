@@ -1,3 +1,4 @@
+
 #ifndef ADMINISTRAPROPIEDAD_H
 #define ADMINISTRAPROPIEDAD_H
 #include "DTFecha.h"
@@ -33,3 +34,4 @@ public:
 };
 
 #endif
+

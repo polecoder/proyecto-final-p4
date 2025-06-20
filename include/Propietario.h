@@ -1,14 +1,12 @@
+
 #ifndef PROPIETARIO_H
 #define PROPIETARIO_H
 #include "DTNotificacion.h"
 #include "Usuario.h"
-#include "DTNotificacion.h"
-#include "Propietario.h"
 #include "Inmobiliaria.h"
 #include <set>
 #include <map>
 #include <string>
-
 using namespace std;
 
 // Forward declaration

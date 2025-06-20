@@ -1,3 +1,4 @@
+
 #ifndef PUBLICACION_H
 #define PUBLICACION_H
 #include "DTFecha.h"
@@ -27,7 +28,9 @@ public:
     DTFecha *getFecha();
     bool getActiva();
     void setActiva(bool activa);
-    int getCodigo() const;
+    int getCodigo()const;
+
 };
+
 
 #endif

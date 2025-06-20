@@ -1,3 +1,4 @@
+
 #ifndef CLIENTE_H
 #define CLIENTE_H
 #include "Usuario.h"
@@ -53,5 +54,6 @@ public:
      */
     void eliminarSuscripcion(string nicknameInmobiliaria);
 };
+
 
 #endif

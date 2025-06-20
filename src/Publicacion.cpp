@@ -16,6 +16,7 @@ Publicacion :: Publicacion(int codigo, DTFecha* fecha, TipoPublicacion tipo, str
 Publicacion :: ~Publicacion(){
     delete fecha; // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
 };
+
 DTFecha* Publicacion :: getFecha() {
     return fecha;
 };
@@ -34,3 +35,4 @@ void Publicacion :: setActiva(bool activa){
 float Publicacion:: getPrecio(){
     return precio;
 }
+

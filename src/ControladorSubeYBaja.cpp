@@ -77,3 +77,33 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
 
     return true;
 }
+
+bool ControladorSubeYBaja:: altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono) {
+    bool existe = Hpropietario->existePropietario(nickname);
+    if (!existe) {
+        Propietario* nuevoPropietario = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+        Hpropietario->agregarPropietario(nuevoPropietario);
+        return true; // Alta exitosa
+    }
+    return false;
+}
+
+bool ControladorSubeYBaja:: altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono) {
+    bool existe = Hinmobiliarias->existeInmobiliaria(nickname);
+    if (!existe) {
+        Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        Hinmobiliarias->agregarInmobiliaria(nuevaInmobiliaria);
+        return true;
+    }
+    return false;
+}
+
+bool ControladorSubeYBaja:: altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento) {
+    bool existe = Hcliente->existeCliente(nickname);
+    if (!existe) {
+        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email,  apellido, documento);
+        Hcliente->agregarCliente(nuevoCliente);
+        return true;
+    }
+    return false;
+}

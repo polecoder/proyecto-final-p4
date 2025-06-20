@@ -4,7 +4,7 @@
 using namespace std;
 
 Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)
-    : Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
+    :Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
 {
     this->direccion = direccion;
     this->url = url;
@@ -44,3 +44,4 @@ void Inmobiliaria::notificar(DTNotificacion notificacion)
         (*it2).second->agregarNotificacion(notificacion);
     }
 }
+

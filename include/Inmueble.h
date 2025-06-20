@@ -27,7 +27,7 @@ class Inmueble {
         int getSuperficie() ;
         int getAnoConstruccion() ;
         virtual TipoInmueble getTipoInmueble() const = 0;
-
+        void setPropietario(Propietario *propietario);
         Propietario* getPropietario() const;
 };
 

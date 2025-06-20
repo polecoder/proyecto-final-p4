@@ -28,7 +28,7 @@ class Cliente : public Usuario {
         map<string, Inmobiliaria*> getSuscripciones() const;
         void setApellido(string apellido);
         void setDocumento(string apellido);
-        void agregarSuscripcion(Inmobiliaria* &inmobiliaria);// PRE: el cliente no esta suscripto a la inmobiliaria con nickname=nicknameInmobiliaria.
+        void agregarSuscripcion(Inmobiliaria* inmobiliaria);// PRE: el cliente no esta suscripto a la inmobiliaria con nickname=nicknameInmobiliaria.
         void eliminarSuscripcion(string nicknameInmobiliaria);// PRE: el cliente esta suscripto a la inmobiliaria con nickname=nicknameInmobiliaria.
         bool estaSuscripto(const string nicknameInmobiliaria);
         void agregarNotificacion(DTNotificacion const &notificacion);

@@ -75,6 +75,12 @@ public:
      */
     static HandlerInmobiliarias *getInstance();
     /**
+     * @brief Devuelve true si existe una Inmobiliaria tal que Inmobiliaria.codigo=codigoInmueble, de lo contrario devuelve false
+     *
+     * @param codigoInmueble
+     */
+    bool existeInmobiliaria(string nicknameInmobiliaria);
+    /**
      * @brief Obtiene la inmobiliaria de la coleccion
      *
      * @return Inmobiliaria

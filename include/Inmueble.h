@@ -113,12 +113,12 @@ public:
      *
      * @param administraPropiedad
      */
-    void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
-        /**
-         * @brief Destructor de Inmueble
-         *
-         */
-        virtual ~Inmueble();
+    void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
+    /**
+     * @brief Destructor de Inmueble
+     *
+     */
+    virtual ~Inmueble();
 };
 
 #endif

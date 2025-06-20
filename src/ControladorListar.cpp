@@ -44,7 +44,6 @@ set<DTInmuebleListado> ControladorInmueblesListar::listarInmuebles()
 DTInmueble ControladorInmueblesListar::detalleInmueble(int codigoInmueble)
 {
     Inmueble *inmueble = handlerInmuebles->getInmueble(codigoInmueble);
-
     int codigo = inmueble->getCodigo();
     string direccion = inmueble->getDireccion();
     int numeroPuerta = inmueble->getNumeroPuerta();

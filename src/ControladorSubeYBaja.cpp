@@ -1,5 +1,6 @@
 #include "ControladorSubeYBaja.h"
 #include "AdministraPropiedad.h"
+#include <ctime>
 using namespace std;
 
 ControladorSubeYBaja *ControladorSubeYBaja::instance = NULL;
@@ -74,11 +75,17 @@ void ControladorSubeYBaja::altaAdministraPropiedad(string nicknameInmobiliaria, 
 {
     Inmobiliaria *inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
     Inmueble *inmueble = getInmueble(codigoInmueble);
-    // COMO MIERDA PONGO FECHA ACTUAL DEL SISTEMMMMMMA
-    DTFecha *fechaActual = new DTFecha(1, 1, 1);
+    // Fecha actual del sistema
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int dia = ltm->tm_mday;
+    int mes = ltm->tm_mon + 1;
+    int anio = ltm->tm_year + 1900;
+    DTFecha *fechaActual = new DTFecha(dia, mes, anio);
     AdministraPropiedad *administraPropiedad = new AdministraPropiedad(fechaActual, inmueble, inmobiliaria);
     inmueble->agregarAdministraPropiedad(administraPropiedad);
     inmobiliaria->agregarAdministraPropiedad(administraPropiedad);
     handlerAdministraPropiedad->agregarAdministraPropiedad(administraPropiedad);
 }
+
 ControladorSubeYBaja::~ControladorSubeYBaja() {}

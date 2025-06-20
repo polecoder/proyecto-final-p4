@@ -62,6 +62,11 @@ HandlerInmobiliarias::HandlerInmobiliarias()
     this->coleccionInmobiliarias = coleccionInmobiliarias;
 }
 
+bool HandlerInmobiliarias::existeInmobiliaria(string nicknameInmobiliaria)
+{
+    return coleccionInmobiliarias.find(nicknameInmobiliaria) != coleccionInmobiliarias.end();
+}
+
 // PRE: Existe unja inmobiliaria tal que inmobiliaria.nickname=nicknameInmobiliaria
 Inmobiliaria *HandlerInmobiliarias::getInmobiliaria(string nicknameInmobiliaria)
 {

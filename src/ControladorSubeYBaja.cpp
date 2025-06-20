@@ -121,5 +121,10 @@ void ControladorSubeYBaja::representarPropietario(string nicknamePropietario) {
     }
 }
 
-void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int superficie, bool esPH, TipoTecho techo) {
+void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho techo) {
+    int codigoInmueble = codigoUltimoInmueble + 1; // Obtiene el último código de inmueble y le suma 1
+    Casa* nuevaCasa = new Casa(codigoInmueble, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+    Hpropietario->agregarInmueble(nuevaCasa);
+    codigoUltimoInmueble = codigoInmueble; // Actualiza el último código de inmueble
+}
     

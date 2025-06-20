@@ -29,6 +29,7 @@ public:
     int getAnoConstruccion();
     // Cambiado a const para poder usarlo en el menu
     Propietario *getPropietario() const;
+    virtual TipoInmueble getTipoInmueble() const = 0;
 };
 
 

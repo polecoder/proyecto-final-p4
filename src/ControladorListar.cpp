@@ -200,10 +200,10 @@ set<DTInmuebleListado> ControladorListar::listarInmuebles()
     return inmueblesListados;
 }
 
-set<DTInmuebleListado> ControladorInmobiliariasListar::getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria)
+set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria)
 {
     set<DTInmuebleListado> inmueblesNoAdministrados;
-    Inmobiliaria *Inmobiliaria = getInmobiliaria(nicknameInmobiliaria);
+    Inmobiliaria *Inmobiliaria = handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
     map<string, Propietario *> propietariosRepresentados = Inmobiliaria->getPropietarios();
     // Recorro la coleccion de propietarios que son representados por la inmobiliaria
     for (const auto &par : propietariosRepresentados)

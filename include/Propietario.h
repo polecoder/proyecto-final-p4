@@ -9,6 +9,8 @@
 #include <set>
 #include <map>
 
+class Inmueble;
+
 using namespace std;
 
 class Inmobiliaria;

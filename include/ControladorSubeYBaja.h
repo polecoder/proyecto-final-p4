@@ -48,9 +48,6 @@ private:
     ControladorSubeYBaja();
 
 public:
-    bool existeInmueble(int codigoInmueble);//va en el handler¿?
-    Inmueble *getInmueble(int codigoInmueble);//idem 
-    void eliminarInmueble(int codigoInmueble);//idem
     Inmobiliaria *getInmobiliaria(string nicknameInmobiliaria);//idem
     
     void altaAdministraPropiedad(string nicknameInmobiliaria, int codigoInmueble);

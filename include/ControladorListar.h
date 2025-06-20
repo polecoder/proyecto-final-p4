@@ -5,12 +5,14 @@
 #include "HandlerInmobiliarias.h"
 #include "HandlerClientes.h"
 #include "HandlerPropietarios.h"
+#include "HandlerInmueble.h"
 #include "IControladorListar.h"
 #include "AdministraPropiedad.h"
 #include "ControladorFechaActual.h"
 #include "HandlerPublicacion.h"
 #include "DTUsuario.h"
 #include "DTInmuebleAdministrado.h"
+#include "DTInmuebleListado.h"
 #include "DTPublicacion.h"
 #include "DTInmueble.h"
 #include "DTCasa.h"
@@ -31,6 +33,7 @@ private:
     HandlerPropietarios *handlerPropietarios;
     HandlerClientes *handlerClientes;
     HandlerInmobiliarias* handlerInmobiliarias;
+    HandlerInmueble* handlerInmueble;
     IControladorFechaActual* interfazFechaActual;
     ControladorListar();
 public:
@@ -38,7 +41,6 @@ public:
     ~ControladorListar();
 
     set<DTInmuebleListado> listarInmuebles();//Devuelve la información de código, dirección y nombre del propietario de los inmuebles de la coleccion
-    Inmobiliaria *getInmobiliaria(string nicknameInmobiliaria);//Obtiene inmobiliaria tal que inmobiliaria.nickname = nicknameInmobiliaria
     set<DTInmuebleListado> getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria);//Obtiene los inmuebles que no son administrados por la inmobiliaria
     set<DTInmuebleListado> getInmueblesNoAdministradosPropietario(Propietario Propietario);//Obtiene los inmuebles que no son administrados por la inmobiliaria de un propietario con el que esta asociado
 

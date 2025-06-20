@@ -17,6 +17,8 @@ public:
     void agregarInmueble(Inmueble* inmueble);
     void eliminarInmueble(int codigo);
 
+    void eliminarInmuebleColeccion(int codigoInmueble);
+    bool existeInmueble(int codigoInmueble);
     map<int, Inmueble*> DevolverInmuebles(); // Devuelve el mapa completo
     Inmueble* DevolverInmueble(int codigo); // Devuelve el inmueble con ese codigo
     ~HandlerInmueble(); // Destructor

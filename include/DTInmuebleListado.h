@@ -15,6 +15,8 @@ class DTInmuebleListado {
         int getCodigo();
         string getDireccion();
         string getPropietario();
+
+        bool operator<(const DTInmuebleListado& other) const;
 };
 
 #endif

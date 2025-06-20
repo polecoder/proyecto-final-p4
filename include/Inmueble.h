@@ -2,12 +2,14 @@
 #define INMUEBLE_H
 #include <string>
 #include <algorithm>
+#include <vector>
 #include "AdministraPropiedad.h"
 #include "TipoInmueble.h"
 #include "Propietario.h"
 #include "TipoInmueble.h"
 
 class Propietario;
+class AdministraPropiedad;
 
 using namespace std;
 
@@ -39,7 +41,6 @@ class Inmueble {
         void setNumeroPuerta(int numeroPuerta);
         void setSuperficie(int superficie);
         void setAnoConstruccion(int anoConstruccion);
-        void setPropietario(Propietario *propietario);
         void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
         
 };

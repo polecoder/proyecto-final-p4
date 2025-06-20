@@ -17,3 +17,6 @@ std::string DTInmuebleListado::getDireccion() {
 std::string DTInmuebleListado::getPropietario() {
     return propietario;
 }
+bool DTInmuebleListado:: operator<(const DTInmuebleListado& other) const{
+    
+}

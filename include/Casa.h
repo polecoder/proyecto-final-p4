@@ -13,7 +13,7 @@ private:
     TipoTecho techo;
 
     public:
-        CasaConstructor(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho tipo);
+        Casa(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho tipo);
         ~Casa();
         TipoInmueble getTipoInmueble() const override {return TipoInmueble::Casa;}
         bool getEsPH() const;

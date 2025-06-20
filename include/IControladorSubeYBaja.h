@@ -3,6 +3,7 @@
 
 #include <string>
 #include "TipoPublicacion.h"
+#include "TipoTecho.h"
 using namespace std;
 
 class IControladorSubeYBaja {
@@ -15,6 +16,7 @@ class IControladorSubeYBaja {
 
         virtual void representarPropietario(string nicknamePropietario)=0;
         virtual void altaCasa(string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho techo)=0;
+        virtual void altaApartamento(string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes)=0;
         
         virtual ~IControladorSubeYBaja() {} // Destructor virtual para permitir la eliminación adecuada de objetos derivados
 

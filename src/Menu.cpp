@@ -252,7 +252,7 @@ void altaUsuario()
                             techo = Plano;
                         }
                         IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
-                        ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, esPH, techo);
+                        ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie,anoConstruccion ,esPH, techo);
                         // TODO: controlador->altaCasa(direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
                     }
                     else
@@ -270,6 +270,8 @@ void altaUsuario()
                         float gastosComunes;
                         cin >> gastosComunes;
                         cin.ignore();
+                        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                        ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
                         // TODO: controlador->altaApartamento(direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes)
                     }
                 }

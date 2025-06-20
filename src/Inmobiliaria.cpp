@@ -66,6 +66,6 @@ void Inmobiliaria::eliminarPropietario(string nicknamePropietario){
 
 void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
 {
-    this->administraPropiedad.push_back(administraPropiedad);
+    this->administraProps.push_back(administraPropiedad);
 }
 

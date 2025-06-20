@@ -238,3 +238,29 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
     }
 }
 
+
+DTInmueble ControladorListar::detalleInmueble(int codigoInmueble){
+    Inmueble *inmueble = handlerInmueble->DevolverInmueble(codigoInmueble);
+    int codigo = inmueble->getCodigo();
+    string direccion = inmueble->getDireccion();
+    int numeroPuerta = inmueble->getNumeroPuerta();
+    int superficie = inmueble->getSuperficie();
+    int anoConstruccion = inmueble->getAnoConstruccion();
+    class::Casa *casa = dynamic_cast<class::Casa *>(inmueble);
+
+    if (casa)
+    {
+        bool esPH = casa->getEsPH();
+        TipoTecho techo = casa->getTipoTecho();
+        return DTCasa(codigo, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+    }
+
+    else
+    {
+        class::Apartamento *apartamento = dynamic_cast<class::Apartamento *>(inmueble);
+        int piso = apartamento->getPiso();
+        bool tieneAscensor = apartamento->getAscensor();
+        float gastosComunes = apartamento->getGastosComunes();
+        return DTApartamento(codigo, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
+    }
+}

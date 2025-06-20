@@ -10,6 +10,7 @@
 #include "HandlerPropietarios.h"
 #include "HandlerInmueble.h"
 #include "HandlerInmobiliarias.h"
+#include "HandlerAdministraPropiedad.h"
 #include "HandlerPublicacion.h"
 #include "IControladorSubeYBaja.h"
 #include "IControladorFechaActual.h"
@@ -48,8 +49,8 @@ private:
     ControladorSubeYBaja();
 
 public:
-    Inmobiliaria *getInmobiliaria(string nicknameInmobiliaria);//idem
-    
+    void eliminarInmueble(int codigoInmueble);    
+
     void altaAdministraPropiedad(string nicknameInmobiliaria, int codigoInmueble);
 
     static ControladorSubeYBaja *getInstancia();

@@ -10,6 +10,7 @@
 #include "TipoInmueble.h"
 #include "DTPublicacion.h"
 #include "DTInmueble.h"
+#include "DTInmuebleListado.h"
 
 using namespace std;
 
@@ -23,6 +24,9 @@ class IControladorListar{
         virtual set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo)=0;
         virtual DTInmueble detalleInmueblePublicacion(int codigoPublicacion)=0;
         virtual set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario)=0;
+        virtual set<DTInmuebleListado> listarInmuebles()=0;
+        virtual DTInmueble detalleInmueble(int codigo)=0;
+        virtual set<DTInmuebleListado> getInmueblesNoAdministradosInmobiliaria(string nicknameInmobiliaria)=0;
 };
 
 #endif

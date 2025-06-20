@@ -85,7 +85,7 @@ void Inmueble::agregarAdministraPropiedad(AdministraPropiedad *administraPropied
     this->administraPropiedad.push_back(administraPropiedad);
 }
 
-Inmueble::~Inmueble()
+/*Inmueble::~Inmueble()
 {
     if (propietario != NULL)
     {
@@ -97,4 +97,4 @@ Inmueble::~Inmueble()
         }
         propietario = NULL;
     }
-}
+}*/

@@ -12,7 +12,9 @@ class HandlerPropietarios
 private:
     map<string, Propietario *> coleccionPropietarios;
     static HandlerPropietarios *instancia;
+    
     HandlerPropietarios();
+
 
 public:
     static HandlerPropietarios *getInstancia();
@@ -54,6 +56,9 @@ public:
      * @return map<string, Propietario*>
      */
     const map<string, Propietario *> &getColeccionPropietarios() const; // ACLARACIÓN: La definición de la función es de esta forma porque: queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
+
+    
+
 };
 
 #endif // HANDLERPROPIETARIOS_H

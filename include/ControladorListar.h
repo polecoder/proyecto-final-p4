@@ -56,6 +56,8 @@ public:
      * @return set<DTUsuario> que contiene el nickname y nombre de todas las Inmobiliarias a las que el usuario está suscrito
      */
     set<DTUsuario> listarSuscripciones(string nicknameUsuario);
+
+    set<DTUsuario> listarPropietarios();
 };
 
 #endif

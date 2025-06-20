@@ -30,6 +30,9 @@ public:
     Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
     ~Inmobiliaria();
 
+    void agregarPropietario (Propietario *propietario);
+    void eliminarPropietario(string nicknamePropietario);
+
     string getDireccion() const;
     string getUrl() const;
     string getTelefono() const;

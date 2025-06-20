@@ -12,9 +12,11 @@ class DTInmuebleListado {
 
     public:
         DTInmuebleListado(int codigo, string direccion, string propietario);
-        int getCodigo();
-        string getDireccion();
-        string getPropietario();
+        int getCodigo()const;
+        string getDireccion()const;
+        string getPropietario()const;
+
+        bool operator<(const DTInmuebleListado& other) const;
 };
 
 #endif

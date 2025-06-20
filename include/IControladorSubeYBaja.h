@@ -20,7 +20,8 @@ class IControladorSubeYBaja {
         virtual void finalizarAltaUsuario()=0;
 
         virtual ~IControladorSubeYBaja() {} // Destructor virtual para permitir la eliminación adecuada de objetos derivados
-
+        virtual void eliminarInmueble(int codigoInmueble)=0;
+        virtual void altaAdministraPropiedad(string nicknameInmobiliaria, int codigoInmueble)=0;
 };
 
 #endif

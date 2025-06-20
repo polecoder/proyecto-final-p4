@@ -8,14 +8,26 @@ HandlerInmueble* HandlerInmueble::instancia = nullptr;
 HandlerInmueble::HandlerInmueble(){
     // No es necesario inicializar el mapa, ya que se crea vacio por defecto
 }; 
-HandlerInmueble::~HandlerInmueble() {
 
+HandlerInmueble::~HandlerInmueble()
+{
+    for (auto it = coleccionInmuebles.begin(); it != coleccionInmuebles.end(); ++it)
+    {
+        delete it->second; // Libera la memoria de cada Inmobiliaria
+    }
+    coleccionInmuebles.clear(); // Limpia el mapa
 }
+
 HandlerInmueble* HandlerInmueble::getInstancia() {
     if (instancia == NULL) {
         instancia = new HandlerInmueble();
     }
     return instancia;
+}
+
+bool HandlerInmueble::existeInmueble(int codigoInmueble)
+{
+    return coleccionInmuebles.find(codigoInmueble) != coleccionInmuebles.end();
 }
 
 void HandlerInmueble::agregarInmueble(Inmueble* inmueble) {
@@ -32,3 +44,4 @@ map<int, Inmueble*> HandlerInmueble::DevolverInmuebles() {
 Inmueble* HandlerInmueble::DevolverInmueble(int codigo) {
     return coleccionInmuebles[codigo];
 }
+

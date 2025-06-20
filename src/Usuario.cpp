@@ -1,6 +1,6 @@
 #include <string>
 #include "../include/Usuario.h"
-
+#include <iostream>
 using namespace std;
 
 Usuario::Usuario(string nickname, string contrasena, string nombre, string email)

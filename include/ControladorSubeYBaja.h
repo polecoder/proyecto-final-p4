@@ -1,24 +1,31 @@
 #ifndef CONTROLADORSUBEYBAJA_H
 #define CONTROLADORSUBEYBAJA_H
 
+#include "AdministraPropiedad.h"
+#include "Inmueble.h"
+#include "Propietario.h"
 #include "Publicacion.h"
 #include "Inmobiliaria.h"
-#include "HandlerInmobiliarias.h"
-#include "HandlerPublicacion.h"
-#include "DTFecha.h"
-#include "IControladorFechaActual.h"
-#include "AdministraPropiedad.h"
-#include "TipoPublicacion.h"
-#include "DTNotificacion.h"
-#include "Casa.h"
-#include "IControladorSubeYBaja.h"
-#include "Apartamento.h"
-#include "TipoInmueble.h"
-#include "TipoTecho.h"
 #include "HandlerClientes.h"
 #include "HandlerPropietarios.h"
 #include "HandlerInmueble.h"
+#include "HandlerInmobiliarias.h"
+#include "HandlerAdministraPropiedad.h"
+#include "HandlerPublicacion.h"
+#include "IControladorSubeYBaja.h"
+#include "IControladorFechaActual.h"
+#include "DTFecha.h"
+#include "DTInmueble.h"
+#include "DTInmuebleListado.h"
+#include "DTNotificacion.h"
+#include "TipoPublicacion.h"
+#include "TipoInmueble.h"
+#include "TipoTecho.h"
+#include "Casa.h"
+#include "Apartamento.h"
+
 #include <string>
+#include <set>
 
 using namespace std;
 
@@ -32,6 +39,7 @@ private:
     HandlerClientes *Hcliente;
     HandlerPropietarios *Hpropietario;
     HandlerInmueble *HInmueble;
+    HandlerAdministraPropiedad *handlerAdministraPropiedad;
 
     Inmobiliaria* UltimaInmobiliaria = nullptr; // Tuve que agregarlo para una funcion nueva :(
     Propietario* UltimoPropietario = nullptr; // No estoy seguro de si tiene que estar aca, me parece que en el handler no, pero creo que es necesario.    
@@ -41,6 +49,10 @@ private:
     ControladorSubeYBaja();
 
 public:
+    void eliminarInmueble(int codigoInmueble);    
+
+    void altaAdministraPropiedad(string nicknameInmobiliaria, int codigoInmueble);
+
     static ControladorSubeYBaja *getInstancia();
     ~ControladorSubeYBaja();
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio);

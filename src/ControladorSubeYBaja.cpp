@@ -5,6 +5,7 @@
 #include "../include/Inmueble.h"
 #include "../include/HandlerInmueble.h"
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ ControladorSubeYBaja *ControladorSubeYBaja::getInstancia()
 
 ControladorSubeYBaja::ControladorSubeYBaja()
 {
+    HInmueble = HandlerInmueble::getInstancia();
     Hinmobiliarias = HandlerInmobiliarias::getInstancia(); // Inicializa el Handler de inmobiliarias
     fechaActual = ControladorFechaActual::getInstancia();  // Inicializa el controlador de fecha actual
     HPublicacion = HandlerPublicacion::getInstancia();     // Inicializa el Handler de publicaciones
@@ -155,3 +157,39 @@ void ControladorSubeYBaja:: finalizarAltaUsuario(){
         delete UltimaInmobiliaria;
     }
 };
+
+void ControladorSubeYBaja::altaAdministraPropiedad(string nicknameInmobiliaria, int codigoInmueble)
+{
+    Inmobiliaria *inmobiliaria = Hinmobiliarias->getInmobiliaria(nicknameInmobiliaria);
+    Inmueble *inmueble = HInmueble->DevolverInmueble(codigoInmueble);
+    // Fecha actual del sistema
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int dia = ltm->tm_mday;
+    int mes = ltm->tm_mon + 1;
+    int anio = ltm->tm_year + 1900;
+    DTFecha *fechaActual = new DTFecha(dia, mes, anio);
+    AdministraPropiedad *administraPropiedad = new AdministraPropiedad(fechaActual, inmueble, inmobiliaria);
+    inmueble->agregarAdministraPropiedad(administraPropiedad);
+    inmobiliaria->agregarAdministraPropiedad(administraPropiedad);
+    handlerAdministraPropiedad->agregarAdministraPropiedad(administraPropiedad);
+}
+
+ void ControladorSubeYBaja:: eliminarInmueble(int codigoInmueble){
+    Inmueble *inmuebleElim = HInmueble->DevolverInmueble(codigoInmueble);
+    if (inmuebleElim != NULL)
+    {
+        Propietario *propietario = inmuebleElim->getPropietario();
+        if (propietario != NULL)
+        {
+            vector<Inmueble *> &inmuebles = propietario->getInmuebles();
+            vector<Inmueble *>::iterator inmuebleLinkeado = find(inmuebles.begin(), inmuebles.end(), inmuebleElim);
+            if (inmuebleLinkeado != inmuebles.end())
+            {
+                inmuebles.erase(inmuebleLinkeado);
+            }
+        }
+        HInmueble->eliminarInmueble(codigoInmueble);
+        delete inmuebleElim;
+    }
+ }

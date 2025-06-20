@@ -164,9 +164,6 @@ void altaUsuario()
         getline(cin, telefono);
         IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
-        if (usuarioOk){
-
-        }
         // TODO: usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
     }
     else if (tipoUsuario == 2)
@@ -280,6 +277,8 @@ void altaUsuario()
             cin >> salir;
             cin.ignore();
         }
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        ci->finalizarAltaUsuario();
         // TODO: controlador->finalizarAltaUsuario();
     }
     else

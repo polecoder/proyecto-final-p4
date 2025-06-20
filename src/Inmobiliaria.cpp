@@ -45,3 +45,10 @@ void Inmobiliaria::notificar(DTNotificacion notificacion)
     }
 }
 
+void Inmobiliaria::agregarPropietario(Propietario *propietario){
+    this->PropietariosAsociados[propietario->getNickname()] = propietario;
+};
+
+void Inmobiliaria::eliminarPropietario(string nicknamePropietario){
+    this->PropietariosAsociados.erase(nicknamePropietario);
+};

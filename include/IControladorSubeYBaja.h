@@ -12,6 +12,8 @@ class IControladorSubeYBaja {
         virtual bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono)=0;
         virtual bool altaInmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)=0;
         virtual bool altaCliente(string nickname, string contrasena, string nombre, string email, string apellido, string documento)=0;
+
+        virtual void representarPropietario(string nicknamePropietario)=0;
         
         virtual ~IControladorSubeYBaja() {} // Destructor virtual para permitir la eliminación adecuada de objetos derivados
 

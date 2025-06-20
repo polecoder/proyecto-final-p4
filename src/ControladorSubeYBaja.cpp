@@ -83,6 +83,7 @@ bool ControladorSubeYBaja:: altaPropietario(string nickname, string contrasena, 
     if (!existe) {
         Propietario* nuevoPropietario = new Propietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
         Hpropietario->agregarPropietario(nuevoPropietario);
+        UltimoPropietario = nuevoPropietario; // Guardar el último propietario creado
         return true; // Alta exitosa
     }
     return false;
@@ -93,6 +94,7 @@ bool ControladorSubeYBaja:: altaInmobiliaria(string nickname, string contrasena,
     if (!existe) {
         Inmobiliaria* nuevaInmobiliaria = new Inmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
         Hinmobiliarias->agregarInmobiliaria(nuevaInmobiliaria);
+        UltimaInmobiliaria = nuevaInmobiliaria; // Guardar la última inmobiliaria creada
         return true;
     }
     return false;
@@ -107,3 +109,17 @@ bool ControladorSubeYBaja:: altaCliente(string nickname, string contrasena, stri
     }
     return false;
 }
+
+//PRE: Existe una referencia a una instancia Inmobiliaria recordada
+//PRE2: Existe un propietario p con p.nickname = nicknamePropietario
+void ControladorSubeYBaja::representarPropietario(string nicknamePropietario) {
+    if (Hpropietario->existePropietario(nicknamePropietario)) {
+        Propietario* propietario = Hpropietario->getPropietario(nicknamePropietario);
+        if (UltimaInmobiliaria != nullptr) { // Verifica si hay una inmobiliaria registrada
+            UltimaInmobiliaria->agregarPropietario(propietario);
+        } 
+    }
+}
+
+void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int superficie, bool esPH, TipoTecho techo) {
+    

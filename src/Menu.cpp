@@ -164,6 +164,9 @@ void altaUsuario()
         getline(cin, telefono);
         IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        if (usuarioOk){
+
+        }
         // TODO: usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
     }
     else if (tipoUsuario == 2)
@@ -193,12 +196,21 @@ void altaUsuario()
                 if (tipoUsuario == 1)
                 {
                     cout << "Lista de Propietarios:\n";
+                    Factory *factory = Factory::getInstancia();
+                    IControladorListar *controladorListar = factory->getControladorListar();
+                    set<DTUsuario> Mostrar = controladorListar->listarPropietarios();
                     // TODO: Coleccion de DTUsuario = controlador->listarPropietarios();
                     // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+                    set<DTUsuario>::iterator it;
+                    for (it = Mostrar.begin(); it != Mostrar.end(); ++it){
+                        cout << "- Nickname: "<< (*it).getNickname() <<", Nombre: " << (*it).getNombre() <<endl; // Mostrar el nickname y nombre de cada propietario
+                    }
                     cout << "Nickname propietario a representar: ";
                     string nicknamePropietario;
                     getline(cin, nicknamePropietario);
-                    // TODO: controlador->representarPropietario(nicknamePropietario)
+                    IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                    ci->representarPropietario(nicknamePropietario);
+                    //TODO: controlador->representarPropietario(nicknamePropietario);
                 }
                 else if (tipoUsuario == 2)
                 {

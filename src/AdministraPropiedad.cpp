@@ -17,8 +17,10 @@ AdministraPropiedad :: ~AdministraPropiedad(){
     // TODO: Implementar
 };
 
+
 Inmueble* AdministraPropiedad::getInmueble() {
     return this->inmueble;
+
 };
   
 int AdministraPropiedad::getUltimaPublicacion(){
@@ -42,6 +44,7 @@ bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoP
     };
     return (it!=publicaciones.end());
 }
+
 
 Publicacion* AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tipoPublicacion) {
     map<int,Publicacion*> :: iterator it;

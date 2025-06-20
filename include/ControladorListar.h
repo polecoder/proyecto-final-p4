@@ -41,6 +41,7 @@ public:
     set<DTInmuebleAdministrado> listarInmueblesAdministrados(string nicknameInmobiliaria);
     set<DTNotificacion> listarNotificacionesDeUsuario(string nicknameUsuario);
     set<DTUsuario> listarSuscripciones(string nicknameUsuario);
+    set<DTUsuario> listarPropietarios();
 
     set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
     DTInmueble detalleInmueblePublicacion(int codigoPublicacion);

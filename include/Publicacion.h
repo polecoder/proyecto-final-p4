@@ -1,3 +1,4 @@
+
 #ifndef PUBLICACION_H
 #define PUBLICACION_H
 #include "DTFecha.h"
@@ -38,5 +39,6 @@ public:
     Inmobiliaria* getInmobiliaria() const;// se devuelve un puntero a la instancia  inmobiliaria asociada al AdministraPropiedad asociado con la publicacion.
     Inmueble* getInmueble() const;// se devuelve un puntero a la instancia asociada al inmueble asociado al AdministraPropiedad asociado con la publiaccion.
 };
+
 
 #endif

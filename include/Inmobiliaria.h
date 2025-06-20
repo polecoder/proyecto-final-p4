@@ -1,3 +1,4 @@
+
 #ifndef INMOBILIARIA_H
 #define INMOBILIARIA_H
 #include "Usuario.h"
@@ -36,6 +37,7 @@ class Inmobiliaria : public Usuario {
         vector<AdministraPropiedad*> getadministraProps() const;
         void agregarClienteSuscripto(Cliente *cliente);
         void agregarPropietario(Propietario *propietario);
+        void eliminarPropietario(string nicknamePropietario);
         void notificar(DTNotificacion notificacion);
 };
 

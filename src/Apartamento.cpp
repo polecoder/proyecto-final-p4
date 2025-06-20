@@ -20,5 +20,3 @@ bool Apartamento:: getAscensor() const{
 float Apartamento:: getGastosComunes() const{
     return this->gastosComunes;
 };
-
-

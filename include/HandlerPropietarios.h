@@ -8,9 +8,11 @@ using namespace std;
 
 class HandlerPropietarios{
 private:
-    map<string, Propietario*> coleccionPropietarios;
-    static HandlerPropietarios* instancia;
+    map<string, Propietario *> coleccionPropietarios;
+    static HandlerPropietarios *instancia;
+    
     HandlerPropietarios();
+
 
 public:
     static HandlerPropietarios* getInstancia();

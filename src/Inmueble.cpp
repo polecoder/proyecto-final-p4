@@ -40,3 +40,8 @@ Propietario *Inmueble::getPropietario() const
 {
     return propietario;
 };
+
+void Inmueble::setPropietario(Propietario *propietario)
+{
+    this->propietario = propietario;
+};

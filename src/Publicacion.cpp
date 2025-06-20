@@ -62,3 +62,4 @@ Inmobiliaria* Publicacion:: getInmobiliaria() const{
 Inmueble* Publicacion:: getInmueble() const{
     return this->apAsociado->getInmueble();
 }
+

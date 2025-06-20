@@ -150,6 +150,8 @@ void altaUsuario()
         getline(cin, apellido);
         cout << "Documento: ";
         getline(cin, documento);
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        bool usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
         // TODO: usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
     }
     else if (tipoUsuario == 1)
@@ -160,6 +162,11 @@ void altaUsuario()
         getline(cin, url);
         cout << "Telefono: ";
         getline(cin, telefono);
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        if (usuarioOk){
+
+        }
         // TODO: usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
     }
     else if (tipoUsuario == 2)
@@ -168,6 +175,8 @@ void altaUsuario()
         getline(cin, cuentaBancaria);
         cout << "Telefono: ";
         getline(cin, telefono);
+        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
         // TODO: usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
     }
     if (usuarioOk)
@@ -187,12 +196,21 @@ void altaUsuario()
                 if (tipoUsuario == 1)
                 {
                     cout << "Lista de Propietarios:\n";
+                    Factory *factory = Factory::getInstancia();
+                    IControladorListar *controladorListar = factory->getControladorListar();
+                    set<DTUsuario> Mostrar = controladorListar->listarPropietarios();
                     // TODO: Coleccion de DTUsuario = controlador->listarPropietarios();
                     // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
+                    set<DTUsuario>::iterator it;
+                    for (it = Mostrar.begin(); it != Mostrar.end(); ++it){
+                        cout << "- Nickname: "<< (*it).getNickname() <<", Nombre: " << (*it).getNombre() <<endl; // Mostrar el nickname y nombre de cada propietario
+                    }
                     cout << "Nickname propietario a representar: ";
                     string nicknamePropietario;
                     getline(cin, nicknamePropietario);
-                    // TODO: controlador->representarPropietario(nicknamePropietario)
+                    IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                    ci->representarPropietario(nicknamePropietario);
+                    //TODO: controlador->representarPropietario(nicknamePropietario);
                 }
                 else if (tipoUsuario == 2)
                 {
@@ -233,6 +251,8 @@ void altaUsuario()
                         {
                             techo = Plano;
                         }
+                        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                        ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie,anoConstruccion ,esPH, techo);
                         // TODO: controlador->altaCasa(direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
                     }
                     else
@@ -250,6 +270,8 @@ void altaUsuario()
                         float gastosComunes;
                         cin >> gastosComunes;
                         cin.ignore();
+                        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                        ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
                         // TODO: controlador->altaApartamento(direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes)
                     }
                 }
@@ -270,7 +292,7 @@ void altaPublicacion()
 {
     Factory *factory = Factory::getInstancia();
 
-    std::cout << "Lista de Inmobiliarias:\n";
+    cout << "Lista de Inmobiliarias:\n";
     // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
     IControladorListar *controladorListar = factory->getControladorListar();
     set<DTUsuario> DTUsuarios = controladorListar->listarInmobiliarias();
@@ -278,18 +300,18 @@ void altaPublicacion()
     set<DTUsuario>::iterator it;
     for (it = DTUsuarios.begin(); it != DTUsuarios.end(); ++it)
     {
-        std::cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << std::endl;
+        cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << endl;
     };
-    std::cout << "Nickname de la inmobiliaria: ";
-    std::string nicknameInmobiliaria;
-    std::getline(std::cin, nicknameInmobiliaria);
+    cout << "Nickname de la inmobiliaria: ";
+    string nicknameInmobiliaria;
+    getline(cin, nicknameInmobiliaria);
     // TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> DTInmueblesAdministrados = controladorListar->listarInmueblesAdministrados(nicknameInmobiliaria);
-    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy, Propietario: zzz"
+    // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy
     set<DTInmuebleAdministrado>::iterator it2;
     for (it2 = DTInmueblesAdministrados.begin(); it2 != DTInmueblesAdministrados.end(); ++it2)
     {
-        std::cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion() << std::endl;
+        cout << "- Codigo: " << (*it2).getCodigo() << ", Direccion: " << (*it2).getDireccion() << endl;
     };
     int codigoInmueble;
     cout << "Inmueble: ";
@@ -309,8 +331,8 @@ void altaPublicacion()
     getline(cin, texto);
     cout << "Precio: ";
     float precio;
-    std::cin >> precio;
-    std::cin.ignore();
+    cin >> precio;
+    cin.ignore();
     // TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
     IControladorSubeYBaja *controladorSubeYBaja = factory->getControladorSubeYBaja();
     bool altapublicacion = controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
@@ -443,7 +465,6 @@ void suscribirseNotificaciones()
     //TODO:Controlador->suscribirse(nicknameUsuario, inmobiliariasElegidas);
     controladorSuscripciones->suscribirse(nicknameUsuario, inmobiliariasElegidas);
     
-
 }
 
 void consultaNotificaciones()

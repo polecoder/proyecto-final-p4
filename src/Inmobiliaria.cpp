@@ -7,7 +7,7 @@
 using namespace std;
 
 Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)
-    : Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
+    :Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
 {
     this->direccion = direccion;
     this->url = url;
@@ -53,4 +53,8 @@ void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente){
 
 void Inmobiliaria::agregarPropietario(Propietario *propietario){
     this->PropietariosAsociados[propietario->getNickname()] = propietario;
+};
+
+void Inmobiliaria::eliminarPropietario(string nicknamePropietario){
+    this->PropietariosAsociados.erase(nicknamePropietario);
 };

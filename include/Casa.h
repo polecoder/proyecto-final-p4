@@ -6,8 +6,8 @@
 
 using namespace std;
 
-class Casa : public Inmueble
-{
+class Casa : public Inmueble{
+
 private:
     bool esPH;
     TipoTecho techo;
@@ -15,6 +15,7 @@ private:
     public:
         Casa(int codigo, string direccion, int numeroPuerta, int superficie, int anoConstruccion, bool esPH, TipoTecho tipo);
         ~Casa();
+        // TODO: Implementar esto en .cpp
         TipoInmueble getTipoInmueble() const override {return TipoInmueble::Casa;}
         bool getEsPH() const;
         TipoTecho getTipoTecho() const;

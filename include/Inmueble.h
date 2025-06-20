@@ -3,6 +3,7 @@
 #include <string>
 #include "TipoInmueble.h"
 #include "Propietario.h"
+#include "TipoInmueble.h"
 
 class Propietario;
 

@@ -164,3 +164,15 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
     }
     return inmobiliariasNoSuscripto;
 };
+
+set<DTUsuario> ControladorListar::listarPropietarios(){
+
+    map<string, Propietario *> propietarios = this->handlerPropietarios->getColeccionPropietarios();
+    set<DTUsuario> Mostrar;
+    map<string, Propietario *>::iterator it;
+    for (it = propietarios.begin(); it != propietarios.end(); ++it)
+    {
+        Mostrar.insert(DTUsuario(it->first, it->second->getNombre())); // first es el nickname, second es el objeto propietario
+    }
+    return Mostrar;
+}

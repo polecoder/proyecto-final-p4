@@ -1,6 +1,7 @@
 #ifndef APARTAMENTO_H
 #define APARTAMENTO_H
 #include "Inmueble.h"
+#include "TipoInmueble.h"
 
 using namespace std;
 
@@ -17,6 +18,8 @@ class Apartamento : public Inmueble {
         int getPiso() const;
         bool getAscensor() const;
         float getGastosComunes() const;
+        // TODO: Implementar esto en .cpp
+        TipoInmueble getTipoInmueble() const override { return TipoInmueble::Apartamento; }
 };
 
 #endif

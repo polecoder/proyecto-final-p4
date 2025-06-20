@@ -1,6 +1,7 @@
 #ifndef CARGADATOS_H
 #define CARGADATOS_H
 
+
 class CargaDatos
 {
 private:

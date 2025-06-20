@@ -146,3 +146,12 @@ void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, i
     HInmueble->agregarInmueble(nuevoApartamento);
     codigoUltimoInmueble = codigoInmueble;
 }
+
+void ControladorSubeYBaja:: finalizarAltaUsuario(){
+    if (UltimoPropietario != nullptr){
+        delete UltimoPropietario;
+    }
+    else if (UltimaInmobiliaria!=nullptr){
+        delete UltimaInmobiliaria;
+    }
+};

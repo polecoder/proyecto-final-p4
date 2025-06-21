@@ -251,7 +251,7 @@ void altaUsuario()
                         }
                         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
-                        interfazImprimir->imprimirColeccionInmuebles();
+                        
                     }
                     else
                     {
@@ -273,10 +273,11 @@ void altaUsuario()
                         interfazImprimir->imprimirColeccionInmuebles();
                     }
                 }
+                cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
+                cin >> salir;
+                cin.ignore();
             }
-            cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
-            cin >> salir;
-            cin.ignore();
+           
         }
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         ci->finalizarAltaUsuario();

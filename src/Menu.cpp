@@ -399,10 +399,11 @@ void consultaPublicaciones()
             cout << "Codigo: " << apartamento->getCodigo() << ", direccion: " << apartamento->getDireccion() << ", nro. puerta:" << apartamento->getNumeroPuerta() << ", superficie: " << apartamento->getSuperficie() << ", construccion: " << apartamento->getAnioConstruccion()
                  << ", piso: " << apartamento->getPiso() << ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes() << endl;
         }
-        if (DTCasa *casa = dynamic_cast<DTCasa *>(inmueble))
+        else if (DTCasa *casa = dynamic_cast<DTCasa *>(inmueble))
         {
-            cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
+            cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << " nro. puerta " << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << " PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
         }
+        delete inmueble; // 
         // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
     }
 }

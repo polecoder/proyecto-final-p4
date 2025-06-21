@@ -38,7 +38,7 @@ string DTPublicacion::getInmobiliaria() const
 
 DTPublicacion::~DTPublicacion()
 {
-    delete fecha;
+
 };
 
 bool DTPublicacion::operator<(const DTPublicacion &other) const

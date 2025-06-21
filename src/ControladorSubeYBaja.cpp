@@ -117,8 +117,8 @@ bool ControladorSubeYBaja::altaCliente(string nickname, string contrasena, strin
     bool existe = Hcliente->existeCliente(nickname);
     if (!existe)
     {
-        Cliente *nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
-        Hcliente->agregarCliente(nuevoCliente);
+        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
+        this->Hcliente->agregarCliente(nuevoCliente);
         return true;
     }
     return false;

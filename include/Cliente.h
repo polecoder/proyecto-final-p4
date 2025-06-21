@@ -37,6 +37,6 @@ public:
     void eliminarNotificaciones();
 };
 
-ostream &operator<<(ostream &os, const Cliente &c);
+ostream &operator<<(ostream &os, const Cliente* &c);
 
 #endif

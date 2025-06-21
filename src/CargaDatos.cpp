@@ -16,7 +16,7 @@ CargaDatos::CargaDatos()
     // Agregar Clientes
     interfazSubeYBaja->altaCliente("luisito23", "qweasd12", "Luis", "luisito23@gmail.com", "Pérez", "46859342");
     interfazSubeYBaja->altaCliente("anarojo88", "claveAna1", "Ana", "anarojo88@hotmail.com", "Rojo", "31287465");
-    // Agregar Propietarios
+    /*// Agregar Propietarios
     interfazSubeYBaja->altaPropietario("marcelom", "banco123", "Marcelo", "marcelo.m@gmail.com", "099876543", "123456789012");
     interfazSubeYBaja->altaApartamento("Av. Brasil", 2031, 75, 1980, 5, true, 3500);
     interfazSubeYBaja->altaCasa("Av. Rivera", 1011, 120, 1995, true, Plano);
@@ -149,6 +149,7 @@ CargaDatos::CargaDatos()
     interfazSuscripciones->suscribirse("jorge88", casasur123);
     interfazSuscripciones->suscribirse("jorge88", idealhome);
     interfazSuscripciones->suscribirse("jorge88", vivaurbana);
+    */
 }
 
 CargaDatos *CargaDatos::getInstancia()

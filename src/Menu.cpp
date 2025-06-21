@@ -153,7 +153,7 @@ void altaUsuario()
         cout << "Documento: ";
         getline(cin, documento);
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
-        bool usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
+        usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
         interfazImprimir->imprimirColeccionClientes();
     }
     else if (tipoUsuario == 1)

@@ -251,7 +251,6 @@ void altaUsuario()
                         }
                         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
-                        
                     }
                     else
                     {
@@ -277,7 +276,6 @@ void altaUsuario()
                 cin >> salir;
                 cin.ignore();
             }
-           
         }
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         ci->finalizarAltaUsuario();
@@ -585,9 +583,11 @@ void cargarDatos()
 {
     Factory *factory = Factory::getInstancia();
     CargaDatos::getInstancia();
-    factory->getControladorImprimir()->imprimirColeccionClientes();
-    factory->getControladorImprimir()->imprimirColeccionInmobiliarias();
-    factory->getControladorImprimir()->imprimirColeccionPropietarios();
+    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
+    interfazImprimir->imprimirColeccionClientes();
+    interfazImprimir->imprimirColeccionInmobiliarias();
+    interfazImprimir->imprimirColeccionPropietarios();
+    interfazImprimir->imprimirColeccionAdministraPropiedad();
 }
 
 void verFechaActual()

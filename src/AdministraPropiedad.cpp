@@ -18,17 +18,17 @@ AdministraPropiedad ::~AdministraPropiedad() {
     // TODO: Implementar
 };
 
-Inmueble *AdministraPropiedad::getInmueble()
+Inmueble *AdministraPropiedad::getInmueble() const
 {
     return this->inmueble;
 };
 
-int AdministraPropiedad::getUltimaPublicacion()
+int AdministraPropiedad::getUltimaPublicacion() const
 {
     return this->ultimaPublicacion;
 };
 
-string AdministraPropiedad::getNicknameInmobiliaria()
+string AdministraPropiedad::getNicknameInmobiliaria() const
 {
     return inmobiliaria->getNickname();
 }
@@ -70,7 +70,28 @@ Publicacion *AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tip
     return it->second;
 };
 
-Inmobiliaria *AdministraPropiedad::getInmobiliaria()
+Inmobiliaria *AdministraPropiedad::getInmobiliaria() const
 {
     return this->inmobiliaria;
 };
+
+map<int, Publicacion *> AdministraPropiedad::getColeccionPublicaciones() const
+{
+    return this->publicaciones;
+}
+
+ostream &operator<<(ostream &os, const AdministraPropiedad &ap)
+{
+    os << "ADMINISTRAPROPIEDAD: " << endl;
+    os << "|    " << *ap.getInmobiliaria() << endl;
+    os << "|    " << *ap.getInmueble() << endl;
+    os << "|    PUBLICACIONES:" << endl;
+    map<int, Publicacion *> publicaciones = ap.getColeccionPublicaciones();
+    int contador = 1;
+    for (map<int, Publicacion *>::iterator it = publicaciones.begin(); it != publicaciones.end(); ++it)
+    {
+        os << "    | " << contador << " - " << *(it->second);
+        contador++;
+    }
+    return os;
+}

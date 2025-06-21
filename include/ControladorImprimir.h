@@ -1,6 +1,7 @@
 #ifndef CONTROLADORIMPRIMIR_H
 #define CONTROLADORIMPRIMIR_H
 
+#include "HandlerAdministraPropiedad.h"
 #include "HandlerInmobiliarias.h"
 #include "HandlerPublicacion.h"
 #include "HandlerClientes.h"
@@ -12,6 +13,7 @@ class ControladorImprimir : public IControladorImprimir
 {
 private:
     static ControladorImprimir *instancia;
+    HandlerAdministraPropiedad *handlerAdministraPropiedad;
     HandlerInmobiliarias *handlerInmobiliarias;
     HandlerPublicacion *handlerPublicaciones;
     HandlerClientes *handlerClientes;
@@ -27,6 +29,7 @@ public:
     void imprimirColeccionInmuebles();
     void imprimirColeccionPropietarios();
     void imprimirColeccionPublicaciones();
+    void imprimirColeccionAdministraPropiedad();
 };
 
 #endif

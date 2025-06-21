@@ -15,30 +15,33 @@ class Publicacion;
 class Inmueble;
 class Inmobiliaria;
 
-class AdministraPropiedad{
-    private:
-        DTFecha* fecha;
-        int ultimaPublicacion;
-        Inmueble* inmueble;
-        map<int, Publicacion*> publicaciones;
-        Inmobiliaria* inmobiliaria;
+class AdministraPropiedad
+{
+private:
+    DTFecha *fecha;
+    int ultimaPublicacion;
+    Inmueble *inmueble;
+    map<int, Publicacion *> publicaciones;
+    Inmobiliaria *inmobiliaria;
 
-    public:
-        AdministraPropiedad(DTFecha* fecha, Inmueble* inmueble, Inmobiliaria* inmo); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
-        ~AdministraPropiedad(); // TODO: no se si borramos las publicaciones o no
+public:
+    AdministraPropiedad(DTFecha *fecha, Inmueble *inmueble, Inmobiliaria *inmo); // Se inicializa con ultimaPublicacion = 0 y con un map vacio
+    ~AdministraPropiedad();                                                      // TODO: no se si borramos las publicaciones o no
 
-        Inmueble* getInmueble();  
-        int getUltimaPublicacion();  
+    Inmueble *getInmueble() const;
+    int getUltimaPublicacion() const;
 
-        void setUltimaPublicacion(int up);
-        void agregarPublicacion(int codigo, Publicacion *publicacion);
+    void setUltimaPublicacion(int up);
+    void agregarPublicacion(int codigo, Publicacion *publicacion);
 
-        bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
-        Publicacion* encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
+    bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
+    Publicacion *encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
 
-        Inmobiliaria* getInmobiliaria();
-        string getNicknameInmobiliaria();
+    Inmobiliaria *getInmobiliaria() const;
+    string getNicknameInmobiliaria() const;
+    map<int, Publicacion *> getColeccionPublicaciones() const;
 };
 
-#endif
+ostream &operator<<(ostream &os, const AdministraPropiedad &ap);
 
+#endif

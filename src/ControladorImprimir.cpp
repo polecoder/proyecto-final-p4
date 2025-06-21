@@ -10,6 +10,7 @@ ControladorImprimir::ControladorImprimir()
     this->handlerClientes = HandlerClientes::getInstancia();
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerInmuebles = HandlerInmueble::getInstancia();
+    this->handlerAdministraPropiedad = HandlerAdministraPropiedad::getInstancia();
 }
 
 ControladorImprimir *ControladorImprimir::getInstancia()
@@ -46,4 +47,9 @@ void ControladorImprimir::imprimirColeccionPropietarios()
 void ControladorImprimir::imprimirColeccionPublicaciones()
 {
     this->handlerPublicaciones->imprimirColeccionPublicaciones();
+}
+
+void ControladorImprimir::imprimirColeccionAdministraPropiedad()
+{
+    this->handlerAdministraPropiedad->imprimirColeccionAdministraPropiedad();
 }

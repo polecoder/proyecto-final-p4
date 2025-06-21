@@ -1,6 +1,7 @@
 #ifndef ICONTROLADORIMPRIMIR_H
 #define ICONTROLADORIMPRIMIR_H
 
+#include "HandlerAdministraPropiedad.h"
 #include "HandlerInmobiliarias.h"
 #include "HandlerPublicacion.h"
 #include "HandlerClientes.h"
@@ -16,6 +17,7 @@ public:
     virtual void imprimirColeccionInmuebles() = 0;
     virtual void imprimirColeccionPropietarios() = 0;
     virtual void imprimirColeccionPublicaciones() = 0;
+    virtual void imprimirColeccionAdministraPropiedad() = 0;
 };
 
 #endif

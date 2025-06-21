@@ -72,7 +72,7 @@ void HandlerPropietarios::imprimirColeccionPropietarios()
 {
     map<string, Propietario *>::iterator it;
     int contador = 1;
-    cout << "-- IMPRIMIR COLECCION PROPIETARIIOS --" << endl;
+    cout << "-- IMPRIMIR COLECCION PROPIETARIOS --" << endl;
     for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
     {
         cout << contador << " - " << *(it->second) << endl;
@@ -81,6 +81,7 @@ void HandlerPropietarios::imprimirColeccionPropietarios()
         for (vector<Inmueble *>::iterator it2 = inmuebles.begin(); it2 != inmuebles.end(); it2++)
         {
             cout << "|    " << contador2 << " - " << **it2 << endl;
+            contador2++;
         }
         contador++;
     }

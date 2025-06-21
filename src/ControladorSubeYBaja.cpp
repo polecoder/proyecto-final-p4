@@ -117,7 +117,7 @@ bool ControladorSubeYBaja::altaCliente(string nickname, string contrasena, strin
     bool existe = Hcliente->existeCliente(nickname);
     if (!existe)
     {
-        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
+        Cliente *nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
         this->Hcliente->agregarCliente(nuevoCliente);
         return true;
     }
@@ -150,7 +150,6 @@ void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int supe
     // Aquí deberías guardar nuevaCasa en el handler correspondiente, por ejemplo:
     HInmueble->agregarInmueble(nuevaCasa);
     codigoUltimoInmueble = codigoInmueble;
-    
 }
 
 void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes)
@@ -160,7 +159,7 @@ void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, i
     if (UltimoPropietario != nullptr)
     {
         nuevoApartamento->setPropietario(UltimoPropietario);
-         UltimoPropietario->agregarInmueble(nuevoApartamento);
+        UltimoPropietario->agregarInmueble(nuevoApartamento);
     }
     // Aquí deberías guardar nuevoApartamento en el handler correspondiente, por ejemplo:
     HInmueble->agregarInmueble(nuevoApartamento);

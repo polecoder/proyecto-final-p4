@@ -583,7 +583,11 @@ void altaAdministracionPropiedad()
 
 void cargarDatos()
 {
+    Factory *factory = Factory::getInstancia();
     CargaDatos::getInstancia();
+    factory->getControladorImprimir()->imprimirColeccionClientes();
+    factory->getControladorImprimir()->imprimirColeccionInmobiliarias();
+    factory->getControladorImprimir()->imprimirColeccionPropietarios();
 }
 
 void verFechaActual()

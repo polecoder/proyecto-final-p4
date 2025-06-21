@@ -22,7 +22,7 @@ CargaDatos::CargaDatos()
     interfazSubeYBaja->altaApartamento("Av. Brasil", 2031, 75, 1980, 5, true, 3500);
     
 
-   /* interfazSubeYBaja->altaPropietario("robertarce", "pass456", "Roberto", "roberto.a@yahoo.com", "091234567", "987654321001");
+    interfazSubeYBaja->altaPropietario("robertarce", "pass456", "Roberto", "roberto.a@yahoo.com", "091234567", "987654321001");
     interfazSubeYBaja->altaCasa("Camino Maldonado", 1540, 95, 1988, false, Plano);
 
     interfazSubeYBaja->altaPropietario("soledadf", "sole789", "Soledad", "soledad.f@gmail.com", "092345678", "654321987654");
@@ -79,7 +79,7 @@ CargaDatos::CargaDatos()
 
     interfazFechaActual->setNewFechaActual(19, 5, 2022);
     interfazSubeYBaja->altaAdministraPropiedad(8, "vivaurbana");
-    // Crear Publicaciones
+   /* // Crear Publicaciones
     interfazFechaActual->setNewFechaActual(9, 10, 2011);
     interfazSubeYBaja->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
 

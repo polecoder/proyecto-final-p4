@@ -21,10 +21,13 @@ ControladorSubeYBaja *ControladorSubeYBaja::getInstancia()
 
 ControladorSubeYBaja::ControladorSubeYBaja()
 {
+    Hinmobiliarias = HandlerInmobiliarias::getInstancia();
+    HPublicacion = HandlerPublicacion::getInstancia();
+    Hcliente = HandlerClientes::getInstancia();
+    Hpropietario = HandlerPropietarios::getInstancia();
     HInmueble = HandlerInmueble::getInstancia();
-    Hinmobiliarias = HandlerInmobiliarias::getInstancia(); // Inicializa el Handler de inmobiliarias
-    fechaActual = ControladorFechaActual::getInstancia();  // Inicializa el controlador de fecha actual
-    HPublicacion = HandlerPublicacion::getInstancia();     // Inicializa el Handler de publicaciones
+    handlerAdministraPropiedad = HandlerAdministraPropiedad::getInstancia();
+    fechaActual = ControladorFechaActual::getInstancia();
 };
 ControladorSubeYBaja::~ControladorSubeYBaja() {
     // Destructor vacio, no es necesario liberar memoria ya que no hay punteros

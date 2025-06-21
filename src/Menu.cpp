@@ -20,6 +20,7 @@
 #include "../include/IControladorFechaActual.h"
 #include "../include/IControladorSuscripciones.h"
 #include "../include/IControladorListar.h"
+#include "../include/IControladorImprimir.h"
 #include <string>
 #include <set>
 
@@ -111,6 +112,7 @@ void altaUsuario()
 {
 
     Factory *factory = Factory::getInstancia();
+    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
 
     cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
@@ -152,6 +154,7 @@ void altaUsuario()
         getline(cin, documento);
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         bool usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
+        interfazImprimir->imprimirColeccionClientes();
     }
     else if (tipoUsuario == 1)
     {
@@ -163,6 +166,7 @@ void altaUsuario()
         getline(cin, telefono);
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        interfazImprimir->imprimirColeccionInmobiliarias();
     }
     else if (tipoUsuario == 2)
     {
@@ -172,6 +176,7 @@ void altaUsuario()
         getline(cin, telefono);
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+        interfazImprimir->imprimirColeccionPropietarios();
     }
     if (usuarioOk)
     {
@@ -246,6 +251,7 @@ void altaUsuario()
                         }
                         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+                        interfazImprimir->imprimirColeccionInmuebles();
                     }
                     else
                     {
@@ -264,6 +270,7 @@ void altaUsuario()
                         cin.ignore();
                         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
+                        interfazImprimir->imprimirColeccionInmuebles();
                     }
                 }
             }
@@ -273,7 +280,6 @@ void altaUsuario()
         }
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         ci->finalizarAltaUsuario();
-        // TODO: controlador->finalizarAltaUsuario();
     }
     else
     {

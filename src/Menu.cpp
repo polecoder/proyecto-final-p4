@@ -178,7 +178,7 @@ void altaUsuario()
         if (tipoUsuario == 1 || tipoUsuario == 2)
         {
             int salir = 1;
-            cout << "¿Quiere ingresar los datos relacionados? (1: Si, 0: No): ";
+            cout << "Quiere ingresar los datos relacionados? (1: Si, 0: No): ";
             cin >> salir;
             cin.ignore();
             string inmuebleDireccion;
@@ -267,7 +267,7 @@ void altaUsuario()
                     }
                 }
             }
-            cout << "¿Quiere seguir ingresando? (1: Si, 0: No): ";
+            cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
             cin >> salir;
             cin.ignore();
         }
@@ -436,7 +436,7 @@ void eliminarInmueble()
         cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
     }
     int deseaEliminar;
-    cout << "¿Desea eliminar?: (1: Si, 0: No)";
+    cout << "Desea eliminar?: (1: Si, 0: No)";
     cin >> deseaEliminar;
     cin.ignore();
     if (deseaEliminar == 1)
@@ -465,7 +465,7 @@ void suscribirseNotificaciones()
     }
     set<string> inmobiliariasElegidas;
     int salir = 1;
-    cout << "¿Quiere suscribirse a alguna inmobiliaria? (1: Si, 0: No): ";
+    cout << "Quiere suscribirse a alguna inmobiliaria? (1: Si, 0: No): ";
     cin >> salir;
     cin.ignore();
     string nicknameInmobiliaria;
@@ -475,7 +475,7 @@ void suscribirseNotificaciones()
         cin >> nicknameInmobiliaria;
         cin.ignore();
         inmobiliariasElegidas.insert(nicknameInmobiliaria);
-        cout << "¿Quiere suscribirse a mas inmobiliarias? (1: Si, 2: No): ";
+        cout << "Quiere suscribirse a mas inmobiliarias? (1: Si, 2: No): ";
         cin >> salir;
         cin.ignore();
     }
@@ -522,7 +522,7 @@ void eliminarSuscripciones()
     }
     // Eliminar las suscripciones elegidas por el Administrador
     int deseaEliminar;
-    cout << "¿Desea eliminar alguna suscripción?: (1: Si, 0: No)";
+    cout << "Desea eliminar alguna suscripción?: (1: Si, 0: No)";
     cin >> deseaEliminar;
     cin.ignore();
     if (deseaEliminar = 0)
@@ -536,7 +536,7 @@ void eliminarSuscripciones()
         string nicknameInmobiliaria;
         getline(cin, nicknameInmobiliaria);
         inmobiliariasElegidas.insert(nicknameInmobiliaria);
-        cout << "¿Desea eliminar otra suscripción?: (1: Si, 0: No)";
+        cout << "Desea eliminar otra suscripción?: (1: Si, 0: No)";
         cin >> deseaEliminar;
         cin.ignore();
     }

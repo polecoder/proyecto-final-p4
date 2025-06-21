@@ -15,37 +15,37 @@ Inmueble::~Inmueble() {
     // Destructor vacio, no es necesario liberar memoria ya que no hay punteros
 };
 
-int Inmueble::getCodigo()
+int Inmueble::getCodigo() const
 {
     return codigo;
 }
 
-string Inmueble::getDireccion()
+string Inmueble::getDireccion() const
 {
     return direccion;
 }
 
-int Inmueble::getNumeroPuerta()
+int Inmueble::getNumeroPuerta() const
 {
     return numeroPuerta;
 }
 
-int Inmueble::getSuperficie()
+int Inmueble::getSuperficie() const
 {
     return superficie;
 }
 
-int Inmueble::getAnoConstruccion()
+int Inmueble::getAnoConstruccion() const
 {
     return anoConstruccion;
 }
 
-Propietario *Inmueble::getPropietario()const
+Propietario *Inmueble::getPropietario() const
 {
     return propietario;
 }
 
-vector<AdministraPropiedad *> Inmueble::getAdministraPropiedad()
+vector<AdministraPropiedad *> Inmueble::getAdministraPropiedad() const
 {
     return administraPropiedad;
 }
@@ -98,3 +98,9 @@ void Inmueble::agregarAdministraPropiedad(AdministraPropiedad *administraPropied
         propietario = NULL;
     }
 }*/
+
+ostream &operator<<(ostream &os, const Inmueble &i)
+{
+    os << "INMUEBLE: [codigo: " << i.getCodigo() << "; direccion: " << i.getDireccion() << "; numero de puerta: " << i.getNumeroPuerta() << "; superficie en m2: " << i.getAnoConstruccion() << "]";
+    return os;
+}

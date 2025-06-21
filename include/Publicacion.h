@@ -41,4 +41,6 @@ public:
     Inmueble *getInmueble() const;         // se devuelve un puntero a la instancia asociada al inmueble asociado al AdministraPropiedad asociado con la publiaccion.
 };
 
+ostream &operator<<(ostream &os, const Publicacion &p);
+
 #endif

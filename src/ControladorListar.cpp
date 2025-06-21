@@ -136,9 +136,9 @@ set<DTPublicacion> ControladorListar::listarPublicaciones(TipoPublicacion tipoPu
     }
     return dtp;
 };
-DTInmueble ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
+DTInmueble* ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
 {
-    Publicacion *pub = HandlerPublicacion::getInstancia()->getPublicacion(codigoPublicacion);
+    Publicacion *pub = handlerPublicaciones->getPublicacion(codigoPublicacion);
     Inmueble *inmuebleAsociado = pub->getInmueble();
     int codigo = inmuebleAsociado->getCodigo();
     string direccion = inmuebleAsociado->getDireccion();
@@ -150,15 +150,14 @@ DTInmueble ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
     {
         bool esPH = esCasa->getEsPH();
         TipoTecho techo = esCasa->getTipoTecho();
-        return DTCasa(codigo, direccion, numeroPuerta, superficie, anio, esPH, techo);
+        return new DTCasa(codigo, direccion, numeroPuerta, superficie, anio, esPH, techo);
     }
-    else
+    else if(class::Apartamento *esApartamento = dynamic_cast<class::Apartamento*>(inmuebleAsociado))
     {
-        class ::Apartamento *esApartamento = dynamic_cast<class ::Apartamento *>(inmuebleAsociado);
         int piso = esApartamento->getPiso();
         bool ascensor = esApartamento->getAscensor();
         float gastosComunes = esApartamento->getGastosComunes();
-        return DTApartamento(codigo, direccion, numeroPuerta, superficie, anio, piso, ascensor, gastosComunes);
+        return new DTApartamento(codigo, direccion, numeroPuerta, superficie, anio, piso, ascensor, gastosComunes);
     }
 };
 set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nicknameUsuario)

@@ -392,15 +392,14 @@ void consultaPublicaciones()
         cout << "Detalle del inmueble:\n";
         // TODO: DTInmueble = Controlador->detalleInmueblePublicacion(codigoPublicacion): DTInmueble
         // Mostrarlo:
-        DTInmueble inmueble = controladorListar->detalleInmueblePublicacion(codigoPublicacion);
+        DTInmueble *inmueble = controladorListar->detalleInmueblePublicacion(codigoPublicacion);
         // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
-        DTInmueble *inmue = &inmueble;
-        if (DTApartamento *apartamento = dynamic_cast<DTApartamento *>(inmue))
+        if (DTApartamento *apartamento = dynamic_cast<DTApartamento *>(inmueble))
         {
             cout << "Codigo: " << apartamento->getCodigo() << ", direccion: " << apartamento->getDireccion() << ", nro. puerta:" << apartamento->getNumeroPuerta() << ", superficie: " << apartamento->getSuperficie() << ", construccion: " << apartamento->getAnioConstruccion()
                  << ", piso: " << apartamento->getPiso() << ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes() << endl;
         }
-        if (DTCasa *casa = dynamic_cast<DTCasa *>(inmue))
+        if (DTCasa *casa = dynamic_cast<DTCasa *>(inmueble))
         {
             cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
         }

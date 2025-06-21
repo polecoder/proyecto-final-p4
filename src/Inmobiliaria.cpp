@@ -14,62 +14,91 @@ Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, st
     this->telefono = telefono;
     // El vector administraProps se inicializa solo
 }
-Inmobiliaria::~Inmobiliaria() {
-};
+
+Inmobiliaria::~Inmobiliaria() {};
 
 string Inmobiliaria::getDireccion() const
 {
     return direccion;
 };
+
 string Inmobiliaria::getUrl() const
 {
     return url;
 };
+
 string Inmobiliaria::getTelefono() const
 {
     return telefono;
 };
-vector<AdministraPropiedad *> Inmobiliaria::getadministraProps() const
+
+map<string, Cliente *> Inmobiliaria::getClientesSuscritos() const
+{
+    return clientesSuscritos;
+}
+
+map<string, Propietario *> Inmobiliaria::getPropietariosRepresentados() const
+{
+    return propietariosRepresentados;
+}
+
+map<string, Propietario *> Inmobiliaria::getPropietariosSuscritos() const
+{
+    return propietariosSuscritos;
+}
+
+vector<AdministraPropiedad *> Inmobiliaria::getAdministraProps() const
 {
     return administraProps;
-};
+}
 
-map<string, Propietario *> Inmobiliaria::getPropietarios()
+void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente)
 {
-    return PropietariosAsociados;
+    this->clientesSuscritos[cliente->getNickname()] = cliente;
+}
+
+void Inmobiliaria::agregarPropietarioRepresentado(Propietario *propietario)
+{
+    this->propietariosRepresentados[propietario->getNickname()] = propietario;
+}
+
+void Inmobiliaria::agregarPropietarioSuscrito(Propietario *propietario)
+{
+    this->propietariosSuscritos[propietario->getNickname()] = propietario;
+}
+
+void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
+{
+    this->administraProps.push_back(administraPropiedad);
+}
+
+void Inmobiliaria::eliminarClienteSuscrito(string nicknameCliente)
+{
+    this->clientesSuscritos.erase(nicknameCliente);
+}
+
+void Inmobiliaria::eliminarPropietarioRepresentado(string nicknamePropietario)
+{
+    this->propietariosRepresentados.erase(nicknamePropietario);
+}
+
+void Inmobiliaria::eliminarPropietarioSuscrito(string nicknamePropietario)
+{
+    this->propietariosSuscritos.erase(nicknamePropietario);
 }
 
 void Inmobiliaria::notificar(DTNotificacion notificacion)
 {
     map<string, Cliente *>::iterator it;
     map<string, Propietario *>::iterator it2;
-    for (it = clientesAsociados.begin(); it != clientesAsociados.end(); it++)
+    for (it = clientesSuscritos.begin(); it != clientesSuscritos.end(); it++)
     {
-        (*it).second->agregarNotificacion(notificacion);
+        it->second->agregarNotificacion(notificacion);
     };
-    for (it2 = PropietariosAsociados.begin(); it2 != PropietariosAsociados.end(); it++)
+    for (it2 = propietariosSuscritos.begin(); it2 != propietariosSuscritos.end(); it2++)
     {
-        (*it2).second->agregarNotificacion(notificacion);
+        it2->second->agregarNotificacion(notificacion);
     }
-}
-void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente)
-{
-    this->clientesAsociados[cliente->getNickname()] = cliente;
-};
-
-void Inmobiliaria::agregarPropietario(Propietario *propietario)
-{
-    this->PropietariosAsociados[propietario->getNickname()] = propietario;
-};
-
-void Inmobiliaria::eliminarPropietario(string nicknamePropietario)
-{
-    this->PropietariosAsociados.erase(nicknamePropietario);
-};
-
-void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad)
-{
-    this->administraProps.push_back(administraPropiedad);
 }
 
 ostream &operator<<(ostream &os, const Inmobiliaria &i)

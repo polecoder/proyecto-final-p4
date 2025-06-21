@@ -52,45 +52,56 @@ CargaDatos::CargaDatos()
     interfazSubeYBaja->representarPropietario("jorge88");
     // Crear los Administra Propiedad
     interfazFechaActual->setNewFechaActual(12, 12, 2015);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(2,  casasur123 );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(2, "casasur123");
 
     interfazFechaActual->setNewFechaActual(25, 9, 2023);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(1,  idealhome );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(1, "idealhome");
 
     interfazFechaActual->setNewFechaActual(20, 7, 2022);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(3,  vivaurbana );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(3, "vivaurbana");
 
     interfazFechaActual->setNewFechaActual(1, 1, 2022);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(4,  vivaurbana );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(4, "vivaurbana");
 
     interfazFechaActual->setNewFechaActual(3, 7, 2010);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(5,  idealhome );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(5, "idealhome");
 
     interfazFechaActual->setNewFechaActual(4, 11, 2019);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(6,  casasur123 );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(6, "casasur123");
 
     interfazFechaActual->setNewFechaActual(19, 5, 2020);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(6,  vivaurbana );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(6, "vivaurbana");
 
     interfazFechaActual->setNewFechaActual(19, 7, 2024);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(6,  idealhome );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(6, "idealhome");
 
     interfazFechaActual->setNewFechaActual(18, 9, 2023);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(7,  idealhome );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(7, "idealhome");
 
     interfazFechaActual->setNewFechaActual(19, 5, 2022);
-    cout << "interfazSubeYBaja->altaAdministraPropiedad(8,  vivaurbana );" << endl;
     interfazSubeYBaja->altaAdministraPropiedad(8, "vivaurbana");
-    /* // Crear Publicaciones
+
+    // Suscripciones a Inmobiliarias
+    set<string> casasur123;
+    casasur123.insert("casasur123");
+    set<string> idealhome;
+    idealhome.insert("idealhome");
+    set<string> vivaurbana;
+    vivaurbana.insert("vivaurbana");
+
+    interfazSuscripciones->suscribirse("luisito23", casasur123);
+    interfazSuscripciones->suscribirse("luisito23", idealhome);
+    interfazSuscripciones->suscribirse("anarojo88", casasur123);
+    interfazSuscripciones->suscribirse("anarojo88", idealhome);
+    interfazSuscripciones->suscribirse("anarojo88", vivaurbana);
+    interfazSuscripciones->suscribirse("marcelom", idealhome);
+    interfazSuscripciones->suscribirse("robertarce", idealhome);
+    interfazSuscripciones->suscribirse("soledadf", vivaurbana);
+    interfazSuscripciones->suscribirse("martagal", vivaurbana);
+    interfazSuscripciones->suscribirse("jorge88", casasur123);
+    interfazSuscripciones->suscribirse("jorge88", idealhome);
+    interfazSuscripciones->suscribirse("jorge88", vivaurbana);
+    // Crear Publicaciones
     interfazFechaActual->setNewFechaActual(9, 10, 2011);
     interfazSubeYBaja->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
 
@@ -141,26 +152,6 @@ CargaDatos::CargaDatos()
 
     interfazFechaActual->setNewFechaActual(1, 8, 2024);
     interfazSubeYBaja->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);
-    // Suscripciones a Inmobiliarias
-    set<string> casasur123;
-    casasur123.insert("casasur123");
-    set<string> idealhome;
-    idealhome.insert("idealhome");
-    set<string> vivaurbana;
-    vivaurbana.insert("vivaurbana");
-
-    interfazSuscripciones->suscribirse("luisito23", casasur123);
-    interfazSuscripciones->suscribirse("luisito23", idealhome);
-    interfazSuscripciones->suscribirse("anarojo88", casasur123);
-    interfazSuscripciones->suscribirse("anarojo88", idealhome);
-    interfazSuscripciones->suscribirse("anarojo88", vivaurbana);
-    interfazSuscripciones->suscribirse("marcelom", idealhome);
-    interfazSuscripciones->suscribirse("robertarce", idealhome);
-    interfazSuscripciones->suscribirse("soledadf", vivaurbana);
-    interfazSuscripciones->suscribirse("martagal", vivaurbana);
-    interfazSuscripciones->suscribirse("jorge88", casasur123);
-    interfazSuscripciones->suscribirse("jorge88", idealhome);
-    interfazSuscripciones->suscribirse("jorge88", vivaurbana); */
 }
 
 CargaDatos *CargaDatos::getInstancia()

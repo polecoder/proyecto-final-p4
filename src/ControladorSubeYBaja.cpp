@@ -58,7 +58,7 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     {
         activa = true;
     }
-    else if ((*pu).getFecha()->operator<(fechaActual->getFechaActual()))
+    else if ((*pu).getFecha() < fechaActual->getFechaActual())
     {
         activa = true;
         (*pu).setActiva(false);
@@ -133,7 +133,7 @@ void ControladorSubeYBaja::representarPropietario(string nicknamePropietario)
         Propietario *propietario = Hpropietario->getPropietario(nicknamePropietario);
         if (UltimaInmobiliaria != nullptr)
         { // Verifica si hay una inmobiliaria registrada
-            UltimaInmobiliaria->agregarPropietario(propietario);
+            UltimaInmobiliaria->agregarPropietarioRepresentado(propietario);
         }
     }
 }

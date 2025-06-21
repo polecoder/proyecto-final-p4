@@ -63,7 +63,7 @@ const map<string, Inmobiliaria *> &HandlerInmobiliarias::getColeccionInmobiliari
 
 vector<AdministraPropiedad *> HandlerInmobiliarias::getColeccionAdministraPropiedad(string nickname)
 {
-    return coleccionInmobiliarias[nickname]->getadministraProps();
+    return coleccionInmobiliarias[nickname]->getAdministraProps();
 };
 
 void HandlerInmobiliarias::imprimirColeccionInmobiliarias()
@@ -74,7 +74,7 @@ void HandlerInmobiliarias::imprimirColeccionInmobiliarias()
     for (it = this->coleccionInmobiliarias.begin(); it != this->coleccionInmobiliarias.end(); it++)
     {
         cout << contador << " - " << *(it->second) << endl;
-        map<std::string, Propietario *> propietarios = it->second->getPropietarios();
+        map<std::string, Propietario *> propietarios = it->second->getPropietariosRepresentados();
         int contador2 = 1;
         for (map<std::string, Propietario *>::iterator it2 = propietarios.begin(); it2 != propietarios.end(); it2++)
         {

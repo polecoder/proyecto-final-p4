@@ -90,7 +90,7 @@ ostream &operator<<(ostream &os, const AdministraPropiedad &ap)
     int contador = 1;
     for (map<int, Publicacion *>::iterator it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
-        os << "    | " << contador << " - " << *(it->second);
+        os << "    | " << contador << " - " << *(it->second) << endl;
         contador++;
     }
     return os;

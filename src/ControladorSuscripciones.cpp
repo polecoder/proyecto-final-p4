@@ -8,21 +8,24 @@
 
 using namespace std;
 
-ControladorSuscripciones *ControladorSuscripciones::instancia =NULL;
+ControladorSuscripciones *ControladorSuscripciones::instancia = NULL;
 
-ControladorSuscripciones::ControladorSuscripciones(){
+ControladorSuscripciones::ControladorSuscripciones()
+{
     this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerClientes = HandlerClientes::getInstancia();
 };
 
-ControladorSuscripciones *ControladorSuscripciones::getInstancia(){
-    if(instancia == NULL){
+ControladorSuscripciones *ControladorSuscripciones::getInstancia()
+{
+    if (instancia == NULL)
+    {
         instancia = new ControladorSuscripciones();
     }
     return instancia;
 }
-ControladorSuscripciones::~ControladorSuscripciones(){};
+ControladorSuscripciones::~ControladorSuscripciones() {};
 
 void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
 {
@@ -38,23 +41,28 @@ void ControladorSuscripciones::borrarNotificaciones(string nicknameUsuario)
     }
 }
 
-void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas){
-    if(this->handlerClientes->existeCliente(nicknameUsuario)){
+void ControladorSuscripciones::suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas)
+{
+    if (this->handlerClientes->existeCliente(nicknameUsuario))
+    {
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
-        for(set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it){
+        for (set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it)
+        {
             string nicknameInmobiliaria = *it;
             Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
             cliente->agregarSuscripcion(inmobiliaria);
             inmobiliaria->agregarClienteSuscripto(cliente);
         }
     }
-    if(this->handlerPropietarios->existePropietario(nicknameUsuario)){
+    if (this->handlerPropietarios->existePropietario(nicknameUsuario))
+    {
         Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
-        for(set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it){
+        for (set<string>::iterator it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it)
+        {
             string nicknameInmobiliaria = *it;
             Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
             propietario->agregarSuscripcion(inmobiliaria);
-            inmobiliaria->agregarPropietario(propietario);
+            inmobiliaria->agregarPropietarioSuscrito(propietario);
         }
     }
 }
@@ -69,6 +77,8 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
         for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
         {
             cliente->eliminarSuscripcion(*it);
+            Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(*it);
+            inmobiliaria->eliminarClienteSuscrito(nicknameUsuario);
         }
     }
     else
@@ -78,6 +88,8 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
         for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
         {
             propietario->eliminarSuscripcion(*it);
+            Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(*it);
+            inmobiliaria->eliminarPropietarioSuscrito(nicknameUsuario);
         }
     }
 }

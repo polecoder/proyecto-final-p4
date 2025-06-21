@@ -530,12 +530,12 @@ void eliminarSuscripciones()
     cout << "Desea eliminar alguna suscripción?: (1: Si, 0: No)";
     cin >> deseaEliminar;
     cin.ignore();
-    if (deseaEliminar = 0)
+    if (deseaEliminar == 0)
     {
         return;
     }
     set<string> inmobiliariasElegidas;
-    while (deseaEliminar = 1)
+    while (deseaEliminar == 1)
     {
         cout << "Ingrese el nickname de la inmobiliaria de la que se quiere desuscribir:\n";
         string nicknameInmobiliaria;

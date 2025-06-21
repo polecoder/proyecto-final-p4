@@ -66,11 +66,13 @@ void Cliente::agregarSuscripcion(Inmobiliaria *inmobiliaria)
     this->suscripciones[inmobiliaria->getNickname()] = inmobiliaria;
 }
 
-bool Cliente::estaSuscripto(const string nicknameInmobiliaria){
+bool Cliente::estaSuscripto(const string nicknameInmobiliaria)
+{
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
 };
 
-void Cliente::eliminarSuscripcion(string nicknameInmobiliaria){
+void Cliente::eliminarSuscripcion(string nicknameInmobiliaria)
+{
 
     // find() retorna this->suscripciones.end() si el elemento no existe
     map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
@@ -78,4 +80,10 @@ void Cliente::eliminarSuscripcion(string nicknameInmobiliaria){
     {
         suscripciones.erase(it);
     }
+}
+
+ostream &operator<<(ostream &os, const Cliente &c)
+{
+    os << "CLIENTE: [nickname: " << c.getNickname() << "; contrasena: " << c.getContrasena() << "; nombre: " << c.getNombre() << "; email: " << c.getEmail() << "; apellido: " << c.getApellido() << "; documento: " << c.getDocumento() << "]";
+    return os;
 }

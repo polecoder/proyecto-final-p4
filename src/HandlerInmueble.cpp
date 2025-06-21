@@ -3,11 +3,11 @@
 #include <map>
 using namespace std;
 
-HandlerInmueble* HandlerInmueble::instancia = nullptr;
+HandlerInmueble *HandlerInmueble::instancia = nullptr;
 
-HandlerInmueble::HandlerInmueble(){
+HandlerInmueble::HandlerInmueble() {
     // No es necesario inicializar el mapa, ya que se crea vacio por defecto
-}; 
+};
 
 HandlerInmueble::~HandlerInmueble()
 {
@@ -18,8 +18,10 @@ HandlerInmueble::~HandlerInmueble()
     coleccionInmuebles.clear(); // Limpia el mapa
 }
 
-HandlerInmueble* HandlerInmueble::getInstancia() {
-    if (instancia == NULL) {
+HandlerInmueble *HandlerInmueble::getInstancia()
+{
+    if (instancia == NULL)
+    {
         instancia = new HandlerInmueble();
     }
     return instancia;
@@ -30,18 +32,32 @@ bool HandlerInmueble::existeInmueble(int codigoInmueble)
     return coleccionInmuebles.find(codigoInmueble) != coleccionInmuebles.end();
 }
 
-void HandlerInmueble::agregarInmueble(Inmueble* inmueble) {
+void HandlerInmueble::agregarInmueble(Inmueble *inmueble)
+{
     coleccionInmuebles.insert({inmueble->getCodigo(), inmueble});
 }
 
-void HandlerInmueble::eliminarInmueble(int codigo) {
+void HandlerInmueble::eliminarInmueble(int codigo)
+{
     coleccionInmuebles.erase(codigo);
 }
 
-map<int, Inmueble*> HandlerInmueble::DevolverInmuebles() {
+map<int, Inmueble *> HandlerInmueble::DevolverInmuebles()
+{
     return coleccionInmuebles;
 }
-Inmueble* HandlerInmueble::DevolverInmueble(int codigo) {
+Inmueble *HandlerInmueble::DevolverInmueble(int codigo)
+{
     return coleccionInmuebles[codigo];
 }
 
+void HandlerInmueble::imprimirColeccionInmuebles()
+{
+    map<int, Inmueble *>::iterator it;
+    int contador = 1;
+    cout << "-- IMPRIMIR COLECCION INMUEBLES --" << endl;
+    for (it = this->coleccionInmuebles.begin(); it != this->coleccionInmuebles.end(); it++)
+    {
+        cout << contador << " - " << it->second;
+    }
+}

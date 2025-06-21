@@ -76,7 +76,8 @@ void Propietario::eliminarSuscripcion(string nicknameInmobiliaria)
         suscripciones.erase(it);
     }
 }
-bool Propietario::estaSuscripto(const string &nicknameInmobiliaria){
+bool Propietario::estaSuscripto(const string &nicknameInmobiliaria)
+{
     return this->suscripciones.find(nicknameInmobiliaria) != this->suscripciones.end();
 };
 void Propietario::agregarInmueble(Inmueble *inmueble)
@@ -92,4 +93,10 @@ void Propietario::agregarInmueble(Inmueble *inmueble)
 vector<Inmueble *> &Propietario::getInmuebles()
 {
     return inmuebles;
+}
+
+ostream &operator<<(ostream &os, const Propietario &p)
+{
+    os << "PROPIETARIO: [nickname: " << p.getNickname() << "; contrasena: " << p.getContrasena() << "; nombre: " << p.getNombre() << "; email: " << p.getEmail() << "; cuenta bancaria: " << p.getCuentaBancaria() << "; telefono: " << p.getTelefono() << "]";
+    return os;
 }

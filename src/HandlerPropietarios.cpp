@@ -1,5 +1,6 @@
 #include <map>
 #include <string>
+#include <iostream>
 #include "../include/Propietario.h"
 #include "../include/HandlerPropietarios.h"
 
@@ -34,7 +35,7 @@ HandlerPropietarios::~HandlerPropietarios()
     this->coleccionPropietarios.clear();
 }
 
-void HandlerPropietarios::agregarPropietario(Propietario* &propietario)
+void HandlerPropietarios::agregarPropietario(Propietario *&propietario)
 {
     string nickname = propietario->getNickname();
     this->coleccionPropietarios[nickname] = propietario;
@@ -65,4 +66,15 @@ Propietario *HandlerPropietarios::getPropietario(string nickname)
 const map<string, Propietario *> &HandlerPropietarios::getColeccionPropietarios() const
 {
     return this->coleccionPropietarios;
+}
+
+void HandlerPropietarios::imprimirColeccionPropietarios()
+{
+    map<string, Propietario *>::iterator it;
+    int contador = 1;
+    cout << "-- IMPRIMIR COLECCION PROPIETARIIOS --" << endl;
+    for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
+    {
+        cout << contador << " - " << it->second;
+    }
 }

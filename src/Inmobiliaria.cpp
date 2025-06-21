@@ -7,7 +7,7 @@
 using namespace std;
 
 Inmobiliaria::Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono)
-    :Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
+    : Usuario(nickname, contrasena, nombre, email) // Llama al constructor de Usuario
 {
     this->direccion = direccion;
     this->url = url;
@@ -52,15 +52,18 @@ void Inmobiliaria::notificar(DTNotificacion notificacion)
         (*it2).second->agregarNotificacion(notificacion);
     }
 }
-void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente){
+void Inmobiliaria::agregarClienteSuscripto(Cliente *cliente)
+{
     this->clientesAsociados[cliente->getNickname()] = cliente;
 };
 
-void Inmobiliaria::agregarPropietario(Propietario *propietario){
+void Inmobiliaria::agregarPropietario(Propietario *propietario)
+{
     this->PropietariosAsociados[propietario->getNickname()] = propietario;
 };
 
-void Inmobiliaria::eliminarPropietario(string nicknamePropietario){
+void Inmobiliaria::eliminarPropietario(string nicknamePropietario)
+{
     this->PropietariosAsociados.erase(nicknamePropietario);
 };
 
@@ -69,3 +72,8 @@ void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPro
     this->administraProps.push_back(administraPropiedad);
 }
 
+ostream &operator<<(ostream &os, const Inmobiliaria &i)
+{
+    os << "INMOBILIARIA: [nickname: " << i.getNickname() << "; contrasena: " << i.getContrasena() << "; nombre: " << i.getNombre() << "; email: " << i.getEmail() << "; direccion: " << i.getDireccion() << "; apellido: " << i.getUrl() << "; documento: " << i.getTelefono() << "]";
+    return os;
+}

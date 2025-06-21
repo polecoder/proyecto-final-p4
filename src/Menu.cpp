@@ -20,6 +20,7 @@
 #include "../include/IControladorFechaActual.h"
 #include "../include/IControladorSuscripciones.h"
 #include "../include/IControladorListar.h"
+#include "../include/IControladorImprimir.h"
 #include <string>
 #include <set>
 
@@ -34,7 +35,7 @@ void mostrarMenu()
     cout << "4. Eliminar Inmueble" << endl;
     cout << "5. Suscribirse a Notificaciones" << endl;
     cout << "6. Consulta de Notificaciones" << endl;
-    cout << "7. Elimiinar Suscripciones" << endl;
+    cout << "7. Eliminar Suscripciones" << endl;
     cout << "8. Alta de Administracion de Propiedad" << endl;
     cout << "9. Cargar Datos" << endl;
     cout << "10. Ver fecha actual" << endl;
@@ -111,6 +112,7 @@ void altaUsuario()
 {
 
     Factory *factory = Factory::getInstancia();
+    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
 
     cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
@@ -150,9 +152,9 @@ void altaUsuario()
         getline(cin, apellido);
         cout << "Documento: ";
         getline(cin, documento);
-        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         bool usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
-        // TODO: usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
+        interfazImprimir->imprimirColeccionClientes();
     }
     else if (tipoUsuario == 1)
     {
@@ -162,9 +164,9 @@ void altaUsuario()
         getline(cin, url);
         cout << "Telefono: ";
         getline(cin, telefono);
-        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
-        // TODO: usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
+        interfazImprimir->imprimirColeccionInmobiliarias();
     }
     else if (tipoUsuario == 2)
     {
@@ -172,16 +174,16 @@ void altaUsuario()
         getline(cin, cuentaBancaria);
         cout << "Telefono: ";
         getline(cin, telefono);
-        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
-        // TODO: usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
+        interfazImprimir->imprimirColeccionPropietarios();
     }
     if (usuarioOk)
     {
         if (tipoUsuario == 1 || tipoUsuario == 2)
         {
             int salir = 1;
-            cout << "¿Quiere ingresar los datos relacionados? (1: Si, 0: No): ";
+            cout << "Quiere ingresar los datos relacionados? (1: Si, 0: No): ";
             cin >> salir;
             cin.ignore();
             string inmuebleDireccion;
@@ -196,18 +198,17 @@ void altaUsuario()
                     Factory *factory = Factory::getInstancia();
                     IControladorListar *controladorListar = factory->getControladorListar();
                     set<DTUsuario> Mostrar = controladorListar->listarPropietarios();
-                    // TODO: Coleccion de DTUsuario = controlador->listarPropietarios();
                     // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
                     set<DTUsuario>::iterator it;
-                    for (it = Mostrar.begin(); it != Mostrar.end(); ++it){
-                        cout << "- Nickname: "<< (*it).getNickname() <<", Nombre: " << (*it).getNombre() <<endl; // Mostrar el nickname y nombre de cada propietario
+                    for (it = Mostrar.begin(); it != Mostrar.end(); ++it)
+                    {
+                        cout << "- Nickname: " << (*it).getNickname() << ", Nombre: " << (*it).getNombre() << endl; // Mostrar el nickname y nombre de cada propietario
                     }
                     cout << "Nickname propietario a representar: ";
                     string nicknamePropietario;
                     getline(cin, nicknamePropietario);
-                    IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                    IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                     ci->representarPropietario(nicknamePropietario);
-                    //TODO: controlador->representarPropietario(nicknamePropietario);
                 }
                 else if (tipoUsuario == 2)
                 {
@@ -248,9 +249,9 @@ void altaUsuario()
                         {
                             techo = Plano;
                         }
-                        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
-                        ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie,anoConstruccion ,esPH, techo);
-                        // TODO: controlador->altaCasa(direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+                        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
+                        ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+                        interfazImprimir->imprimirColeccionInmuebles();
                     }
                     else
                     {
@@ -267,19 +268,18 @@ void altaUsuario()
                         float gastosComunes;
                         cin >> gastosComunes;
                         cin.ignore();
-                        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+                        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
-                        // TODO: controlador->altaApartamento(direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes)
+                        interfazImprimir->imprimirColeccionInmuebles();
                     }
                 }
             }
-            cout << "¿Quiere seguir ingresando? (1: Si, 0: No): ";
+            cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
             cin >> salir;
             cin.ignore();
         }
-        IControladorSubeYBaja* ci = factory->getControladorSubeYBaja();
+        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         ci->finalizarAltaUsuario();
-        // TODO: controlador->finalizarAltaUsuario();
     }
     else
     {
@@ -292,7 +292,6 @@ void altaPublicacion()
     Factory *factory = Factory::getInstancia();
 
     cout << "Lista de Inmobiliarias:\n";
-    // TODO: Coleccion de DTUsuario = controlador->listarInmobiliarias();
     IControladorListar *controladorListar = factory->getControladorListar();
     set<DTUsuario> DTUsuarios = controladorListar->listarInmobiliarias();
     // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
@@ -304,7 +303,6 @@ void altaPublicacion()
     cout << "Nickname de la inmobiliaria: ";
     string nicknameInmobiliaria;
     getline(cin, nicknameInmobiliaria);
-    // TODO: Coleccion de DTInmuebleAdministrado = controlador->listarInmueblesAdministrados(nicknameInmobiliaria);
     set<DTInmuebleAdministrado> DTInmueblesAdministrados = controladorListar->listarInmueblesAdministrados(nicknameInmobiliaria);
     // Recorrer la coleccion Mostrar "- Codigo: xx, Direccion: yy
     set<DTInmuebleAdministrado>::iterator it2;
@@ -332,7 +330,6 @@ void altaPublicacion()
     float precio;
     cin >> precio;
     cin.ignore();
-    // TODO:Controlador->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio)
     IControladorSubeYBaja *controladorSubeYBaja = factory->getControladorSubeYBaja();
     bool altapublicacion = controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
@@ -340,13 +337,14 @@ void altaPublicacion()
 void consultaPublicaciones()
 {
 
-    Factory* factory = Factory::getInstancia();
+    Factory *factory = Factory::getInstancia();
 
     int inTipoPublicacion;
     cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler)";
     cin >> inTipoPublicacion;
     TipoPublicacion tipoPublicacion = Alquiler;
-    if(inTipoPublicacion == 1){
+    if (inTipoPublicacion == 1)
+    {
         tipoPublicacion = Venta;
     }
     cin.ignore();
@@ -363,42 +361,48 @@ void consultaPublicaciones()
     cin >> inTipoInmueble;
     cin.ignore();
     TipoInmueble tipoInmueble = Todos;
-    if(inTipoPublicacion == 1){
+    if (inTipoPublicacion == 1)
+    {
         tipoInmueble = Casa;
-    }else if(inTipoPublicacion == 2){
+    }
+    else if (inTipoPublicacion == 2)
+    {
         tipoInmueble = Apartamento;
     }
     cout << "Publicaciones encontradas:\n";
-    //TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
+    // TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
     IControladorListar *controladorListar = factory->getControladorListar();
     set<DTPublicacion> publicaciones = controladorListar->listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
-    //Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
-    set<DTPublicacion>:: iterator it;
-    for (it = publicaciones.begin(); it != publicaciones.end(); ++it){
-        cout << "- Codigo: "<< (*it).getCodigo() <<", fecha: " << (*it).getFecha()->toString() <<", texto: "<<", precio: "<< (*it).getPrecio() <<", inmobiliaria: "<< (*it).getInmobiliaria() <<endl;   
+    // Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
+    set<DTPublicacion>::iterator it;
+    for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
+    {
+        cout << "- Codigo: " << (*it).getCodigo() << ", fecha: " << (*it).getFecha()->toString() << ", texto: " << ", precio: " << (*it).getPrecio() << ", inmobiliaria: " << (*it).getInmobiliaria() << endl;
     }
     int verDetalle;
     cout << "Ver detalle de la publicacion: (1: Si, 0: No)";
     cin >> verDetalle;
     cin.ignore();
-    if (verDetalle == 1){
+    if (verDetalle == 1)
+    {
         cout << "Codigo de publicacion: ";
         int codigoPublicacion;
         cin >> codigoPublicacion;
         cin.ignore();
         cout << "Detalle del inmueble:\n";
-        //TODO: DTInmueble = Controlador->detalleInmueblePublicacion(codigoPublicacion): DTInmueble
-        //Mostrarlo:
+        // TODO: DTInmueble = Controlador->detalleInmueblePublicacion(codigoPublicacion): DTInmueble
+        // Mostrarlo:
         DTInmueble inmueble = controladorListar->detalleInmueblePublicacion(codigoPublicacion);
         // Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
-        DTInmueble* inmue = &inmueble; 
-        if(DTApartamento* apartamento = dynamic_cast<DTApartamento*>(inmue)){
-            cout<<"Codigo: "<<apartamento->getCodigo()<<", direccion: "<<apartamento->getDireccion()<<", nro. puerta:" << apartamento->getNumeroPuerta()<< ", superficie: "<< apartamento->getSuperficie()<<", construccion: "<<apartamento->getAnioConstruccion()
-            << ", piso: "<< apartamento->getPiso() <<", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes()<<endl;
+        DTInmueble *inmue = &inmueble;
+        if (DTApartamento *apartamento = dynamic_cast<DTApartamento *>(inmue))
+        {
+            cout << "Codigo: " << apartamento->getCodigo() << ", direccion: " << apartamento->getDireccion() << ", nro. puerta:" << apartamento->getNumeroPuerta() << ", superficie: " << apartamento->getSuperficie() << ", construccion: " << apartamento->getAnioConstruccion()
+                 << ", piso: " << apartamento->getPiso() << ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes() << endl;
         }
-        if(DTCasa* casa = dynamic_cast<DTCasa*>(inmue)){
-            cout<<"Codigo: "<<casa->getCodigo()<<", direccion:"<<casa->getDireccion()<<"nro. puerta"<< casa->getNumeroPuerta()<<", superficie: "<<casa->getSuperficie()<<
-            ", construccion: "<< casa->getAnioConstruccion()<< "PH: "<< casa->getEsPH()<<" Tipo de techo: "<< casa->getTecho()<<std::endl;
+        if (DTCasa *casa = dynamic_cast<DTCasa *>(inmue))
+        {
+            cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
         }
         // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
     }
@@ -415,7 +419,7 @@ void eliminarInmueble()
     set<DTInmuebleListado>::iterator it;
     for (it = DTInmueblesListados.begin(); it != DTInmueblesListados.end(); ++it)
     {
-        cout << "- Codigo: " << (*it).getCodigo() << ", direccion: " << (*it).getDireccion() << ", propietario: "<< (*it).getPropietario()<< endl;
+        cout << "- Codigo: " << (*it).getCodigo() << ", direccion: " << (*it).getDireccion() << ", propietario: " << (*it).getPropietario() << endl;
     };
     cout << "Codigo del inmueble a eliminar: ";
     int codigoInmueble;
@@ -423,21 +427,22 @@ void eliminarInmueble()
     cin.ignore();
     cout << "Detalle del inmueble:\n";
     // TODO: DTInmueble = Controlador->detalleInmueble(codigoInmueble)
-    DTInmueble DTI= factory->getControladorListar()->detalleInmueble(codigoInmueble);
+    DTInmueble DTI = factory->getControladorListar()->detalleInmueble(codigoInmueble);
     // Mostrarlo:
     //  Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
     //  Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
-    DTInmueble* DTIpuntero=&DTI; 
-    if(DTApartamento* apartamento = dynamic_cast<DTApartamento*>(DTIpuntero)){
-        cout<<"Codigo: "<<apartamento->getCodigo()<<", direccion: "<<apartamento->getDireccion()<<", nro. puerta:" << apartamento->getNumeroPuerta()<< ", superficie: "<< apartamento->getSuperficie()<<", construccion: "<<apartamento->getAnioConstruccion()
-        << ", piso: "<< apartamento->getPiso() <<", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes()<<endl;
+    DTInmueble *DTIpuntero = &DTI;
+    if (DTApartamento *apartamento = dynamic_cast<DTApartamento *>(DTIpuntero))
+    {
+        cout << "Codigo: " << apartamento->getCodigo() << ", direccion: " << apartamento->getDireccion() << ", nro. puerta:" << apartamento->getNumeroPuerta() << ", superficie: " << apartamento->getSuperficie() << ", construccion: " << apartamento->getAnioConstruccion()
+             << ", piso: " << apartamento->getPiso() << ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes() << endl;
     }
-    if(DTCasa* casa = dynamic_cast<DTCasa*>(DTIpuntero)){
-        cout<<"Codigo: "<<casa->getCodigo()<<", direccion:"<<casa->getDireccion()<<"nro. puerta"<< casa->getNumeroPuerta()<<", superficie: "<<casa->getSuperficie()<<
-        ", construccion: "<< casa->getAnioConstruccion()<< "PH: "<< casa->getEsPH()<<" Tipo de techo: "<< casa->getTecho()<<std::endl;
+    if (DTCasa *casa = dynamic_cast<DTCasa *>(DTIpuntero))
+    {
+        cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
     }
     int deseaEliminar;
-    cout << "¿Desea eliminar?: (1: Si, 0: No)";
+    cout << "Desea eliminar?: (1: Si, 0: No)";
     cin >> deseaEliminar;
     cin.ignore();
     if (deseaEliminar == 1)
@@ -449,38 +454,39 @@ void eliminarInmueble()
 
 void suscribirseNotificaciones()
 {
-    Factory* factory = Factory::getInstancia();
+    Factory *factory = Factory::getInstancia();
     IControladorSuscripciones *controladorSuscripciones = factory->getControladorSuscripciones();
     string nicknameUsuario;
     cout << "Ingrese su nickname: ";
     cin >> nicknameUsuario;
     cin.ignore();
     cout << "Inmobiliarias a las cuales se puede suscribir:\n";
-    //TODO: Coleccion de DTUsuario = controlador->listarInmobiliariasNoSuscripto(nickname)
+    // TODO: Coleccion de DTUsuario = controlador->listarInmobiliariasNoSuscripto(nickname)
     IControladorListar *CListar = factory->getControladorListar();
     set<DTUsuario> inmobiliarias = CListar->listarInmobiliariasNoSuscripto(nicknameUsuario);
-    //TODO: Recorrer la coleccion y mostrar "Nickname:, nombre: ";
-    for(set<DTUsuario>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
-        cout << "Nickname: "<< (*it).getNickname() << ", nombre: "<< (*it).getNombre()<<endl;
+    // TODO: Recorrer la coleccion y mostrar "Nickname:, nombre: ";
+    for (set<DTUsuario>::iterator it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
+    {
+        cout << "Nickname: " << (*it).getNickname() << ", nombre: " << (*it).getNombre() << endl;
     }
     set<string> inmobiliariasElegidas;
     int salir = 1;
-    cout<<"¿Quiere suscribirse a alguna inmobiliaria? (1: Si, 0: No): ";
+    cout << "Quiere suscribirse a alguna inmobiliaria? (1: Si, 0: No): ";
     cin >> salir;
     cin.ignore();
     string nicknameInmobiliaria;
-    while(salir != 0){
-        cout<< "Ingrese el nickname de la inmobiliaria: ";
+    while (salir != 0)
+    {
+        cout << "Ingrese el nickname de la inmobiliaria: ";
         cin >> nicknameInmobiliaria;
         cin.ignore();
         inmobiliariasElegidas.insert(nicknameInmobiliaria);
-        cout<<"¿Quiere suscribirse a mas inmobiliarias? (1: Si, 2: No): ";
+        cout << "Quiere suscribirse a mas inmobiliarias? (1: Si, 2: No): ";
         cin >> salir;
         cin.ignore();
     }
-    //TODO:Controlador->suscribirse(nicknameUsuario, inmobiliariasElegidas);
+    // TODO:Controlador->suscribirse(nicknameUsuario, inmobiliariasElegidas);
     controladorSuscripciones->suscribirse(nicknameUsuario, inmobiliariasElegidas);
-    
 }
 
 void consultaNotificaciones()
@@ -522,7 +528,7 @@ void eliminarSuscripciones()
     }
     // Eliminar las suscripciones elegidas por el Administrador
     int deseaEliminar;
-    cout << "¿Desea eliminar alguna suscripción?: (1: Si, 0: No)";
+    cout << "Desea eliminar alguna suscripción?: (1: Si, 0: No)";
     cin >> deseaEliminar;
     cin.ignore();
     if (deseaEliminar = 0)
@@ -536,7 +542,7 @@ void eliminarSuscripciones()
         string nicknameInmobiliaria;
         getline(cin, nicknameInmobiliaria);
         inmobiliariasElegidas.insert(nicknameInmobiliaria);
-        cout << "¿Desea eliminar otra suscripción?: (1: Si, 0: No)";
+        cout << "Desea eliminar otra suscripción?: (1: Si, 0: No)";
         cin >> deseaEliminar;
         cin.ignore();
     }
@@ -554,25 +560,24 @@ void altaAdministracionPropiedad()
     set<DTUsuario>::iterator it;
     for (it = coleccionInmobiliarias.begin(); it != coleccionInmobiliarias.end(); ++it)
     {
-        cout << "- Nickname: " << (*it).getNickname()<< ",  Nombre: " << (*it).getNombre() << endl;
+        cout << "- Nickname: " << (*it).getNickname() << ",  Nombre: " << (*it).getNombre() << endl;
     }
     cout << "Nickname de la inmobiliaria: ";
     string nicknameInmobiliaria;
     getline(cin, nicknameInmobiliaria);
     // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
-    set<DTInmuebleListado> ColeccionInmueblesNoAdmin =factory->getControladorListar()->getInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
+    set<DTInmuebleListado> ColeccionInmueblesNoAdmin = factory->getControladorListar()->getInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     set<DTInmuebleListado>::iterator it2;
     for (it2 = ColeccionInmueblesNoAdmin.begin(); it2 != ColeccionInmueblesNoAdmin.end(); ++it2)
     {
-        cout <<"- Codigo: "<<(*it2).getCodigo() <<", direccion: "<<(*it2).getDireccion()<<", propietario: "<<(*it2).getPropietario()<< endl;
+        cout << "- Codigo: " << (*it2).getCodigo() << ", direccion: " << (*it2).getDireccion() << ", propietario: " << (*it2).getPropietario() << endl;
     }
     cout << "Codigo del inmueble a administrar: ";
     int codigoInmueble;
     cin >> codigoInmueble;
     cin.ignore();
-    // TODO: Controlador->altaAdministraPropiedad(nicknameInmobiliaria, codigoInmueble);
-    factory->getControladorSubeYBaja()->altaAdministraPropiedad(nicknameInmobiliaria,codigoInmueble);
+    factory->getControladorSubeYBaja()->altaAdministraPropiedad(codigoInmueble, nicknameInmobiliaria);
 }
 
 void cargarDatos()

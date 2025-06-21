@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <iostream>
 #include "../include/HandlerInmobiliarias.h"
 #include "../include/Inmobiliaria.h"
 
@@ -27,7 +28,7 @@ HandlerInmobiliarias *HandlerInmobiliarias::getInstancia()
     return instancia;
 }
 
-void HandlerInmobiliarias::agregarInmobiliaria(Inmobiliaria* inmobiliaria)
+void HandlerInmobiliarias::agregarInmobiliaria(Inmobiliaria *inmobiliaria)
 {
     string nickname = inmobiliaria->getNickname();
     this->coleccionInmobiliarias[nickname] = inmobiliaria;
@@ -64,3 +65,14 @@ vector<AdministraPropiedad *> HandlerInmobiliarias::getColeccionAdministraPropie
 {
     return coleccionInmobiliarias[nickname]->getadministraProps();
 };
+
+void HandlerInmobiliarias::imprimirColeccionInmobiliarias()
+{
+    map<string, Inmobiliaria *>::iterator it;
+    int contador = 1;
+    cout << "-- IMPRIMIR COLECCION INMOBILIARIAS --" << endl;
+    for (it = this->coleccionInmobiliarias.begin(); it != this->coleccionInmobiliarias.end(); it++)
+    {
+        cout << contador << " - " << it->second;
+    }
+}

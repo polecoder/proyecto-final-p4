@@ -71,6 +71,6 @@ void HandlerPublicacion::imprimirColeccionPublicaciones()
     cout << "-- IMPRIMIR COLECCION PUBLICACIONES --" << endl;
     for (it = this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
     {
-        cout << contador << " - " << it->second;
+        cout << contador << " - " << *(it->second) << endl;
     }
 }

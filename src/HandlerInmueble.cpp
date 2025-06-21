@@ -58,6 +58,6 @@ void HandlerInmueble::imprimirColeccionInmuebles()
     cout << "-- IMPRIMIR COLECCION INMUEBLES --" << endl;
     for (it = this->coleccionInmuebles.begin(); it != this->coleccionInmuebles.end(); it++)
     {
-        cout << contador << " - " << it->second;
+        cout << contador << " - " << *(it->second) << endl;
     }
 }

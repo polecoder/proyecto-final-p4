@@ -82,8 +82,8 @@ void Cliente::eliminarSuscripcion(string nicknameInmobiliaria)
     }
 }
 
-ostream &operator<<(ostream &os, const Cliente* &c)
+ostream &operator<<(ostream &os, const Cliente &c)
 {
-    os << "CLIENTE: [nickname: " << c->getNickname() << "; contrasena: " << c->getContrasena() << "; nombre: " << c->getNombre() << "; email: " << c->getEmail() << "; apellido: " << c->getApellido() << "; documento: " << c->getDocumento() << "]";
+    os << "CLIENTE: [nickname: " << c.getNickname() << "; contrasena: " << c.getContrasena() << "; nombre: " << c.getNombre() << "; email: " << c.getEmail() << "; apellido: " << c.getApellido() << "; documento: " << c.getDocumento() << "]";
     return os;
 }

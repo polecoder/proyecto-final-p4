@@ -73,6 +73,6 @@ void HandlerInmobiliarias::imprimirColeccionInmobiliarias()
     cout << "-- IMPRIMIR COLECCION INMOBILIARIAS --" << endl;
     for (it = this->coleccionInmobiliarias.begin(); it != this->coleccionInmobiliarias.end(); it++)
     {
-        cout << contador << " - " << it->second;
+        cout << contador << " - " << *(it->second) << endl;
     }
 }

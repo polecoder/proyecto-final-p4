@@ -75,6 +75,6 @@ void HandlerPropietarios::imprimirColeccionPropietarios()
     cout << "-- IMPRIMIR COLECCION PROPIETARIIOS --" << endl;
     for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
     {
-        cout << contador << " - " << it->second;
+        cout << contador << " - " << *(it->second) << endl;
     }
 }

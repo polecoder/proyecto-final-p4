@@ -44,6 +44,7 @@ private:
     Inmobiliaria *UltimaInmobiliaria = nullptr; // Tuve que agregarlo para una funcion nueva :(
     Propietario *UltimoPropietario = nullptr;   // No estoy seguro de si tiene que estar aca, me parece que en el handler no, pero creo que es necesario.
     int codigoUltimoInmueble = 0;               // Para llevar un control del ultimo codigo de inmueble creado
+    int codigoUltimaPublicacion = 0;
 
     IControladorFechaActual *fechaActual;
     ControladorSubeYBaja();

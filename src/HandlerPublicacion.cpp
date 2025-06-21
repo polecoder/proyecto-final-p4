@@ -17,7 +17,7 @@ HandlerPublicacion *HandlerPublicacion::getInstancia()
     return instancia;
 }
 
-void HandlerPublicacion::agregarPublicacion(Publicacion *&publicacion)
+void HandlerPublicacion::agregarPublicacion(Publicacion *publicacion)
 {
     coleccionPublicaciones.insert({publicacion->getCodigo(), publicacion});
 }
@@ -28,6 +28,7 @@ void HandlerPublicacion::eliminarPublicacion(int codigo)
     if (it != coleccionPublicaciones.end())
     {
         coleccionPublicaciones.erase(it);
+        delete it->second;
     }
 }
 
@@ -38,7 +39,6 @@ bool HandlerPublicacion::existePublicacion(int codigo)
 
 Publicacion *HandlerPublicacion::getPublicacion(int codigo)
 {
-
     return coleccionPublicaciones.at(codigo);
 }
 
@@ -72,5 +72,6 @@ void HandlerPublicacion::imprimirColeccionPublicaciones()
     for (it = this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
     {
         cout << contador << " - " << *(it->second) << endl;
+        contador++;
     }
 }

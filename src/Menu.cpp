@@ -339,7 +339,7 @@ void consultaPublicaciones()
     Factory *factory = Factory::getInstancia();
 
     int inTipoPublicacion;
-    cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler)";
+    cout << "Tipo de Publicacion: (1: Venta, 0: Alquiler): ";
     cin >> inTipoPublicacion;
     TipoPublicacion tipoPublicacion = Alquiler;
     if (inTipoPublicacion == 1)
@@ -356,7 +356,7 @@ void consultaPublicaciones()
     cin >> precioMaximo;
     cin.ignore();
     int inTipoInmueble;
-    cout << "Tipo de Inmueble: (1: Casa, 2: Apartamento, 0: Todos)";
+    cout << "Tipo de Inmueble: (1: Casa, 2: Apartamento, 0: Todos): ";
     cin >> inTipoInmueble;
     cin.ignore();
     TipoInmueble tipoInmueble = Todos;
@@ -369,14 +369,15 @@ void consultaPublicaciones()
         tipoInmueble = Apartamento;
     }
     cout << "Publicaciones encontradas:\n";
-    // TODO: Coleccion de DTPublicacion = Controlador->listarPublicacion(tipoPublicacion, precionMinimo, precioMaximo, tipoInmueble);
     IControladorListar *controladorListar = factory->getControladorListar();
+    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
+    interfazImprimir->imprimirColeccionPublicaciones();
     set<DTPublicacion> publicaciones = controladorListar->listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
     // Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
     set<DTPublicacion>::iterator it;
     for (it = publicaciones.begin(); it != publicaciones.end(); ++it)
     {
-        cout << "- Codigo: " << (*it).getCodigo() << ", fecha: " << (*it).getFecha()->toString() << ", texto: " << ", precio: " << (*it).getPrecio() << ", inmobiliaria: " << (*it).getInmobiliaria() << endl;
+        cout << "- Codigo: " << (*it).getCodigo() << ", fecha: " << (*it).getFecha()->toString() << ", texto: " << (*it).getTexto() << ", precio: " << (*it).getPrecio() << ", inmobiliaria: " << (*it).getInmobiliaria() << endl;
     }
     int verDetalle;
     cout << "Ver detalle de la publicacion: (1: Si, 0: No)";

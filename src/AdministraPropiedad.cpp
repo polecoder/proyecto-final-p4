@@ -1,6 +1,5 @@
 #include "../include/AdministraPropiedad.h"
 #include <map>
-#include <iostream>
 
 using namespace std;
 
@@ -59,15 +58,15 @@ Publicacion *AdministraPropiedad::encontrarPublicacionActiva(TipoPublicacion tip
 {
     map<int, Publicacion *>::iterator it;
     it = publicaciones.begin();
-    while (it != publicaciones.end() && (!(*it).second->getActiva() || (*it).second->getTipo() != tipoPublicacion))
+    while (it != publicaciones.end())
     {
+        if ((((*it).second->getActiva()) && ((*it).second->getTipo() == tipoPublicacion)))
+        {
+            return it->second;
+        }
         it++;
     };
-    if (it == publicaciones.end())
-    {
-        return NULL;
-    }
-    return it->second;
+    return NULL;
 };
 
 Inmobiliaria *AdministraPropiedad::getInmobiliaria() const

@@ -21,7 +21,7 @@ private:
 public:
     static HandlerPublicacion *getInstancia();
 
-    void agregarPublicacion(Publicacion *&publicacion); // Agrega una publicacion a la coleccion de publicacion, la clave es el codigo de la publicacion.
+    void agregarPublicacion(Publicacion *publicacion); // Agrega una publicacion a la coleccion de publicacion, la clave es el codigo de la publicacion.
 
     void eliminarPublicacion(int codigo); // se elimiina de la coleccion la publicacion con p.codigo=codigo.
 

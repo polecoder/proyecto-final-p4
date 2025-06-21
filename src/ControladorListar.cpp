@@ -1,4 +1,5 @@
 #include <set>
+#include <iostream>
 #include "../include/HandlerPropietarios.h"
 #include "../include/HandlerClientes.h"
 #include "../include/HandlerInmobiliarias.h"
@@ -18,6 +19,7 @@ ControladorListar::ControladorListar()
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerClientes = HandlerClientes::getInstancia();
     this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
+    this->handlerPublicaciones = HandlerPublicacion::getInstancia();
     this->interfazFechaActual = ControladorFechaActual::getInstancia();
 }
 
@@ -106,23 +108,30 @@ set<DTUsuario> ControladorListar::listarSuscripciones(string nicknameUsuario)
 set<DTPublicacion> ControladorListar::listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax,
                                                           TipoInmueble tipo)
 {
-    set<Publicacion *> listaPublicaciones = HandlerPublicacion::getInstancia()->obtenerPublicacionesActivas();
+    set<Publicacion *> listaPublicaciones = this->handlerPublicaciones->obtenerPublicacionesActivas();
     set<DTPublicacion> dtp;
     for (set<Publicacion *>::iterator it = listaPublicaciones.begin(); it != listaPublicaciones.end(); ++it)
     {
         if (tipo == Todos)
         {
-            if ((*it)->getTipo() == tipoPub && precioMin < (*it)->getPrecio() && (*it)->getPrecio() < precioMax)
-                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), to_string((*it)->getPrecio()), (*it)->getNicknameInmobiliaria()));
+            if (((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
+            {
+                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
+            }
         }
         else if (tipo == Casa)
         {
-            if ((*it)->getTipoInmueble() == tipo && (*it)->getTipo() == tipoPub && precioMin < (*it)->getPrecio() && (*it)->getPrecio() < precioMax)
-                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), to_string((*it)->getPrecio()), (*it)->getNicknameInmobiliaria()));
+            if (((*it)->getTipoInmueble() == tipo) && ((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
+            {
+                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
+            }
         }
-        else
+        else if (tipo == Apartamento)
         {
-            dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), to_string((*it)->getPrecio()), (*it)->getNicknameInmobiliaria()));
+            if (((*it)->getTipoInmueble() == tipo) && ((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
+            {
+                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
+            };
         }
     }
     return dtp;

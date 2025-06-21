@@ -58,13 +58,15 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     {
         activa = true;
     }
-    else if ((*pu).getFecha() < fechaActual->getFechaActual())
+    else if (*(pu->getFecha()) < fechaActual->getFechaActual())
     {
         activa = true;
         (*pu).setActiva(false);
     }
-    Publicacion *p = new Publicacion((*it)->getUltimaPublicacion() + 1, fechaActual->getFechaActual(), tipoPublicacion, texto, precio, activa, (*it)); // si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
-    (*it)->setUltimaPublicacion((*it)->getUltimaPublicacion() + 1);
+
+    this->codigoUltimaPublicacion++;
+    Publicacion *p = new Publicacion(this->codigoUltimaPublicacion, fechaActual->getFechaActual(), tipoPublicacion, texto, precio, activa, (*it)); // si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
+    (*it)->setUltimaPublicacion(this->codigoUltimaPublicacion);
     (*it)->agregarPublicacion(p->getCodigo(), p);
 
     // agregar a la coleccion de publicaciones

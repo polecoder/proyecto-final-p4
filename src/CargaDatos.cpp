@@ -81,26 +81,6 @@ CargaDatos::CargaDatos()
     interfazFechaActual->setNewFechaActual(19, 5, 2022);
     interfazSubeYBaja->altaAdministraPropiedad(8, "vivaurbana");
 
-    // Suscripciones a Inmobiliarias
-    set<string> casasur123;
-    casasur123.insert("casasur123");
-    set<string> idealhome;
-    idealhome.insert("idealhome");
-    set<string> vivaurbana;
-    vivaurbana.insert("vivaurbana");
-
-    interfazSuscripciones->suscribirse("luisito23", casasur123);
-    interfazSuscripciones->suscribirse("luisito23", idealhome);
-    interfazSuscripciones->suscribirse("anarojo88", casasur123);
-    interfazSuscripciones->suscribirse("anarojo88", idealhome);
-    interfazSuscripciones->suscribirse("anarojo88", vivaurbana);
-    interfazSuscripciones->suscribirse("marcelom", idealhome);
-    interfazSuscripciones->suscribirse("robertarce", idealhome);
-    interfazSuscripciones->suscribirse("soledadf", vivaurbana);
-    interfazSuscripciones->suscribirse("martagal", vivaurbana);
-    interfazSuscripciones->suscribirse("jorge88", casasur123);
-    interfazSuscripciones->suscribirse("jorge88", idealhome);
-    interfazSuscripciones->suscribirse("jorge88", vivaurbana);
     // Crear Publicaciones
     interfazFechaActual->setNewFechaActual(9, 10, 2011);
     interfazSubeYBaja->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
@@ -142,7 +122,7 @@ CargaDatos::CargaDatos()
     interfazSubeYBaja->altaPublicacion("idealhome", 7, Alquiler, "Apartamento con gran vista a la rambla", 31000);
 
     interfazFechaActual->setNewFechaActual(20, 11, 2023);
-    interfazSubeYBaja->altaPublicacion("idealhome", 7, Venta, "Aprtamente en excelentes condiciones de 80 m", 450000);
+    interfazSubeYBaja->altaPublicacion("idealhome", 7, Venta, "Apartamento en excelentes condiciones de 80 m", 450000);
 
     interfazFechaActual->setNewFechaActual(8, 3, 2024);
     interfazSubeYBaja->altaPublicacion("vivaurbana", 3, Venta, "Venta de casa en Camino Maldonado 95 m bien distribuidos.", 430000);
@@ -152,6 +132,27 @@ CargaDatos::CargaDatos()
 
     interfazFechaActual->setNewFechaActual(1, 8, 2024);
     interfazSubeYBaja->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);
+
+    // Suscripciones a Inmobiliarias
+    set<string> casasur123;
+    casasur123.insert("casasur123");
+    set<string> idealhome;
+    idealhome.insert("idealhome");
+    set<string> vivaurbana;
+    vivaurbana.insert("vivaurbana");
+
+    interfazSuscripciones->suscribirse("luisito23", casasur123);
+    interfazSuscripciones->suscribirse("luisito23", idealhome);
+    interfazSuscripciones->suscribirse("anarojo88", casasur123);
+    interfazSuscripciones->suscribirse("anarojo88", idealhome);
+    interfazSuscripciones->suscribirse("anarojo88", vivaurbana);
+    interfazSuscripciones->suscribirse("marcelom", idealhome);
+    interfazSuscripciones->suscribirse("robertarce", idealhome);
+    interfazSuscripciones->suscribirse("soledadf", vivaurbana);
+    interfazSuscripciones->suscribirse("martagal", vivaurbana);
+    interfazSuscripciones->suscribirse("jorge88", casasur123);
+    interfazSuscripciones->suscribirse("jorge88", idealhome);
+    interfazSuscripciones->suscribirse("jorge88", vivaurbana);
 }
 
 CargaDatos *CargaDatos::getInstancia()

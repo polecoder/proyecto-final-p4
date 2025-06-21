@@ -153,7 +153,7 @@ void altaUsuario()
         cout << "Documento: ";
         getline(cin, documento);
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
-        bool usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
+        usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
         interfazImprimir->imprimirColeccionClientes();
     }
     else if (tipoUsuario == 1)
@@ -251,7 +251,7 @@ void altaUsuario()
                         }
                         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
-                        interfazImprimir->imprimirColeccionInmuebles();
+                        
                     }
                     else
                     {
@@ -273,10 +273,11 @@ void altaUsuario()
                         interfazImprimir->imprimirColeccionInmuebles();
                     }
                 }
+                cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
+                cin >> salir;
+                cin.ignore();
             }
-            cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
-            cin >> salir;
-            cin.ignore();
+           
         }
         IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         ci->finalizarAltaUsuario();
@@ -582,7 +583,11 @@ void altaAdministracionPropiedad()
 
 void cargarDatos()
 {
+    Factory *factory = Factory::getInstancia();
     CargaDatos::getInstancia();
+    factory->getControladorImprimir()->imprimirColeccionClientes();
+    factory->getControladorImprimir()->imprimirColeccionInmobiliarias();
+    factory->getControladorImprimir()->imprimirColeccionPropietarios();
 }
 
 void verFechaActual()

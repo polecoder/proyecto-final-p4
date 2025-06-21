@@ -74,6 +74,6 @@ void Inmobiliaria::agregarAdministraPropiedad(AdministraPropiedad *administraPro
 
 ostream &operator<<(ostream &os, const Inmobiliaria &i)
 {
-    os << "INMOBILIARIA: [nickname: " << i.getNickname() << "; contrasena: " << i.getContrasena() << "; nombre: " << i.getNombre() << "; email: " << i.getEmail() << "; direccion: " << i.getDireccion() << "; apellido: " << i.getUrl() << "; documento: " << i.getTelefono() << "]";
+    os << "INMOBILIARIA: [nickname: " << i.getNickname() << "; contrasena: " << i.getContrasena() << "; nombre: " << i.getNombre() << "; email: " << i.getEmail() << "; direccion: " << i.getDireccion() << "; Url: " << i.getUrl() << "; documento: " << i.getTelefono() << "]";
     return os;
 }

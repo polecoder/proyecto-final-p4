@@ -75,6 +75,13 @@ void HandlerPropietarios::imprimirColeccionPropietarios()
     cout << "-- IMPRIMIR COLECCION PROPIETARIIOS --" << endl;
     for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
     {
-        cout << contador << " - " << it->second;
+        cout << contador << " - " << *(it->second)<<endl;
+        cout<< "otrosdatos:"<<endl;
+        vector<Inmueble *> :: iterator it2;
+        vector<Inmueble *> inmuebles =it->second->getInmuebles();
+        for(it2=inmuebles.begin();it2!=inmuebles.end();it2++){
+            cout<<**it2<<endl;
+        }
+        contador++;
     }
 }

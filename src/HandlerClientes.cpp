@@ -37,8 +37,10 @@ HandlerClientes::~HandlerClientes()
 
 void HandlerClientes::agregarCliente(Cliente *cliente) // saco el "&" de aca
 {
-    string nickname = cliente->getNickname();
-    this->coleccionClientes[nickname] = cliente;
+    pair<string, Cliente *> entry(cliente->getNickname(), cliente);
+    coleccionClientes.insert(entry);
+    // string nickname = cliente->getNickname();
+    // this->coleccionClientes[nickname] = cliente;
 }
 
 void HandlerClientes::eliminarCliente(string nickname)
@@ -75,6 +77,7 @@ void HandlerClientes::imprimirColeccionClientes()
     cout << "-- IMPRIMIR COLECCION CLIENTES --" << endl;
     for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
     {
-        cout << contador << " - " << it->second;
+        cout << contador << " - " << *(it->second) << endl;
+        contador++;
     }
 }

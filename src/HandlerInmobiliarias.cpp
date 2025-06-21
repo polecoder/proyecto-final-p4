@@ -75,9 +75,12 @@ void HandlerInmobiliarias::imprimirColeccionInmobiliarias()
     {
         cout << contador << " - " << *(it->second) << endl;
         map<std::string, Propietario *> propietarios = it->second->getPropietarios();
-        map<std::string, Propietario *> ::iterator it2;
-        for (it2=propietarios.begin();it2!=propietarios.end();it2++){
-            cout<<*(it2->second)<<endl;
+        int contador2 = 1;
+        for (map<std::string, Propietario *>::iterator it2 = propietarios.begin(); it2 != propietarios.end(); it2++)
+        {
+            cout << "|    " << contador2 << " - " << *(it2->second) << endl;
+            contador2++;
         }
+        contador++;
     }
 }

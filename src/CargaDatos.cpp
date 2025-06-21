@@ -20,7 +20,6 @@ CargaDatos::CargaDatos()
     interfazSubeYBaja->altaPropietario("marcelom", "banco123", "Marcelo", "marcelo.m@gmail.com", "099876543", "123456789012");
     interfazSubeYBaja->altaCasa("Av. Rivera", 1011, 120, 1995, true, Plano);
     interfazSubeYBaja->altaApartamento("Av. Brasil", 2031, 75, 1980, 5, true, 3500);
-    
 
     interfazSubeYBaja->altaPropietario("robertarce", "pass456", "Roberto", "roberto.a@yahoo.com", "091234567", "987654321001");
     interfazSubeYBaja->altaCasa("Camino Maldonado", 1540, 95, 1988, false, Plano);
@@ -50,7 +49,7 @@ CargaDatos::CargaDatos()
     interfazSubeYBaja->representarPropietario("soledadf");
     interfazSubeYBaja->representarPropietario("jorge88");
     // Crear los Administra Propiedad
-    interfazFechaActual->setNewFechaActual(12, 12, 2015);
+    /* interfazFechaActual->setNewFechaActual(12, 12, 2015);
     interfazSubeYBaja->altaAdministraPropiedad(2, "casasur123");
 
     interfazFechaActual->setNewFechaActual(25, 9, 2023);
@@ -79,7 +78,7 @@ CargaDatos::CargaDatos()
 
     interfazFechaActual->setNewFechaActual(19, 5, 2022);
     interfazSubeYBaja->altaAdministraPropiedad(8, "vivaurbana");
-   /* // Crear Publicaciones
+   // Crear Publicaciones
     interfazFechaActual->setNewFechaActual(9, 10, 2011);
     interfazSubeYBaja->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
 
@@ -149,8 +148,7 @@ CargaDatos::CargaDatos()
     interfazSuscripciones->suscribirse("martagal", vivaurbana);
     interfazSuscripciones->suscribirse("jorge88", casasur123);
     interfazSuscripciones->suscribirse("jorge88", idealhome);
-    interfazSuscripciones->suscribirse("jorge88", vivaurbana);
-    */
+    interfazSuscripciones->suscribirse("jorge88", vivaurbana); */
 }
 
 CargaDatos *CargaDatos::getInstancia()

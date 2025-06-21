@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <iostream>
 #include "../include/HandlerClientes.h"
 #include "../include/Cliente.h"
 
@@ -34,7 +35,7 @@ HandlerClientes::~HandlerClientes()
     this->coleccionClientes.clear();
 }
 
-void HandlerClientes::agregarCliente(Cliente* cliente)//saco el "&" de aca
+void HandlerClientes::agregarCliente(Cliente *cliente) // saco el "&" de aca
 {
     string nickname = cliente->getNickname();
     this->coleccionClientes[nickname] = cliente;
@@ -65,4 +66,15 @@ Cliente *HandlerClientes::getCliente(string nickname)
 const map<string, Cliente *> &HandlerClientes::getColeccionClientes() const
 {
     return this->coleccionClientes;
+}
+
+void HandlerClientes::imprimirColeccionClientes()
+{
+    map<string, Cliente *>::iterator it;
+    int contador = 1;
+    cout << "-- IMPRIMIR COLECCION CLIENTES --" << endl;
+    for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
+    {
+        cout << contador << " - " << it->second;
+    }
 }

@@ -3,23 +3,25 @@
 #include "Inmueble.h"
 #include "Propietario.h"
 #include <map>
-using namespace std; 
+using namespace std;
 
-class HandlerInmueble {
+class HandlerInmueble
+{
 private:
-    map<int, Inmueble*> coleccionInmuebles;
-    static HandlerInmueble* instancia;
-    HandlerInmueble();  // Constructor
-    
-public:
-    static HandlerInmueble* getInstancia();
+    map<int, Inmueble *> coleccionInmuebles;
+    static HandlerInmueble *instancia;
+    HandlerInmueble(); // Constructor
 
-    void agregarInmueble(Inmueble* inmueble);
+public:
+    static HandlerInmueble *getInstancia();
+
+    void agregarInmueble(Inmueble *inmueble);
     void eliminarInmueble(int codigo);
 
     bool existeInmueble(int codigoInmueble);
-    map<int, Inmueble*> DevolverInmuebles(); // Devuelve el mapa completo
-    Inmueble* DevolverInmueble(int codigo); // Devuelve el inmueble con ese codigo
+    map<int, Inmueble *> DevolverInmuebles(); // Devuelve el mapa completo
+    Inmueble *DevolverInmueble(int codigo);   // Devuelve el inmueble con ese codigo
+    void imprimirColeccionInmuebles();
     ~HandlerInmueble(); // Destructor
 };
 #endif

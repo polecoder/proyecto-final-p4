@@ -458,7 +458,7 @@ void eliminarInmueble()
     }
     else if (DTCasa *casa = dynamic_cast<DTCasa *>(DTI))
     {
-        cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
+        cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << ", nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << ", PH: " << casa->getEsPH() << ", Tipo de techo: " << casa->getTecho() << std::endl;
     }
     int deseaEliminar;
     cout << "Desea eliminar?: (1: Si, 0: No)";
@@ -606,10 +606,10 @@ void cargarDatos()
     Factory *factory = Factory::getInstancia();
     CargaDatos::getInstancia();
     IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
-    interfazImprimir->imprimirColeccionClientes();
+   /*interfazImprimir->imprimirColeccionClientes();
     interfazImprimir->imprimirColeccionInmobiliarias();
     interfazImprimir->imprimirColeccionPropietarios();
-    interfazImprimir->imprimirColeccionAdministraPropiedad();
+    interfazImprimir->imprimirColeccionAdministraPropiedad();*/
 }
 
 void verFechaActual()

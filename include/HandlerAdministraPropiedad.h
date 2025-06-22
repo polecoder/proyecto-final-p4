@@ -20,5 +20,6 @@ public:
 
     const vector<AdministraPropiedad *> &getColecccionAdministraPropiedad() const;
     void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
+    void imprimirColeccionAdministraPropiedad();
 };
 #endif

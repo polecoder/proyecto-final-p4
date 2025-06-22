@@ -14,10 +14,10 @@ Publicacion ::Publicacion(int codigo, DTFecha *fecha, TipoPublicacion tipo, stri
     this->activa = activa;
     this->apAsociado = apAsociado;
 };
-Publicacion ::~Publicacion()
+Publicacion::~Publicacion()
 {
     delete fecha;      // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
-    delete apAsociado; // se elimina el link al administraPropiedad asociado a la publicacion
+    delete apAsociado; // ATENCIÓN: Esto libera la memoria de apAsociado cuando se llama al destructor de Publicación
 };
 int Publicacion::getCodigo() const
 {

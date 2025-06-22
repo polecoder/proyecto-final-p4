@@ -56,8 +56,7 @@ set<Publicacion *> HandlerPublicacion::obtenerPublicacionesActivas()
 
 HandlerPublicacion::~HandlerPublicacion()
 {
-    map<int, Publicacion *>::iterator it;
-    for (it != this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
+    for (map<int, Publicacion *>::iterator it = this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
     {
         delete it->second;
     }

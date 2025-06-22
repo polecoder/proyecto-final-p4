@@ -25,13 +25,10 @@ HandlerClientes *HandlerClientes::getInstancia()
 
 HandlerClientes::~HandlerClientes()
 {
-    map<string, Cliente *>::iterator it;
-
-    for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
+    for (map<string, Cliente *>::iterator it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
     {
         delete it->second;
     }
-
     this->coleccionClientes.clear();
 }
 

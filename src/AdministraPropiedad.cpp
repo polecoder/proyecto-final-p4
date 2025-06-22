@@ -13,8 +13,10 @@ AdministraPropiedad ::AdministraPropiedad(DTFecha *fecha, Inmueble *inmueble, In
     this->inmobiliaria = inmo;
 };
 
-AdministraPropiedad ::~AdministraPropiedad() {
-    // TODO: Implementar
+AdministraPropiedad ::~AdministraPropiedad()
+{
+    delete this->fecha;
+    // TODO: Falta eliminar más cosas
 };
 
 Inmueble *AdministraPropiedad::getInmueble() const

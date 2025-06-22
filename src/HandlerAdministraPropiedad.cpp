@@ -27,6 +27,15 @@ HandlerAdministraPropiedad *HandlerAdministraPropiedad::getInstancia()
     return instancia;
 }
 
+HandlerAdministraPropiedad::~HandlerAdministraPropiedad()
+{
+    for (vector<AdministraPropiedad *>::iterator it = coleccionAdministraPropiedad.begin(); it != coleccionAdministraPropiedad.end(); ++it)
+    {
+        delete *it;
+    }
+    coleccionAdministraPropiedad.clear();
+}
+
 void HandlerAdministraPropiedad::imprimirColeccionAdministraPropiedad()
 {
     vector<AdministraPropiedad *>::iterator it;

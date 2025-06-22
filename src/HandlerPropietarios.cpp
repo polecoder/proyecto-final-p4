@@ -25,13 +25,10 @@ HandlerPropietarios *HandlerPropietarios::getInstancia()
 
 HandlerPropietarios::~HandlerPropietarios()
 {
-    map<string, Propietario *>::iterator it;
-
-    for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
+    for (map<string, Propietario *>::iterator it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
     {
         delete it->second;
     }
-
     this->coleccionPropietarios.clear();
 }
 

@@ -36,6 +36,7 @@ ControladorSubeYBaja::~ControladorSubeYBaja() {
 
 bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio)
 {
+    DTFecha *fechaActualSistema = fechaActual->getFechaActual();
     // se busca si existe una publicacion con el mismo tipo y fecha
     vector<AdministraPropiedad *> adProp = Hinmobiliarias->getColeccionAdministraPropiedad(nicknameInmobiliaria);
     vector<AdministraPropiedad *>::iterator it;
@@ -44,7 +45,7 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     { // busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
         it++;
     }
-    bool e = (*it)->existePublicacion(fechaActual->getFechaActual(), tipoPublicacion);
+    bool e = (*it)->existePublicacion(fechaActualSistema, tipoPublicacion);
     if (e)
     {
         return false; // si existe una publicacion de ese tipo y fecha se devuelve false
@@ -58,14 +59,14 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     {
         activa = true;
     }
-    else if (*(pu->getFecha()) < fechaActual->getFechaActual())
+    else if (*(pu->getFecha()) < fechaActualSistema)
     {
         activa = true;
         (*pu).setActiva(false);
     }
 
     this->codigoUltimaPublicacion++;
-    Publicacion *p = new Publicacion(this->codigoUltimaPublicacion, fechaActual->getFechaActual(), tipoPublicacion, texto, precio, activa, (*it)); // si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
+    Publicacion *p = new Publicacion(this->codigoUltimaPublicacion, fechaActualSistema, tipoPublicacion, texto, precio, activa, (*it)); // si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
     (*it)->setUltimaPublicacion(this->codigoUltimaPublicacion);
     (*it)->agregarPublicacion(p->getCodigo(), p);
 

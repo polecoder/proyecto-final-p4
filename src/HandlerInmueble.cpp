@@ -11,11 +11,11 @@ HandlerInmueble::HandlerInmueble() {
 
 HandlerInmueble::~HandlerInmueble()
 {
-    for (auto it = coleccionInmuebles.begin(); it != coleccionInmuebles.end(); ++it)
+    for (map<int, Inmueble *>::iterator it = this->coleccionInmuebles.begin(); it != this->coleccionInmuebles.end(); it++)
     {
-        delete it->second; // Libera la memoria de cada Inmobiliaria
+        delete it->second;
     }
-    coleccionInmuebles.clear(); // Limpia el mapa
+    this->coleccionInmuebles.clear();
 }
 
 HandlerInmueble *HandlerInmueble::getInstancia()

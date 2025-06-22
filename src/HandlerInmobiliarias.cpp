@@ -12,11 +12,11 @@ HandlerInmobiliarias::HandlerInmobiliarias() {}
 
 HandlerInmobiliarias::~HandlerInmobiliarias()
 {
-    for (auto it = coleccionInmobiliarias.begin(); it != coleccionInmobiliarias.end(); ++it)
+    for (map<string, Inmobiliaria *>::iterator it = this->coleccionInmobiliarias.begin(); it != this->coleccionInmobiliarias.end(); it++)
     {
-        delete it->second; // Libera la memoria de cada Inmobiliaria
+        delete it->second;
     }
-    coleccionInmobiliarias.clear(); // Limpia el mapa
+    this->coleccionInmobiliarias.clear();
 }
 
 HandlerInmobiliarias *HandlerInmobiliarias::getInstancia()

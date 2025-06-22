@@ -66,8 +66,6 @@ vector<AdministraPropiedad *> HandlerInmobiliarias::getColeccionAdministraPropie
     return coleccionInmobiliarias[nickname]->getAdministraProps();
 };
 
-
-
 void HandlerInmobiliarias::destroy()
 {
     delete instancia;

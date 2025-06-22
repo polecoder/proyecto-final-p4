@@ -30,11 +30,12 @@ public:
 
     Inmueble *getInmueble() const;
     int getUltimaPublicacion() const;
+    DTFecha *getFechaComienzo() const;
 
     void setUltimaPublicacion(int up);
     void agregarPublicacion(int codigo, Publicacion *publicacion);
 
-    bool existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion);
+    bool existePublicacion(DTFecha *fecha, TipoPublicacion tipoPublicacion);
     Publicacion *encontrarPublicacionActiva(TipoPublicacion tipoPublicacion);
 
     Inmobiliaria *getInmobiliaria() const;

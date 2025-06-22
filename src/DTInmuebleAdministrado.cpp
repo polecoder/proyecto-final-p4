@@ -22,10 +22,7 @@ DTFecha *DTInmuebleAdministrado::getFechaComienzo()
     return fechaComienzo;
 }
 
-DTInmuebleAdministrado::~DTInmuebleAdministrado()
-{
-
-}
+DTInmuebleAdministrado::~DTInmuebleAdministrado() {}
 
 bool DTInmuebleAdministrado::operator<(const DTInmuebleAdministrado &other) const
 {

@@ -29,6 +29,11 @@ int AdministraPropiedad::getUltimaPublicacion() const
     return this->ultimaPublicacion;
 };
 
+DTFecha *AdministraPropiedad::getFechaComienzo() const
+{
+    return this->fecha;
+}
+
 string AdministraPropiedad::getNicknameInmobiliaria() const
 {
     return inmobiliaria->getNickname();
@@ -45,11 +50,11 @@ void AdministraPropiedad::agregarPublicacion(int codigo, Publicacion *publi)
     publicaciones.insert({codigo, publi});
 };
 
-bool AdministraPropiedad::existePublicacion(DTFecha fecha, TipoPublicacion tipoPublicacion)
+bool AdministraPropiedad::existePublicacion(DTFecha *fecha, TipoPublicacion tipoPublicacion)
 {
     map<int, Publicacion *>::iterator it;
     it = publicaciones.begin();
-    while (it != publicaciones.end() && (!(fecha.operator==((*it).second->getFecha())) || (*it).second->getTipo() != tipoPublicacion))
+    while (it != publicaciones.end() && (!(fecha->operator==((*it).second->getFecha())) || (*it).second->getTipo() != tipoPublicacion))
     {
         it++;
     };

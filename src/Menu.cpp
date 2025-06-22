@@ -134,6 +134,7 @@ void altaUsuario()
 {
 
     Factory *factory = Factory::getInstancia();
+    IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
 
     cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
@@ -173,7 +174,6 @@ void altaUsuario()
         getline(cin, apellido);
         cout << "Documento: ";
         getline(cin, documento);
-        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
     }
     else if (tipoUsuario == 1)
@@ -184,7 +184,6 @@ void altaUsuario()
         getline(cin, url);
         cout << "Telefono: ";
         getline(cin, telefono);
-        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
     }
     else if (tipoUsuario == 2)
@@ -193,7 +192,6 @@ void altaUsuario()
         getline(cin, cuentaBancaria);
         cout << "Telefono: ";
         getline(cin, telefono);
-        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
     }
     if (usuarioOk)
@@ -213,7 +211,6 @@ void altaUsuario()
                 if (tipoUsuario == 1)
                 {
                     cout << "Lista de Propietarios:\n";
-                    Factory *factory = Factory::getInstancia();
                     IControladorListar *controladorListar = factory->getControladorListar();
                     set<DTUsuario> Mostrar = controladorListar->listarPropietarios();
                     // Recorrer la coleccion Mostrar "- Nickname: xx, Nombre: zz";
@@ -225,7 +222,6 @@ void altaUsuario()
                     cout << "Nickname propietario a representar: ";
                     string nicknamePropietario;
                     getline(cin, nicknamePropietario);
-                    IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                     ci->representarPropietario(nicknamePropietario);
                 }
                 else if (tipoUsuario == 2)
@@ -267,7 +263,6 @@ void altaUsuario()
                         {
                             techo = Plano;
                         }
-                        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaCasa(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
                     }
                     else
@@ -285,7 +280,6 @@ void altaUsuario()
                         float gastosComunes;
                         cin >> gastosComunes;
                         cin.ignore();
-                        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
                         ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
                     }
                 }
@@ -294,7 +288,6 @@ void altaUsuario()
                 cin.ignore();
             }
         }
-        IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
         ci->finalizarAltaUsuario();
     }
     else
@@ -418,9 +411,9 @@ void consultaPublicaciones()
         {
             cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << " nro. puerta " << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << " PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
         }
-         delete inmueble; 
-         // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
-    }//
+        delete inmueble;
+        // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
+    } //
 }
 
 void eliminarInmueble()

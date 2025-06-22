@@ -377,11 +377,11 @@ void consultaPublicaciones()
     cin >> inTipoInmueble;
     cin.ignore();
     TipoInmueble tipoInmueble = Todos;
-    if (inTipoPublicacion == 1)
+    if (inTipoInmueble == 1)
     {
         tipoInmueble = Casa;
     }
-    else if (inTipoPublicacion == 2)
+    else if (inTipoInmueble == 2)
     {
         tipoInmueble = Apartamento;
     }

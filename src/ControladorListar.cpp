@@ -113,6 +113,7 @@ set<DTPublicacion> ControladorListar::listarPublicaciones(TipoPublicacion tipoPu
     set<DTPublicacion> dtp;
     for (set<Publicacion *>::iterator it = listaPublicaciones.begin(); it != listaPublicaciones.end(); ++it)
     {
+
         if (tipo == Todos)
         {
             if (((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
@@ -120,19 +121,12 @@ set<DTPublicacion> ControladorListar::listarPublicaciones(TipoPublicacion tipoPu
                 dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
             }
         }
-        else if (tipo == Casa)
+       else
         {
             if (((*it)->getTipoInmueble() == tipo) && ((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
             {
                 dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
             }
-        }
-        else if (tipo == Apartamento)
-        {
-            if (((*it)->getTipoInmueble() == tipo) && ((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
-            {
-                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
-            };
         }
     }
     return dtp;

@@ -20,13 +20,10 @@
 #include "../include/IControladorFechaActual.h"
 #include "../include/IControladorSuscripciones.h"
 #include "../include/IControladorListar.h"
-#include "../include/IControladorImprimir.h"
-
 #include "../include/ControladorSubeYBaja.h"
 #include "../include/ControladorFechaActual.h"
 #include "../include/ControladorSuscripciones.h"
 #include "../include/ControladorListar.h"
-#include "../include/ControladorImprimir.h"
 #include "../include/HandlerAdministraPropiedad.h"
 #include "../include/HandlerInmobiliarias.h"
 #include "../include/HandlerPublicacion.h"
@@ -119,7 +116,6 @@ void ejecutarOpcion(int opcion)
         ControladorFechaActual::destroy();
         ControladorSuscripciones::destroy();
         ControladorListar::destroy();
-        ControladorImprimir::destroy();
         HandlerAdministraPropiedad::destroy();
         HandlerInmobiliarias::destroy();
         HandlerPublicacion::destroy();
@@ -139,7 +135,6 @@ void altaUsuario()
 
     Factory *factory = Factory::getInstancia();
     IControladorSubeYBaja *ci = factory->getControladorSubeYBaja();
-    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
 
     cout << "Ingrese el tipo de usuario (0: Cliente, 1: Inmobiliaria, 2: Propietario): ";
     int tipoUsuario;
@@ -180,7 +175,6 @@ void altaUsuario()
         cout << "Documento: ";
         getline(cin, documento);
         usuarioOk = ci->altaCliente(nickname, contrasena, nombre, email, apellido, documento);
-        interfazImprimir->imprimirColeccionClientes();
     }
     else if (tipoUsuario == 1)
     {
@@ -191,7 +185,6 @@ void altaUsuario()
         cout << "Telefono: ";
         getline(cin, telefono);
         usuarioOk = ci->altaInmobiliaria(nickname, contrasena, nombre, email, direccion, url, telefono);
-        interfazImprimir->imprimirColeccionInmobiliarias();
     }
     else if (tipoUsuario == 2)
     {
@@ -200,7 +193,6 @@ void altaUsuario()
         cout << "Telefono: ";
         getline(cin, telefono);
         usuarioOk = ci->altaPropietario(nickname, contrasena, nombre, email, cuentaBancaria, telefono);
-        interfazImprimir->imprimirColeccionPropietarios();
     }
     if (usuarioOk)
     {
@@ -289,7 +281,6 @@ void altaUsuario()
                         cin >> gastosComunes;
                         cin.ignore();
                         ci->altaApartamento(inmuebleDireccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
-                        interfazImprimir->imprimirColeccionInmuebles();
                     }
                 }
                 cout << "Quiere seguir ingresando? (1: Si, 0: No): ";
@@ -389,8 +380,6 @@ void consultaPublicaciones()
     }
     cout << "Publicaciones encontradas:\n";
     IControladorListar *controladorListar = factory->getControladorListar();
-    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
-    interfazImprimir->imprimirColeccionPublicaciones();
     set<DTPublicacion> publicaciones = controladorListar->listarPublicaciones(tipoPublicacion, precioMinimo, precioMaximo, tipoInmueble);
     // Recorrer la coleccion Mostrar "- Codigo: xx, fecha: dd/mm/yyyy, texto: zzz, precio: aaa, inmobiliaria: bbb";
     set<DTPublicacion>::iterator it;
@@ -603,13 +592,7 @@ void altaAdministracionPropiedad()
 
 void cargarDatos()
 {
-    Factory *factory = Factory::getInstancia();
     CargaDatos::getInstancia();
-    IControladorImprimir *interfazImprimir = factory->getControladorImprimir();
-   /*interfazImprimir->imprimirColeccionClientes();
-    interfazImprimir->imprimirColeccionInmobiliarias();
-    interfazImprimir->imprimirColeccionPropietarios();
-    interfazImprimir->imprimirColeccionAdministraPropiedad();*/
 }
 
 void verFechaActual()

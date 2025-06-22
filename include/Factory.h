@@ -5,7 +5,6 @@
 #include "IControladorListar.h"
 #include "IControladorSubeYBaja.h"
 #include "IControladorSuscripciones.h"
-#include "IControladorImprimir.h"
 
 class Factory
 {
@@ -22,7 +21,6 @@ public:
     IControladorSubeYBaja *getControladorSubeYBaja();
     IControladorListar *getControladorListar();
     IControladorSuscripciones *getControladorSuscripciones();
-    IControladorImprimir *getControladorImprimir();
 };
 
 #endif

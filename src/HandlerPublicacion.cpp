@@ -63,17 +63,7 @@ HandlerPublicacion::~HandlerPublicacion()
     this->coleccionPublicaciones.clear();
 };
 
-void HandlerPublicacion::imprimirColeccionPublicaciones()
-{
-    map<int, Publicacion *>::iterator it;
-    int contador = 1;
-    cout << "-- IMPRIMIR COLECCION PUBLICACIONES --" << endl;
-    for (it = this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
-    {
-        cout << contador << " - " << *(it->second) << endl;
-        contador++;
-    }
-}
+
 
 void HandlerPublicacion::destroy()
 {

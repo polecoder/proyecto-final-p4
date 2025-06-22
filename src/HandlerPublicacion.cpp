@@ -74,3 +74,9 @@ void HandlerPublicacion::imprimirColeccionPublicaciones()
         contador++;
     }
 }
+
+void HandlerPublicacion::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

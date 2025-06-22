@@ -23,7 +23,9 @@ private:
 
 public:
     static ControladorImprimir *getInstancia();
+    static void destroy();
     ~ControladorImprimir();
+
     void imprimirColeccionClientes();
     void imprimirColeccionInmobiliarias();
     void imprimirColeccionInmuebles();

@@ -211,3 +211,9 @@ void ControladorSubeYBaja::eliminarInmueble(int codigoInmueble)
         delete inmuebleElim;
     }
 }
+
+void ControladorSubeYBaja::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

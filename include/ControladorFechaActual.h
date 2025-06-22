@@ -13,9 +13,11 @@ private:
 
 public:
     static ControladorFechaActual *getInstancia();
+    static void destroy();
+    ~ControladorFechaActual();
+
     DTFecha *getFechaActual();
     void setNewFechaActual(int dia, int mes, int anio);
-    ~ControladorFechaActual();
 };
 
 #endif

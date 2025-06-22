@@ -31,3 +31,9 @@ ControladorFechaActual::~ControladorFechaActual()
 {
     delete fechaActual;
 }
+
+void ControladorFechaActual::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

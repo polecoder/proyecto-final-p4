@@ -41,6 +41,7 @@ private:
 
 public:
     static ControladorListar *getInstancia();
+    static void destroy();
     ~ControladorListar();
 
     set<DTInmuebleListado> listarInmuebles();                                                    // Devuelve la información de código, dirección y nombre del propietario de los inmuebles de la coleccion
@@ -53,8 +54,8 @@ public:
     set<DTUsuario> listarPropietarios();
 
     set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
-    DTInmueble*detalleInmueblePublicacion(int codigoPublicacion);
-    DTInmueble* detalleInmueble(int codigoInmueble);
+    DTInmueble *detalleInmueblePublicacion(int codigoPublicacion);
+    DTInmueble *detalleInmueble(int codigoInmueble);
     set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario); // PRE: existe un usuario con nickname=nicknameUsuario.
 };
 

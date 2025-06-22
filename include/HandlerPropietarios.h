@@ -16,6 +16,7 @@ private:
 
 public:
     static HandlerPropietarios *getInstancia();
+    static void destroy();
     ~HandlerPropietarios();
 
     void agregarPropietario(Propietario *&propietario);

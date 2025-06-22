@@ -78,3 +78,9 @@ void HandlerClientes::imprimirColeccionClientes()
         contador++;
     }
 }
+
+void HandlerClientes::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

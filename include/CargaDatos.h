@@ -17,6 +17,7 @@ private:
 public:
     static CargaDatos *getInstancia();
     ~CargaDatos();
+    static void destroy();
 };
 
 #endif

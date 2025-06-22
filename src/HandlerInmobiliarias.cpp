@@ -84,3 +84,9 @@ void HandlerInmobiliarias::imprimirColeccionInmobiliarias()
         contador++;
     }
 }
+
+void HandlerInmobiliarias::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

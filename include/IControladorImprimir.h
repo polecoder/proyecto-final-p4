@@ -18,6 +18,7 @@ public:
     virtual void imprimirColeccionPropietarios() = 0;
     virtual void imprimirColeccionPublicaciones() = 0;
     virtual void imprimirColeccionAdministraPropiedad() = 0;
+    virtual ~IControladorImprimir() = default;
 };
 
 #endif

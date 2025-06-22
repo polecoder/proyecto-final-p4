@@ -16,6 +16,8 @@ Factory *Factory::instancia = NULL;
 
 Factory::Factory() {}
 
+Factory::~Factory() {}
+
 Factory *Factory::getInstancia()
 {
     if (instancia == NULL)
@@ -48,4 +50,10 @@ IControladorSuscripciones *Factory::getControladorSuscripciones()
 IControladorImprimir *Factory::getControladorImprimir()
 {
     return ControladorImprimir::getInstancia();
+}
+
+void Factory::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

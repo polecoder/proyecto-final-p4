@@ -21,7 +21,7 @@ ControladorListar::ControladorListar()
     this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
     this->handlerPublicaciones = HandlerPublicacion::getInstancia();
     this->interfazFechaActual = ControladorFechaActual::getInstancia();
-    this->handlerInmueble=HandlerInmueble::getInstancia();
+    this->handlerInmueble = HandlerInmueble::getInstancia();
 }
 
 ControladorListar *ControladorListar::getInstancia()
@@ -137,7 +137,7 @@ set<DTPublicacion> ControladorListar::listarPublicaciones(TipoPublicacion tipoPu
     }
     return dtp;
 };
-DTInmueble* ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
+DTInmueble *ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
 {
     Publicacion *pub = handlerPublicaciones->getPublicacion(codigoPublicacion);
     Inmueble *inmuebleAsociado = pub->getInmueble();
@@ -153,8 +153,9 @@ DTInmueble* ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
         TipoTecho techo = esCasa->getTipoTecho();
         return new DTCasa(codigo, direccion, numeroPuerta, superficie, anio, esPH, techo);
     }
-    else if(class::Apartamento *esApartamento = dynamic_cast<class::Apartamento*>(inmuebleAsociado))
+    else /* if (class ::Apartamento *esApartamento = dynamic_cast<class ::Apartamento *>(inmuebleAsociado)) */
     {
+        class ::Apartamento *esApartamento = dynamic_cast<class ::Apartamento *>(inmuebleAsociado);
         int piso = esApartamento->getPiso();
         bool ascensor = esApartamento->getAscensor();
         float gastosComunes = esApartamento->getGastosComunes();
@@ -212,8 +213,8 @@ set<DTInmuebleListado> ControladorListar::listarInmuebles()
 {
     set<DTInmuebleListado> inmueblesListados;
     map<int, Inmueble *> inmuebles = handlerInmueble->DevolverInmuebles();
-    map<int, Inmueble *> ::iterator it;
-    for (it=inmuebles.begin();it!=inmuebles.end();++it)
+    map<int, Inmueble *>::iterator it;
+    for (it = inmuebles.begin(); it != inmuebles.end(); ++it)
     {
         Inmueble *inmueble = it->second;
         inmueblesListados.insert(DTInmuebleListado(inmueble->getCodigo(), inmueble->getDireccion(), inmueble->getPropietario()->getNickname()));
@@ -228,7 +229,7 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
     map<string, Propietario *> propietariosRepresentados = Inmobiliaria->getPropietariosRepresentados();
     // Recorro la coleccion de propietarios que son representados por la inmobiliaria
     map<string, Propietario *>::iterator it;
-    for (it=propietariosRepresentados.begin();it!=propietariosRepresentados.end();++it)
+    for (it = propietariosRepresentados.begin(); it != propietariosRepresentados.end(); ++it)
     {
         Propietario *propietario = it->second;
         vector<Inmueble *> inmuebles = propietario->getInmuebles();
@@ -249,14 +250,14 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
             // Si la inmobiliaria no administra el inmueble se agrega al set<DTInmuebleListado>
             if (!esAdministrado)
             {
-                inmueblesNoAdministrados.insert(DTInmuebleListado( inmueble->getCodigo(),inmueble->getDireccion(),propietario->getNickname()));
+                inmueblesNoAdministrados.insert(DTInmuebleListado(inmueble->getCodigo(), inmueble->getDireccion(), propietario->getNickname()));
             }
         }
     }
     return inmueblesNoAdministrados;
 }
 
-DTInmueble* ControladorListar::detalleInmueble(int codigoInmueble)
+DTInmueble *ControladorListar::detalleInmueble(int codigoInmueble)
 {
     Inmueble *inmueble = handlerInmueble->DevolverInmueble(codigoInmueble);
     int codigo = inmueble->getCodigo();
@@ -281,4 +282,10 @@ DTInmueble* ControladorListar::detalleInmueble(int codigoInmueble)
         float gastosComunes = apartamento->getGastosComunes();
         return new DTApartamento(codigo, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
     }
+}
+
+void ControladorListar::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

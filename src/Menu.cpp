@@ -21,6 +21,19 @@
 #include "../include/IControladorSuscripciones.h"
 #include "../include/IControladorListar.h"
 #include "../include/IControladorImprimir.h"
+
+#include "../include/ControladorSubeYBaja.h"
+#include "../include/ControladorFechaActual.h"
+#include "../include/ControladorSuscripciones.h"
+#include "../include/ControladorListar.h"
+#include "../include/ControladorImprimir.h"
+#include "../include/HandlerAdministraPropiedad.h"
+#include "../include/HandlerInmobiliarias.h"
+#include "../include/HandlerPublicacion.h"
+#include "../include/HandlerClientes.h"
+#include "../include/HandlerPropietarios.h"
+#include "../include/HandlerInmueble.h"
+
 #include <string>
 #include <set>
 
@@ -102,6 +115,19 @@ void ejecutarOpcion(int opcion)
         break;
     case 0:
         cout << "Saliendo del programa..." << endl;
+        ControladorSubeYBaja::destroy();
+        ControladorFechaActual::destroy();
+        ControladorSuscripciones::destroy();
+        ControladorListar::destroy();
+        ControladorImprimir::destroy();
+        HandlerAdministraPropiedad::destroy();
+        HandlerInmobiliarias::destroy();
+        HandlerPublicacion::destroy();
+        HandlerClientes::destroy();
+        HandlerPropietarios::destroy();
+        HandlerInmueble::destroy();
+        CargaDatos::destroy();
+        Factory::destroy();
         exit(0);
     default:
         cout << "Opcion no valida. Intente de nuevo." << endl;
@@ -330,7 +356,7 @@ void altaPublicacion()
     cin >> precio;
     cin.ignore();
     IControladorSubeYBaja *controladorSubeYBaja = factory->getControladorSubeYBaja();
-    bool altapublicacion = controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
+    controladorSubeYBaja->altaPublicacion(nicknameInmobiliaria, codigoInmueble, tipoPublicacion, texto, precio);
 }
 
 void consultaPublicaciones()
@@ -403,7 +429,7 @@ void consultaPublicaciones()
         {
             cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << " nro. puerta " << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << " PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
         }
-        delete inmueble; // 
+        delete inmueble; //
         // Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
     }
 }
@@ -428,7 +454,7 @@ void eliminarInmueble()
     cin.ignore();
     cout << "Detalle del inmueble:\n";
     // TODO: DTInmueble = Controlador->detalleInmueble(codigoInmueble)
-    DTInmueble* DTI = controladorListar->detalleInmueble(codigoInmueble);
+    DTInmueble *DTI = controladorListar->detalleInmueble(codigoInmueble);
     // Mostrarlo:
     //  Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
     //  Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
@@ -567,7 +593,7 @@ void altaAdministracionPropiedad()
     getline(cin, nicknameInmobiliaria);
     // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
-    IControladorListar* controladorListar = factory->getControladorListar();
+    IControladorListar *controladorListar = factory->getControladorListar();
     set<DTInmuebleListado> ColeccionInmueblesNoAdmin = controladorListar->getInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     set<DTInmuebleListado>::iterator it2;
     for (it2 = ColeccionInmueblesNoAdmin.begin(); it2 != ColeccionInmueblesNoAdmin.end(); ++it2)

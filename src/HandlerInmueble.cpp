@@ -61,3 +61,9 @@ void HandlerInmueble::imprimirColeccionInmuebles()
         cout << contador << " - " << *(it->second) << endl;
     }
 }
+
+void HandlerInmueble::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

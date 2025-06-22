@@ -53,3 +53,9 @@ void ControladorImprimir::imprimirColeccionAdministraPropiedad()
 {
     this->handlerAdministraPropiedad->imprimirColeccionAdministraPropiedad();
 }
+
+void ControladorImprimir::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

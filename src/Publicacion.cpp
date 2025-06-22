@@ -16,8 +16,7 @@ Publicacion ::Publicacion(int codigo, DTFecha *fecha, TipoPublicacion tipo, stri
 };
 Publicacion::~Publicacion()
 {
-    delete fecha;      // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
-    delete apAsociado; // ATENCIÓN: Esto libera la memoria de apAsociado cuando se llama al destructor de Publicación
+    delete fecha; // no se si esta bien, pero asumo que fecha es un puntero a un objeto DTFecha que se debe liberar
 };
 int Publicacion::getCodigo() const
 {

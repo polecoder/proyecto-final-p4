@@ -163,3 +163,11 @@ CargaDatos *CargaDatos::getInstancia()
     }
     return instancia;
 }
+
+CargaDatos::~CargaDatos() {}
+
+void CargaDatos::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

@@ -15,9 +15,11 @@ private:
 
 public:
     static HandlerAdministraPropiedad *getInstancia();
+    static void destroy();
+    ~HandlerAdministraPropiedad();
+
     const vector<AdministraPropiedad *> &getColecccionAdministraPropiedad() const;
     void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
-    ~HandlerAdministraPropiedad();
     void imprimirColeccionAdministraPropiedad();
 };
 #endif

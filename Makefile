@@ -31,4 +31,4 @@ clean:
 
 # Valgrind
 valgrind:
-	valgrind --leak-check=full ./main
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./main

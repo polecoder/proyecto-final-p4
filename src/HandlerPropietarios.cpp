@@ -83,3 +83,9 @@ void HandlerPropietarios::imprimirColeccionPropietarios()
         contador++;
     }
 }
+
+void HandlerPropietarios::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

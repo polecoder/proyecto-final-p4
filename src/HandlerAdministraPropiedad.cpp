@@ -47,3 +47,9 @@ void HandlerAdministraPropiedad::imprimirColeccionAdministraPropiedad()
         contador++;
     }
 }
+
+void HandlerAdministraPropiedad::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

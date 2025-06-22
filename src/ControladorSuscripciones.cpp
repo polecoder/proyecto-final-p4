@@ -94,3 +94,9 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
         }
     }
 }
+
+void ControladorSuscripciones::destroy()
+{
+    delete instancia;
+    instancia = NULL;
+}

@@ -412,12 +412,13 @@ void eliminarInmueble()
 {
 
     Factory *factory = Factory::getInstancia();
+    IControladorListar *controladorListar = factory->getControladorListar();
     cout << "Listado de inmuebles:\n";
     // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmuebles();
     // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
-    set<DTInmuebleListado> DTInmueblesListados = factory->getControladorListar()->listarInmuebles();
+    set<DTInmuebleListado> DTinmuebleslistados = controladorListar->listarInmuebles();
     set<DTInmuebleListado>::iterator it;
-    for (it = DTInmueblesListados.begin(); it != DTInmueblesListados.end(); ++it)
+    for (it = DTinmuebleslistados.begin(); it != DTinmuebleslistados.end(); ++it)
     {
         cout << "- Codigo: " << (*it).getCodigo() << ", direccion: " << (*it).getDireccion() << ", propietario: " << (*it).getPropietario() << endl;
     };
@@ -427,17 +428,16 @@ void eliminarInmueble()
     cin.ignore();
     cout << "Detalle del inmueble:\n";
     // TODO: DTInmueble = Controlador->detalleInmueble(codigoInmueble)
-    DTInmueble DTI = factory->getControladorListar()->detalleInmueble(codigoInmueble);
+    DTInmueble* DTI = controladorListar->detalleInmueble(codigoInmueble);
     // Mostrarlo:
     //  Si es apartamento-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, piso: xx, ascensor: Si/No, gastos comunes: yyy"
     //  Si es casa-> "Codigo: aaa, direccion: bbb, nro. puerta: ccc, superficie: xx m2, consturccion: dddd, PH: Si/No, Tipo de techo: Liviano/A dos aguas/Plano"
-    DTInmueble *DTIpuntero = &DTI;
-    if (DTApartamento *apartamento = dynamic_cast<DTApartamento *>(DTIpuntero))
+    if (DTApartamento *apartamento = dynamic_cast<DTApartamento *>(DTI))
     {
         cout << "Codigo: " << apartamento->getCodigo() << ", direccion: " << apartamento->getDireccion() << ", nro. puerta:" << apartamento->getNumeroPuerta() << ", superficie: " << apartamento->getSuperficie() << ", construccion: " << apartamento->getAnioConstruccion()
              << ", piso: " << apartamento->getPiso() << ", ascensor: " << apartamento->getTieneAscensor() << ", gastos comunes: " << apartamento->getGastosComunes() << endl;
     }
-    if (DTCasa *casa = dynamic_cast<DTCasa *>(DTIpuntero))
+    else if (DTCasa *casa = dynamic_cast<DTCasa *>(DTI))
     {
         cout << "Codigo: " << casa->getCodigo() << ", direccion:" << casa->getDireccion() << "nro. puerta" << casa->getNumeroPuerta() << ", superficie: " << casa->getSuperficie() << ", construccion: " << casa->getAnioConstruccion() << "PH: " << casa->getEsPH() << " Tipo de techo: " << casa->getTecho() << std::endl;
     }
@@ -481,7 +481,7 @@ void suscribirseNotificaciones()
         cin >> nicknameInmobiliaria;
         cin.ignore();
         inmobiliariasElegidas.insert(nicknameInmobiliaria);
-        cout << "Quiere suscribirse a mas inmobiliarias? (1: Si, 2: No): ";
+        cout << "Quiere suscribirse a mas inmobiliarias? (1: Si, 0: No): ";
         cin >> salir;
         cin.ignore();
     }

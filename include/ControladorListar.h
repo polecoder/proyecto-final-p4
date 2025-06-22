@@ -54,7 +54,7 @@ public:
 
     set<DTPublicacion> listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, TipoInmueble tipo);
     DTInmueble*detalleInmueblePublicacion(int codigoPublicacion);
-    DTInmueble detalleInmueble(int codigoInmueble);
+    DTInmueble* detalleInmueble(int codigoInmueble);
     set<DTUsuario> listarInmobiliariasNoSuscripto(string nicknameUsuario); // PRE: existe un usuario con nickname=nicknameUsuario.
 };
 

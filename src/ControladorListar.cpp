@@ -21,6 +21,7 @@ ControladorListar::ControladorListar()
     this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
     this->handlerPublicaciones = HandlerPublicacion::getInstancia();
     this->interfazFechaActual = ControladorFechaActual::getInstancia();
+    this->handlerInmueble=HandlerInmueble::getInstancia();
 }
 
 ControladorListar *ControladorListar::getInstancia()
@@ -211,19 +212,11 @@ set<DTInmuebleListado> ControladorListar::listarInmuebles()
 {
     set<DTInmuebleListado> inmueblesListados;
     map<int, Inmueble *> inmuebles = handlerInmueble->DevolverInmuebles();
-    for (const pair<int, Inmueble *> &par : inmuebles)
+    map<int, Inmueble *> ::iterator it;
+    for (it=inmuebles.begin();it!=inmuebles.end();++it)
     {
-        Inmueble *inmueble = par.second;
-        int codigo = inmueble->getCodigo();
-        string direccion = inmueble->getDireccion();
-        Propietario *propietario = inmueble->getPropietario();
-        string nicknamePropietario;
-        if (propietario != NULL)
-        {
-            nicknamePropietario = propietario->getNickname();
-        }
-        DTInmuebleListado DTInmuebleListado(codigo, direccion, nicknamePropietario);
-        inmueblesListados.insert(DTInmuebleListado);
+        Inmueble *inmueble = it->second;
+        inmueblesListados.insert(DTInmuebleListado(inmueble->getCodigo(), inmueble->getDireccion(), inmueble->getPropietario()->getNickname()));
     }
     return inmueblesListados;
 }
@@ -266,7 +259,7 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
     }
 }
 
-DTInmueble ControladorListar::detalleInmueble(int codigoInmueble)
+DTInmueble* ControladorListar::detalleInmueble(int codigoInmueble)
 {
     Inmueble *inmueble = handlerInmueble->DevolverInmueble(codigoInmueble);
     int codigo = inmueble->getCodigo();
@@ -280,7 +273,7 @@ DTInmueble ControladorListar::detalleInmueble(int codigoInmueble)
     {
         bool esPH = casa->getEsPH();
         TipoTecho techo = casa->getTipoTecho();
-        return DTCasa(codigo, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+        return new DTCasa(codigo, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
     }
 
     else
@@ -289,6 +282,6 @@ DTInmueble ControladorListar::detalleInmueble(int codigoInmueble)
         int piso = apartamento->getPiso();
         bool tieneAscensor = apartamento->getAscensor();
         float gastosComunes = apartamento->getGastosComunes();
-        return DTApartamento(codigo, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
+        return new DTApartamento(codigo, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
     }
 }

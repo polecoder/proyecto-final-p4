@@ -72,7 +72,7 @@ void Propietario::eliminarSuscripcion(string nicknameInmobiliaria)
     map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
     if (it != this->suscripciones.end())
     {
-        delete it->second; // Llama al destructor de Inmobiliaria
+        //delete it->second; // Llama al destructor de Inmobiliaria
         suscripciones.erase(it);
     }
 }

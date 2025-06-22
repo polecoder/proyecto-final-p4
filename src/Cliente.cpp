@@ -73,7 +73,6 @@ bool Cliente::estaSuscripto(const string nicknameInmobiliaria)
 
 void Cliente::eliminarSuscripcion(string nicknameInmobiliaria)
 {
-
     // find() retorna this->suscripciones.end() si el elemento no existe
     map<string, Inmobiliaria *>::iterator it = this->suscripciones.find(nicknameInmobiliaria);
     if (it != this->suscripciones.end())

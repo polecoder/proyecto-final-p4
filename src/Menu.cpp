@@ -567,7 +567,8 @@ void altaAdministracionPropiedad()
     getline(cin, nicknameInmobiliaria);
     // TODO: Coleccion de DTInmuebleListado = Controlador->listarInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     // Recorrer la coleccion Mostrar "- Codigo: xx, direccion: xxxx, propietario: bbbbb";
-    set<DTInmuebleListado> ColeccionInmueblesNoAdmin = factory->getControladorListar()->getInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
+    IControladorListar* controladorListar = factory->getControladorListar();
+    set<DTInmuebleListado> ColeccionInmueblesNoAdmin = controladorListar->getInmueblesNoAdministradosInmobiliaria(nicknameInmobiliaria);
     set<DTInmuebleListado>::iterator it2;
     for (it2 = ColeccionInmueblesNoAdmin.begin(); it2 != ColeccionInmueblesNoAdmin.end(); ++it2)
     {

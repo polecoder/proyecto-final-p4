@@ -227,10 +227,11 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
     Inmobiliaria *Inmobiliaria = handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
     map<string, Propietario *> propietariosRepresentados = Inmobiliaria->getPropietariosRepresentados();
     // Recorro la coleccion de propietarios que son representados por la inmobiliaria
-    for (const auto &par : propietariosRepresentados)
+    map<string, Propietario *>::iterator it;
+    for (it=propietariosRepresentados.begin();it!=propietariosRepresentados.end();++it)
     {
-        Propietario *propietario = par.second;
-        vector<Inmueble *> &inmuebles = propietario->getInmuebles();
+        Propietario *propietario = it->second;
+        vector<Inmueble *> inmuebles = propietario->getInmuebles();
         // Recorro la coleccion de inmuebles que tiene el propietario
         for (Inmueble *inmueble : inmuebles)
         {
@@ -248,15 +249,11 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
             // Si la inmobiliaria no administra el inmueble se agrega al set<DTInmuebleListado>
             if (!esAdministrado)
             {
-                int codigo = inmueble->getCodigo();
-                string direccion = inmueble->getDireccion();
-                // Es el nickname?
-                string nicknamePropietario = propietario->getNickname();
-                DTInmuebleListado DTInmList = DTInmuebleListado(codigo, direccion, nicknamePropietario);
-                inmueblesNoAdministrados.insert(DTInmList);
+                inmueblesNoAdministrados.insert(DTInmuebleListado( inmueble->getCodigo(),inmueble->getDireccion(),propietario->getNickname()));
             }
         }
     }
+    return inmueblesNoAdministrados;
 }
 
 DTInmueble* ControladorListar::detalleInmueble(int codigoInmueble)

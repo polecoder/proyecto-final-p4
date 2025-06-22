@@ -5,6 +5,7 @@
 #include "../include/DTNotificacion.h"
 #include "../include/ControladorSuscripciones.h"
 #include <map>
+#include <iostream>
 
 using namespace std;
 
@@ -74,7 +75,7 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
     {
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
         set<string>::iterator it;
-        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
+        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it)
         {
             cliente->eliminarSuscripcion(*it);
             Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(*it);
@@ -85,7 +86,7 @@ void ControladorSuscripciones::eliminarSuscripcion(string nicknameUsuario, set<s
     {
         Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
         set<string>::iterator it;
-        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); it++)
+        for (it = inmobiliariasElegidas.begin(); it != inmobiliariasElegidas.end(); ++it)
         {
             propietario->eliminarSuscripcion(*it);
             Inmobiliaria *inmobiliaria = this->handlerInmobiliarias->getInmobiliaria(*it);

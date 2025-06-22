@@ -25,7 +25,7 @@ public:
     Inmobiliaria *getInmobiliaria(string nickname);                                 // Devuelve la inmobiliaria con ese nickname.
     vector<AdministraPropiedad *> getColeccionAdministraPropiedad(string nickname); // devuelve los ap realcionado con una inmobiliaria con el nickname dado.
     bool existeInmobiliaria(string nickname);
- 
+    void imprimirColeccionInmobiliarias();
 };
 
 #endif // HANDLER_INMOBILIARIA

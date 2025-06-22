@@ -45,7 +45,7 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     { // busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
         it++;
     }
-    bool e = (*it)->existePublicacion(*fechaActualSistema, tipoPublicacion);
+    bool e = (*it)->existePublicacion(fechaActualSistema, tipoPublicacion);
     if (e)
     {
         return false; // si existe una publicacion de ese tipo y fecha se devuelve false
@@ -171,14 +171,8 @@ void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, i
 
 void ControladorSubeYBaja::finalizarAltaUsuario()
 {
-    if (UltimoPropietario != nullptr)
-    {
-        delete UltimoPropietario;
-    }
-    else if (UltimaInmobiliaria != nullptr)
-    {
-        delete UltimaInmobiliaria;
-    }
+    UltimaInmobiliaria = nullptr;
+    UltimoPropietario = nullptr;
 };
 
 void ControladorSubeYBaja::altaAdministraPropiedad(int codigoInmueble, string nicknameInmobiliaria)

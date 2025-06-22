@@ -57,7 +57,7 @@ set<DTInmuebleAdministrado> ControladorListar::listarInmueblesAdministrados(stri
     vector<AdministraPropiedad *>::iterator it;
     for (it = adProp.begin(); it != adProp.end(); ++it)
     {
-        salida.insert(DTInmuebleAdministrado(((*it)->getInmueble())->getCodigo(), ((*it)->getInmueble())->getDireccion(), this->interfazFechaActual->getFechaActual()));
+        salida.insert(DTInmuebleAdministrado(((*it)->getInmueble())->getCodigo(), ((*it)->getInmueble())->getDireccion(), (*it)->getFechaComienzo()));
     }
     return salida;
 }

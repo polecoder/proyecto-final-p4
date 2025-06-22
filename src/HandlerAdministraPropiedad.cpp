@@ -36,6 +36,17 @@ HandlerAdministraPropiedad::~HandlerAdministraPropiedad()
     coleccionAdministraPropiedad.clear();
 }
 
+void HandlerAdministraPropiedad::imprimirColeccionAdministraPropiedad()
+{
+    vector<AdministraPropiedad *>::iterator it;
+    int contador = 1;
+    cout << "-- IMPRIMIR COLECCION ADMINISTRAPROPIEDAD --" << endl;
+    for (it = this->coleccionAdministraPropiedad.begin(); it != this->coleccionAdministraPropiedad.end(); it++)
+    {
+        cout << contador << " - " << **it << endl;
+        contador++;
+    }
+}
 
 void HandlerAdministraPropiedad::destroy()
 {

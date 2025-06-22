@@ -67,6 +67,17 @@ const map<string, Cliente *> &HandlerClientes::getColeccionClientes() const
     return this->coleccionClientes;
 }
 
+void HandlerClientes::imprimirColeccionClientes()
+{
+    map<string, Cliente *>::iterator it;
+    int contador = 1;
+    cout << "-- IMPRIMIR COLECCION CLIENTES --" << endl;
+    for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
+    {
+        cout << contador << " - " << *(it->second) << endl;
+        contador++;
+    }
+}
 
 void HandlerClientes::destroy()
 {

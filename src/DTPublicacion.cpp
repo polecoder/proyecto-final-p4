@@ -1,37 +1,47 @@
 #include "../include/DTPublicacion.h"
 
-DTPublicacion::DTPublicacion(int codigo, DTFecha* fecha, std::string texto, std::string precio, std::string inmobiliaria) {
+using namespace std;
+
+
+DTPublicacion::DTPublicacion(int codigo, DTFecha *fecha, string texto, float precio, string inmobiliaria)
+{
     this->codigo = codigo;
-    this->fecha = new DTFecha(fecha);
+    this->fecha = fecha;
     this->texto = texto;
     this->precio = precio;
     this->inmobiliaria = inmobiliaria;
 }
 
-int DTPublicacion::getCodigo()const {
+int DTPublicacion::getCodigo() const
+{
     return codigo;
 }
 
-DTFecha* DTPublicacion::getFecha()const {
+DTFecha *DTPublicacion::getFecha() const
+{
     return fecha;
 }
 
-std::string DTPublicacion::getTexto()const {
+string DTPublicacion::getTexto() const
+{
     return texto;
 }
 
-std::string DTPublicacion::getPrecio()const {
+float DTPublicacion::getPrecio() const
+{
     return precio;
 }
 
-std::string DTPublicacion::getInmobiliaria()const {
+string DTPublicacion::getInmobiliaria() const
+{
     return inmobiliaria;
 }
 
-DTPublicacion::~DTPublicacion(){
-    delete fecha;
+DTPublicacion::~DTPublicacion()
+{
 };
 
-bool DTPublicacion::operator<(const DTPublicacion& other)const{
+bool DTPublicacion::operator<(const DTPublicacion &other) const
+{
     return codigo < other.codigo;
 };

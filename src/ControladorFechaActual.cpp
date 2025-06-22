@@ -19,7 +19,7 @@ ControladorFechaActual *ControladorFechaActual::getInstancia()
 
 DTFecha *ControladorFechaActual::getFechaActual()
 {
-    return new DTFecha(fechaActual);
+    return new DTFecha(*fechaActual);
 }
 void ControladorFechaActual::setNewFechaActual(int dia, int mes, int anio)
 {
@@ -30,4 +30,10 @@ void ControladorFechaActual::setNewFechaActual(int dia, int mes, int anio)
 ControladorFechaActual::~ControladorFechaActual()
 {
     delete fechaActual;
+}
+
+void ControladorFechaActual::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

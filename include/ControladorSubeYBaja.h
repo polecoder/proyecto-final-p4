@@ -41,20 +41,23 @@ private:
     HandlerInmueble *HInmueble;
     HandlerAdministraPropiedad *handlerAdministraPropiedad;
 
-    Inmobiliaria *UltimaInmobiliaria = nullptr; // Tuve que agregarlo para una funcion nueva :(
-    Propietario *UltimoPropietario = nullptr;   // No estoy seguro de si tiene que estar aca, me parece que en el handler no, pero creo que es necesario.
-    int codigoUltimoInmueble = 0;               // Para llevar un control del ultimo codigo de inmueble creado
+    Inmobiliaria *UltimaInmobiliaria = nullptr;
+    Propietario *UltimoPropietario = nullptr;
+    int codigoUltimoInmueble = 0;
+    int codigoUltimaPublicacion = 0;
 
     IControladorFechaActual *fechaActual;
     ControladorSubeYBaja();
 
 public:
+    static ControladorSubeYBaja *getInstancia();
+    static void destroy();
+    ~ControladorSubeYBaja();
+
     void eliminarInmueble(int codigoInmueble);
 
     void altaAdministraPropiedad(int codigoInmueble, string nicknameInmobiliaria);
 
-    static ControladorSubeYBaja *getInstancia();
-    ~ControladorSubeYBaja();
     bool altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio);
 
     bool altaPropietario(string nickname, string contrasena, string nombre, string email, string cuentaBancaria, string telefono);

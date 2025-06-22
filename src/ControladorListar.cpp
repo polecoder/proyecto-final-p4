@@ -1,4 +1,5 @@
 #include <set>
+#include <iostream>
 #include "../include/HandlerPropietarios.h"
 #include "../include/HandlerClientes.h"
 #include "../include/HandlerInmobiliarias.h"
@@ -18,7 +19,9 @@ ControladorListar::ControladorListar()
     this->handlerPropietarios = HandlerPropietarios::getInstancia();
     this->handlerClientes = HandlerClientes::getInstancia();
     this->handlerInmobiliarias = HandlerInmobiliarias::getInstancia();
+    this->handlerPublicaciones = HandlerPublicacion::getInstancia();
     this->interfazFechaActual = ControladorFechaActual::getInstancia();
+    this->handlerInmueble = HandlerInmueble::getInstancia();
 }
 
 ControladorListar *ControladorListar::getInstancia()
@@ -54,7 +57,7 @@ set<DTInmuebleAdministrado> ControladorListar::listarInmueblesAdministrados(stri
     vector<AdministraPropiedad *>::iterator it;
     for (it = adProp.begin(); it != adProp.end(); ++it)
     {
-        salida.insert(DTInmuebleAdministrado(((*it)->getInmueble())->getCodigo(), ((*it)->getInmueble())->getDireccion(), this->interfazFechaActual->getFechaActual()));
+        salida.insert(DTInmuebleAdministrado(((*it)->getInmueble())->getCodigo(), ((*it)->getInmueble())->getDireccion(), (*it)->getFechaComienzo()));
     }
     return salida;
 }
@@ -103,64 +106,83 @@ set<DTUsuario> ControladorListar::listarSuscripciones(string nicknameUsuario)
     }
     return resultado;
 }
-set<DTPublicacion> ControladorListar:: listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax, 
-TipoInmueble tipo){
-    set<Publicacion*> listaPublicaciones = HandlerPublicacion::getInstancia()->obtenerPublicacionesActivas();
+set<DTPublicacion> ControladorListar::listarPublicaciones(TipoPublicacion tipoPub, float precioMin, float precioMax,
+                                                          TipoInmueble tipo)
+{
+    set<Publicacion *> listaPublicaciones = this->handlerPublicaciones->obtenerPublicacionesActivas();
     set<DTPublicacion> dtp;
-    for(set<Publicacion*>::iterator it = listaPublicaciones.begin(); it != listaPublicaciones.end(); ++it){
-        if(tipo == Todos){
-            if((*it)->getTipo()==tipoPub && precioMin<(*it)->getPrecio() && (*it)->getPrecio()<precioMax)
-                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), to_string((*it)->getPrecio()), (*it)->getNicknameInmobiliaria()));
-        }else if(tipo == Casa){
-            if((*it)->getTipoInmueble()==tipo && (*it)->getTipo()==tipoPub && precioMin<(*it)->getPrecio() && (*it)->getPrecio()<precioMax)
-                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), to_string((*it)->getPrecio()), (*it)->getNicknameInmobiliaria()));
-        }else{
-            dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), to_string((*it)->getPrecio()), (*it)->getNicknameInmobiliaria()));
+    for (set<Publicacion *>::iterator it = listaPublicaciones.begin(); it != listaPublicaciones.end(); ++it)
+    {
+
+        if (tipo == Todos)
+        {
+            if (((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
+            {
+                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
+            }
+        }
+       else
+        {
+            if (((*it)->getTipoInmueble() == tipo) && ((*it)->getTipo() == tipoPub) && (precioMin < (*it)->getPrecio()) && (precioMax > (*it)->getPrecio()))
+            {
+                dtp.insert(DTPublicacion((*it)->getCodigo(), (*it)->getFecha(), (*it)->getTexto(), (*it)->getPrecio(), (*it)->getNicknameInmobiliaria()));
+            }
         }
     }
     return dtp;
 };
-DTInmueble ControladorListar::detalleInmueblePublicacion(int codigoPublicacion){
-    Publicacion* pub = HandlerPublicacion::getInstancia()->getPublicacion(codigoPublicacion);
-    Inmueble* inmuebleAsociado = pub->getInmueble();
+DTInmueble *ControladorListar::detalleInmueblePublicacion(int codigoPublicacion)
+{
+    Publicacion *pub = handlerPublicaciones->getPublicacion(codigoPublicacion);
+    Inmueble *inmuebleAsociado = pub->getInmueble();
     int codigo = inmuebleAsociado->getCodigo();
     string direccion = inmuebleAsociado->getDireccion();
     int numeroPuerta = inmuebleAsociado->getNumeroPuerta();
     int superficie = inmuebleAsociado->getSuperficie();
     int anio = inmuebleAsociado->getAnoConstruccion();
 
-    if(class::Casa *esCasa = dynamic_cast<class::Casa*>(inmuebleAsociado)){
+    if (class ::Casa *esCasa = dynamic_cast<class ::Casa *>(inmuebleAsociado))
+    {
         bool esPH = esCasa->getEsPH();
         TipoTecho techo = esCasa->getTipoTecho();
-        return DTCasa(codigo,direccion, numeroPuerta,superficie,anio,esPH,techo);
-    }else{
-        class::Apartamento *esApartamento = dynamic_cast<class::Apartamento*>(inmuebleAsociado);
+        return new DTCasa(codigo, direccion, numeroPuerta, superficie, anio, esPH, techo);
+    }
+    else /* if (class ::Apartamento *esApartamento = dynamic_cast<class ::Apartamento *>(inmuebleAsociado)) */
+    {
+        class ::Apartamento *esApartamento = dynamic_cast<class ::Apartamento *>(inmuebleAsociado);
         int piso = esApartamento->getPiso();
         bool ascensor = esApartamento->getAscensor();
         float gastosComunes = esApartamento->getGastosComunes();
-        return DTApartamento(codigo, direccion, numeroPuerta, superficie, anio, piso, ascensor, gastosComunes);
+        return new DTApartamento(codigo, direccion, numeroPuerta, superficie, anio, piso, ascensor, gastosComunes);
     }
 };
-set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nicknameUsuario){
+set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nicknameUsuario)
+{
     set<DTUsuario> inmobiliariasNoSuscripto;
-    if(this->handlerClientes->existeCliente(nicknameUsuario)){
+    if (this->handlerClientes->existeCliente(nicknameUsuario))
+    {
         Cliente *cliente = this->handlerClientes->getCliente(nicknameUsuario);
-        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliarias->getColeccionInmobiliarias();
-        map<string, Inmobiliaria*>::iterator it;
-        for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
+        map<string, Inmobiliaria *> inmobiliarias = this->handlerInmobiliarias->getColeccionInmobiliarias();
+        map<string, Inmobiliaria *>::iterator it;
+        for (it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
+        {
             string nicknameInmobiliaria = it->first;
-            if(!cliente->estaSuscripto(nicknameInmobiliaria)){
+            if (!cliente->estaSuscripto(nicknameInmobiliaria))
+            {
                 inmobiliariasNoSuscripto.insert(DTUsuario(it->second->getNickname(), it->second->getNombre()));
             }
         }
     }
-    if(this->handlerPropietarios->existePropietario(nicknameUsuario)){
+    if (this->handlerPropietarios->existePropietario(nicknameUsuario))
+    {
         Propietario *propietario = this->handlerPropietarios->getPropietario(nicknameUsuario);
-        map<string, Inmobiliaria*> inmobiliarias = this->handlerInmobiliarias->getColeccionInmobiliarias();
-        map<string, Inmobiliaria*>::iterator it;
-        for(it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it){
+        map<string, Inmobiliaria *> inmobiliarias = this->handlerInmobiliarias->getColeccionInmobiliarias();
+        map<string, Inmobiliaria *>::iterator it;
+        for (it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it)
+        {
             string nicknameInmobiliaria = it->first;
-            if(!propietario->estaSuscripto(nicknameInmobiliaria)){
+            if (!propietario->estaSuscripto(nicknameInmobiliaria))
+            {
                 inmobiliariasNoSuscripto.insert(DTUsuario(it->second->getNickname(), it->second->getNickname()));
             }
         }
@@ -168,7 +190,8 @@ set<DTUsuario> ControladorListar::listarInmobiliariasNoSuscripto(string nickname
     return inmobiliariasNoSuscripto;
 };
 
-set<DTUsuario> ControladorListar::listarPropietarios(){
+set<DTUsuario> ControladorListar::listarPropietarios()
+{
 
     map<string, Propietario *> propietarios = this->handlerPropietarios->getColeccionPropietarios();
     set<DTUsuario> Mostrar;
@@ -184,18 +207,11 @@ set<DTInmuebleListado> ControladorListar::listarInmuebles()
 {
     set<DTInmuebleListado> inmueblesListados;
     map<int, Inmueble *> inmuebles = handlerInmueble->DevolverInmuebles();
-    for (const pair<int, Inmueble *> &par : inmuebles)
+    map<int, Inmueble *>::iterator it;
+    for (it = inmuebles.begin(); it != inmuebles.end(); ++it)
     {
-        Inmueble *inmueble = par.second;
-        int codigo = inmueble->getCodigo();
-        string direccion = inmueble->getDireccion();
-        Propietario *propietario = inmueble->getPropietario();
-        string nicknamePropietario;
-        if (propietario != NULL){
-            nicknamePropietario = propietario->getNickname();
-        }
-        DTInmuebleListado DTInmuebleListado(codigo, direccion, nicknamePropietario);
-        inmueblesListados.insert(DTInmuebleListado);
+        Inmueble *inmueble = it->second;
+        inmueblesListados.insert(DTInmuebleListado(inmueble->getCodigo(), inmueble->getDireccion(), inmueble->getPropietario()->getNickname()));
     }
     return inmueblesListados;
 }
@@ -204,12 +220,13 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
 {
     set<DTInmuebleListado> inmueblesNoAdministrados;
     Inmobiliaria *Inmobiliaria = handlerInmobiliarias->getInmobiliaria(nicknameInmobiliaria);
-    map<string, Propietario *> propietariosRepresentados = Inmobiliaria->getPropietarios();
+    map<string, Propietario *> propietariosRepresentados = Inmobiliaria->getPropietariosRepresentados();
     // Recorro la coleccion de propietarios que son representados por la inmobiliaria
-    for (const auto &par : propietariosRepresentados)
+    map<string, Propietario *>::iterator it;
+    for (it = propietariosRepresentados.begin(); it != propietariosRepresentados.end(); ++it)
     {
-        Propietario *propietario = par.second;
-        vector<Inmueble *> &inmuebles = propietario->getInmuebles();
+        Propietario *propietario = it->second;
+        vector<Inmueble *> inmuebles = propietario->getInmuebles();
         // Recorro la coleccion de inmuebles que tiene el propietario
         for (Inmueble *inmueble : inmuebles)
         {
@@ -227,40 +244,42 @@ set<DTInmuebleListado> ControladorListar::getInmueblesNoAdministradosInmobiliari
             // Si la inmobiliaria no administra el inmueble se agrega al set<DTInmuebleListado>
             if (!esAdministrado)
             {
-                int codigo = inmueble->getCodigo();
-                string direccion = inmueble->getDireccion();
-                // Es el nickname?
-                string nicknamePropietario = propietario->getNickname();
-                DTInmuebleListado DTInmList = DTInmuebleListado(codigo, direccion, nicknamePropietario);
-                inmueblesNoAdministrados.insert(DTInmList);
+                inmueblesNoAdministrados.insert(DTInmuebleListado(inmueble->getCodigo(), inmueble->getDireccion(), propietario->getNickname()));
             }
         }
     }
+    return inmueblesNoAdministrados;
 }
 
-
-DTInmueble ControladorListar::detalleInmueble(int codigoInmueble){
+DTInmueble *ControladorListar::detalleInmueble(int codigoInmueble)
+{
     Inmueble *inmueble = handlerInmueble->DevolverInmueble(codigoInmueble);
     int codigo = inmueble->getCodigo();
     string direccion = inmueble->getDireccion();
     int numeroPuerta = inmueble->getNumeroPuerta();
     int superficie = inmueble->getSuperficie();
     int anoConstruccion = inmueble->getAnoConstruccion();
-    class::Casa *casa = dynamic_cast<class::Casa *>(inmueble);
+    class ::Casa *casa = dynamic_cast<class ::Casa *>(inmueble);
 
     if (casa)
     {
         bool esPH = casa->getEsPH();
         TipoTecho techo = casa->getTipoTecho();
-        return DTCasa(codigo, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
+        return new DTCasa(codigo, direccion, numeroPuerta, superficie, anoConstruccion, esPH, techo);
     }
 
     else
     {
-        class::Apartamento *apartamento = dynamic_cast<class::Apartamento *>(inmueble);
+        class ::Apartamento *apartamento = dynamic_cast<class ::Apartamento *>(inmueble);
         int piso = apartamento->getPiso();
         bool tieneAscensor = apartamento->getAscensor();
         float gastosComunes = apartamento->getGastosComunes();
-        return DTApartamento(codigo, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
+        return new DTApartamento(codigo, direccion, numeroPuerta, superficie, anoConstruccion, piso, tieneAscensor, gastosComunes);
     }
+}
+
+void ControladorListar::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

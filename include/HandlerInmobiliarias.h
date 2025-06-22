@@ -15,6 +15,8 @@ private:
 
 public:
     static HandlerInmobiliarias *getInstancia();
+    static void destroy();
+    ~HandlerInmobiliarias();
 
     void agregarInmobiliaria(Inmobiliaria *inmobiliaria);
     void eliminarInmobiliaria(string nickname);
@@ -23,8 +25,6 @@ public:
     Inmobiliaria *getInmobiliaria(string nickname);                                 // Devuelve la inmobiliaria con ese nickname.
     vector<AdministraPropiedad *> getColeccionAdministraPropiedad(string nickname); // devuelve los ap realcionado con una inmobiliaria con el nickname dado.
     bool existeInmobiliaria(string nickname);
-    void imprimirColeccionInmobiliarias();
-    ~HandlerInmobiliarias(); // Destructor, borra la coleccion
 };
 
 #endif // HANDLER_INMOBILIARIA

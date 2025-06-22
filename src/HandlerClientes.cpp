@@ -25,13 +25,10 @@ HandlerClientes *HandlerClientes::getInstancia()
 
 HandlerClientes::~HandlerClientes()
 {
-    map<string, Cliente *>::iterator it;
-
-    for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
+    for (map<string, Cliente *>::iterator it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
     {
         delete it->second;
     }
-
     this->coleccionClientes.clear();
 }
 
@@ -70,14 +67,9 @@ const map<string, Cliente *> &HandlerClientes::getColeccionClientes() const
     return this->coleccionClientes;
 }
 
-void HandlerClientes::imprimirColeccionClientes()
+
+void HandlerClientes::destroy()
 {
-    map<string, Cliente *>::iterator it;
-    int contador = 1;
-    cout << "-- IMPRIMIR COLECCION CLIENTES --" << endl;
-    for (it = this->coleccionClientes.begin(); it != this->coleccionClientes.end(); it++)
-    {
-        cout << contador << " - " << *(it->second) << endl;
-        contador++;
-    }
+    delete instancia;
+    instancia = NULL;
 }

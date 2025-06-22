@@ -11,11 +11,11 @@ HandlerInmueble::HandlerInmueble() {
 
 HandlerInmueble::~HandlerInmueble()
 {
-    for (auto it = coleccionInmuebles.begin(); it != coleccionInmuebles.end(); ++it)
+    for (map<int, Inmueble *>::iterator it = this->coleccionInmuebles.begin(); it != this->coleccionInmuebles.end(); it++)
     {
-        delete it->second; // Libera la memoria de cada Inmobiliaria
+        delete it->second;
     }
-    coleccionInmuebles.clear(); // Limpia el mapa
+    this->coleccionInmuebles.clear();
 }
 
 HandlerInmueble *HandlerInmueble::getInstancia()
@@ -51,13 +51,10 @@ Inmueble *HandlerInmueble::DevolverInmueble(int codigo)
     return coleccionInmuebles[codigo];
 }
 
-void HandlerInmueble::imprimirColeccionInmuebles()
+
+
+void HandlerInmueble::destroy()
 {
-    map<int, Inmueble *>::iterator it;
-    int contador = 1;
-    cout << "-- IMPRIMIR COLECCION INMUEBLES --" << endl;
-    for (it = this->coleccionInmuebles.begin(); it != this->coleccionInmuebles.end(); it++)
-    {
-        cout << contador << " - " << *(it->second) << endl;
-    }
+    delete instancia;
+    instancia = NULL;
 }

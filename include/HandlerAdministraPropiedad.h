@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 class HandlerAdministraPropiedad
 {
 private:
@@ -15,10 +14,11 @@ private:
     HandlerAdministraPropiedad();
 
 public:
-   
     static HandlerAdministraPropiedad *getInstancia();
+    static void destroy();
+    ~HandlerAdministraPropiedad();
+
     const vector<AdministraPropiedad *> &getColecccionAdministraPropiedad() const;
     void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
-    ~HandlerAdministraPropiedad();
 };
 #endif

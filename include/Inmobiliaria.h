@@ -25,8 +25,9 @@ private:
     string url;
     string telefono;
     vector<AdministraPropiedad *> administraProps;
-    map<string, Cliente *> clientesAsociados;         // se guardan los clientes suscriptos para recibir notificaciones.
-    map<string, Propietario *> PropietariosAsociados; // se guardan los propietarios suscriptos para recibir notificaciones.
+    map<string, Cliente *> clientesSuscritos; // se guardan los clientes suscriptos para recibir notificaciones.
+    map<string, Propietario *> propietariosRepresentados;
+    map<string, Propietario *> propietariosSuscritos; // se guardan los propietarios suscriptos para recibir notificaciones.
 
 public:
     Inmobiliaria(string nickname, string contrasena, string nombre, string email, string direccion, string url, string telefono);
@@ -35,12 +36,19 @@ public:
     string getDireccion() const;
     string getUrl() const;
     string getTelefono() const;
-    map<string, Propietario *> getPropietarios();
-    vector<AdministraPropiedad *> getadministraProps() const;
+    map<string, Cliente *> getClientesSuscritos() const;
+    map<string, Propietario *> getPropietariosRepresentados() const;
+    map<string, Propietario *> getPropietariosSuscritos() const;
+    vector<AdministraPropiedad *> getAdministraProps() const;
+
     void agregarClienteSuscripto(Cliente *cliente);
-    void agregarPropietario(Propietario *propietario);
+    void agregarPropietarioRepresentado(Propietario *propietario);
+    void agregarPropietarioSuscrito(Propietario *propietario);
     void agregarAdministraPropiedad(AdministraPropiedad *administraPropiedad);
-    void eliminarPropietario(string nicknamePropietario);
+
+    void eliminarClienteSuscrito(string nicknameCliente);
+    void eliminarPropietarioRepresentado(string nicknamePropietario);
+    void eliminarPropietarioSuscrito(string nicknamePropietario);
     void notificar(DTNotificacion notificacion);
 };
 

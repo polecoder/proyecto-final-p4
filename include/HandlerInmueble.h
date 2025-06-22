@@ -14,6 +14,8 @@ private:
 
 public:
     static HandlerInmueble *getInstancia();
+    static void destroy();
+    ~HandlerInmueble();
 
     void agregarInmueble(Inmueble *inmueble);
     void eliminarInmueble(int codigo);
@@ -21,7 +23,5 @@ public:
     bool existeInmueble(int codigoInmueble);
     map<int, Inmueble *> DevolverInmuebles(); // Devuelve el mapa completo
     Inmueble *DevolverInmueble(int codigo);   // Devuelve el inmueble con ese codigo
-    void imprimirColeccionInmuebles();
-    ~HandlerInmueble(); // Destructor
 };
 #endif

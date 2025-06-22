@@ -1,28 +1,30 @@
 #include "../include/DTInmuebleAdministrado.h"
 
-DTInmuebleAdministrado::DTInmuebleAdministrado(int codigo, std::string direccion, DTFecha* fechaComienzo) {
+DTInmuebleAdministrado::DTInmuebleAdministrado(int codigo, std::string direccion, DTFecha *fechaComienzo)
+{
     this->codigo = codigo;
     this->direccion = direccion;
-    this->fechaComienzo = new DTFecha(fechaComienzo);
+    this->fechaComienzo = fechaComienzo;
 }
 
-int DTInmuebleAdministrado::getCodigo() const{
+int DTInmuebleAdministrado::getCodigo() const
+{
     return codigo;
 }
 
-std::string DTInmuebleAdministrado::getDireccion() const{
+std::string DTInmuebleAdministrado::getDireccion() const
+{
     return direccion;
 }
 
-DTFecha* DTInmuebleAdministrado::getFechaComienzo() {
+DTFecha *DTInmuebleAdministrado::getFechaComienzo()
+{
     return fechaComienzo;
 }
 
-DTInmuebleAdministrado::~DTInmuebleAdministrado(){
-    delete fechaComienzo;
-}
+DTInmuebleAdministrado::~DTInmuebleAdministrado() {}
 
-bool DTInmuebleAdministrado::operator<(const DTInmuebleAdministrado& other) const {
+bool DTInmuebleAdministrado::operator<(const DTInmuebleAdministrado &other) const
+{
     return codigo < other.codigo; // Comparar directamente los campos
 }
-

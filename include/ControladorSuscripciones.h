@@ -22,12 +22,12 @@ private:
     ControladorSuscripciones();
 
 public:
-
     static ControladorSuscripciones *getInstancia();
     ~ControladorSuscripciones();
+    static void destroy();
 
     // set<DTUsuario> listarSuscripciones(string nicknameUsuario);
-     /**
+    /**
      * @brief Borra todas las notificaciones del usuario "u" en el sistema tal que u.nickname=nicknameUsuario
      *
      * PRE-CONDICIÓN: (existePropietario(nicknameUsuario) || existeCliente(nicknameUsuario)) == true.
@@ -35,9 +35,8 @@ public:
      * @param nicknameUsuario
      */
     void borrarNotificaciones(string nicknameUsuario);
-    void suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas);//PRE: existe usuario con nickname=nicknameUsuario && existen todas las inmobiliarias del set y ademas no estan relacionadas con el usuario. 
+    void suscribirse(string nicknameUsuario, set<string> inmobiliariasElegidas); // PRE: existe usuario con nickname=nicknameUsuario && existen todas las inmobiliarias del set y ademas no estan relacionadas con el usuario.
     void eliminarSuscripcion(string nicknameUsuario, set<string> inmobiliariasElegidas);
-
 };
 
 #endif

@@ -16,6 +16,7 @@ private:
 
 public:
     static HandlerPropietarios *getInstancia();
+    static void destroy();
     ~HandlerPropietarios();
 
     void agregarPropietario(Propietario *&propietario);
@@ -25,7 +26,6 @@ public:
     Propietario *getPropietario(string nickname);
     const map<string, Propietario *> &getColeccionPropietarios() const; // ACLARACIÓN: La definición de la función es de esta forma porque:
                                                                         // queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
-    void imprimirColeccionPropietarios();
 };
 
 #endif

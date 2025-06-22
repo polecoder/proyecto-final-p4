@@ -17,7 +17,7 @@ HandlerPublicacion *HandlerPublicacion::getInstancia()
     return instancia;
 }
 
-void HandlerPublicacion::agregarPublicacion(Publicacion *&publicacion)
+void HandlerPublicacion::agregarPublicacion(Publicacion *publicacion)
 {
     coleccionPublicaciones.insert({publicacion->getCodigo(), publicacion});
 }
@@ -28,6 +28,7 @@ void HandlerPublicacion::eliminarPublicacion(int codigo)
     if (it != coleccionPublicaciones.end())
     {
         coleccionPublicaciones.erase(it);
+        delete it->second;
     }
 }
 
@@ -38,7 +39,6 @@ bool HandlerPublicacion::existePublicacion(int codigo)
 
 Publicacion *HandlerPublicacion::getPublicacion(int codigo)
 {
-
     return coleccionPublicaciones.at(codigo);
 }
 
@@ -56,21 +56,17 @@ set<Publicacion *> HandlerPublicacion::obtenerPublicacionesActivas()
 
 HandlerPublicacion::~HandlerPublicacion()
 {
-    map<int, Publicacion *>::iterator it;
-    for (it != this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
+    for (map<int, Publicacion *>::iterator it = this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
     {
         delete it->second;
     }
     this->coleccionPublicaciones.clear();
 };
 
-void HandlerPublicacion::imprimirColeccionPublicaciones()
+
+
+void HandlerPublicacion::destroy()
 {
-    map<int, Publicacion *>::iterator it;
-    int contador = 1;
-    cout << "-- IMPRIMIR COLECCION PUBLICACIONES --" << endl;
-    for (it = this->coleccionPublicaciones.begin(); it != this->coleccionPublicaciones.end(); it++)
-    {
-        cout << contador << " - " << *(it->second) << endl;
-    }
+    delete instancia;
+    instancia = NULL;
 }

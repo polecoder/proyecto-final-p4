@@ -4,6 +4,7 @@
 #include "../include/DTFecha.h"
 #include <string>
 #include <set>
+#include <iostream>
 
 using namespace std;
 
@@ -12,26 +13,26 @@ CargaDatos *CargaDatos::instancia = NULL;
 CargaDatos::CargaDatos()
 {
     this->interfazSubeYBaja = ControladorSubeYBaja::getInstancia();
+    this->interfazFechaActual = ControladorFechaActual::getInstancia();
     this->interfazSuscripciones = ControladorSuscripciones::getInstancia();
     // Agregar Clientes
     interfazSubeYBaja->altaCliente("luisito23", "qweasd12", "Luis", "luisito23@gmail.com", "Pérez", "46859342");
     interfazSubeYBaja->altaCliente("anarojo88", "claveAna1", "Ana", "anarojo88@hotmail.com", "Rojo", "31287465");
     // Agregar Propietarios
-    interfazSubeYBaja->altaPropietario("marcelom", "banco123", "Marcelo", "marcelo.m@gmail.com", "099876543", "123456789012");
+    interfazSubeYBaja->altaPropietario("marcelom", "banco123", "Marcelo", "marcelo.m@gmail.com", "123456789012", "099876543");
     interfazSubeYBaja->altaCasa("Av. Rivera", 1011, 120, 1995, true, Plano);
     interfazSubeYBaja->altaApartamento("Av. Brasil", 2031, 75, 1980, 5, true, 3500);
-    
 
-    interfazSubeYBaja->altaPropietario("robertarce", "pass456", "Roberto", "roberto.a@yahoo.com", "091234567", "987654321001");
+    interfazSubeYBaja->altaPropietario("robertarce", "pass456", "Roberto", "roberto.a@yahoo.com", "987654321001", "091234567");
     interfazSubeYBaja->altaCasa("Camino Maldonado", 1540, 95, 1988, false, Plano);
 
-    interfazSubeYBaja->altaPropietario("soledadf", "sole789", "Soledad", "soledad.f@gmail.com", "092345678", "654321987654");
+    interfazSubeYBaja->altaPropietario("soledadf", "sole789", "Soledad", "soledad.f@gmail.com", "654321987654", "092345678");
     interfazSubeYBaja->altaApartamento("Colonia", 1542, 60, 1978, 12, true, 2800);
 
-    interfazSubeYBaja->altaPropietario("martagal", "martA01", "Marta", "marta.galvez@outlook.com", "098765432", "321098765432");
+    interfazSubeYBaja->altaPropietario("martagal", "martA01", "Marta", "marta.galvez@outlook.com", "321098765432", "098765432");
     interfazSubeYBaja->altaCasa("Juan Paullier", 801, 110, 2000, true, Liviano);
 
-    interfazSubeYBaja->altaPropietario("jorge88", "jorgepass88", "Jorge", "jorge.rivera@uy.com", "097654321", "890123456789");
+    interfazSubeYBaja->altaPropietario("jorge88", "jorgepass88", "Jorge", "jorge.rivera@uy.com", "890123456789", "097654321");
     interfazSubeYBaja->altaApartamento("Bulevar Artigas", 871, 68, 2002, 3, false, 2200);
     interfazSubeYBaja->altaApartamento("Sarmiento", 1476, 80, 2008, 6, true, 3100);
     interfazSubeYBaja->altaCasa("Cno. Carrasco", 1576, 140, 2007, true, Plano);
@@ -79,7 +80,8 @@ CargaDatos::CargaDatos()
 
     interfazFechaActual->setNewFechaActual(19, 5, 2022);
     interfazSubeYBaja->altaAdministraPropiedad(8, "vivaurbana");
-   /* // Crear Publicaciones
+
+    // Crear Publicaciones
     interfazFechaActual->setNewFechaActual(9, 10, 2011);
     interfazSubeYBaja->altaPublicacion("idealhome", 5, Venta, "Casa al fondo Juan Paullier con 110 m fondo y techo liviano.", 47000);
 
@@ -120,7 +122,7 @@ CargaDatos::CargaDatos()
     interfazSubeYBaja->altaPublicacion("idealhome", 7, Alquiler, "Apartamento con gran vista a la rambla", 31000);
 
     interfazFechaActual->setNewFechaActual(20, 11, 2023);
-    interfazSubeYBaja->altaPublicacion("idealhome", 7, Venta, "Aprtamente en excelentes condiciones de 80 m", 450000);
+    interfazSubeYBaja->altaPublicacion("idealhome", 7, Venta, "Apartamento en excelentes condiciones de 80 m", 450000);
 
     interfazFechaActual->setNewFechaActual(8, 3, 2024);
     interfazSubeYBaja->altaPublicacion("vivaurbana", 3, Venta, "Venta de casa en Camino Maldonado 95 m bien distribuidos.", 430000);
@@ -130,6 +132,7 @@ CargaDatos::CargaDatos()
 
     interfazFechaActual->setNewFechaActual(1, 8, 2024);
     interfazSubeYBaja->altaPublicacion("idealhome", 6, Venta, "A estrenar en Bulevar Artigas 871 apartamento moderno.", 400000);
+
     // Suscripciones a Inmobiliarias
     set<string> casasur123;
     casasur123.insert("casasur123");
@@ -150,7 +153,6 @@ CargaDatos::CargaDatos()
     interfazSuscripciones->suscribirse("jorge88", casasur123);
     interfazSuscripciones->suscribirse("jorge88", idealhome);
     interfazSuscripciones->suscribirse("jorge88", vivaurbana);
-    */
 }
 
 CargaDatos *CargaDatos::getInstancia()
@@ -160,4 +162,12 @@ CargaDatos *CargaDatos::getInstancia()
         instancia = new CargaDatos();
     }
     return instancia;
+}
+
+CargaDatos::~CargaDatos() {}
+
+void CargaDatos::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

@@ -28,3 +28,7 @@ $(OBJ_DIR):
 # Limpiar archivos generados
 clean:
 	rm -rf $(OBJ_DIR) $(BIN)
+
+# Valgrind
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./main

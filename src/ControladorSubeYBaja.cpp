@@ -36,6 +36,7 @@ ControladorSubeYBaja::~ControladorSubeYBaja() {
 
 bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codigoInmueble, TipoPublicacion tipoPublicacion, string texto, float precio)
 {
+    DTFecha *fechaActualSistema = fechaActual->getFechaActual();
     // se busca si existe una publicacion con el mismo tipo y fecha
     vector<AdministraPropiedad *> adProp = Hinmobiliarias->getColeccionAdministraPropiedad(nicknameInmobiliaria);
     vector<AdministraPropiedad *>::iterator it;
@@ -44,7 +45,7 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     { // busco el ap que esta relacionado con el inmueble, por precondicion siempre hay uno
         it++;
     }
-    bool e = (*it)->existePublicacion(fechaActual->getFechaActual(), tipoPublicacion);
+    bool e = (*it)->existePublicacion(fechaActualSistema, tipoPublicacion);
     if (e)
     {
         return false; // si existe una publicacion de ese tipo y fecha se devuelve false
@@ -58,13 +59,15 @@ bool ControladorSubeYBaja::altaPublicacion(string nicknameInmobiliaria, int codi
     {
         activa = true;
     }
-    else if ((*pu).getFecha()->operator<(fechaActual->getFechaActual()))
+    else if (*(pu->getFecha()) < fechaActualSistema)
     {
         activa = true;
         (*pu).setActiva(false);
     }
-    Publicacion *p = new Publicacion((*it)->getUltimaPublicacion() + 1, fechaActual->getFechaActual(), tipoPublicacion, texto, precio, activa, (*it)); // si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
-    (*it)->setUltimaPublicacion((*it)->getUltimaPublicacion() + 1);
+
+    this->codigoUltimaPublicacion++;
+    Publicacion *p = new Publicacion(this->codigoUltimaPublicacion, fechaActualSistema, tipoPublicacion, texto, precio, activa, (*it)); // si no se encontro un pu activo o uno con fecha mayor a la actual, se crea una nueva publicacion con activa=true. sino se crea una con activa false
+    (*it)->setUltimaPublicacion(this->codigoUltimaPublicacion);
     (*it)->agregarPublicacion(p->getCodigo(), p);
 
     // agregar a la coleccion de publicaciones
@@ -117,7 +120,7 @@ bool ControladorSubeYBaja::altaCliente(string nickname, string contrasena, strin
     bool existe = Hcliente->existeCliente(nickname);
     if (!existe)
     {
-        Cliente* nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
+        Cliente *nuevoCliente = new Cliente(nickname, contrasena, nombre, email, apellido, documento);
         this->Hcliente->agregarCliente(nuevoCliente);
         return true;
     }
@@ -133,7 +136,7 @@ void ControladorSubeYBaja::representarPropietario(string nicknamePropietario)
         Propietario *propietario = Hpropietario->getPropietario(nicknamePropietario);
         if (UltimaInmobiliaria != nullptr)
         { // Verifica si hay una inmobiliaria registrada
-            UltimaInmobiliaria->agregarPropietario(propietario);
+            UltimaInmobiliaria->agregarPropietarioRepresentado(propietario);
         }
     }
 }
@@ -150,7 +153,6 @@ void ControladorSubeYBaja::altaCasa(string direccion, int numeroPuerta, int supe
     // Aquí deberías guardar nuevaCasa en el handler correspondiente, por ejemplo:
     HInmueble->agregarInmueble(nuevaCasa);
     codigoUltimoInmueble = codigoInmueble;
-    
 }
 
 void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes)
@@ -160,7 +162,7 @@ void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, i
     if (UltimoPropietario != nullptr)
     {
         nuevoApartamento->setPropietario(UltimoPropietario);
-         UltimoPropietario->agregarInmueble(nuevoApartamento);
+        UltimoPropietario->agregarInmueble(nuevoApartamento);
     }
     // Aquí deberías guardar nuevoApartamento en el handler correspondiente, por ejemplo:
     HInmueble->agregarInmueble(nuevoApartamento);
@@ -169,14 +171,8 @@ void ControladorSubeYBaja::altaApartamento(string direccion, int numeroPuerta, i
 
 void ControladorSubeYBaja::finalizarAltaUsuario()
 {
-    if (UltimoPropietario != nullptr)
-    {
-        delete UltimoPropietario;
-    }
-    else if (UltimaInmobiliaria != nullptr)
-    {
-        delete UltimaInmobiliaria;
-    }
+    UltimaInmobiliaria = nullptr;
+    UltimoPropietario = nullptr;
 };
 
 void ControladorSubeYBaja::altaAdministraPropiedad(int codigoInmueble, string nicknameInmobiliaria)
@@ -208,4 +204,10 @@ void ControladorSubeYBaja::eliminarInmueble(int codigoInmueble)
         HInmueble->eliminarInmueble(codigoInmueble);
         delete inmuebleElim;
     }
+}
+
+void ControladorSubeYBaja::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

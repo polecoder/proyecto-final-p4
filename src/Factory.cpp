@@ -8,13 +8,13 @@
 #include "../include/IControladorListar.h"
 #include "../include/ControladorSuscripciones.h"
 #include "../include/IControladorSuscripciones.h"
-#include "../include/ControladorImprimir.h"
-#include "../include/IControladorImprimir.h"
 #include <cstddef>
 
 Factory *Factory::instancia = NULL;
 
 Factory::Factory() {}
+
+Factory::~Factory() {}
 
 Factory *Factory::getInstancia()
 {
@@ -45,7 +45,9 @@ IControladorSuscripciones *Factory::getControladorSuscripciones()
     return ControladorSuscripciones::getInstancia();
 }
 
-IControladorImprimir *Factory::getControladorImprimir()
+
+void Factory::destroy()
 {
-    return ControladorImprimir::getInstancia();
+    delete instancia;
+    instancia = NULL;
 }

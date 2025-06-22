@@ -15,16 +15,15 @@ private:
 
 public:
     static HandlerClientes *getInstancia();
+    static void destroy();
     ~HandlerClientes();
 
-    void agregarCliente(Cliente* cliente);
+    void agregarCliente(Cliente *cliente);
     void eliminarCliente(string nickname);
     bool existeCliente(string nickname);
 
     Cliente *getCliente(string nickname);
-    const map<string, Cliente *> &getColeccionClientes() const; // ACLARACIÓN: La definición de la función es de esta forma porque:
-                                                                //  queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
-    void imprimirColeccionClientes();
+    const map<string, Cliente *> &getColeccionClientes() const; // ACLARACIÓN: La definición de la función es de esta forma porque: queremos devolver una referencia a la colección no modificable, que además no modifique al objeto desde el cual se llama al método
 };
 
 #endif

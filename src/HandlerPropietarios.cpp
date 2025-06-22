@@ -25,13 +25,10 @@ HandlerPropietarios *HandlerPropietarios::getInstancia()
 
 HandlerPropietarios::~HandlerPropietarios()
 {
-    map<string, Propietario *>::iterator it;
-
-    for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
+    for (map<string, Propietario *>::iterator it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
     {
         delete it->second;
     }
-
     this->coleccionPropietarios.clear();
 }
 
@@ -68,20 +65,10 @@ const map<string, Propietario *> &HandlerPropietarios::getColeccionPropietarios(
     return this->coleccionPropietarios;
 }
 
-void HandlerPropietarios::imprimirColeccionPropietarios()
+
+
+void HandlerPropietarios::destroy()
 {
-    map<string, Propietario *>::iterator it;
-    int contador = 1;
-    cout << "-- IMPRIMIR COLECCION PROPIETARIIOS --" << endl;
-    for (it = this->coleccionPropietarios.begin(); it != this->coleccionPropietarios.end(); it++)
-    {
-        cout << contador << " - " << *(it->second)<<endl;
-        cout<< "otrosdatos:"<<endl;
-        vector<Inmueble *> :: iterator it2;
-        vector<Inmueble *> inmuebles =it->second->getInmuebles();
-        for(it2=inmuebles.begin();it2!=inmuebles.end();it2++){
-            cout<<**it2<<endl;
-        }
-        contador++;
-    }
+    delete instancia;
+    instancia = NULL;
 }

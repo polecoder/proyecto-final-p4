@@ -20,7 +20,7 @@ public:
     virtual void altaApartamento(string direccion, int numeroPuerta, int superficie, int anoConstruccion, int piso, bool tieneAscensor, float gastosComunes) = 0;
     virtual void finalizarAltaUsuario() = 0;
 
-    virtual ~IControladorSubeYBaja() {} // Destructor virtual para permitir la eliminación adecuada de objetos derivados
+    virtual ~IControladorSubeYBaja() = default; // Destructor virtual para permitir la eliminación adecuada de objetos derivados
     virtual void eliminarInmueble(int codigoInmueble) = 0;
     virtual void altaAdministraPropiedad(int codigoInmueble, string nicknameInmobiliaria) = 0;
 };

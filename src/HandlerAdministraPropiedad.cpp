@@ -1,4 +1,5 @@
 #include "../include/HandlerAdministraPropiedad.h"
+#include <iostream>
 
 HandlerAdministraPropiedad *HandlerAdministraPropiedad::instancia = NULL;
 
@@ -17,11 +18,27 @@ void HandlerAdministraPropiedad::agregarAdministraPropiedad(AdministraPropiedad 
     coleccionAdministraPropiedad.push_back(AdministraPropiedad);
 }
 
-HandlerAdministraPropiedad * HandlerAdministraPropiedad::getInstancia()
+HandlerAdministraPropiedad *HandlerAdministraPropiedad::getInstancia()
 {
     if (instancia == NULL)
     {
         instancia = new HandlerAdministraPropiedad();
     }
     return instancia;
+}
+
+HandlerAdministraPropiedad::~HandlerAdministraPropiedad()
+{
+    for (vector<AdministraPropiedad *>::iterator it = coleccionAdministraPropiedad.begin(); it != coleccionAdministraPropiedad.end(); ++it)
+    {
+        delete *it;
+    }
+    coleccionAdministraPropiedad.clear();
+}
+
+
+void HandlerAdministraPropiedad::destroy()
+{
+    delete instancia;
+    instancia = NULL;
 }

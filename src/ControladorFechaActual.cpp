@@ -19,7 +19,7 @@ ControladorFechaActual *ControladorFechaActual::getInstancia()
 
 DTFecha *ControladorFechaActual::getFechaActual()
 {
-    return new DTFecha(fechaActual);
+    return new DTFecha(*fechaActual);
 }
 void ControladorFechaActual::setNewFechaActual(int dia, int mes, int anio)
 {

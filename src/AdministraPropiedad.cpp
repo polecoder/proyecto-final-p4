@@ -16,7 +16,7 @@ AdministraPropiedad ::AdministraPropiedad(DTFecha *fecha, Inmueble *inmueble, In
 AdministraPropiedad ::~AdministraPropiedad()
 {
     delete this->fecha;
-    // TODO: Falta eliminar más cosas
+    publicaciones.clear();
 };
 
 Inmueble *AdministraPropiedad::getInmueble() const

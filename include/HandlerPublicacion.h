@@ -28,7 +28,7 @@ public:
     bool existePublicacion(int codigo);                // devuelve true si existe una publicacion con p.codigo=codigo.
     Publicacion *getPublicacion(int codigo);           // devuelve un puntgero a una publicacion con p.codigo=codigo.
     set<Publicacion *> obtenerPublicacionesActivas();  // devuelve todas las publicaciones activas.
-    void imprimirColeccionPublicaciones();
+
 };
 
 #endif

@@ -2,10 +2,11 @@
 
 using namespace std;
 
+
 DTPublicacion::DTPublicacion(int codigo, DTFecha *fecha, string texto, float precio, string inmobiliaria)
 {
     this->codigo = codigo;
-    this->fecha = new DTFecha(fecha);
+    this->fecha = fecha;
     this->texto = texto;
     this->precio = precio;
     this->inmobiliaria = inmobiliaria;
@@ -38,7 +39,6 @@ string DTPublicacion::getInmobiliaria() const
 
 DTPublicacion::~DTPublicacion()
 {
-
 };
 
 bool DTPublicacion::operator<(const DTPublicacion &other) const

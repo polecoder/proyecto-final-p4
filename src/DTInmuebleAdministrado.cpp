@@ -4,7 +4,7 @@ DTInmuebleAdministrado::DTInmuebleAdministrado(int codigo, std::string direccion
 {
     this->codigo = codigo;
     this->direccion = direccion;
-    this->fechaComienzo = new DTFecha(fechaComienzo);
+    this->fechaComienzo = fechaComienzo;
 }
 
 int DTInmuebleAdministrado::getCodigo() const
@@ -24,7 +24,7 @@ DTFecha *DTInmuebleAdministrado::getFechaComienzo()
 
 DTInmuebleAdministrado::~DTInmuebleAdministrado()
 {
-    delete fechaComienzo;
+
 }
 
 bool DTInmuebleAdministrado::operator<(const DTInmuebleAdministrado &other) const
